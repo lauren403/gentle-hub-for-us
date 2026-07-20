@@ -6,8 +6,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HALAXY_URL, ANCHOR_URL } from "@/config/site";
+import {
+  HALAXY_URL,
+  ANCHOR_URL,
+  HERO_IMAGE,
+  FOOD_IMAGE,
+  BELONGING_IMAGE,
+} from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
