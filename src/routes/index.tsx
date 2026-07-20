@@ -451,7 +451,8 @@ function AdhdHub() {
       </section>
 
       {/* LEAD MAGNET */}
-      <Section>
+      <Section id="signup">
+
         <div className="rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] p-8 md:p-12">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
             Free download
@@ -475,7 +476,11 @@ function AdhdHub() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                if (email.trim()) setSubmitted(true);
+                if (email.trim()) {
+                  trackEvent("sign_up", { method: "lead_magnet" });
+                  trackEvent("email_click");
+                  setSubmitted(true);
+                }
               }}
               className="mt-8 flex flex-col gap-3 sm:flex-row"
             >
@@ -484,6 +489,7 @@ function AdhdHub() {
               </label>
               <input
                 id="lead-email"
+                ref={emailInputRef}
                 type="email"
                 required
                 value={email}
@@ -491,6 +497,7 @@ function AdhdHub() {
                 placeholder="you@example.com"
                 className="flex-1 rounded-full border border-[var(--plum)]/20 bg-[var(--oat)] px-5 py-3 text-base text-[var(--plum)] placeholder:text-[var(--plum)]/40 focus:border-[var(--terracotta)] focus:outline-none min-h-11"
               />
+
               <button
                 type="submit"
                 className="rounded-full bg-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--oat)] transition-all hover:bg-[var(--terracotta)] min-h-11"
