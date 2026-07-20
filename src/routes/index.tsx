@@ -95,6 +95,8 @@ function FloatingCta() {
         href={BOOK_URL}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Book a free 15-minute intro call (opens in a new tab)"
+        onClick={() => trackEvent("booking_click", { location: "floating_cta" })}
         className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[var(--plum)] px-5 py-3 text-sm font-medium text-[var(--cream)] shadow-lg shadow-[var(--plum)]/20 transition-transform hover:-translate-y-0.5 min-h-11"
       >
         <span className="size-2 rounded-full bg-[var(--terracotta)]" aria-hidden />
@@ -103,6 +105,7 @@ function FloatingCta() {
     </div>
   );
 }
+
 
 function Section({
   id,
