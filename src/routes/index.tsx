@@ -1,18 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { HALAXY_URL, ANCHOR_URL } from "@/config/site";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
 });
 
-const BOOK_URL =
-  "https://www.halaxy.com/profile/ms-lauren-lynch/social-worker/1772313";
+const BOOK_URL = HALAXY_URL;
 
 const Logo = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 1080 1080" className={className} aria-hidden="true">
@@ -26,14 +27,17 @@ const Logo = ({ className = "" }: { className?: string }) => (
 const BookButton = ({
   children = "Book a free intro call",
   className = "",
+  location = "generic",
 }: {
   children?: React.ReactNode;
   className?: string;
+  location?: string;
 }) => (
   <a
     href={BOOK_URL}
     target="_blank"
     rel="noopener noreferrer"
+    onClick={() => trackEvent("booking_click", { location })}
     className={
       "inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98] min-h-11 " +
       className
@@ -42,6 +46,7 @@ const BookButton = ({
     {children}
   </a>
 );
+
 
 const NAV = [
   { id: "reframe", label: "Reframe" },
@@ -90,6 +95,8 @@ function FloatingCta() {
         href={BOOK_URL}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Book a free 15-minute intro call (opens in a new tab)"
+        onClick={() => trackEvent("booking_click", { location: "floating_cta" })}
         className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[var(--plum)] px-5 py-3 text-sm font-medium text-[var(--cream)] shadow-lg shadow-[var(--plum)]/20 transition-transform hover:-translate-y-0.5 min-h-11"
       >
         <span className="size-2 rounded-full bg-[var(--terracotta)]" aria-hidden />
@@ -98,6 +105,7 @@ function FloatingCta() {
     </div>
   );
 }
+
 
 function Section({
   id,
@@ -136,6 +144,22 @@ function PullQuote({ children }: { children: React.ReactNode }) {
 function AdhdHub() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [showAppSoon, setShowAppSoon] = useState(false);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+
+  const anchorConfigured = ANCHOR_URL !== "#";
+
+  const handleAppClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    trackEvent("app_click", { configured: anchorConfigured });
+    if (anchorConfigured) return; // let the link open in a new tab
+    e.preventDefault();
+    setShowAppSoon(true);
+    const target = document.getElementById("signup");
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => emailInputRef.current?.focus(), 400);
+  };
+
+
 
   return (
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
@@ -359,11 +383,23 @@ function AdhdHub() {
               nudges toward eating like a person who's cared for.
             </p>
             <a
-              href="#"
+              href={anchorConfigured ? ANCHOR_URL : "#signup"}
+              target={anchorConfigured ? "_blank" : undefined}
+              rel={anchorConfigured ? "noopener noreferrer" : undefined}
+              onClick={handleAppClick}
               className="mt-8 inline-flex items-center justify-center rounded-full border border-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--plum)] transition-colors hover:bg-[var(--plum)] hover:text-[var(--oat)] min-h-11"
             >
               Get the free app
             </a>
+            {showAppSoon && !anchorConfigured && (
+              <p
+                role="status"
+                className="mt-4 text-sm text-[var(--plum)]/75"
+              >
+                Coming soon — join the list below to hear when Anchor launches.
+              </p>
+            )}
+
           </div>
           <div
             className="mx-auto grid size-40 place-items-center rounded-3xl bg-[var(--plum)] text-[var(--oat)] md:size-48"
@@ -415,7 +451,8 @@ function AdhdHub() {
       </section>
 
       {/* LEAD MAGNET */}
-      <Section>
+      <Section id="signup">
+
         <div className="rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] p-8 md:p-12">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
             Free download
@@ -439,7 +476,11 @@ function AdhdHub() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                if (email.trim()) setSubmitted(true);
+                if (email.trim()) {
+                  trackEvent("sign_up", { method: "lead_magnet" });
+                  trackEvent("email_click");
+                  setSubmitted(true);
+                }
               }}
               className="mt-8 flex flex-col gap-3 sm:flex-row"
             >
@@ -448,6 +489,7 @@ function AdhdHub() {
               </label>
               <input
                 id="lead-email"
+                ref={emailInputRef}
                 type="email"
                 required
                 value={email}
@@ -455,6 +497,7 @@ function AdhdHub() {
                 placeholder="you@example.com"
                 className="flex-1 rounded-full border border-[var(--plum)]/20 bg-[var(--oat)] px-5 py-3 text-base text-[var(--plum)] placeholder:text-[var(--plum)]/40 focus:border-[var(--terracotta)] focus:outline-none min-h-11"
               />
+
               <button
                 type="submit"
                 className="rounded-full bg-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--oat)] transition-all hover:bg-[var(--terracotta)] min-h-11"

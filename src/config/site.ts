@@ -1,0 +1,36 @@
+// ============================================================
+// Site-wide configuration.
+// Edit values here — they're used across the whole site.
+// ============================================================
+
+export const SITE_URL = "https://www.bodybelongingclinic.com.au/adhd";
+
+// Google Analytics 4 Measurement ID.
+// REPLACE the placeholder with your real ID (e.g. "G-ABC123XYZ")
+// to enable analytics. While it equals the placeholder, no gtag
+// script is injected and trackEvent() safely no-ops.
+export const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+
+// Anchor app URL. While it equals "#", the "Get the free app"
+// button shows a "Coming soon" message and focuses the email
+// signup instead of navigating. Set to the real store/download
+// URL when Anchor launches.
+export const ANCHOR_URL = "#";
+
+export const HALAXY_URL =
+  "https://www.halaxy.com/profile/ms-lauren-lynch/social-worker/1772313";
+
+export const CONTACT = {
+  email: "admin@bodybelongingclinic.com.au",
+  phone: "+61 493 117 185",
+  address: {
+    street: "3A Megalong Street",
+    suburb: "Nedlands",
+    state: "WA",
+    postcode: "6009",
+    country: "AU",
+  },
+};
+
+export const OG_IMAGE = "/og-image.png"; // 1200x630 placed in /public
+export const THEME_COLOR = "#2E1A22";
