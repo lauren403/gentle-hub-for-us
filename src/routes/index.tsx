@@ -148,9 +148,65 @@ function PullQuote({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * Editorial image slot with an on-brand graceful fallback.
+ * If the src file is missing (or fails to load), we render a
+ * plum-gradient block with the "h" monogram in cream — so the
+ * layout always feels intentional even before real studio
+ * photography is dropped into /public.
+ */
+function StudioImage({
+  src,
+  alt,
+  className = "",
+  aspect = "aspect-[4/5]",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  aspect?: string;
+}) {
+  const [failed, setFailed] = useState(false);
+  const showPlaceholder = failed || !src || src === "#";
+  return (
+    <div
+      className={
+        "relative overflow-hidden rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] shadow-sm " +
+        aspect +
+        " " +
+        className
+      }
+    >
+      {showPlaceholder ? (
+        <div
+          className="grid h-full w-full place-items-center"
+          style={{
+            background:
+              "linear-gradient(140deg, var(--plum) 0%, color-mix(in oklab, var(--plum) 78%, var(--terracotta)) 100%)",
+          }}
+          aria-label={alt}
+          role="img"
+        >
+          <Logo className="w-2/5 text-[var(--oat)] opacity-25" />
+        </div>
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(true)}
+          className="h-full w-full object-cover"
+        />
+      )}
+    </div>
+  );
+}
+
 function AdhdHub() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [showAppSoon, setShowAppSoon] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
 
@@ -174,35 +230,52 @@ function AdhdHub() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-5xl px-5 pt-20 pb-24 md:pt-28 md:pb-32">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-[var(--terracotta)]">
-            The ADHD Hub · Body Belonging Clinic
-          </p>
-          <h1 className="font-display text-4xl leading-[1.05] md:text-6xl lg:text-7xl">
-            ADHD isn't an attention problem.
-            <br />
-            <span className="italic text-[var(--terracotta)]">It's a whole-of-you thing.</span>
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--plum)]/80 md:text-xl">
-            Neuro-affirming ADHD therapy and support in Perth and across Australia —
-            for the part the diagnosis and the prescription didn't reach. Aboriginal-led.
-            LGBTQIA+ affirming. Lived-experience informed.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <BookButton>Book a free 15-minute intro call</BookButton>
-            <a
-              href="#reframe"
-              className="text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] decoration-2 underline-offset-4 hover:text-[var(--terracotta)]"
-            >
-              Read the reframe ↓
-            </a>
+        <div className="mx-auto max-w-6xl px-5 pt-20 pb-24 md:pt-28 md:pb-32">
+          <div className="grid items-center gap-12 md:grid-cols-[1.15fr_1fr] md:gap-16">
+            <div>
+              <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-[var(--terracotta)]">
+                The ADHD Hub · Body Belonging Clinic
+              </p>
+              <h1 className="font-display text-4xl leading-[1.03] md:text-6xl lg:text-[4.75rem]">
+                ADHD isn't an attention problem.
+                <br />
+                <span className="italic text-[var(--terracotta)]">It's a whole-of-you thing.</span>
+              </h1>
+              <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--plum)]/80 md:text-xl">
+                Neuro-affirming ADHD therapy and support in Perth and across Australia —
+                for the part the diagnosis and the prescription didn't reach. Aboriginal-led.
+                LGBTQIA+ affirming. Lived-experience informed.
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <BookButton>Book a free 15-minute intro call</BookButton>
+                <a
+                  href="#reframe"
+                  className="text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] decoration-2 underline-offset-4 hover:text-[var(--terracotta)]"
+                >
+                  Read the reframe ↓
+                </a>
+              </div>
+              <p className="mt-8 max-w-lg text-xs leading-relaxed text-[var(--plum)]/60">
+                Not a crisis service. In an emergency call <strong>000</strong>, or
+                Lifeline <strong>13 11 14</strong>.
+              </p>
+            </div>
+            <StudioImage
+              src={HERO_IMAGE}
+              alt="Body Belonging Clinic studio — a warm, calm space."
+              aspect="aspect-[4/5]"
+              className="mx-auto w-full max-w-md md:max-w-none"
+            />
           </div>
-          <p className="mt-8 max-w-lg text-xs leading-relaxed text-[var(--plum)]/60">
-            Not a crisis service. In an emergency call <strong>000</strong>, or
-            Lifeline <strong>13 11 14</strong>.
-          </p>
         </div>
       </section>
+
+      {/* warm divider */}
+      <div aria-hidden className="mx-auto flex max-w-4xl items-center gap-4 px-5">
+        <span className="h-px flex-1 bg-[var(--plum)]/15" />
+        <Logo className="size-4 text-[var(--terracotta)] opacity-70" />
+        <span className="h-px flex-1 bg-[var(--plum)]/15" />
+      </div>
 
       {/* REFRAME */}
       <Section id="reframe" eyebrow="The reframe">
@@ -258,24 +331,34 @@ function AdhdHub() {
 
       {/* FOOD */}
       <Section id="food" eyebrow="Food & ADHD">
-        <h2 className="font-display text-3xl leading-tight md:text-5xl">
-          Food and ADHD — without the diet noise.
-        </h2>
-        <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
-          <p>
-            ADHD can make eating hard: skipped meals, delayed hunger cues, the
-            afternoon crash, the 9pm scramble. It deserves a real conversation.
-            It also deserves not to be hijacked by clean-eating, restriction, or
-            supplement hype.
-          </p>
-          <p>
-            We're an ANZAED-accredited eating-disorder clinic. That means when we
-            talk about food and ADHD, we talk about it safely: eating regularly,
-            adding rather than cutting, sensory-friendly options, and a
-            weight-neutral stance. Anything about "deficiencies" is a
-            conversation with your GP guided by proper testing — not a supplement
-            aisle.
-          </p>
+        <div className="grid items-start gap-10 md:grid-cols-[1fr_1fr] md:gap-14">
+          <div>
+            <h2 className="font-display text-3xl leading-tight md:text-5xl lg:text-[3.25rem]">
+              Food and ADHD — without the diet noise.
+            </h2>
+            <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
+              <p>
+                ADHD can make eating hard: skipped meals, delayed hunger cues, the
+                afternoon crash, the 9pm scramble. It deserves a real conversation.
+                It also deserves not to be hijacked by clean-eating, restriction, or
+                supplement hype.
+              </p>
+              <p>
+                We're an ANZAED-accredited eating-disorder clinic. That means when we
+                talk about food and ADHD, we talk about it safely: eating regularly,
+                adding rather than cutting, sensory-friendly options, and a
+                weight-neutral stance. Anything about "deficiencies" is a
+                conversation with your GP guided by proper testing — not a supplement
+                aisle.
+              </p>
+            </div>
+          </div>
+          <StudioImage
+            src={FOOD_IMAGE}
+            alt="A gentle, unfussy still life — food as care, not rules."
+            aspect="aspect-[4/5]"
+            className="md:sticky md:top-24"
+          />
         </div>
         <PullQuote>
           "We take nutrition and ADHD seriously — and because we're an
@@ -287,22 +370,32 @@ function AdhdHub() {
       {/* BELONGING */}
       <section className="bg-[var(--plum)] text-[var(--oat)]">
         <Section eyebrow="Belonging & the nervous system">
-          <h2 className="font-display text-3xl leading-tight text-[var(--oat)] md:text-5xl">
-            Your body belongs here too.
-          </h2>
-          <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--oat)]/85">
-            <p>
-              A lot of ADHD support skips straight to strategies while the body
-              is still braced. We start where it actually lives — in the nervous
-              system — with somatic, felt-sense work alongside the practical
-              skills.
-            </p>
-            <p>
-              This is an Aboriginal-led practice. It is LGBTQIA+ affirming and
-              culturally safe by design, not as an afterthought. Feeling safe,
-              and feeling like you belong in the room, is where the work
-              actually becomes possible.
-            </p>
+          <div className="grid items-center gap-10 md:grid-cols-[1fr_0.9fr] md:gap-14">
+            <div>
+              <h2 className="font-display text-3xl leading-tight text-[var(--oat)] md:text-5xl lg:text-[3.25rem]">
+                Your body belongs here too.
+              </h2>
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--oat)]/85">
+                <p>
+                  A lot of ADHD support skips straight to strategies while the body
+                  is still braced. We start where it actually lives — in the nervous
+                  system — with somatic, felt-sense work alongside the practical
+                  skills.
+                </p>
+                <p>
+                  This is an Aboriginal-led practice. It is LGBTQIA+ affirming and
+                  culturally safe by design, not as an afterthought. Feeling safe,
+                  and feeling like you belong in the room, is where the work
+                  actually becomes possible.
+                </p>
+              </div>
+            </div>
+            <StudioImage
+              src={BELONGING_IMAGE}
+              alt="A quiet, grounding scene from the Body Belonging Clinic studio."
+              aspect="aspect-[4/5]"
+              className="border-[var(--oat)]/15"
+            />
           </div>
         </Section>
       </section>
@@ -474,6 +567,7 @@ function AdhdHub() {
           {submitted ? (
             <div
               role="status"
+              aria-live="polite"
               className="mt-8 rounded-xl bg-[var(--plum)] p-5 text-[var(--oat)]"
             >
               Thank you — check your inbox soon. And take a breath. You did the
@@ -481,13 +575,28 @@ function AdhdHub() {
             </div>
           ) : (
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                if (email.trim()) {
-                  trackEvent("sign_up", { method: "lead_magnet" });
-                  trackEvent("email_click");
-                  setSubmitted(true);
+                const trimmed = email.trim();
+                if (!trimmed) return;
+                // Simple email shape check; server-side accepts the row and
+                // the DB is the source of truth. We never surface a scary
+                // error to the visitor — the friendly thank-you always shows.
+                const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+                if (!looksLikeEmail) return;
+                setSubmitting(true);
+                try {
+                  const { error } = await supabase
+                    .from("lead_signups")
+                    .insert({ email: trimmed, source: "adhd_hub" });
+                  if (error) console.warn("lead_signups insert failed", error);
+                } catch (err) {
+                  console.warn("lead_signups insert threw", err);
                 }
+                trackEvent("sign_up", { method: "lead_magnet" });
+                trackEvent("email_click");
+                setSubmitting(false);
+                setSubmitted(true);
               }}
               className="mt-8 flex flex-col gap-3 sm:flex-row"
             >
@@ -507,9 +616,10 @@ function AdhdHub() {
 
               <button
                 type="submit"
-                className="rounded-full bg-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--oat)] transition-all hover:bg-[var(--terracotta)] min-h-11"
+                disabled={submitting}
+                className="rounded-full bg-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--oat)] transition-all hover:bg-[var(--terracotta)] disabled:opacity-70 min-h-11"
               >
-                Send it to me
+                {submitting ? "Sending…" : "Send it to me"}
               </button>
             </form>
           )}
