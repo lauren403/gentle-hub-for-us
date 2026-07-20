@@ -11,6 +11,50 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import {
+  SITE_URL,
+  GA_MEASUREMENT_ID,
+  THEME_COLOR,
+  OG_IMAGE,
+  CONTACT,
+} from "../config/site";
+import { analyticsEnabled } from "../lib/analytics";
+
+const TITLE =
+  "Neuro-Affirming ADHD Therapy Perth & Australia-wide | Body Belonging Clinic";
+const DESCRIPTION =
+  "ADHD therapy and support beyond the diagnosis — emotional regulation, everyday skills, and eating-disorder-safe care. Aboriginal-led, LGBTQIA+ affirming. Perth + telehealth. Free 15-minute intro call.";
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": ["MedicalBusiness", "LocalBusiness"],
+  name: "Body Belonging Clinic",
+  description: DESCRIPTION,
+  url: SITE_URL,
+  telephone: CONTACT.phone,
+  email: CONTACT.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: CONTACT.address.street,
+    addressLocality: CONTACT.address.suburb,
+    addressRegion: CONTACT.address.state,
+    postalCode: CONTACT.address.postcode,
+    addressCountry: CONTACT.address.country,
+  },
+  areaServed: "Australia",
+  founder: { "@type": "Person", name: "Lauren Lynch" },
+  availableService: [
+    "ADHD therapy and support",
+    "Eating disorder therapy",
+  ],
+};
+
+const FAVICON_SVG =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080"><rect width="1080" height="1080" rx="180" fill="#2E1A22"/><path d="M326 262 L472 300 L472 486 L762 516 L762 856 L620 856 L620 690 L472 690 L472 856 L326 856 Z" fill="#F2E9DB"/></svg>',
+  );
+
 
 function NotFoundComponent() {
   return (
