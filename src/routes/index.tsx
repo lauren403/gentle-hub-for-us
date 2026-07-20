@@ -144,6 +144,22 @@ function PullQuote({ children }: { children: React.ReactNode }) {
 function AdhdHub() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [showAppSoon, setShowAppSoon] = useState(false);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+
+  const anchorConfigured = ANCHOR_URL !== "#";
+
+  const handleAppClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    trackEvent("app_click", { configured: anchorConfigured });
+    if (anchorConfigured) return; // let the link open in a new tab
+    e.preventDefault();
+    setShowAppSoon(true);
+    const target = document.getElementById("signup");
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => emailInputRef.current?.focus(), 400);
+  };
+
+
 
   return (
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
@@ -367,11 +383,23 @@ function AdhdHub() {
               nudges toward eating like a person who's cared for.
             </p>
             <a
-              href="#"
+              href={anchorConfigured ? ANCHOR_URL : "#signup"}
+              target={anchorConfigured ? "_blank" : undefined}
+              rel={anchorConfigured ? "noopener noreferrer" : undefined}
+              onClick={handleAppClick}
               className="mt-8 inline-flex items-center justify-center rounded-full border border-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--plum)] transition-colors hover:bg-[var(--plum)] hover:text-[var(--oat)] min-h-11"
             >
               Get the free app
             </a>
+            {showAppSoon && !anchorConfigured && (
+              <p
+                role="status"
+                className="mt-4 text-sm text-[var(--plum)]/75"
+              >
+                Coming soon — join the list below to hear when Anchor launches.
+              </p>
+            )}
+
           </div>
           <div
             className="mx-auto grid size-40 place-items-center rounded-3xl bg-[var(--plum)] text-[var(--oat)] md:size-48"
