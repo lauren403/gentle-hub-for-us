@@ -34,3 +34,16 @@ export const CONTACT = {
 
 export const OG_IMAGE = "/og-image.png"; // 1200x630 placed in /public
 export const THEME_COLOR = "#2E1A22";
+
+// ----------------------------------------------------------------
+// Studio image slots.
+// Drop these three files into /public to replace the on-brand
+// placeholders (plum gradient + monogram) that render by default:
+//   /public/studio-hero.jpg       — hero portrait / studio scene
+//   /public/studio-food.jpg       — supporting image for "Food & ADHD"
+//   /public/studio-belonging.jpg  — supporting image for "Belonging"
+// Recommended: ~1600px wide, warm colour palette, calm composition.
+// ----------------------------------------------------------------
+export const HERO_IMAGE = "/studio-hero.jpg";
+export const FOOD_IMAGE = "/studio-food.jpg";
+export const BELONGING_IMAGE = "/studio-belonging.jpg";
