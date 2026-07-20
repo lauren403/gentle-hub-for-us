@@ -1,18 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { HALAXY_URL, ANCHOR_URL } from "@/config/site";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
 });
 
-const BOOK_URL =
-  "https://www.halaxy.com/profile/ms-lauren-lynch/social-worker/1772313";
+const BOOK_URL = HALAXY_URL;
 
 const Logo = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 1080 1080" className={className} aria-hidden="true">
@@ -26,14 +27,17 @@ const Logo = ({ className = "" }: { className?: string }) => (
 const BookButton = ({
   children = "Book a free intro call",
   className = "",
+  location = "generic",
 }: {
   children?: React.ReactNode;
   className?: string;
+  location?: string;
 }) => (
   <a
     href={BOOK_URL}
     target="_blank"
     rel="noopener noreferrer"
+    onClick={() => trackEvent("booking_click", { location })}
     className={
       "inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98] min-h-11 " +
       className
@@ -42,6 +46,7 @@ const BookButton = ({
     {children}
   </a>
 );
+
 
 const NAV = [
   { id: "reframe", label: "Reframe" },
