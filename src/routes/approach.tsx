@@ -54,6 +54,9 @@ function Header() {
           <Link to="/our-story" className="opacity-80 transition-opacity hover:opacity-100">
             Our Story
           </Link>
+          <Link to="/anchor" className="opacity-80 transition-opacity hover:opacity-100">
+            Anchor
+          </Link>
           <Link
             to="/approach"
             className="opacity-100"
@@ -62,6 +65,7 @@ function Header() {
             Our Approach
           </Link>
         </nav>
+
         <a
           href={BOOK_URL}
           target="_blank"
@@ -379,12 +383,17 @@ function ApproachPage() {
                     Our Story
                   </Link>
                   <span className="mx-2 opacity-40">·</span>
+                  <Link to="/anchor" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                    Anchor
+                  </Link>
+                  <span className="mx-2 opacity-40">·</span>
                   <a
                     href="/privacy"
                     className="underline decoration-[var(--terracotta)] underline-offset-4"
                   >
                     Privacy
                   </a>
+
                   <span className="mx-2 opacity-40">·</span>
                   <span>© {new Date().getFullYear()} Body Belonging Clinic</span>
                 </p>

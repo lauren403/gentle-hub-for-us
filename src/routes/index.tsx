@@ -92,11 +92,18 @@ function Header() {
             Our Story
           </Link>
           <Link
+            to="/anchor"
+            className="opacity-80 transition-opacity hover:opacity-100"
+          >
+            Anchor
+          </Link>
+          <Link
             to="/approach"
             className="opacity-80 transition-opacity hover:opacity-100"
           >
             Our Approach
           </Link>
+
         </nav>
         <BookButton className="ml-auto md:ml-4">
           <span className="hidden sm:inline">Book a free intro call</span>
@@ -765,6 +772,10 @@ function AdhdHub() {
                     Our Story
                   </Link>
                   <span className="mx-2 opacity-40">·</span>
+                  <Link to="/anchor" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                    Anchor
+                  </Link>
+                  <span className="mx-2 opacity-40">·</span>
                   <Link to="/approach" className="underline decoration-[var(--terracotta)] underline-offset-4">
                     Our Approach
                   </Link>
@@ -772,6 +783,7 @@ function AdhdHub() {
                   <a href="/privacy" className="underline decoration-[var(--terracotta)] underline-offset-4">
                     Privacy
                   </a>
+
                   <span className="mx-2 opacity-40">·</span>
                   <span>© {new Date().getFullYear()} Body Belonging Clinic</span>
                 </p>
