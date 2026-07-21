@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "sdk_version": "0.24.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "body-belonging-adhd-hub",
+      "version": "0.1.0",
+      "title": "Body Belonging Clinic — ADHD Hub"
+    },
+    "tools": [
+      {
+        "name": "get_clinic_info",
+        "title": "Get clinic info",
+        "description": "Return Body Belonging Clinic contact details, address, telehealth availability, and identity statement.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_practitioner",
+        "title": "Get practitioner",
+        "description": "Return practitioner details for Body Belonging Clinic (Lauren Lynch), including credentials stated factually.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_booking_info",
+        "title": "Get booking info",
+        "description": "Return the booking URL and rebate guidance for Body Belonging Clinic. A free 15-minute intro call is available via the booking page.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_approach",
+        "title": "Get the Body Belonging Model",
+        "description": "Return a summary of the Body Belonging Model — the clinic's neuro-affirming, eating-disorder-safe framework — plus a link to the full white paper.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_crisis_lines",
+        "title": "Get Australian crisis lines",
+        "description": "Return Australian crisis and support phone lines. Body Belonging Clinic is not a crisis service.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
