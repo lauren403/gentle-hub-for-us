@@ -331,19 +331,11 @@ function AdhdHub() {
       <section id="medication" className="bg-[var(--cream)]">
         <Section eyebrow="Medication">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
-            Medication can help. It usually isn't the whole story.
+            Medication is often the right first step. It's rarely the whole answer.
           </h2>
-          <div className="mt-8 grid gap-6 text-lg leading-relaxed text-[var(--plum)]/85 md:grid-cols-2">
+          <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
             <p>
-              For many people, medication genuinely changes what's possible. We're
-              pro-treatment and pro-choice about it. It can quiet noise, steady
-              attention, and make the day feel less like sprinting through fog.
-            </p>
-            <p>
-              And — medication treats symptoms, not skills. It doesn't teach your
-              nervous system that it's safe. It doesn't rebuild a relationship
-              with rest, food, or your own emotions. That's the gap therapy,
-              self-understanding and gentle coping strategies are built to fill.
+              A prescription can change the conditions for functioning, and it cannot teach you to plan, to cope, to eat, or to understand yourself. That part is the work we do here, honestly, and never anti-medication.
             </p>
           </div>
           <div className="mt-10 rounded-xl border border-[var(--plum)]/10 bg-[var(--oat)] p-5 text-sm leading-relaxed text-[var(--plum)]/80">
