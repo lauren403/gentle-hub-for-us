@@ -293,9 +293,12 @@ function ApproachPage() {
           >
             Book a free 15-minute intro call
           </a>
-          {/* TODO: link to full framework white-paper PDF when available */}
           <a
-            href="#"
+            href="/body-belonging-model.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Body Belonging Model white paper PDF in a new tab"
+            onClick={() => trackEvent("pdf_click", { location: "approach_cta" })}
             className="text-sm underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
           >
             Read the full framework →
