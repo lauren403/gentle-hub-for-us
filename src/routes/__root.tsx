@@ -21,9 +21,9 @@ import {
 import { analyticsEnabled } from "../lib/analytics";
 
 const TITLE =
-  "Neuro-Affirming ADHD Therapy Perth & Australia-wide | Body Belonging Clinic";
+  "ADHD Therapy & Support, Whole Body | Body Belonging Clinic";
 const DESCRIPTION =
-  "ADHD therapy and support beyond the diagnosis — emotional regulation, everyday skills, and eating-disorder-safe care. Aboriginal-led, LGBTQIA+ affirming. Perth + telehealth. Free 15-minute intro call.";
+  "ADHD isn't an attention problem. Neuro-affirming ADHD/AuDHD therapy Australia-wide, with eating-disorder-safe, queer-affirming care. Book a free 15-min intro.";
 
 const JSON_LD = {
   "@context": "https://schema.org",

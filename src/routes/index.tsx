@@ -262,17 +262,15 @@ function AdhdHub() {
           <div className="grid items-center gap-12 md:grid-cols-[1.15fr_1fr] md:gap-16">
             <div>
               <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-[var(--terracotta)]">
-                The ADHD Hub · Body Belonging Clinic
+                The ADHD hub · Body Belonging Clinic
               </p>
               <h1 className="font-display text-4xl leading-[1.03] md:text-6xl lg:text-[4.75rem]">
                 ADHD isn't an attention problem.
                 <br />
-                <span className="italic text-[var(--terracotta)]">It's a whole-of-you thing.</span>
+                <span className="italic text-[var(--terracotta)]">It's a whole-body story.</span>
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--plum)]/80 md:text-xl">
-                Neuro-affirming ADHD therapy and support in Perth and across Australia —
-                for the part the diagnosis and the prescription didn't reach. Aboriginal-led.
-                LGBTQIA+ affirming. Lived-experience informed.
+                Where ADHD and AuDHD meet food, the body, emotion and the nervous system, the parts the diagnosis and the prescription never reached. The place other services split apart. Aboriginal-led, queer-affirming and eating-disorder-safe, because food stuff is brain stuff.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <BookButton>Book a free 15-minute intro call</BookButton>
@@ -308,20 +306,11 @@ function AdhdHub() {
       {/* REFRAME */}
       <Section id="reframe" eyebrow="The reframe">
         <h2 className="font-display text-3xl leading-tight md:text-5xl">
-          The name "attention deficit" gets it wrong.
+          The hardest part usually isn't focus. It's feeling.
         </h2>
         <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
           <p>
-            ADHD is a difference in how the brain regulates attention, emotion,
-            motivation and action. It's not that there's no attention — it's that
-            the dial for attention, energy and follow-through is calibrated
-            differently.
-          </p>
-          <p>
-            Emotional regulation is increasingly understood as central to the ADHD
-            experience. Many people also relate to an intense sensitivity to
-            rejection — a described pattern in ADHD communities, not a formal
-            diagnosis, but one that can quietly shape a whole life.
+            ADHD is a difference in how the brain regulates attention, emotion, motivation and action, not a shortage of attention. For so many of us the loudest part is emotion, feelings that arrive fast and are hard to turn down. That is not a character flaw, it is how the brain is wired.
           </p>
         </div>
         <PullQuote>
@@ -342,19 +331,11 @@ function AdhdHub() {
       <section id="medication" className="bg-[var(--cream)]">
         <Section eyebrow="Medication">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
-            Medication can help. It usually isn't the whole story.
+            Medication is often the right first step. It's rarely the whole answer.
           </h2>
-          <div className="mt-8 grid gap-6 text-lg leading-relaxed text-[var(--plum)]/85 md:grid-cols-2">
+          <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
             <p>
-              For many people, medication genuinely changes what's possible. We're
-              pro-treatment and pro-choice about it. It can quiet noise, steady
-              attention, and make the day feel less like sprinting through fog.
-            </p>
-            <p>
-              And — medication treats symptoms, not skills. It doesn't teach your
-              nervous system that it's safe. It doesn't rebuild a relationship
-              with rest, food, or your own emotions. That's the gap therapy,
-              self-understanding and gentle coping strategies are built to fill.
+              A prescription can change the conditions for functioning, and it cannot teach you to plan, to cope, to eat, or to understand yourself. That part is the work we do here, honestly, and never anti-medication.
             </p>
           </div>
           <div className="mt-10 rounded-xl border border-[var(--plum)]/10 bg-[var(--oat)] p-5 text-sm leading-relaxed text-[var(--plum)]/80">
@@ -370,22 +351,11 @@ function AdhdHub() {
         <div className="grid items-start gap-10 md:grid-cols-[1fr_1fr] md:gap-14">
           <div>
             <h2 className="font-display text-3xl leading-tight md:text-5xl lg:text-[3.25rem]">
-              Food and ADHD — without the diet noise.
+              Food stuff is brain stuff.
             </h2>
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
               <p>
-                ADHD can make eating hard: skipped meals, delayed hunger cues, the
-                afternoon crash, the 9pm scramble. It deserves a real conversation.
-                It also deserves not to be hijacked by clean-eating, restriction, or
-                supplement hype.
-              </p>
-              <p>
-                We're an ANZAED-accredited eating-disorder clinic. That means when we
-                talk about food and ADHD, we talk about it safely: eating regularly,
-                adding rather than cutting, sensory-friendly options, and a
-                weight-neutral stance. Anything about "deficiencies" is a
-                conversation with your GP guided by proper testing — not a supplement
-                aisle.
+                A brain like ours can lose track of hunger until eating swings from forgotten all day to all at once by night. Because we are an ANZAED-accredited eating disorder clinic, we can talk about food and ADHD without the restriction, the calorie-counting and the supplement-hype that can quietly harm neurodivergent people. Weight-neutral, always.
               </p>
             </div>
           </div>
@@ -402,6 +372,20 @@ function AdhdHub() {
           hype-y framing that can hurt neurodivergent people."
         </PullQuote>
       </Section>
+
+      {/* NERVOUS SYSTEM & BELONGING */}
+      <section className="bg-[var(--cream)]">
+        <Section eyebrow="Belonging">
+          <h2 className="font-display text-3xl leading-tight md:text-5xl">
+            Your nervous system, and a place to belong.
+          </h2>
+          <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
+            <p>
+              ADHD runs on an interest-based nervous system, and it settles through safety and connection, not pressure. That is the whole idea behind the name. Here you are met as a whole person, in the body you are actually in, among people who get it.
+            </p>
+          </div>
+        </Section>
+      </section>
 
       {/* BELONGING */}
       <section className="bg-[var(--plum)] text-[var(--oat)]">
@@ -753,8 +737,7 @@ function AdhdHub() {
 
         <Section className="text-center">
           <h2 className="mx-auto max-w-3xl font-display text-3xl leading-tight text-[var(--oat)] md:text-5xl">
-            You were never broken. You just needed support built for how your
-            brain actually works.
+            There's no bad enough. You're allowed to start now.
           </h2>
           <div className="mt-10 flex justify-center">
             <BookButton>Book a free 15-minute intro call</BookButton>
