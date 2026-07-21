@@ -21,7 +21,7 @@ import {
 import { analyticsEnabled } from "../lib/analytics";
 
 const TITLE =
-  "ADHD Therapy & Support, Whole-Body | Body Belonging Clinic";
+  "ADHD Therapy & Support, Whole Body | Body Belonging Clinic";
 const DESCRIPTION =
   "ADHD isn't an attention problem. Neuro-affirming ADHD/AuDHD therapy Australia-wide, with eating-disorder-safe, queer-affirming care. Book a free 15-min intro.";
 
