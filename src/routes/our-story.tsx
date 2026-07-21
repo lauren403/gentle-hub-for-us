@@ -51,6 +51,9 @@ function Header() {
           <Link to="/" className="opacity-80 transition-opacity hover:opacity-100">
             Home
           </Link>
+          <Link to="/start-here" className="opacity-80 transition-opacity hover:opacity-100">
+            Start here
+          </Link>
           <Link
             to="/our-story"
             activeProps={{ className: "opacity-100 underline decoration-[var(--terracotta)] underline-offset-8" }}

@@ -76,6 +76,9 @@ function Header() {
           </span>
         </a>
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex" aria-label="Section navigation">
+          <Link to="/start-here" className="opacity-80 transition-opacity hover:opacity-100">
+            Start here
+          </Link>
           {NAV.map((n) => (
             <a
               key={n.id}
