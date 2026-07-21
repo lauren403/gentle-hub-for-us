@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { HALAXY_URL, SITE_URL } from "@/config/site";
+import { HALAXY_URL, SITE_URL, WHITEPAPER_PDF } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 
 const TITLE = "Our Approach — The Body Belonging Model | Body Belonging Clinic";
