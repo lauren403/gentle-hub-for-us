@@ -351,22 +351,11 @@ function AdhdHub() {
         <div className="grid items-start gap-10 md:grid-cols-[1fr_1fr] md:gap-14">
           <div>
             <h2 className="font-display text-3xl leading-tight md:text-5xl lg:text-[3.25rem]">
-              Food and ADHD — without the diet noise.
+              Food stuff is brain stuff.
             </h2>
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
               <p>
-                ADHD can make eating hard: skipped meals, delayed hunger cues, the
-                afternoon crash, the 9pm scramble. It deserves a real conversation.
-                It also deserves not to be hijacked by clean-eating, restriction, or
-                supplement hype.
-              </p>
-              <p>
-                We're an ANZAED-accredited eating-disorder clinic. That means when we
-                talk about food and ADHD, we talk about it safely: eating regularly,
-                adding rather than cutting, sensory-friendly options, and a
-                weight-neutral stance. Anything about "deficiencies" is a
-                conversation with your GP guided by proper testing — not a supplement
-                aisle.
+                A brain like ours can lose track of hunger until eating swings from forgotten all day to all at once by night. Because we are an ANZAED-accredited eating disorder clinic, we can talk about food and ADHD without the restriction, the calorie-counting and the supplement-hype that can quietly harm neurodivergent people. Weight-neutral, always.
               </p>
             </div>
           </div>
