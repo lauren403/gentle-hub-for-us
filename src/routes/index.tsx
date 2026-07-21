@@ -306,20 +306,11 @@ function AdhdHub() {
       {/* REFRAME */}
       <Section id="reframe" eyebrow="The reframe">
         <h2 className="font-display text-3xl leading-tight md:text-5xl">
-          The name "attention deficit" gets it wrong.
+          The hardest part usually isn't focus. It's feeling.
         </h2>
         <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
           <p>
-            ADHD is a difference in how the brain regulates attention, emotion,
-            motivation and action. It's not that there's no attention — it's that
-            the dial for attention, energy and follow-through is calibrated
-            differently.
-          </p>
-          <p>
-            Emotional regulation is increasingly understood as central to the ADHD
-            experience. Many people also relate to an intense sensitivity to
-            rejection — a described pattern in ADHD communities, not a formal
-            diagnosis, but one that can quietly shape a whole life.
+            ADHD is a difference in how the brain regulates attention, emotion, motivation and action, not a shortage of attention. For so many of us the loudest part is emotion, feelings that arrive fast and are hard to turn down. That is not a character flaw, it is how the brain is wired.
           </p>
         </div>
         <PullQuote>
