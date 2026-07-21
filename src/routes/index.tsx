@@ -92,11 +92,18 @@ function Header() {
             Our Story
           </Link>
           <Link
+            to="/anchor"
+            className="opacity-80 transition-opacity hover:opacity-100"
+          >
+            Anchor
+          </Link>
+          <Link
             to="/approach"
             className="opacity-80 transition-opacity hover:opacity-100"
           >
             Our Approach
           </Link>
+
         </nav>
         <BookButton className="ml-auto md:ml-4">
           <span className="hidden sm:inline">Book a free intro call</span>
@@ -696,8 +703,45 @@ function AdhdHub() {
         </Section>
       </section>
 
+      {/* ANCHOR CARD */}
+      <Section>
+        <Link
+          to="/anchor"
+          className="group block rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] p-8 no-underline transition-shadow hover:shadow-md md:p-12"
+        >
+          <div className="grid items-center gap-8 md:grid-cols-[auto_1fr_auto]">
+            <div
+              className="mx-auto grid size-20 place-items-center rounded-2xl bg-[var(--plum)] text-[var(--oat)] md:size-24"
+              aria-hidden
+            >
+              <Logo className="size-10 md:size-12" />
+            </div>
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
+                A free companion app
+              </p>
+              <h2 className="mt-3 font-display text-3xl leading-tight md:text-4xl">
+                Meet <span className="italic text-[var(--terracotta)]">Anchor</span>.
+              </h2>
+              <p className="mt-4 max-w-xl text-[var(--plum)]/80">
+                A gentle, eating-disorder-safe companion for the days your body
+                forgets to tell you it's hungry. Weight-neutral, no streaks,
+                no rules — just a quiet nudge back towards a regular rhythm.
+              </p>
+            </div>
+            <span className="hidden text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)] md:inline-block">
+              Learn about Anchor →
+            </span>
+          </div>
+          <span className="mt-6 inline-block text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)] md:hidden">
+            Learn about Anchor →
+          </span>
+        </Link>
+      </Section>
+
       {/* CLOSING CTA */}
       <section className="bg-[var(--plum)] text-[var(--oat)]">
+
         <Section className="text-center">
           <h2 className="mx-auto max-w-3xl font-display text-3xl leading-tight text-[var(--oat)] md:text-5xl">
             You were never broken. You just needed support built for how your
@@ -765,6 +809,10 @@ function AdhdHub() {
                     Our Story
                   </Link>
                   <span className="mx-2 opacity-40">·</span>
+                  <Link to="/anchor" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                    Anchor
+                  </Link>
+                  <span className="mx-2 opacity-40">·</span>
                   <Link to="/approach" className="underline decoration-[var(--terracotta)] underline-offset-4">
                     Our Approach
                   </Link>
@@ -772,6 +820,7 @@ function AdhdHub() {
                   <a href="/privacy" className="underline decoration-[var(--terracotta)] underline-offset-4">
                     Privacy
                   </a>
+
                   <span className="mx-2 opacity-40">·</span>
                   <span>© {new Date().getFullYear()} Body Belonging Clinic</span>
                 </p>
