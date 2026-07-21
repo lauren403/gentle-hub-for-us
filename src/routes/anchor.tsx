@@ -63,6 +63,9 @@ function Header() {
           >
             Anchor
           </Link>
+          <Link to="/letters" className="opacity-80 transition-opacity hover:opacity-100">
+            Letters
+          </Link>
           <Link to="/approach" className="opacity-80 transition-opacity hover:opacity-100">
             Our Approach
           </Link>
@@ -350,6 +353,10 @@ function AnchorPage() {
                   <span className="mx-2 opacity-40">·</span>
                   <Link to="/anchor" className="underline decoration-[var(--terracotta)] underline-offset-4">
                     Anchor
+                  </Link>
+                  <span className="mx-2 opacity-40">·</span>
+                  <Link to="/letters" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                    Letters
                   </Link>
                   <span className="mx-2 opacity-40">·</span>
                   <Link to="/approach" className="underline decoration-[var(--terracotta)] underline-offset-4">
