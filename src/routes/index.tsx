@@ -262,17 +262,15 @@ function AdhdHub() {
           <div className="grid items-center gap-12 md:grid-cols-[1.15fr_1fr] md:gap-16">
             <div>
               <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-[var(--terracotta)]">
-                The ADHD Hub · Body Belonging Clinic
+                The ADHD hub · Body Belonging Clinic
               </p>
               <h1 className="font-display text-4xl leading-[1.03] md:text-6xl lg:text-[4.75rem]">
                 ADHD isn't an attention problem.
                 <br />
-                <span className="italic text-[var(--terracotta)]">It's a whole-of-you thing.</span>
+                <span className="italic text-[var(--terracotta)]">It's a whole-body story.</span>
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--plum)]/80 md:text-xl">
-                Neuro-affirming ADHD therapy and support in Perth and across Australia —
-                for the part the diagnosis and the prescription didn't reach. Aboriginal-led.
-                LGBTQIA+ affirming. Lived-experience informed.
+                Where ADHD and AuDHD meet food, the body, emotion and the nervous system, the parts the diagnosis and the prescription never reached. The place other services split apart. Aboriginal-led, queer-affirming and eating-disorder-safe, because food stuff is brain stuff.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <BookButton>Book a free 15-minute intro call</BookButton>
