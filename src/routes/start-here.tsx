@@ -157,6 +157,9 @@ function StartHerePage() {
                 Telehealth sessions are available anywhere in Australia and attract the same Medicare rebates.
               </li>
               <li className="max-w-[62ch]">
+                Reduced-fee and bulk-billing options are available for those who qualify, including eligible Aboriginal and Torres Strait Islander clients. If that might be you, just mention it and we will sort it out together.
+              </li>
+              <li className="max-w-[62ch]">
                 And if cost is a worry, please just say so on the intro call, and we will find something that works.
               </li>
             </ul>
