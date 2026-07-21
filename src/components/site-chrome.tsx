@@ -37,6 +37,7 @@ export function SiteHeader({
         </Link>
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex" aria-label="Site navigation">
           <Link to="/" className={linkCls}>Home</Link>
+          <Link to="/start-here" className={isActive("/start-here") ? activeCls : linkCls}>Start here</Link>
           <Link to="/our-story" className={linkCls}>Our Story</Link>
           <Link to="/anchor" className={linkCls}>Anchor</Link>
           <Link
@@ -138,6 +139,10 @@ export function SiteFooter() {
                 live and work, and pay our respects to Elders past and present.
               </p>
               <p className="mt-4 text-xs">
+                <Link to="/start-here" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                  Start here
+                </Link>
+                <span className="mx-2 opacity-40">·</span>
                 <Link to="/our-story" className="underline decoration-[var(--terracotta)] underline-offset-4">
                   Our Story
                 </Link>

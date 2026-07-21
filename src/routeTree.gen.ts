@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StartHereRouteImport } from './routes/start-here'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as McpRouteImport } from './routes/mcp'
@@ -23,6 +24,11 @@ import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } fr
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 
+const StartHereRoute = StartHereRouteImport.update({
+  id: '/start-here',
+  path: '/start-here',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
   '/privacy': typeof PrivacyRoute
+  '/start-here': typeof StartHereRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
   '/privacy': typeof PrivacyRoute
+  '/start-here': typeof StartHereRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
   '/privacy': typeof PrivacyRoute
+  '/start-here': typeof StartHereRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/our-story'
     | '/privacy'
+    | '/start-here'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/letters/different-not-broken'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/our-story'
     | '/privacy'
+    | '/start-here'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/letters/different-not-broken'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/our-story'
     | '/privacy'
+    | '/start-here'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/letters/different-not-broken'
@@ -197,6 +209,7 @@ export interface RootRouteChildren {
   McpRoute: typeof McpRoute
   OurStoryRoute: typeof OurStoryRoute
   PrivacyRoute: typeof PrivacyRoute
+  StartHereRoute: typeof StartHereRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
@@ -204,6 +217,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/start-here': {
+      id: '/start-here'
+      path: '/start-here'
+      fullPath: '/start-here'
+      preLoaderRoute: typeof StartHereRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -323,6 +343,7 @@ const rootRouteChildren: RootRouteChildren = {
   McpRoute: McpRoute,
   OurStoryRoute: OurStoryRoute,
   PrivacyRoute: PrivacyRoute,
+  StartHereRoute: StartHereRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,

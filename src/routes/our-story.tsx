@@ -51,6 +51,9 @@ function Header() {
           <Link to="/" className="opacity-80 transition-opacity hover:opacity-100">
             Home
           </Link>
+          <Link to="/start-here" className="opacity-80 transition-opacity hover:opacity-100">
+            Start here
+          </Link>
           <Link
             to="/our-story"
             activeProps={{ className: "opacity-100 underline decoration-[var(--terracotta)] underline-offset-8" }}
@@ -317,6 +320,10 @@ function OurStoryPage() {
                   present.
                 </p>
                 <p className="mt-4 text-xs">
+                  <Link to="/start-here" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                    Start here
+                  </Link>
+                  <span className="mx-2 opacity-40">·</span>
                   <Link to="/our-story" className="underline decoration-[var(--terracotta)] underline-offset-4">
                     Our Story
                   </Link>
