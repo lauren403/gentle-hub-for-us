@@ -737,8 +737,7 @@ function AdhdHub() {
 
         <Section className="text-center">
           <h2 className="mx-auto max-w-3xl font-display text-3xl leading-tight text-[var(--oat)] md:text-5xl">
-            You were never broken. You just needed support built for how your
-            brain actually works.
+            There's no bad enough. You're allowed to start now.
           </h2>
           <div className="mt-10 flex justify-center">
             <BookButton>Book a free 15-minute intro call</BookButton>
