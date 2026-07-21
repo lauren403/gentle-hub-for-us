@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import {
   Accordion,
@@ -85,6 +85,12 @@ function Header() {
               {n.label}
             </a>
           ))}
+          <Link
+            to="/approach"
+            className="opacity-80 transition-opacity hover:opacity-100"
+          >
+            Our Approach
+          </Link>
         </nav>
         <BookButton className="ml-auto md:ml-4">
           <span className="hidden sm:inline">Book a free intro call</span>
@@ -300,6 +306,14 @@ function AdhdHub() {
           "The hardest part of ADHD for many adults isn't focus. It's emotion —
           and emotion is something you can learn to work <em>with</em>, not against."
         </PullQuote>
+        <p className="mt-8 text-sm">
+          <Link
+            to="/approach"
+            className="underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
+          >
+            Our approach → The Body Belonging Model
+          </Link>
+        </p>
       </Section>
 
       {/* MEDICATION */}
