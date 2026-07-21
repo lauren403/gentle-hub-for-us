@@ -1,5 +1,4 @@
 import { defineTool } from "@lovable.dev/mcp-js";
-import { z } from "zod";
 
 export default defineTool({
   name: "get_clinic_info",
@@ -39,5 +38,5 @@ export default defineTool({
       structuredContent: info,
     };
   },
-  _z: z,
+  
 });
