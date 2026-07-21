@@ -12,9 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as LettersRouteImport } from './routes/letters'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AnchorRouteImport } from './routes/anchor'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LettersWhyABrainLikeOursForgetsToEatRouteImport } from './routes/letters.why-a-brain-like-ours-forgets-to-eat'
+import { Route as LettersEatingByTheClockNotByHungerRouteImport } from './routes/letters.eating-by-the-clock-not-by-hunger'
+import { Route as LettersDifferentNotBrokenRouteImport } from './routes/letters.different-not-broken'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
@@ -34,6 +38,11 @@ const McpRoute = McpRouteImport.update({
   path: '/mcp',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LettersRoute = LettersRouteImport.update({
+  id: '/letters',
+  path: '/letters',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApproachRoute = ApproachRouteImport.update({
   id: '/approach',
   path: '/approach',
@@ -49,6 +58,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LettersWhyABrainLikeOursForgetsToEatRoute =
+  LettersWhyABrainLikeOursForgetsToEatRouteImport.update({
+    id: '/why-a-brain-like-ours-forgets-to-eat',
+    path: '/why-a-brain-like-ours-forgets-to-eat',
+    getParentRoute: () => LettersRoute,
+  } as any)
+const LettersEatingByTheClockNotByHungerRoute =
+  LettersEatingByTheClockNotByHungerRouteImport.update({
+    id: '/eating-by-the-clock-not-by-hunger',
+    path: '/eating-by-the-clock-not-by-hunger',
+    getParentRoute: () => LettersRoute,
+  } as any)
+const LettersDifferentNotBrokenRoute =
+  LettersDifferentNotBrokenRouteImport.update({
+    id: '/different-not-broken',
+    path: '/different-not-broken',
+    getParentRoute: () => LettersRoute,
+  } as any)
 const Char91DotwellKnownChar93OauthProtectedResourceRoute =
   Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
     id: '/.well-known/oauth-protected-resource',
@@ -72,22 +99,30 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/anchor': typeof AnchorRoute
   '/approach': typeof ApproachRoute
+  '/letters': typeof LettersRouteWithChildren
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
   '/privacy': typeof PrivacyRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
+  '/letters/eating-by-the-clock-not-by-hunger': typeof LettersEatingByTheClockNotByHungerRoute
+  '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/anchor': typeof AnchorRoute
   '/approach': typeof ApproachRoute
+  '/letters': typeof LettersRouteWithChildren
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
   '/privacy': typeof PrivacyRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
+  '/letters/eating-by-the-clock-not-by-hunger': typeof LettersEatingByTheClockNotByHungerRoute
+  '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
 }
 export interface FileRoutesById {
@@ -95,11 +130,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/anchor': typeof AnchorRoute
   '/approach': typeof ApproachRoute
+  '/letters': typeof LettersRouteWithChildren
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
   '/privacy': typeof PrivacyRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
+  '/letters/eating-by-the-clock-not-by-hunger': typeof LettersEatingByTheClockNotByHungerRoute
+  '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
 }
 export interface FileRouteTypes {
@@ -108,33 +147,45 @@ export interface FileRouteTypes {
     | '/'
     | '/anchor'
     | '/approach'
+    | '/letters'
     | '/mcp'
     | '/our-story'
     | '/privacy'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/letters/different-not-broken'
+    | '/letters/eating-by-the-clock-not-by-hunger'
+    | '/letters/why-a-brain-like-ours-forgets-to-eat'
     | '/.mcp/invoke-tool/$tool'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/anchor'
     | '/approach'
+    | '/letters'
     | '/mcp'
     | '/our-story'
     | '/privacy'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/letters/different-not-broken'
+    | '/letters/eating-by-the-clock-not-by-hunger'
+    | '/letters/why-a-brain-like-ours-forgets-to-eat'
     | '/.mcp/invoke-tool/$tool'
   id:
     | '__root__'
     | '/'
     | '/anchor'
     | '/approach'
+    | '/letters'
     | '/mcp'
     | '/our-story'
     | '/privacy'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/letters/different-not-broken'
+    | '/letters/eating-by-the-clock-not-by-hunger'
+    | '/letters/why-a-brain-like-ours-forgets-to-eat'
     | '/.mcp/invoke-tool/$tool'
   fileRoutesById: FileRoutesById
 }
@@ -142,6 +193,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnchorRoute: typeof AnchorRoute
   ApproachRoute: typeof ApproachRoute
+  LettersRoute: typeof LettersRouteWithChildren
   McpRoute: typeof McpRoute
   OurStoryRoute: typeof OurStoryRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -173,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof McpRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/letters': {
+      id: '/letters'
+      path: '/letters'
+      fullPath: '/letters'
+      preLoaderRoute: typeof LettersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/approach': {
       id: '/approach'
       path: '/approach'
@@ -193,6 +252,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/letters/why-a-brain-like-ours-forgets-to-eat': {
+      id: '/letters/why-a-brain-like-ours-forgets-to-eat'
+      path: '/why-a-brain-like-ours-forgets-to-eat'
+      fullPath: '/letters/why-a-brain-like-ours-forgets-to-eat'
+      preLoaderRoute: typeof LettersWhyABrainLikeOursForgetsToEatRouteImport
+      parentRoute: typeof LettersRoute
+    }
+    '/letters/eating-by-the-clock-not-by-hunger': {
+      id: '/letters/eating-by-the-clock-not-by-hunger'
+      path: '/eating-by-the-clock-not-by-hunger'
+      fullPath: '/letters/eating-by-the-clock-not-by-hunger'
+      preLoaderRoute: typeof LettersEatingByTheClockNotByHungerRouteImport
+      parentRoute: typeof LettersRoute
+    }
+    '/letters/different-not-broken': {
+      id: '/letters/different-not-broken'
+      path: '/different-not-broken'
+      fullPath: '/letters/different-not-broken'
+      preLoaderRoute: typeof LettersDifferentNotBrokenRouteImport
+      parentRoute: typeof LettersRoute
     }
     '/.well-known/oauth-protected-resource': {
       id: '/.well-known/oauth-protected-resource'
@@ -218,10 +298,28 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface LettersRouteChildren {
+  LettersDifferentNotBrokenRoute: typeof LettersDifferentNotBrokenRoute
+  LettersEatingByTheClockNotByHungerRoute: typeof LettersEatingByTheClockNotByHungerRoute
+  LettersWhyABrainLikeOursForgetsToEatRoute: typeof LettersWhyABrainLikeOursForgetsToEatRoute
+}
+
+const LettersRouteChildren: LettersRouteChildren = {
+  LettersDifferentNotBrokenRoute: LettersDifferentNotBrokenRoute,
+  LettersEatingByTheClockNotByHungerRoute:
+    LettersEatingByTheClockNotByHungerRoute,
+  LettersWhyABrainLikeOursForgetsToEatRoute:
+    LettersWhyABrainLikeOursForgetsToEatRoute,
+}
+
+const LettersRouteWithChildren =
+  LettersRoute._addFileChildren(LettersRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnchorRoute: AnchorRoute,
   ApproachRoute: ApproachRoute,
+  LettersRoute: LettersRouteWithChildren,
   McpRoute: McpRoute,
   OurStoryRoute: OurStoryRoute,
   PrivacyRoute: PrivacyRoute,
