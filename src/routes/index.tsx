@@ -86,6 +86,12 @@ function Header() {
             </a>
           ))}
           <Link
+            to="/our-story"
+            className="opacity-80 transition-opacity hover:opacity-100"
+          >
+            Our Story
+          </Link>
+          <Link
             to="/approach"
             className="opacity-80 transition-opacity hover:opacity-100"
           >
@@ -755,6 +761,10 @@ function AdhdHub() {
                   live and work, and pay our respects to Elders past and present.
                 </p>
                 <p className="mt-4 text-xs">
+                  <Link to="/our-story" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                    Our Story
+                  </Link>
+                  <span className="mx-2 opacity-40">·</span>
                   <Link to="/approach" className="underline decoration-[var(--terracotta)] underline-offset-4">
                     Our Approach
                   </Link>
