@@ -373,6 +373,20 @@ function AdhdHub() {
         </PullQuote>
       </Section>
 
+      {/* NERVOUS SYSTEM & BELONGING */}
+      <section className="bg-[var(--cream)]">
+        <Section eyebrow="Belonging">
+          <h2 className="font-display text-3xl leading-tight md:text-5xl">
+            Your nervous system, and a place to belong.
+          </h2>
+          <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
+            <p>
+              ADHD runs on an interest-based nervous system, and it settles through safety and connection, not pressure. That is the whole idea behind the name. Here you are met as a whole person, in the body you are actually in, among people who get it.
+            </p>
+          </div>
+        </Section>
+      </section>
+
       {/* BELONGING */}
       <section className="bg-[var(--plum)] text-[var(--oat)]">
         <Section eyebrow="Belonging & the nervous system">
