@@ -45,3 +45,6 @@ export const THEME_COLOR = "#2E1A22";
 export const HERO_IMAGE = "/studio-hero.jpg";
 export const FOOD_IMAGE = "/studio-food.jpg";
 export const BELONGING_IMAGE = "/studio-belonging.jpg";
+
+// White paper PDF path.
+export const WHITEPAPER_PDF = "/body-belonging-model.pdf";

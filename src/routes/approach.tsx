@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { HALAXY_URL, SITE_URL } from "@/config/site";
+import { HALAXY_URL, SITE_URL, WHITEPAPER_PDF } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 
 const TITLE = "Our Approach — The Body Belonging Model | Body Belonging Clinic";
@@ -294,11 +294,11 @@ function ApproachPage() {
             Book a free 15-minute intro call
           </a>
           <a
-            href="/body-belonging-model.pdf"
+            href={WHITEPAPER_PDF}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open the Body Belonging Model white paper PDF in a new tab"
-            onClick={() => trackEvent("pdf_click", { location: "approach_cta" })}
+            onClick={() => trackEvent("whitepaper_click", { location: "approach_cta" })}
             className="text-sm underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
           >
             Read the full framework →
