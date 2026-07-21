@@ -17,7 +17,10 @@ import { Route as LettersRouteImport } from './routes/letters'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AnchorRouteImport } from './routes/anchor'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LettersYourNervousSystemAndAPlaceToBelongRouteImport } from './routes/letters.your-nervous-system-and-a-place-to-belong'
 import { Route as LettersWhyABrainLikeOursForgetsToEatRouteImport } from './routes/letters.why-a-brain-like-ours-forgets-to-eat'
+import { Route as LettersTheHardestPartIsntFocusItsFeelingRouteImport } from './routes/letters.the-hardest-part-isnt-focus-its-feeling'
+import { Route as LettersMedicationIsntTheWholeAnswerRouteImport } from './routes/letters.medication-isnt-the-whole-answer'
 import { Route as LettersEatingByTheClockNotByHungerRouteImport } from './routes/letters.eating-by-the-clock-not-by-hunger'
 import { Route as LettersDifferentNotBrokenRouteImport } from './routes/letters.different-not-broken'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
@@ -64,10 +67,28 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LettersYourNervousSystemAndAPlaceToBelongRoute =
+  LettersYourNervousSystemAndAPlaceToBelongRouteImport.update({
+    id: '/your-nervous-system-and-a-place-to-belong',
+    path: '/your-nervous-system-and-a-place-to-belong',
+    getParentRoute: () => LettersRoute,
+  } as any)
 const LettersWhyABrainLikeOursForgetsToEatRoute =
   LettersWhyABrainLikeOursForgetsToEatRouteImport.update({
     id: '/why-a-brain-like-ours-forgets-to-eat',
     path: '/why-a-brain-like-ours-forgets-to-eat',
+    getParentRoute: () => LettersRoute,
+  } as any)
+const LettersTheHardestPartIsntFocusItsFeelingRoute =
+  LettersTheHardestPartIsntFocusItsFeelingRouteImport.update({
+    id: '/the-hardest-part-isnt-focus-its-feeling',
+    path: '/the-hardest-part-isnt-focus-its-feeling',
+    getParentRoute: () => LettersRoute,
+  } as any)
+const LettersMedicationIsntTheWholeAnswerRoute =
+  LettersMedicationIsntTheWholeAnswerRouteImport.update({
+    id: '/medication-isnt-the-whole-answer',
+    path: '/medication-isnt-the-whole-answer',
     getParentRoute: () => LettersRoute,
   } as any)
 const LettersEatingByTheClockNotByHungerRoute =
@@ -114,7 +135,10 @@ export interface FileRoutesByFullPath {
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
   '/letters/eating-by-the-clock-not-by-hunger': typeof LettersEatingByTheClockNotByHungerRoute
+  '/letters/medication-isnt-the-whole-answer': typeof LettersMedicationIsntTheWholeAnswerRoute
+  '/letters/the-hardest-part-isnt-focus-its-feeling': typeof LettersTheHardestPartIsntFocusItsFeelingRoute
   '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
+  '/letters/your-nervous-system-and-a-place-to-belong': typeof LettersYourNervousSystemAndAPlaceToBelongRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
 }
 export interface FileRoutesByTo {
@@ -130,7 +154,10 @@ export interface FileRoutesByTo {
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
   '/letters/eating-by-the-clock-not-by-hunger': typeof LettersEatingByTheClockNotByHungerRoute
+  '/letters/medication-isnt-the-whole-answer': typeof LettersMedicationIsntTheWholeAnswerRoute
+  '/letters/the-hardest-part-isnt-focus-its-feeling': typeof LettersTheHardestPartIsntFocusItsFeelingRoute
   '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
+  '/letters/your-nervous-system-and-a-place-to-belong': typeof LettersYourNervousSystemAndAPlaceToBelongRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
 }
 export interface FileRoutesById {
@@ -147,7 +174,10 @@ export interface FileRoutesById {
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
   '/letters/eating-by-the-clock-not-by-hunger': typeof LettersEatingByTheClockNotByHungerRoute
+  '/letters/medication-isnt-the-whole-answer': typeof LettersMedicationIsntTheWholeAnswerRoute
+  '/letters/the-hardest-part-isnt-focus-its-feeling': typeof LettersTheHardestPartIsntFocusItsFeelingRoute
   '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
+  '/letters/your-nervous-system-and-a-place-to-belong': typeof LettersYourNervousSystemAndAPlaceToBelongRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
 }
 export interface FileRouteTypes {
@@ -165,7 +195,10 @@ export interface FileRouteTypes {
     | '/.well-known/oauth-protected-resource'
     | '/letters/different-not-broken'
     | '/letters/eating-by-the-clock-not-by-hunger'
+    | '/letters/medication-isnt-the-whole-answer'
+    | '/letters/the-hardest-part-isnt-focus-its-feeling'
     | '/letters/why-a-brain-like-ours-forgets-to-eat'
+    | '/letters/your-nervous-system-and-a-place-to-belong'
     | '/.mcp/invoke-tool/$tool'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -181,7 +214,10 @@ export interface FileRouteTypes {
     | '/.well-known/oauth-protected-resource'
     | '/letters/different-not-broken'
     | '/letters/eating-by-the-clock-not-by-hunger'
+    | '/letters/medication-isnt-the-whole-answer'
+    | '/letters/the-hardest-part-isnt-focus-its-feeling'
     | '/letters/why-a-brain-like-ours-forgets-to-eat'
+    | '/letters/your-nervous-system-and-a-place-to-belong'
     | '/.mcp/invoke-tool/$tool'
   id:
     | '__root__'
@@ -197,7 +233,10 @@ export interface FileRouteTypes {
     | '/.well-known/oauth-protected-resource'
     | '/letters/different-not-broken'
     | '/letters/eating-by-the-clock-not-by-hunger'
+    | '/letters/medication-isnt-the-whole-answer'
+    | '/letters/the-hardest-part-isnt-focus-its-feeling'
     | '/letters/why-a-brain-like-ours-forgets-to-eat'
+    | '/letters/your-nervous-system-and-a-place-to-belong'
     | '/.mcp/invoke-tool/$tool'
   fileRoutesById: FileRoutesById
 }
@@ -273,11 +312,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/letters/your-nervous-system-and-a-place-to-belong': {
+      id: '/letters/your-nervous-system-and-a-place-to-belong'
+      path: '/your-nervous-system-and-a-place-to-belong'
+      fullPath: '/letters/your-nervous-system-and-a-place-to-belong'
+      preLoaderRoute: typeof LettersYourNervousSystemAndAPlaceToBelongRouteImport
+      parentRoute: typeof LettersRoute
+    }
     '/letters/why-a-brain-like-ours-forgets-to-eat': {
       id: '/letters/why-a-brain-like-ours-forgets-to-eat'
       path: '/why-a-brain-like-ours-forgets-to-eat'
       fullPath: '/letters/why-a-brain-like-ours-forgets-to-eat'
       preLoaderRoute: typeof LettersWhyABrainLikeOursForgetsToEatRouteImport
+      parentRoute: typeof LettersRoute
+    }
+    '/letters/the-hardest-part-isnt-focus-its-feeling': {
+      id: '/letters/the-hardest-part-isnt-focus-its-feeling'
+      path: '/the-hardest-part-isnt-focus-its-feeling'
+      fullPath: '/letters/the-hardest-part-isnt-focus-its-feeling'
+      preLoaderRoute: typeof LettersTheHardestPartIsntFocusItsFeelingRouteImport
+      parentRoute: typeof LettersRoute
+    }
+    '/letters/medication-isnt-the-whole-answer': {
+      id: '/letters/medication-isnt-the-whole-answer'
+      path: '/medication-isnt-the-whole-answer'
+      fullPath: '/letters/medication-isnt-the-whole-answer'
+      preLoaderRoute: typeof LettersMedicationIsntTheWholeAnswerRouteImport
       parentRoute: typeof LettersRoute
     }
     '/letters/eating-by-the-clock-not-by-hunger': {
@@ -321,15 +381,24 @@ declare module '@tanstack/react-router' {
 interface LettersRouteChildren {
   LettersDifferentNotBrokenRoute: typeof LettersDifferentNotBrokenRoute
   LettersEatingByTheClockNotByHungerRoute: typeof LettersEatingByTheClockNotByHungerRoute
+  LettersMedicationIsntTheWholeAnswerRoute: typeof LettersMedicationIsntTheWholeAnswerRoute
+  LettersTheHardestPartIsntFocusItsFeelingRoute: typeof LettersTheHardestPartIsntFocusItsFeelingRoute
   LettersWhyABrainLikeOursForgetsToEatRoute: typeof LettersWhyABrainLikeOursForgetsToEatRoute
+  LettersYourNervousSystemAndAPlaceToBelongRoute: typeof LettersYourNervousSystemAndAPlaceToBelongRoute
 }
 
 const LettersRouteChildren: LettersRouteChildren = {
   LettersDifferentNotBrokenRoute: LettersDifferentNotBrokenRoute,
   LettersEatingByTheClockNotByHungerRoute:
     LettersEatingByTheClockNotByHungerRoute,
+  LettersMedicationIsntTheWholeAnswerRoute:
+    LettersMedicationIsntTheWholeAnswerRoute,
+  LettersTheHardestPartIsntFocusItsFeelingRoute:
+    LettersTheHardestPartIsntFocusItsFeelingRoute,
   LettersWhyABrainLikeOursForgetsToEatRoute:
     LettersWhyABrainLikeOursForgetsToEatRoute,
+  LettersYourNervousSystemAndAPlaceToBelongRoute:
+    LettersYourNervousSystemAndAPlaceToBelongRoute,
 }
 
 const LettersRouteWithChildren =
