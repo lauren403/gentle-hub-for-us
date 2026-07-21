@@ -6,10 +6,8 @@
 export const SITE_URL = "https://www.bodybelongingclinic.com.au/adhd";
 
 // Google Analytics 4 Measurement ID.
-// REPLACE the placeholder with your real ID (e.g. "G-ABC123XYZ")
-// to enable analytics. While it equals the placeholder, no gtag
-// script is injected and trackEvent() safely no-ops.
-export const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+// Replace this with your real Measurement ID to enable GA4.
+export const GA_MEASUREMENT_ID = "G-EKE17QFG2S";
 
 // Anchor app URL. While it equals "#", the "Get the free app"
 // button shows a "Coming soon" message and focuses the email
