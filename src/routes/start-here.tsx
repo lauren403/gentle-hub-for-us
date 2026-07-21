@@ -145,7 +145,7 @@ function StartHerePage() {
             </p>
             <ul className="space-y-5 border-l-2 border-[var(--terracotta)] pl-6">
               <li className="max-w-[62ch]">
-                Your session fee is confirmed with you on the free intro call, and you will always know your exact out-of-pocket cost before you ever book a session.
+                A standard 50-minute session is $200. With a Mental Health Treatment Plan and referral from your GP, Medicare rebates $89.50 of that back to you, so your out-of-pocket is $110.50 per session. You will always know your exact cost before you ever book.
               </li>
               <li className="max-w-[62ch]">
                 With a Mental Health Treatment Plan and referral from your GP, you can claim a Medicare rebate of $89.50 back on each individual session with an Accredited Mental Health Social Worker, for up to ten sessions in a calendar year. Your out-of-pocket is simply the gap between the fee and that rebate.
