@@ -755,6 +755,10 @@ function AdhdHub() {
                   live and work, and pay our respects to Elders past and present.
                 </p>
                 <p className="mt-4 text-xs">
+                  <Link to="/approach" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                    Our Approach
+                  </Link>
+                  <span className="mx-2 opacity-40">·</span>
                   <a href="/privacy" className="underline decoration-[var(--terracotta)] underline-offset-4">
                     Privacy
                   </a>
