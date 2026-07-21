@@ -37,6 +37,7 @@ export function SiteHeader({
         </Link>
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex" aria-label="Site navigation">
           <Link to="/" className={linkCls}>Home</Link>
+          <Link to="/start-here" className={isActive("/start-here") ? activeCls : linkCls}>Start here</Link>
           <Link to="/our-story" className={linkCls}>Our Story</Link>
           <Link to="/anchor" className={linkCls}>Anchor</Link>
           <Link
