@@ -7,7 +7,7 @@ export const SITE_URL = "https://www.bodybelongingclinic.com.au/adhd";
 
 // Google Analytics 4 Measurement ID.
 // Replace this with your real Measurement ID to enable GA4.
-export const GA_MEASUREMENT_ID = "G-EKE17QFG2S";
+export const GA_MEASUREMENT_ID: string = "G-EKE17QFG2S";
 
 // Anchor app URL. While it equals "#", the "Get the free app"
 // button shows a "Coming soon" message and focuses the email
