@@ -115,6 +115,7 @@ function AnchorPage() {
   return (
     <div className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]" id="top">
       <Header />
+      <main id="main-content" tabIndex={-1}>
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
@@ -253,13 +254,20 @@ function AnchorPage() {
                 const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
                 if (!looksLikeEmail) return;
                 setSubmitting(true);
-                try {
-                  const { error } = await supabase
-                    .from("lead_signups")
-                    .insert({ email: trimmed, source: "anchor_waitlist" });
-                  if (error) console.warn("lead_signups insert failed", error);
-                } catch (err) {
-                  console.warn("lead_signups insert threw", err);
+                // Spam guards: silently succeed without writing if the
+                // honeypot has any value, or if the form was submitted
+                // implausibly fast (under ~2.5s from mount).
+                const elapsed = Date.now() - mountedAtRef.current;
+                const isBot = honeypot.trim().length > 0 || elapsed < 2500;
+                if (!isBot) {
+                  try {
+                    const { error } = await supabase
+                      .from("lead_signups")
+                      .insert({ email: trimmed, source: "anchor_waitlist" });
+                    if (error) console.warn("lead_signups insert failed", error);
+                  } catch (err) {
+                    console.warn("lead_signups insert threw", err);
+                  }
                 }
                 trackEvent("sign_up", { location: "anchor_waitlist" });
                 setSubmitting(false);
@@ -270,6 +278,29 @@ function AnchorPage() {
               <label htmlFor="anchor-email" className="sr-only">
                 Email address
               </label>
+              {/* Honeypot: hidden from real users, tempting to bots. */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  left: "-10000px",
+                  top: "auto",
+                  width: "1px",
+                  height: "1px",
+                  overflow: "hidden",
+                }}
+              >
+                <label htmlFor="anchor-company">Company</label>
+                <input
+                  id="anchor-company"
+                  type="text"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
               <input
                 id="anchor-email"
                 ref={emailRef}
