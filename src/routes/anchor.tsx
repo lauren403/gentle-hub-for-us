@@ -268,6 +268,22 @@ function AnchorPage() {
                   } catch (err) {
                     console.warn("lead_signups insert threw", err);
                   }
+                  // Netlify Forms notification (best-effort, never blocks UX).
+                  try {
+                    const body = new URLSearchParams({
+                      "form-name": "signups",
+                      email: trimmed,
+                      source: "anchor",
+                      company: honeypot,
+                    });
+                    await fetch("/", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                      body: body.toString(),
+                    });
+                  } catch (err) {
+                    console.warn("netlify form notify failed", err);
+                  }
                 }
                 trackEvent("sign_up", { location: "anchor_waitlist" });
                 setSubmitting(false);
@@ -309,6 +325,7 @@ function AnchorPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
+                aria-describedby="anchor-email-help"
                 className="flex-1 rounded-full border border-[var(--oat)]/30 bg-[var(--oat)] px-5 py-3 text-base text-[var(--plum)] placeholder:text-[var(--plum)]/40 focus:border-[var(--terracotta)] focus:outline-none min-h-11"
               />
               <button
@@ -319,6 +336,15 @@ function AnchorPage() {
                 {submitting ? "Sending…" : "Join the early-access list"}
               </button>
             </form>
+          )}
+          {!submitted && (
+            <p
+              id="anchor-email-help"
+              className="mt-3 text-xs text-[var(--oat)]/70"
+            >
+              I'll only email you about Anchor and the hub, and you can
+              unsubscribe any time.
+            </p>
           )}
         </div>
       </section>
