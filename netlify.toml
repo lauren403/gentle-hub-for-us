@@ -1,0 +1,44 @@
+# netlify.toml — Body Belonging Clinic · ADHD hub
+# TanStack Start + Nitro (SSR). Place this file at the ROOT of the repo.
+# The SSR function is produced by the Nitro "netlify" preset (set via
+# NITRO_PRESET below) and auto-detected by Netlify from .netlify/functions-internal.
+
+[build]
+  command = "npm run build"
+  # Static client assets are emitted to dist/ (Nitro publicDir).
+  # If the FIRST deploy serves pages as 404 (static-only, no SSR),
+  # remove this "publish" line and let Netlify auto-detect the Nitro output.
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NITRO_PRESET = "netlify"
+  # Do NOT set VITE_BASE_PATH — the hub is served at the root of the subdomain.
+
+# ------------------------------------------------------------------
+# Security & privacy headers — applied to every response.
+# CSP is scoped to exactly what the hub loads: self, Google Fonts,
+# Google Analytics (gtag), and the Supabase REST endpoint. Widen only
+# if you add a new third-party (e.g. an embedded video or map).
+# ------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self'; upgrade-insecure-requests"
+
+# Long-cache the immutable, content-hashed build assets.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Don't let the PDF or images go stale for too long, but allow caching.
+[[headers]]
+  for = "/*.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
