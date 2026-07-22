@@ -9,51 +9,53 @@ export function LetterPage({ letter }: { letter: Letter }) {
     <div className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <SiteHeader location={`letter_${letter.slug}`} activePath="/letters" />
 
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]">
-          <Logo className="size-[520px] text-[var(--oat)]" />
-        </div>
-        <div className="mx-auto max-w-3xl px-5 py-20 md:py-28">
-          <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-            A letter
+      <main id="main-content" tabIndex={-1}>
+        {/* HERO */}
+        <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
+          <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]">
+            <Logo className="size-[520px] text-[var(--oat)]" />
+          </div>
+          <div className="mx-auto max-w-3xl px-5 py-20 md:py-28">
+            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+              A letter
+            </p>
+            <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
+              {letter.title}
+            </h1>
+            <p className="mt-6 text-xs uppercase tracking-[0.18em] text-[var(--oat)]/60">
+              Reading time · {letter.readingTime}
+            </p>
+          </div>
+        </section>
+
+        {/* BODY */}
+        <article className="mx-auto max-w-3xl px-5 py-16 md:py-24">
+          <p className="max-w-[62ch] font-display text-2xl italic leading-snug text-[var(--plum)]/85 md:text-3xl">
+            {letter.standfirst}
           </p>
-          <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
-            {letter.title}
-          </h1>
-          <p className="mt-6 text-xs uppercase tracking-[0.18em] text-[var(--oat)]/60">
-            Reading time · {letter.readingTime}
-          </p>
-        </div>
-      </section>
 
-      {/* BODY */}
-      <article className="mx-auto max-w-3xl px-5 py-16 md:py-24">
-        <p className="max-w-[62ch] font-display text-2xl italic leading-snug text-[var(--plum)]/85 md:text-3xl">
-          {letter.standfirst}
-        </p>
+          <div className="mt-12 space-y-6 text-lg leading-relaxed text-[var(--plum)]/85 [&_p]:max-w-[68ch] [&_a]:underline [&_a]:decoration-[var(--terracotta)] [&_a]:underline-offset-4 hover:[&_a]:text-[var(--terracotta)]">
+            {letter.body.map((para, i) => (
+              <p key={i}>{renderWithLinks(para.text, para.links)}</p>
+            ))}
+          </div>
 
-        <div className="mt-12 space-y-6 text-lg leading-relaxed text-[var(--plum)]/85 [&_p]:max-w-[68ch] [&_a]:underline [&_a]:decoration-[var(--terracotta)] [&_a]:underline-offset-4 hover:[&_a]:text-[var(--terracotta)]">
-          {letter.body.map((para, i) => (
-            <p key={i}>{renderWithLinks(para.text, para.links)}</p>
-          ))}
-        </div>
+          <div className="mt-14 border-l-2 border-[var(--terracotta)] pl-6">
+            <p className="max-w-[62ch] font-display text-xl italic text-[var(--plum)] md:text-2xl">
+              {letter.closing}
+            </p>
+          </div>
 
-        <div className="mt-14 border-l-2 border-[var(--terracotta)] pl-6">
-          <p className="max-w-[62ch] font-display text-xl italic text-[var(--plum)] md:text-2xl">
-            {letter.closing}
-          </p>
-        </div>
-
-        <div className="mt-14">
-          <Link
-            to="/letters"
-            className="inline-flex items-center text-sm font-medium underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
-          >
-            ← All letters
-          </Link>
-        </div>
-      </article>
+          <div className="mt-14">
+            <Link
+              to="/letters"
+              className="inline-flex items-center text-sm font-medium underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
+            >
+              ← All letters
+            </Link>
+          </div>
+        </article>
+      </main>
 
       <SiteFooter />
       <FloatingBook location={`letter_${letter.slug}`} />
