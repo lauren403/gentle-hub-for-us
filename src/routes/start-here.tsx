@@ -81,6 +81,7 @@ function StartHerePage() {
   return (
     <div className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <SiteHeader location="start_here" activePath="/start-here" />
+      <main id="main-content" tabIndex={-1}>
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
@@ -227,6 +228,7 @@ function StartHerePage() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
       <FloatingBook location="start_here" />
     </div>
