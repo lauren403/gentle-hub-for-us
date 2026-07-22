@@ -3,7 +3,7 @@
 // Edit values here — they're used across the whole site.
 // ============================================================
 
-export const SITE_URL = "https://www.bodybelongingclinic.com.au/adhd";
+export const SITE_URL = "https://adhd.bodybelongingclinic.com.au";
 
 // Google Analytics 4 Measurement ID.
 // Replace this with your real Measurement ID to enable GA4.
