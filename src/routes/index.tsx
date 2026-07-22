@@ -632,6 +632,22 @@ function AdhdHub() {
                   } catch (err) {
                     console.warn("lead_signups insert threw", err);
                   }
+                  // Netlify Forms notification (best-effort, never blocks UX).
+                  try {
+                    const body = new URLSearchParams({
+                      "form-name": "signups",
+                      email: trimmed,
+                      source: "homepage",
+                      company: honeypot,
+                    });
+                    await fetch("/", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                      body: body.toString(),
+                    });
+                  } catch (err) {
+                    console.warn("netlify form notify failed", err);
+                  }
                 }
                 trackEvent("sign_up", { method: "lead_magnet" });
                 trackEvent("email_click");
@@ -674,6 +690,7 @@ function AdhdHub() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
+                aria-describedby="lead-email-help"
                 className="flex-1 rounded-full border border-[var(--plum)]/20 bg-[var(--oat)] px-5 py-3 text-base text-[var(--plum)] placeholder:text-[var(--plum)]/40 focus:border-[var(--terracotta)] focus:outline-none min-h-11"
               />
 
@@ -685,6 +702,15 @@ function AdhdHub() {
                 {submitting ? "Sending…" : "Send it to me"}
               </button>
             </form>
+          )}
+          {!submitted && (
+            <p
+              id="lead-email-help"
+              className="mt-3 text-xs text-[var(--plum)]/60"
+            >
+              I'll only email you about Anchor and the hub, and you can
+              unsubscribe any time.
+            </p>
           )}
         </div>
       </Section>

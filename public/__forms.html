@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify form detection</title>
+  </head>
+  <body>
+    <!--
+      This static file exists so Netlify's build-time form parser can
+      register the "signups" form. Real submissions come from the
+      client-side POST on the ADHD Hub and Anchor waitlist forms.
+    -->
+    <form name="signups" method="POST" data-netlify="true" netlify-honeypot="company">
+      <input type="hidden" name="form-name" value="signups" />
+      <input type="text" name="company" />
+      <input type="email" name="email" />
+      <input type="text" name="source" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
