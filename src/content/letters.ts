@@ -135,6 +135,91 @@ export const LETTERS: Letter[] = [
     closing:
       "If you have spent your life being pushed and it has never worked, you might be surprised what happens when you are met with safety instead. That is what this place is built for, and you are welcome here exactly as you are.",
   },
+  {
+    slug: "diagnosed-with-adhd-as-an-adult",
+    path: "/letters/diagnosed-with-adhd-as-an-adult",
+    title: "Diagnosed as an adult, the relief and the grief",
+    standfirst:
+      "If you were only recently told you have ADHD, and you have felt both a wave of relief and an ache of grief, both belong. Nothing about you arrived late. The name did.",
+    readingTime: "about 5 minutes",
+    seoTitle:
+      "Diagnosed with ADHD as an adult: the relief and the grief | Body Belonging Clinic",
+    seoDescription:
+      "Being diagnosed with ADHD later in life can bring relief and grief at once. A warm, validating look at why it was missed, and how to meet your own history with compassion.",
+    body: [
+      { text: `There is a particular moment I see often, when someone finally hears the word ADHD applied to them in their thirties or forties or later, and their whole history seems to rearrange itself in front of them. All the years of trying harder and still falling behind, the school reports that said "so much potential," the jobs that started bright and quietly unravelled, the sense of running a race everyone else seemed to find easier, suddenly have a different explanation. It was never that you did not care enough or try enough. It was a brain that works differently, unnamed and unsupported for a very long time.` },
+      { text: `The relief of that is real, and so is the grief, and I want to make room for both, because people are often caught off guard by the second one. Alongside "so that is why," there is frequently a quieter, heavier "what if someone had seen this sooner." Grief for the younger you who concluded they were lazy or broken. Grief for the energy poured into masking, for the roads not taken, for the help that never came. That grief is not ingratitude for the diagnosis, it is love for the person who went so long without it, and it deserves tenderness rather than being hurried past.` },
+      { text: `It also helps to understand why it was missed, because the reason is rarely about you. ADHD has been under-recognised for decades in anyone who did not match the picture of a restless little boy, and that includes a great many women and girls, whose ADHD more often looked like daydreaming, anxiety, perfectionism and quiet coping than like disruption. If you learned early to mask, to work twice as hard to look half as effortless, you may have hidden the very struggle that would have got you seen. The system was looking for one shape and missed the rest of us. That is a failure of recognition, and it was never a failure of yours.` },
+      { text: `So what does a late diagnosis actually give you, beyond a name. At its best it gives you a new and far kinder story about your own life, one where the difficulties were friction between your brain and a world not built for it, rather than evidence of some private flaw. It lets you stop white-knuckling your way through someone else's operating system and begin working with your own. And it opens the door to support that finally fits, whether that includes medication, which is a conversation for you and a good prescriber, or the slower, human work of understanding how your mind runs and building a life around it.` },
+      { text: `If you are somewhere in the early, tender part of this, newly named and unsure how to feel, I would offer just one thing. You do not have to make sense of it all at once, and you do not have to be grateful and grieving in the right proportions. You are allowed to hold a diagnosis that is both a relief and a loss, and to take your time turning years of self-blame into something gentler. The label is new. You were always here, doing your best with a brain that nobody had explained to you yet.` },
+    ],
+    closing:
+      "If you have been recently diagnosed and would like a place to make sense of it, gently and at your own pace, that is exactly the kind of work we do here. You are warmly welcome to reach out.",
+  },
+  {
+    slug: "the-late-brain-at-midnight",
+    path: "/letters/the-late-brain-at-midnight",
+    title: "The late brain at midnight",
+    standfirst:
+      "If your best thinking, and your worst spiralling, arrive the moment the house finally goes quiet, you are not undisciplined. A brain like ours often runs on a later clock, and there are kinder ways to work with it than force.",
+    readingTime: "about 5 minutes",
+    seoTitle:
+      "The late brain at midnight: ADHD, sleep and the racing mind | Body Belonging Clinic",
+    seoDescription:
+      "If your mind switches on the moment your head hits the pillow, it is not a discipline problem. A gentle look at ADHD, the late body clock, and what actually helps.",
+    body: [
+      { text: `Here is a night you might know. All day you were foggy and flat, and then somewhere around eleven the world goes still and your mind switches on, bright and busy and full of plans, and you are suddenly more awake than you have been in hours. You know you will pay for it tomorrow, and still the hours slip by, and it feels like a failure of willpower. I want to gently offer a different reading, because a good deal of this is not about willpower at all, it is about timing.` },
+      { text: `Research on adults with ADHD keeps finding the same thing, that our body clocks tend to run late. The natural evening rise in melatonin, the hormone that tells the body it is time to wind down, often comes later for us, which is why sleep arrives late and mornings feel like being dragged out of the wrong time zone. Clinicians who study this, like Sandra Kooij and her colleagues, describe a strong overlap between ADHD and a delayed sleep phase, a body clock simply set later than the world expects. So when you cannot fall asleep at a "sensible" hour, it is often because your body genuinely does not believe it is time yet.` },
+      { text: `Layered on top of the late clock is the racing mind, and that part is lived experience as much as biology, the way a quiet, undemanding bedroom is finally free of the day's interruptions, so every idea and worry you were too busy to feel all day arrives at once. It is not a coincidence that the mind gets loud exactly when the room gets quiet. For a brain that runs on interest and stimulation, the still moment before sleep can be the first time all day there is nothing to hold the attention, so it turns inward and spins.` },
+      { text: `None of this means you are doomed to bad sleep, and it also does not mean the answer is to try harder to switch off, which rarely works. Gentler things tend to help more. A steady wake-up time, held even on weekends, does more to anchor a drifting body clock than a strict bedtime ever will. Real daylight soon after you wake helps nudge the clock earlier over time. A wind-down that gives the busy mind somewhere to put itself, writing tomorrow's worries and plans down so your brain can stop rehearsing them, can take the edge off the spinning. And if sleep is a serious, ongoing struggle, it is worth a proper conversation with a doctor, because there are real approaches, including carefully timed light and sometimes melatonin used under guidance, that work with a late clock rather than against it.` },
+      { text: `Mostly, though, I want to take the moral weight off it. You are not lazy for being wired at midnight, and you are not weak for finding mornings brutal. Your clock runs late, your mind gets loud in the quiet, and both of those make complete sense in a brain like ours. Working with that, kindly and a little at a time, tends to go so much further than fighting it.` },
+    ],
+    closing:
+      "If your sleep and your racing mind are wearing you down, you do not have to sort it alone, and it is very much part of the whole-person work we do here. You are welcome to reach out whenever you are ready.",
+  },
+  {
+    slug: "working-with-your-brain",
+    path: "/letters/working-with-your-brain",
+    title: "Working with your brain, not against it",
+    standfirst:
+      "If every productivity system has eventually failed you, the problem was never you. Most of them were designed for a brain that runs on discipline. Here are a few designed for ours.",
+    readingTime: "about 5 minutes",
+    seoTitle:
+      "Working with your brain, not against it: ADHD strategies that actually fit | Body Belonging Clinic",
+    seoDescription:
+      "Most ADHD advice is really advice for a different brain. A gentle set of strategies that work with an interest-based nervous system, not against it, and without the shame.",
+    body: [
+      { text: `Most advice about getting organised is, quietly, advice for a different kind of brain, one that responds to willpower, routine and the promise of a tidy future. A brain like ours runs on something else, on interest, novelty, urgency and meaning, and when you force it onto a system built for discipline, it works for a brilliant week and then falls apart, and you are left, once again, feeling like the failure. You are not. The system was wrong for your wiring. So here are a handful that tend to fit better, offered gently, to try rather than to obey.` },
+      { text: `The first is to get things out of your head. One of the most useful ideas in the whole field, from the psychologist Russell Barkley, is that a brain like ours struggles to hold and juggle information internally, so the trick is to move it outside, into the world, where you can see it. A visible list, a whiteboard by the door, an alarm that is really a message from your past self, a single note stuck where you cannot miss it. Not because you are incapable, but because your working memory is genuinely stretched, and a brain that cannot easily hold the next step in mind does far better when the next step is sitting there in plain sight.` },
+      { text: `The second is to make the dull thing interesting, or urgent, or shared, on purpose. Since attention follows interest more than importance, you can borrow interest from somewhere else. Music, a timer that turns a boring task into a race against the clock, or doing the thing alongside another person, what many people call body doubling, where simply having someone there, in the room or on a video call, makes the impossible task suddenly possible. This is not a crutch or a trick, it is using how your nervous system actually works, letting connection and novelty carry you where willpower would not.` },
+      { text: `The third is to shrink the decisions. A great deal of what looks like avoidance is really a brain overwhelmed by too many open choices, so anything that reduces the deciding helps. Lay tomorrow's clothes out tonight. Keep the same easy breakfast so the morning holds one less decision. Break a task down not into "reasonable" steps but into embarrassingly small ones, the first of which is almost too easy to refuse. And where you can, tie a new habit onto something you already do, so it rides an existing groove rather than needing willpower of its own.` },
+      { text: `Underneath all of these is the thing that matters most, and it is not a strategy at all. It is the tone you take with yourself when a system slips, as every system sometimes will. You cannot shame a brain like ours into working well, and years of trying have only taught most of us to expect our own contempt. So the quiet, radical move is to treat each fresh start as ordinary rather than as fresh proof of failure. The strategies genuinely help, but they help most when they rest on a foundation of self-kindness rather than self-punishment. That is the part that makes them last.` },
+    ],
+    closing:
+      "If you would like help building a way of working that actually fits your brain, without the shame that usually comes attached, that is a good deal of what we do here together. You are warmly welcome to reach out.",
+  },
+  {
+    slug: "food-as-brain-fuel-safely",
+    path: "/letters/food-as-brain-fuel-safely",
+    title: "Food as brain fuel, held safely",
+    standfirst:
+      "There is a real and growing conversation about food and the ADHD brain, and it holds both genuine science and genuine risk. This is an honest, eating-disorder-safe map of both.",
+    readingTime: "about 6 minutes",
+    seoTitle:
+      "Food as brain fuel, held safely: ADHD and nutrition, honestly | Body Belonging Clinic",
+    seoDescription:
+      "The \"food as brain fuel\" conversation around ADHD holds real science and real risk. An honest, eating-disorder-safe look at what helps, what is overblown, and how to stay safe.",
+    body: [
+      { text: `You have probably seen the headlines, that this supplement or that diet will transform an ADHD brain. Somewhere underneath the noise there is a real and interesting science, and there is also a real danger, and I want to walk the line between them honestly, because you deserve neither hype nor dismissal. Food does matter for how a brain feels and functions. It is also a place where a lot of well-meaning advice tips quietly into restriction and harm, especially for anyone whose relationship with eating has ever been fragile. Both of those things are true at once.` },
+      { text: `Let me give the science its due first, and credit where it belongs. Dr Rachel Gow, a neuroscientist in the United Kingdom and the founder of Nutritious Minds, has done a great deal to bring the link between nutrition and the ADHD brain into the open, and the core of it is sound. The brain is a hungry organ, built in part from the fats we eat, which is why the omega-3 fatty acids, and one called EPA in particular, have been studied the most. The honest summary of that research is modest rather than miraculous. Some trials and reviews suggest a small benefit from omega-3 for some people, while the most cautious reviews find the evidence weak, so the fair conclusion is that it may gently help a little, alongside usual care, and never as a replacement for it. The same measured tone fits the rest, that steady blood sugar and regular meals tend to help a brain concentrate and stay even, and that a diet built mostly from whole foods is good for all of us. Useful, real, and worth knowing. Not a cure.` },
+      { text: `Now the part that matters most to me, and that a lot of the online conversation gets dangerously wrong. The moment "food as brain fuel" hardens into a set of rules, foods to fear, whole groups to cut out, a jar of supplements standing in for care, it stops being nourishment and becomes restriction, and restriction is not safe for a brain like ours. A brain that already reads hunger and fullness less clearly, and that already carries more risk around disordered eating, does not need another reason to treat food as a test to pass or fail. I have watched the wellness version of this quietly hurt people, and I will not repeat it here. There is no food you must earn, no ingredient that is a moral failing, and no supplement that replaces sleep, connection, support or, where it is needed, medication.` },
+      { text: `So how do you take the genuinely useful part without the harm. Gently, and additively. Additive means the aim is always to include and to steady, never to restrict, so the kindest first step is not cutting anything out but making sure eating happens at regular times, which is where so much of the ADHD and food story actually lives. If you would like to explore whether something like omega-3 fits for you, treat it as a small conversation with your GP, framed as a possible gentle complement to your care rather than a fix. And if you want to look at food more closely than that, please do it with an eating-disorder-informed Accredited Practising Dietitian, someone trained to hold the nutrition and the safety at the same time, rather than with an influencer or an elimination plan. That single choice is the difference between help and harm.` },
+      { text: `This is exactly the ground Body Belonging Clinic was built to stand on, the place where food and the ADHD brain can be talked about honestly and warmly, without the diet-culture, the fear and the fine print that make so much of this conversation unsafe. Food as brain fuel is a lovely idea, and it is true enough to be worth taking seriously. It is also only ever safe when it is held with kindness, kept additive, and shared with the right people around you.` },
+    ],
+    closing:
+      "If food and your ADHD brain feel tangled together, and you want support that is genuinely eating-disorder-safe, that is the heart of what we do here. You are warmly welcome to reach out, and we can bring in the right dietitian alongside.",
+  },
+
 ];
 
 export function getLetter(slug: string): Letter | undefined {
