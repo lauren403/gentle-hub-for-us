@@ -30,7 +30,7 @@ export const CONTACT = {
   },
 };
 
-export const OG_IMAGE = "/og-image.png"; // 1200x630 placed in /public
+export const OG_IMAGE = "/og-image.jpg"; // 1200x630 placed in /public
 export const THEME_COLOR = "#2E1A22";
 
 // ----------------------------------------------------------------
