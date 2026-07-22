@@ -66,6 +66,7 @@ const NAV = [
 function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--plum)]/10 bg-[var(--plum)] text-[var(--oat)]">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3">
         <a href="#top" className="flex items-center gap-2.5" aria-label="Body Belonging Clinic — home">
           <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
@@ -255,6 +256,7 @@ function AdhdHub() {
   return (
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <Header />
+      <main id="main-content" tabIndex={-1}>
 
       {/* HERO */}
       <section className="relative overflow-hidden">
