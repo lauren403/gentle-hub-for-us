@@ -66,6 +66,7 @@ const NAV = [
 function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--plum)]/10 bg-[var(--plum)] text-[var(--oat)]">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3">
         <a href="#top" className="flex items-center gap-2.5" aria-label="Body Belonging Clinic — home">
           <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
@@ -236,6 +237,8 @@ function AdhdHub() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [showAppSoon, setShowAppSoon] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const mountedAtRef = useRef<number>(Date.now());
   const emailInputRef = useRef<HTMLInputElement>(null);
 
   const anchorConfigured = ANCHOR_URL !== "#";
@@ -255,6 +258,7 @@ function AdhdHub() {
   return (
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <Header />
+      <main id="main-content" tabIndex={-1}>
 
       {/* HERO */}
       <section className="relative overflow-hidden">
@@ -605,13 +609,20 @@ function AdhdHub() {
                 const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
                 if (!looksLikeEmail) return;
                 setSubmitting(true);
-                try {
-                  const { error } = await supabase
-                    .from("lead_signups")
-                    .insert({ email: trimmed, source: "adhd_hub" });
-                  if (error) console.warn("lead_signups insert failed", error);
-                } catch (err) {
-                  console.warn("lead_signups insert threw", err);
+                // Spam guards: silently succeed without writing if the
+                // honeypot has any value, or if the form was submitted
+                // implausibly fast (under ~2.5s from mount).
+                const elapsed = Date.now() - mountedAtRef.current;
+                const isBot = honeypot.trim().length > 0 || elapsed < 2500;
+                if (!isBot) {
+                  try {
+                    const { error } = await supabase
+                      .from("lead_signups")
+                      .insert({ email: trimmed, source: "adhd_hub" });
+                    if (error) console.warn("lead_signups insert failed", error);
+                  } catch (err) {
+                    console.warn("lead_signups insert threw", err);
+                  }
                 }
                 trackEvent("sign_up", { method: "lead_magnet" });
                 trackEvent("email_click");
@@ -623,6 +634,29 @@ function AdhdHub() {
               <label htmlFor="lead-email" className="sr-only">
                 Email address
               </label>
+              {/* Honeypot: hidden from real users, tempting to bots. */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  left: "-10000px",
+                  top: "auto",
+                  width: "1px",
+                  height: "1px",
+                  overflow: "hidden",
+                }}
+              >
+                <label htmlFor="lead-company">Company</label>
+                <input
+                  id="lead-company"
+                  type="text"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
               <input
                 id="lead-email"
                 ref={emailInputRef}
@@ -744,6 +778,7 @@ function AdhdHub() {
           </div>
         </Section>
       </section>
+      </main>
 
       {/* FOOTER */}
       <footer className="bg-[var(--plum)] text-[var(--oat)]/80">

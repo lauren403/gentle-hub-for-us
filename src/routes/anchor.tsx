@@ -40,6 +40,7 @@ const Logo = ({ className = "" }: { className?: string }) => (
 function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--plum)]/10 bg-[var(--plum)] text-[var(--oat)]">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3">
         <Link to="/" className="flex items-center gap-2.5" aria-label="Body Belonging Clinic — home">
           <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
@@ -107,11 +108,14 @@ function AnchorPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const mountedAtRef = useRef<number>(Date.now());
   const emailRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]" id="top">
       <Header />
+      <main id="main-content" tabIndex={-1}>
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
@@ -250,13 +254,20 @@ function AnchorPage() {
                 const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
                 if (!looksLikeEmail) return;
                 setSubmitting(true);
-                try {
-                  const { error } = await supabase
-                    .from("lead_signups")
-                    .insert({ email: trimmed, source: "anchor_waitlist" });
-                  if (error) console.warn("lead_signups insert failed", error);
-                } catch (err) {
-                  console.warn("lead_signups insert threw", err);
+                // Spam guards: silently succeed without writing if the
+                // honeypot has any value, or if the form was submitted
+                // implausibly fast (under ~2.5s from mount).
+                const elapsed = Date.now() - mountedAtRef.current;
+                const isBot = honeypot.trim().length > 0 || elapsed < 2500;
+                if (!isBot) {
+                  try {
+                    const { error } = await supabase
+                      .from("lead_signups")
+                      .insert({ email: trimmed, source: "anchor_waitlist" });
+                    if (error) console.warn("lead_signups insert failed", error);
+                  } catch (err) {
+                    console.warn("lead_signups insert threw", err);
+                  }
                 }
                 trackEvent("sign_up", { location: "anchor_waitlist" });
                 setSubmitting(false);
@@ -267,6 +278,29 @@ function AnchorPage() {
               <label htmlFor="anchor-email" className="sr-only">
                 Email address
               </label>
+              {/* Honeypot: hidden from real users, tempting to bots. */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  left: "-10000px",
+                  top: "auto",
+                  width: "1px",
+                  height: "1px",
+                  overflow: "hidden",
+                }}
+              >
+                <label htmlFor="anchor-company">Company</label>
+                <input
+                  id="anchor-company"
+                  type="text"
+                  name="company"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
               <input
                 id="anchor-email"
                 ref={emailRef}
@@ -288,6 +322,7 @@ function AnchorPage() {
           )}
         </div>
       </section>
+      </main>
 
       {/* FOOTER */}
       <footer className="bg-[var(--plum)] text-[var(--oat)]/80">
