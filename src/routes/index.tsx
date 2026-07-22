@@ -361,7 +361,16 @@ function AdhdHub() {
               <p>
                 A brain like ours can lose track of hunger until eating swings from forgotten all day to all at once by night. Because we are an ANZAED-accredited eating disorder clinic, we can talk about food and ADHD without the restriction, the calorie-counting and the supplement-hype that can quietly harm neurodivergent people. Weight-neutral, always.
               </p>
+              <p>
+                <Link
+                  to="/adhd-and-eating"
+                  className="inline-flex items-center text-base font-medium underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
+                >
+                  Read the full guide to ADHD and eating →
+                </Link>
+              </p>
             </div>
+
           </div>
           <StudioImage
             src={FOOD_IMAGE}

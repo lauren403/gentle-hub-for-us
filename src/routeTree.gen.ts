@@ -16,6 +16,7 @@ import { Route as McpRouteImport } from './routes/mcp'
 import { Route as LettersRouteImport } from './routes/letters'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AnchorRouteImport } from './routes/anchor'
+import { Route as AdhdAndEatingRouteImport } from './routes/adhd-and-eating'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LettersYourNervousSystemAndAPlaceToBelongRouteImport } from './routes/letters.your-nervous-system-and-a-place-to-belong'
 import { Route as LettersWorkingWithYourBrainRouteImport } from './routes/letters.working-with-your-brain'
@@ -66,6 +67,11 @@ const ApproachRoute = ApproachRouteImport.update({
 const AnchorRoute = AnchorRouteImport.update({
   id: '/anchor',
   path: '/anchor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdhdAndEatingRoute = AdhdAndEatingRouteImport.update({
+  id: '/adhd-and-eating',
+  path: '/adhd-and-eating',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -166,6 +172,7 @@ const Char91DotmcpChar93InvokeToolToolRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/adhd-and-eating': typeof AdhdAndEatingRoute
   '/anchor': typeof AnchorRoute
   '/approach': typeof ApproachRoute
   '/letters': typeof LettersRouteWithChildren
@@ -191,6 +198,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/adhd-and-eating': typeof AdhdAndEatingRoute
   '/anchor': typeof AnchorRoute
   '/approach': typeof ApproachRoute
   '/letters': typeof LettersRouteWithChildren
@@ -217,6 +225,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/adhd-and-eating': typeof AdhdAndEatingRoute
   '/anchor': typeof AnchorRoute
   '/approach': typeof ApproachRoute
   '/letters': typeof LettersRouteWithChildren
@@ -244,6 +253,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/adhd-and-eating'
     | '/anchor'
     | '/approach'
     | '/letters'
@@ -269,6 +279,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/adhd-and-eating'
     | '/anchor'
     | '/approach'
     | '/letters'
@@ -294,6 +305,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/adhd-and-eating'
     | '/anchor'
     | '/approach'
     | '/letters'
@@ -320,6 +332,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdhdAndEatingRoute: typeof AdhdAndEatingRoute
   AnchorRoute: typeof AnchorRoute
   ApproachRoute: typeof ApproachRoute
   LettersRoute: typeof LettersRouteWithChildren
@@ -381,6 +394,13 @@ declare module '@tanstack/react-router' {
       path: '/anchor'
       fullPath: '/anchor'
       preLoaderRoute: typeof AnchorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adhd-and-eating': {
+      id: '/adhd-and-eating'
+      path: '/adhd-and-eating'
+      fullPath: '/adhd-and-eating'
+      preLoaderRoute: typeof AdhdAndEatingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -539,6 +559,7 @@ const LettersRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdhdAndEatingRoute: AdhdAndEatingRoute,
   AnchorRoute: AnchorRoute,
   ApproachRoute: ApproachRoute,
   LettersRoute: LettersRouteWithChildren,
