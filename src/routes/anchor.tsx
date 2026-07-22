@@ -276,7 +276,7 @@ function AnchorPage() {
                       source: "anchor",
                       company: honeypot,
                     });
-                    await fetch("/", {
+                    await fetch("/__forms.html", {
                       method: "POST",
                       headers: { "Content-Type": "application/x-www-form-urlencoded" },
                       body: body.toString(),
