@@ -746,6 +746,7 @@ function AdhdHub() {
           </div>
         </Section>
       </section>
+      </main>
 
       {/* FOOTER */}
       <footer className="bg-[var(--plum)] text-[var(--oat)]/80">
