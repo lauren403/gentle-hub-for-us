@@ -322,6 +322,7 @@ function AnchorPage() {
           )}
         </div>
       </section>
+      </main>
 
       {/* FOOTER */}
       <footer className="bg-[var(--plum)] text-[var(--oat)]/80">
