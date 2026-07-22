@@ -40,6 +40,7 @@ const Logo = ({ className = "" }: { className?: string }) => (
 function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--plum)]/10 bg-[var(--plum)] text-[var(--oat)]">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3">
         <Link to="/" className="flex items-center gap-2.5" aria-label="Body Belonging Clinic — home">
           <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
@@ -107,6 +108,8 @@ function AnchorPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const mountedAtRef = useRef<number>(Date.now());
   const emailRef = useRef<HTMLInputElement>(null);
 
   return (
