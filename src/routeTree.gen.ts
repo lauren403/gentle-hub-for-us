@@ -22,11 +22,13 @@ import { Route as LettersWorkingWithYourBrainRouteImport } from './routes/letter
 import { Route as LettersWhyABrainLikeOursForgetsToEatRouteImport } from './routes/letters.why-a-brain-like-ours-forgets-to-eat'
 import { Route as LettersTheLateBrainAtMidnightRouteImport } from './routes/letters.the-late-brain-at-midnight'
 import { Route as LettersTheHardestPartIsntFocusItsFeelingRouteImport } from './routes/letters.the-hardest-part-isnt-focus-its-feeling'
+import { Route as LettersNeurodivergentAndQueerRouteImport } from './routes/letters.neurodivergent-and-queer'
 import { Route as LettersMedicationIsntTheWholeAnswerRouteImport } from './routes/letters.medication-isnt-the-whole-answer'
 import { Route as LettersFoodAsBrainFuelSafelyRouteImport } from './routes/letters.food-as-brain-fuel-safely'
 import { Route as LettersEatingByTheClockNotByHungerRouteImport } from './routes/letters.eating-by-the-clock-not-by-hunger'
 import { Route as LettersDifferentNotBrokenRouteImport } from './routes/letters.different-not-broken'
 import { Route as LettersDiagnosedWithAdhdAsAnAdultRouteImport } from './routes/letters.diagnosed-with-adhd-as-an-adult'
+import { Route as LettersAudhdAutisticAndAdhdRouteImport } from './routes/letters.audhd-autistic-and-adhd'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
@@ -101,6 +103,12 @@ const LettersTheHardestPartIsntFocusItsFeelingRoute =
     path: '/the-hardest-part-isnt-focus-its-feeling',
     getParentRoute: () => LettersRoute,
   } as any)
+const LettersNeurodivergentAndQueerRoute =
+  LettersNeurodivergentAndQueerRouteImport.update({
+    id: '/neurodivergent-and-queer',
+    path: '/neurodivergent-and-queer',
+    getParentRoute: () => LettersRoute,
+  } as any)
 const LettersMedicationIsntTheWholeAnswerRoute =
   LettersMedicationIsntTheWholeAnswerRouteImport.update({
     id: '/medication-isnt-the-whole-answer',
@@ -129,6 +137,12 @@ const LettersDiagnosedWithAdhdAsAnAdultRoute =
   LettersDiagnosedWithAdhdAsAnAdultRouteImport.update({
     id: '/diagnosed-with-adhd-as-an-adult',
     path: '/diagnosed-with-adhd-as-an-adult',
+    getParentRoute: () => LettersRoute,
+  } as any)
+const LettersAudhdAutisticAndAdhdRoute =
+  LettersAudhdAutisticAndAdhdRouteImport.update({
+    id: '/audhd-autistic-and-adhd',
+    path: '/audhd-autistic-and-adhd',
     getParentRoute: () => LettersRoute,
   } as any)
 const Char91DotwellKnownChar93OauthProtectedResourceRoute =
@@ -161,11 +175,13 @@ export interface FileRoutesByFullPath {
   '/start-here': typeof StartHereRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/letters/audhd-autistic-and-adhd': typeof LettersAudhdAutisticAndAdhdRoute
   '/letters/diagnosed-with-adhd-as-an-adult': typeof LettersDiagnosedWithAdhdAsAnAdultRoute
   '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
   '/letters/eating-by-the-clock-not-by-hunger': typeof LettersEatingByTheClockNotByHungerRoute
   '/letters/food-as-brain-fuel-safely': typeof LettersFoodAsBrainFuelSafelyRoute
   '/letters/medication-isnt-the-whole-answer': typeof LettersMedicationIsntTheWholeAnswerRoute
+  '/letters/neurodivergent-and-queer': typeof LettersNeurodivergentAndQueerRoute
   '/letters/the-hardest-part-isnt-focus-its-feeling': typeof LettersTheHardestPartIsntFocusItsFeelingRoute
   '/letters/the-late-brain-at-midnight': typeof LettersTheLateBrainAtMidnightRoute
   '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
@@ -184,11 +200,13 @@ export interface FileRoutesByTo {
   '/start-here': typeof StartHereRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/letters/audhd-autistic-and-adhd': typeof LettersAudhdAutisticAndAdhdRoute
   '/letters/diagnosed-with-adhd-as-an-adult': typeof LettersDiagnosedWithAdhdAsAnAdultRoute
   '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
   '/letters/eating-by-the-clock-not-by-hunger': typeof LettersEatingByTheClockNotByHungerRoute
   '/letters/food-as-brain-fuel-safely': typeof LettersFoodAsBrainFuelSafelyRoute
   '/letters/medication-isnt-the-whole-answer': typeof LettersMedicationIsntTheWholeAnswerRoute
+  '/letters/neurodivergent-and-queer': typeof LettersNeurodivergentAndQueerRoute
   '/letters/the-hardest-part-isnt-focus-its-feeling': typeof LettersTheHardestPartIsntFocusItsFeelingRoute
   '/letters/the-late-brain-at-midnight': typeof LettersTheLateBrainAtMidnightRoute
   '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
@@ -208,11 +226,13 @@ export interface FileRoutesById {
   '/start-here': typeof StartHereRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/letters/audhd-autistic-and-adhd': typeof LettersAudhdAutisticAndAdhdRoute
   '/letters/diagnosed-with-adhd-as-an-adult': typeof LettersDiagnosedWithAdhdAsAnAdultRoute
   '/letters/different-not-broken': typeof LettersDifferentNotBrokenRoute
   '/letters/eating-by-the-clock-not-by-hunger': typeof LettersEatingByTheClockNotByHungerRoute
   '/letters/food-as-brain-fuel-safely': typeof LettersFoodAsBrainFuelSafelyRoute
   '/letters/medication-isnt-the-whole-answer': typeof LettersMedicationIsntTheWholeAnswerRoute
+  '/letters/neurodivergent-and-queer': typeof LettersNeurodivergentAndQueerRoute
   '/letters/the-hardest-part-isnt-focus-its-feeling': typeof LettersTheHardestPartIsntFocusItsFeelingRoute
   '/letters/the-late-brain-at-midnight': typeof LettersTheLateBrainAtMidnightRoute
   '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
@@ -233,11 +253,13 @@ export interface FileRouteTypes {
     | '/start-here'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/letters/audhd-autistic-and-adhd'
     | '/letters/diagnosed-with-adhd-as-an-adult'
     | '/letters/different-not-broken'
     | '/letters/eating-by-the-clock-not-by-hunger'
     | '/letters/food-as-brain-fuel-safely'
     | '/letters/medication-isnt-the-whole-answer'
+    | '/letters/neurodivergent-and-queer'
     | '/letters/the-hardest-part-isnt-focus-its-feeling'
     | '/letters/the-late-brain-at-midnight'
     | '/letters/why-a-brain-like-ours-forgets-to-eat'
@@ -256,11 +278,13 @@ export interface FileRouteTypes {
     | '/start-here'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/letters/audhd-autistic-and-adhd'
     | '/letters/diagnosed-with-adhd-as-an-adult'
     | '/letters/different-not-broken'
     | '/letters/eating-by-the-clock-not-by-hunger'
     | '/letters/food-as-brain-fuel-safely'
     | '/letters/medication-isnt-the-whole-answer'
+    | '/letters/neurodivergent-and-queer'
     | '/letters/the-hardest-part-isnt-focus-its-feeling'
     | '/letters/the-late-brain-at-midnight'
     | '/letters/why-a-brain-like-ours-forgets-to-eat'
@@ -279,11 +303,13 @@ export interface FileRouteTypes {
     | '/start-here'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/letters/audhd-autistic-and-adhd'
     | '/letters/diagnosed-with-adhd-as-an-adult'
     | '/letters/different-not-broken'
     | '/letters/eating-by-the-clock-not-by-hunger'
     | '/letters/food-as-brain-fuel-safely'
     | '/letters/medication-isnt-the-whole-answer'
+    | '/letters/neurodivergent-and-queer'
     | '/letters/the-hardest-part-isnt-focus-its-feeling'
     | '/letters/the-late-brain-at-midnight'
     | '/letters/why-a-brain-like-ours-forgets-to-eat'
@@ -399,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LettersTheHardestPartIsntFocusItsFeelingRouteImport
       parentRoute: typeof LettersRoute
     }
+    '/letters/neurodivergent-and-queer': {
+      id: '/letters/neurodivergent-and-queer'
+      path: '/neurodivergent-and-queer'
+      fullPath: '/letters/neurodivergent-and-queer'
+      preLoaderRoute: typeof LettersNeurodivergentAndQueerRouteImport
+      parentRoute: typeof LettersRoute
+    }
     '/letters/medication-isnt-the-whole-answer': {
       id: '/letters/medication-isnt-the-whole-answer'
       path: '/medication-isnt-the-whole-answer'
@@ -434,6 +467,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LettersDiagnosedWithAdhdAsAnAdultRouteImport
       parentRoute: typeof LettersRoute
     }
+    '/letters/audhd-autistic-and-adhd': {
+      id: '/letters/audhd-autistic-and-adhd'
+      path: '/audhd-autistic-and-adhd'
+      fullPath: '/letters/audhd-autistic-and-adhd'
+      preLoaderRoute: typeof LettersAudhdAutisticAndAdhdRouteImport
+      parentRoute: typeof LettersRoute
+    }
     '/.well-known/oauth-protected-resource': {
       id: '/.well-known/oauth-protected-resource'
       path: '/.well-known/oauth-protected-resource'
@@ -459,11 +499,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface LettersRouteChildren {
+  LettersAudhdAutisticAndAdhdRoute: typeof LettersAudhdAutisticAndAdhdRoute
   LettersDiagnosedWithAdhdAsAnAdultRoute: typeof LettersDiagnosedWithAdhdAsAnAdultRoute
   LettersDifferentNotBrokenRoute: typeof LettersDifferentNotBrokenRoute
   LettersEatingByTheClockNotByHungerRoute: typeof LettersEatingByTheClockNotByHungerRoute
   LettersFoodAsBrainFuelSafelyRoute: typeof LettersFoodAsBrainFuelSafelyRoute
   LettersMedicationIsntTheWholeAnswerRoute: typeof LettersMedicationIsntTheWholeAnswerRoute
+  LettersNeurodivergentAndQueerRoute: typeof LettersNeurodivergentAndQueerRoute
   LettersTheHardestPartIsntFocusItsFeelingRoute: typeof LettersTheHardestPartIsntFocusItsFeelingRoute
   LettersTheLateBrainAtMidnightRoute: typeof LettersTheLateBrainAtMidnightRoute
   LettersWhyABrainLikeOursForgetsToEatRoute: typeof LettersWhyABrainLikeOursForgetsToEatRoute
@@ -472,6 +514,7 @@ interface LettersRouteChildren {
 }
 
 const LettersRouteChildren: LettersRouteChildren = {
+  LettersAudhdAutisticAndAdhdRoute: LettersAudhdAutisticAndAdhdRoute,
   LettersDiagnosedWithAdhdAsAnAdultRoute:
     LettersDiagnosedWithAdhdAsAnAdultRoute,
   LettersDifferentNotBrokenRoute: LettersDifferentNotBrokenRoute,
@@ -480,6 +523,7 @@ const LettersRouteChildren: LettersRouteChildren = {
   LettersFoodAsBrainFuelSafelyRoute: LettersFoodAsBrainFuelSafelyRoute,
   LettersMedicationIsntTheWholeAnswerRoute:
     LettersMedicationIsntTheWholeAnswerRoute,
+  LettersNeurodivergentAndQueerRoute: LettersNeurodivergentAndQueerRoute,
   LettersTheHardestPartIsntFocusItsFeelingRoute:
     LettersTheHardestPartIsntFocusItsFeelingRoute,
   LettersTheLateBrainAtMidnightRoute: LettersTheLateBrainAtMidnightRoute,

@@ -219,6 +219,48 @@ export const LETTERS: Letter[] = [
     closing:
       "If food and your ADHD brain feel tangled together, and you want support that is genuinely eating-disorder-safe, that is the heart of what we do here. You are warmly welcome to reach out, and we can bring in the right dietitian alongside.",
   },
+  {
+    slug: "audhd-autistic-and-adhd",
+    path: "/letters/audhd-autistic-and-adhd",
+    title: "AuDHD, when you are autistic and ADHD at once",
+    standfirst:
+      "If one part of you craves the new and another part needs everything to stay the same, and no single label has ever held all of you, there may be a reason. You might be both.",
+    readingTime: "about 6 minutes",
+    seoTitle:
+      "AuDHD: when you're autistic and ADHD at the same time | Body Belonging Clinic",
+    seoDescription:
+      "Autism and ADHD often live in the same person, pulling in opposite directions. A warm, affirming look at the AuDHD tug-of-war, and why one label alone never quite fit.",
+    body: [
+      { text: `For a long time the rulebook said you could not be both autistic and ADHD, that it had to be one or the other, and a great many people fell straight through that gap, recognising themselves in each description and belonging cleanly to neither. That rule changed in 2013, when the main diagnostic manual finally allowed the two to be named together, and a word has since grown up around the experience, AuDHD, for the very common reality of carrying both at once. If you have always felt like two different sets of needs sharing one body, this may be the first frame that genuinely fits.` },
+      { text: `The reason AuDHD can be so confusing, both to live and to be understood, is that the two often pull in genuinely opposite directions. The ADHD in you tends to run towards novelty, stimulation and spontaneity, the new and the interesting, while the autistic part of you tends to long for routine, predictability and the deep comfort of the familiar. So you can be the person who impulsively books the trip and the person undone when the plan changes, the one who craves intensity and the one who needs the world quiet and known. That is not you being inconsistent or difficult. It is two real neurotypes sharing one nervous system, each asking for something the other resists.` },
+      { text: `It often shows up in the body too, and this part is close to my heart. Autistic and ADHD brains both tend to read the body's internal signals differently, so hunger, fullness, thirst and the first edges of an emotion can arrive faint, or late, or all at once, which is part of why eating and self-regulation can be such tender ground for AuDHD people. Add sensory sensitivity, to textures, smells, the feel of particular foods, and something as ordinary as a meal can carry a complexity nobody else can see. None of that is fussiness or weak willpower. It is a differently wired system doing its honest best, and it deserves support that is gentle and eating-disorder-safe, never corrective.` },
+      { text: `There is also the particular exhaustion of masking two things at once, of managing the ADHD parts the world finds too much and the autistic parts it finds too odd, often without realising that is what you are doing, until you are simply depleted and cannot understand why everything costs you so much more than it seems to cost anyone else. Naming the AuDHD picture does not add another problem to the pile. It usually does the opposite. It explains the cost, and it lets you stop demanding that you be only one kind of person running on only one set of rules.` },
+      { text: `And there is real beauty in this wiring once it is understood rather than fought: the pattern-deep focus of the autistic mind meeting the wide, associative, idea-jumping energy of the ADHD one, a pairing that can be extraordinarily creative and perceptive when it is supported instead of squeezed into a shape that was never yours. Whichever way your two neurotypes lean on a given day, you are not too complicated to be understood. You are simply more than one thing at once, which is a deeply human way to be.` },
+    ],
+    closing:
+      "If the AuDHD picture is the first one that has ever fit, you do not have to make sense of it on your own. Reach out whenever you feel ready, and we will hold all of it together.",
+  },
+  {
+    slug: "neurodivergent-and-queer",
+    path: "/letters/neurodivergent-and-queer",
+    title: "Neurodivergent and queer, more than one kind of different",
+    standfirst:
+      "If you are both neurodivergent and LGBTQIA+, you already know it is not two separate stories running side by side. It is one life, lived at an intersection most services were never built to see.",
+    readingTime: "about 5 minutes",
+    seoTitle:
+      "Neurodivergent and queer: care that holds both | Body Belonging Clinic",
+    seoDescription:
+      "Neurodivergent people are more likely to be LGBTQIA+, and living at that intersection is its own experience. An affirming look at being more than one kind of different.",
+    body: [
+      { text: `Let me start with something the research now shows clearly, because it is so often treated as a coincidence and it is not one. Neurodivergent people, autistic and ADHD people, are considerably more likely to be lesbian, gay, bisexual, trans, or otherwise gender diverse than the general population. The largest studies, including a major 2020 study led by Varun Warrier and colleagues, found a strong and consistent overlap between being autistic and being gender diverse. So if you are living at that meeting point, you are not an unusual anomaly. You are part of a large, real pattern that the science is only now catching up to.` },
+      { text: `There are gentle theories about why, and I hold them lightly. One is that a mind less bound by the unspoken social rulebook may also be less bound by its rules about gender and desire, freer to notice and name what is actually true rather than what is expected of it. Whatever the reason, the lived reality is the part that matters, that many of us experience our neurodivergence and our queerness not as two separate boxes but as one interwoven way of being different, of seeing and moving through the world along our own lines. Some people call it being neuroqueer, and for a lot of us that word lands like a small homecoming.` },
+      { text: `Living at that intersection also carries a particular weight, and it is only honest to name it. It is the strain of being unseen on two axes at once, of managing a nervous system the world finds too much and an identity the world still argues about, often masking both at the same time. Researchers call the wear of that constant vigilance minority stress, and carrying it twice over is genuinely tiring, which is part of why mental health struggles, and eating and body-image struggles in particular, run higher among people who are both neurodivergent and queer. That is not a flaw in you. It is what happens to anyone asked to keep proving they are allowed to exist as they are.` },
+      { text: `This is why care that affirms only one part of you is never quite enough. A service that understands your ADHD but flinches at your queerness, or celebrates your identity but treats your neurodivergence as a problem to be fixed, leaves you doing the very thing that exhausted you in the first place, splitting yourself into the acceptable parts. Real affirming care holds both at once, as ordinary and good, so you can bring the whole of yourself into the room and finally put the managing down.` },
+      { text: `That is the entire point of a clinic called Belonging, and it is not decoration. You do not have to choose which kind of different to be here, and you do not have to translate one part of yourself for the comfort of the person who is meant to be helping you. You are allowed to be neurodivergent and queer and whole, all at the same time, met by someone who sees that intersection not as a complication but as simply, unremarkably, you.` },
+    ],
+    closing:
+      "If you have been searching for care that holds all of who you are at once, without asking you to leave a part of yourself at the door, you have found it. Come as you are, whenever you are ready.",
+  },
 
 ];
 
