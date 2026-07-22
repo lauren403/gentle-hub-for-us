@@ -81,7 +81,28 @@ async function upsertSubscriber(
     body: JSON.stringify(body),
   });
   if (!res.ok) {
-    console.warn("mailerlite subscriber upsert failed", res.status, await res.text());
+    const errText = await res.text();
+    console.warn("mailerlite subscriber upsert first attempt failed", res.status, errText);
+
+    // Retry once without the custom field so a missing `source` field can never
+    // block the subscriber from being created and added to the group.
+    const retryBody: Record<string, unknown> = { email };
+    if (groupId) retryBody.groups = [groupId];
+
+    const retryRes = await fetch(`${ML_BASE}/subscribers`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(retryBody),
+    });
+    if (!retryRes.ok) {
+      console.warn("mailerlite subscriber upsert retry failed", retryRes.status, await retryRes.text());
+    } else {
+      console.log("mailerlite subscriber upsert retry succeeded", retryRes.status);
+    }
   }
 }
 
