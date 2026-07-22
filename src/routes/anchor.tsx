@@ -233,8 +233,8 @@ function AnchorPage() {
             Be one of the first to use it.
           </h2>
           <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-[var(--oat)]/85">
-            Anchor is in the final stretch of testing. Join the early-access
-            list and I'll let you know the moment it's ready.
+            Anchor is in the works. Join the early-access list and I'll be in
+            touch the moment it's ready to use.
           </p>
 
           {submitted ? (
