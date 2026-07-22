@@ -92,9 +92,35 @@ Deno.serve(async (req) => {
 
   try {
     // Shared-secret gate. The webhook is unauthenticated at the JWT layer
-    // (verify_jwt = false) so we authenticate with our own header.
-    const expected = Deno.env.get("MAILERLITE_WEBHOOK_SECRET");
+    // (verify_jwt = false) so we authenticate with our own header, whose
+    // value lives in Supabase Vault and is fetched with the service role.
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     const presented = req.headers.get("x-webhook-secret");
+    let expected: string | null = null;
+    if (supabaseUrl && serviceKey) {
+      try {
+        const vres = await fetch(
+          `${supabaseUrl}/rest/v1/rpc/get_mailerlite_webhook_secret`,
+          {
+            method: "POST",
+            headers: {
+              apikey: serviceKey,
+              Authorization: `Bearer ${serviceKey}`,
+              "Content-Type": "application/json",
+            },
+            body: "{}",
+          },
+        );
+        if (vres.ok) {
+          expected = (await vres.json()) as string;
+        } else {
+          console.warn("vault secret lookup failed", vres.status, await vres.text());
+        }
+      } catch (err) {
+        console.warn("vault secret lookup threw", err);
+      }
+    }
     if (!expected || presented !== expected) {
       return new Response(JSON.stringify({ ok: false, reason: "unauthorized" }), {
         status: 401,
