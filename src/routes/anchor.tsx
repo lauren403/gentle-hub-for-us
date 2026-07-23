@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import { HALAXY_URL, SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
+import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
+
 
 const TITLE = "Anchor — a free ADHD companion app | Body Belonging Clinic";
 const DESCRIPTION =
