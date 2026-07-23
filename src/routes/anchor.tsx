@@ -4,6 +4,7 @@ import { SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
+import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
 
 
 const TITLE = "Anchor — a free ADHD companion app | Body Belonging Clinic";
@@ -180,14 +181,12 @@ function AnchorPage() {
                 e.preventDefault();
                 const trimmed = email.trim();
                 if (!trimmed) return;
-                const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
-                if (!looksLikeEmail) return;
+                if (!looksLikeEmail(trimmed)) return;
                 setSubmitting(true);
                 // Spam guards: silently succeed without writing if the
                 // honeypot has any value, or if the form was submitted
                 // implausibly fast (under ~2.5s from mount).
-                const elapsed = Date.now() - mountedAtRef.current;
-                const isBot = honeypot.trim().length > 0 || elapsed < 2500;
+                const isBot = isLikelySpam(honeypot, Date.now() - mountedAtRef.current);
                 if (!isBot) {
                   try {
                     const { error } = await supabase

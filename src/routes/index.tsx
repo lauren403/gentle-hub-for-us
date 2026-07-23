@@ -15,6 +15,7 @@ import {
 } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
+import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
@@ -686,14 +687,12 @@ function AdhdHub() {
                 // Simple email shape check; server-side accepts the row and
                 // the DB is the source of truth. We never surface a scary
                 // error to the visitor — the friendly thank-you always shows.
-                const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
-                if (!looksLikeEmail) return;
+                if (!looksLikeEmail(trimmed)) return;
                 setSubmitting(true);
                 // Spam guards: silently succeed without writing if the
                 // honeypot has any value, or if the form was submitted
                 // implausibly fast (under ~2.5s from mount).
-                const elapsed = Date.now() - mountedAtRef.current;
-                const isBot = honeypot.trim().length > 0 || elapsed < 2500;
+                const isBot = isLikelySpam(honeypot, Date.now() - mountedAtRef.current);
                 if (!isBot) {
                   try {
                     const { error } = await supabase
