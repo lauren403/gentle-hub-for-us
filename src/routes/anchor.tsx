@@ -4,6 +4,7 @@ import { SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
+import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
 
 
 const TITLE = "Anchor — a free ADHD companion app | Body Belonging Clinic";
