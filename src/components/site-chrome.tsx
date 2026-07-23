@@ -23,7 +23,8 @@ export function SiteHeader({
   const linkCls = "opacity-80 transition-opacity hover:opacity-100";
   const activeCls =
     "opacity-100 underline decoration-[var(--terracotta)] underline-offset-8";
-  const isActive = (p: string) => activePath === p;
+  // activePath kept for backward compatibility; active state now comes from activeProps.
+  void activePath;
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--plum)]/10 bg-[var(--plum)] text-[var(--oat)]">
       <a href="#main-content" className="skip-link">Skip to content</a>
@@ -38,16 +39,18 @@ export function SiteHeader({
         </Link>
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex" aria-label="Site navigation">
           <Link to="/" className={linkCls}>Home</Link>
-          <Link to="/start-here" className={isActive("/start-here") ? activeCls : linkCls}>Start here</Link>
-          <Link to="/our-story" className={linkCls}>Our Story</Link>
-          <Link to="/anchor" className={linkCls}>Anchor</Link>
+          <Link to="/start-here" className={linkCls} activeProps={{ className: activeCls }}>Start here</Link>
+          <Link to="/our-story" className={linkCls} activeProps={{ className: activeCls }}>Our Story</Link>
+          <Link to="/anchor" className={linkCls} activeProps={{ className: activeCls }}>Anchor</Link>
           <Link
             to="/letters"
-            className={isActive("/letters") ? activeCls : linkCls}
+            className={linkCls}
+            activeProps={{ className: activeCls }}
+            activeOptions={{ exact: false }}
           >
             Letters
           </Link>
-          <Link to="/approach" className={linkCls}>Our Approach</Link>
+          <Link to="/approach" className={linkCls} activeProps={{ className: activeCls }}>Our Approach</Link>
         </nav>
         <a
           href={BOOK_URL}
