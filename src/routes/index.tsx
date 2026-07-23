@@ -274,7 +274,7 @@ function AdhdHub() {
                 <span className="italic text-[var(--terracotta)]">It's a whole-body story.</span>
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--plum)]/80 md:text-xl">
-                Where ADHD and AuDHD meet food, the body, emotion and the nervous system, the parts the diagnosis and the prescription never reached. The place other services split apart. Aboriginal-led, queer-affirming and weight-neutral, because food stuff is brain stuff.
+                ADHD care that doesn't stop at the diagnosis and the script. We work where they tap out — food, the body, emotion, the nervous system — the parts most services split across three separate waitlists. Aboriginal-led, queer-affirming, weight-neutral. Because food stuff is brain stuff.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <BookButton>Book a free 15-minute intro call</BookButton>
@@ -460,6 +460,60 @@ function AdhdHub() {
             </li>
           ))}
         </ul>
+      </Section>
+
+      {/* THE HONEST PROMISE */}
+      <section className="bg-[var(--plum)] text-[var(--oat)]">
+        <Section eyebrow="The honest version">
+          <h2 className="font-display text-3xl leading-tight text-[var(--oat)] md:text-5xl">
+            We can't give you endless hours. No one honestly can.
+          </h2>
+          <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--oat)]/85">
+            <p>
+              So here's what we actually promise. Undivided attention in the room — no clock-watching, no being quietly moved along. And a way of working that keeps holding you after you leave it: the Body Belonging Model gives the work a spine, the Anchor app sits in your pocket, and the Letters are here at 2am when the session is days away.
+            </p>
+            <p>
+              Real care doesn't pretend the calendar is infinite. It makes the hour count, and it doesn't disappear when the hour ends.
+            </p>
+          </div>
+        </Section>
+      </section>
+
+      {/* EVIDENCE SPINE */}
+      <section className="bg-[var(--cream)]">
+        <Section eyebrow="Not invented on a whim">
+          <h2 className="font-display text-3xl leading-tight md:text-5xl">
+            A new model, built from established parts.
+          </h2>
+          <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
+            The Body Belonging Model is our own synthesis. Every piece of it stands on ground someone else already tested.
+          </p>
+          <ul className="mt-8 space-y-4 border-l-2 border-[var(--terracotta)] pl-6 text-lg leading-relaxed text-[var(--plum)]/85">
+            <li className="max-w-[64ch]">Regular eating — the steady rhythm at the centre of the food work — comes straight from established eating-disorder treatment (CBT-E), not wellness trends.</li>
+            <li className="max-w-[64ch]">Treating ADHD as a difference in self-regulation, not willpower, follows decades of research from clinicians like Russell Barkley.</li>
+            <li className="max-w-[64ch]">Starting with the nervous system and safety draws on the science of interoception and regulation — and where that science is still emerging for ADHD, we say so out loud.</li>
+            <li className="max-w-[64ch]">Self-compassion as the foundation is one of the better-evidenced tools in mental health, not a soft add-on.</li>
+            <li className="max-w-[64ch]">All of it held to ANZAED eating-disorder standards and Accredited Mental Health Social Worker accreditation.</li>
+          </ul>
+          <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
+            We'll always tell you which parts are proven and which are still emerging. That honesty is the point — it's how you know the rest is real.
+          </p>
+        </Section>
+      </section>
+
+      {/* WHAT ACTUALLY HAPPENS */}
+      <Section eyebrow="What actually happens">
+        <h2 className="font-display text-3xl leading-tight md:text-5xl">
+          What the work looks like — and how you'll know it's working.
+        </h2>
+        <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
+          <p>
+            The first session is mostly listening: where you are, what's hard, and what you've already tried that didn't stick. From there we work in a clear direction — safety first, then noticing, then real skills, then the belonging that makes change hold. No mystery, no filler, no homework for its own sake.
+          </p>
+          <p>
+            You won't need a testimonial to tell you it's working. You'll notice it yourself: eating steadies before it's ever perfect, the 2am spiral loses some of its grip, you stop translating yourself in the room, and the shame gets quieter while the everyday stuff gets a little easier. We won't promise a cure. We'll show you honest change — and we'll name it plainly when it isn't happening yet.
+          </p>
+        </div>
       </Section>
 
       {/* SERVICES */}
