@@ -142,7 +142,7 @@ function AnchorPage() {
           prescription reaches. A brain like ours can lose track of hunger and
           fullness until eating swings from forgotten all day to all at once by
           night, and Anchor is simply a quiet nudge back towards a regular
-          rhythm. That is all it is, and that is the whole point.
+          rhythm. That's all it is, and the restraint is the whole point.
         </p>
       </section>
 
@@ -213,8 +213,8 @@ function AnchorPage() {
             The opposite of the apps that quietly work against us.
           </h2>
           <p className="mt-10 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
-            Most apps in this space quietly work against a brain like ours,
-            turning eating into numbers and pressure. I am an eating disorder
+            Most apps in this space — the trackers, the streak-counters, the calorie tools — quietly work against a brain like ours,
+            turning eating into numbers, targets and pressure. I am an eating disorder
             clinician who also codes, so I made the opposite: something that
             treats a regular rhythm as a kindness rather than a rule, and holds
             you gently while you find it. It is the same care I offer in the
