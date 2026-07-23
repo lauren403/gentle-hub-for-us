@@ -14,6 +14,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as LettersRouteImport } from './routes/letters'
+import { Route as FoodAndTheAdhdBrainRouteImport } from './routes/food-and-the-adhd-brain'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AnchorRouteImport } from './routes/anchor'
 import { Route as AdhdAndEatingRouteImport } from './routes/adhd-and-eating'
@@ -57,6 +58,11 @@ const McpRoute = McpRouteImport.update({
 const LettersRoute = LettersRouteImport.update({
   id: '/letters',
   path: '/letters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoodAndTheAdhdBrainRoute = FoodAndTheAdhdBrainRouteImport.update({
+  id: '/food-and-the-adhd-brain',
+  path: '/food-and-the-adhd-brain',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApproachRoute = ApproachRouteImport.update({
@@ -175,6 +181,7 @@ export interface FileRoutesByFullPath {
   '/adhd-and-eating': typeof AdhdAndEatingRoute
   '/anchor': typeof AnchorRoute
   '/approach': typeof ApproachRoute
+  '/food-and-the-adhd-brain': typeof FoodAndTheAdhdBrainRoute
   '/letters': typeof LettersRouteWithChildren
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
@@ -201,6 +208,7 @@ export interface FileRoutesByTo {
   '/adhd-and-eating': typeof AdhdAndEatingRoute
   '/anchor': typeof AnchorRoute
   '/approach': typeof ApproachRoute
+  '/food-and-the-adhd-brain': typeof FoodAndTheAdhdBrainRoute
   '/letters': typeof LettersRouteWithChildren
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
@@ -228,6 +236,7 @@ export interface FileRoutesById {
   '/adhd-and-eating': typeof AdhdAndEatingRoute
   '/anchor': typeof AnchorRoute
   '/approach': typeof ApproachRoute
+  '/food-and-the-adhd-brain': typeof FoodAndTheAdhdBrainRoute
   '/letters': typeof LettersRouteWithChildren
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
@@ -256,6 +265,7 @@ export interface FileRouteTypes {
     | '/adhd-and-eating'
     | '/anchor'
     | '/approach'
+    | '/food-and-the-adhd-brain'
     | '/letters'
     | '/mcp'
     | '/our-story'
@@ -282,6 +292,7 @@ export interface FileRouteTypes {
     | '/adhd-and-eating'
     | '/anchor'
     | '/approach'
+    | '/food-and-the-adhd-brain'
     | '/letters'
     | '/mcp'
     | '/our-story'
@@ -308,6 +319,7 @@ export interface FileRouteTypes {
     | '/adhd-and-eating'
     | '/anchor'
     | '/approach'
+    | '/food-and-the-adhd-brain'
     | '/letters'
     | '/mcp'
     | '/our-story'
@@ -335,6 +347,7 @@ export interface RootRouteChildren {
   AdhdAndEatingRoute: typeof AdhdAndEatingRoute
   AnchorRoute: typeof AnchorRoute
   ApproachRoute: typeof ApproachRoute
+  FoodAndTheAdhdBrainRoute: typeof FoodAndTheAdhdBrainRoute
   LettersRoute: typeof LettersRouteWithChildren
   McpRoute: typeof McpRoute
   OurStoryRoute: typeof OurStoryRoute
@@ -380,6 +393,13 @@ declare module '@tanstack/react-router' {
       path: '/letters'
       fullPath: '/letters'
       preLoaderRoute: typeof LettersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/food-and-the-adhd-brain': {
+      id: '/food-and-the-adhd-brain'
+      path: '/food-and-the-adhd-brain'
+      fullPath: '/food-and-the-adhd-brain'
+      preLoaderRoute: typeof FoodAndTheAdhdBrainRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/approach': {
@@ -562,6 +582,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdhdAndEatingRoute: AdhdAndEatingRoute,
   AnchorRoute: AnchorRoute,
   ApproachRoute: ApproachRoute,
+  FoodAndTheAdhdBrainRoute: FoodAndTheAdhdBrainRoute,
   LettersRoute: LettersRouteWithChildren,
   McpRoute: McpRoute,
   OurStoryRoute: OurStoryRoute,
