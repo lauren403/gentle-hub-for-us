@@ -1,6 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
-import { HALAXY_URL, SITE_URL } from "@/config/site";
+import { SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
