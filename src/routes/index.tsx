@@ -790,7 +790,7 @@ function AdhdHub() {
               </h2>
               <p className="mt-4 max-w-xl text-[var(--plum)]/80">
                 A gentle, weight-neutral companion for the days your body
-                forgets to tell you it's hungry. Weight-neutral, no streaks,
+                forgets to tell you it's hungry. No numbers, no streaks,
                 no rules — just a quiet nudge back towards a regular rhythm.
               </p>
             </div>
