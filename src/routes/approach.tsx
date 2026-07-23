@@ -150,6 +150,9 @@ function ApproachPage() {
             system — your body, and how safely it can sense and steady itself.
             So we work from the inside out.
           </p>
+          <p className="mt-8 font-display text-xl italic leading-snug text-[var(--terracotta)] md:text-2xl">
+            Rigorous international science on the body, the brain and food — brought into the room without the diet talk.
+          </p>
         </div>
       </section>
 
