@@ -22,6 +22,13 @@ export const Route = createFileRoute("/")({
 
 const BOOK_URL = HALAXY_URL;
 
+// Real, consented testimonials only. COMPLIANCE (National Law advertising rules):
+// keep each quote to the EXPERIENCE of care — feeling heard, safe, understood, the
+// space itself. NEVER include specific symptoms, diagnoses, treatments, or outcome/
+// "cure" claims. Attribution should be non-identifying and consented (e.g. initials,
+// "a client", "via telehealth"). This whole section stays hidden while the array is empty.
+const TESTIMONIALS: { quote: string; attribution?: string }[] = [];
+
 const Logo = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 1080 1080" className={className} aria-hidden="true">
     <path
@@ -857,6 +864,34 @@ function AdhdHub() {
           </span>
         </Link>
       </Section>
+
+      {/* VOICES / TESTIMONIALS — renders only when TESTIMONIALS has entries */}
+      {TESTIMONIALS.length > 0 && (
+        <section className="bg-[var(--cream)]">
+          <Section eyebrow="In their words">
+            <h2 className="font-display text-3xl leading-tight md:text-5xl">
+              What it's like to be in the room.
+            </h2>
+            <div className="mt-10 grid gap-5 md:grid-cols-2">
+              {TESTIMONIALS.map((item, i) => (
+                <blockquote
+                  key={i}
+                  className="rounded-2xl border border-[var(--plum)]/10 bg-[var(--oat)] p-6"
+                >
+                  <p className="text-lg leading-relaxed text-[var(--plum)]/85">
+                    &ldquo;{item.quote}&rdquo;
+                  </p>
+                  {item.attribution && (
+                    <footer className="mt-4 text-sm text-[var(--terracotta)]">
+                      — {item.attribution}
+                    </footer>
+                  )}
+                </blockquote>
+              ))}
+            </div>
+          </Section>
+        </section>
+      )}
 
       {/* CLOSING CTA */}
       <section className="bg-[var(--plum)] text-[var(--oat)]">
