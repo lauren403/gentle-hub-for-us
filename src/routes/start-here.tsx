@@ -71,7 +71,7 @@ const STEPS = [
     title: "We find the rhythm that fits you.",
     body: (
       <>
-        From there we work together, in the room or by telehealth right across Australia, for as long or as short as is genuinely useful to you. You are always the one who sets the pace.
+        From there we work together, in the room or by telehealth across Australia. You set the pace — and the work doesn't stop at the edge of the session: the Body Belonging Model gives it structure, and Anchor and the Letters keep it going between visits.
       </>
     ),
   },
@@ -96,7 +96,7 @@ function StartHerePage() {
             Start here
           </h1>
           <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
-            There is no wrong way to begin, and there is no rush. This page is simply here to make the first step feel easy, and to tell you honestly what to expect.
+            No wrong way to begin, and no rush. This page exists to make the first step easy — and to tell you exactly what happens, what it costs, and what to expect. No mystery.
           </p>
         </div>
       </section>
@@ -183,7 +183,7 @@ function StartHerePage() {
           {[
             "A calm, low-stimulation space, whether we meet in the room or online.",
             "No need to have your story neat or your words ready. Rambling is welcome here, and so is silence.",
-            "You will never be rushed through a schedule, and you will never be a problem to be moved along.",
+            "In the room you have my full attention — no clock-watching, and never the feeling of being a problem moved along.",
           ].map((line, i) => (
             <li
               key={i}
@@ -193,6 +193,9 @@ function StartHerePage() {
             </li>
           ))}
         </ul>
+        <p className="mt-10 max-w-[62ch] text-lg leading-relaxed text-[var(--plum)]/85">
+          Want to know it's more than warmth? <a href="/approach" className="underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">See what the model actually rests on →</a>
+        </p>
       </section>
 
       {/* CLOSING CTA */}
