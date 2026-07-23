@@ -358,7 +358,7 @@ function AdhdHub() {
               Food stuff is brain stuff.
             </h2>
             <p className="mt-5 font-display text-xl italic leading-snug text-[var(--terracotta)] md:text-2xl">
-              The serious science, the eating-disorder-safe way — the voice Australia's been missing.
+              The serious science on food and the brain — the voice that's been missing.
             </p>
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
               <p>
