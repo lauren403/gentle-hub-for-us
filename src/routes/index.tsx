@@ -357,6 +357,9 @@ function AdhdHub() {
             <h2 className="font-display text-3xl leading-tight md:text-5xl lg:text-[3.25rem]">
               Food stuff is brain stuff.
             </h2>
+            <p className="mt-5 font-display text-xl italic leading-snug text-[var(--terracotta)] md:text-2xl">
+              The serious science, the eating-disorder-safe way — the voice Australia's been missing.
+            </p>
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
               <p>
                 A brain like ours can lose track of hunger until eating swings from forgotten all day to all at once by night. Because we are an ANZAED-accredited eating disorder clinic, we can talk about food and ADHD without the restriction, the calorie-counting and the supplement-hype that can quietly harm neurodivergent people. Weight-neutral, always.
@@ -388,13 +391,13 @@ function AdhdHub() {
 
       {/* NERVOUS SYSTEM & BELONGING */}
       <section className="bg-[var(--cream)]">
-        <Section eyebrow="Belonging">
+        <Section eyebrow="The Belonging Room">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Your nervous system, and a place to belong.
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
             <p>
-              ADHD runs on an interest-based nervous system, and it settles through safety and connection, not pressure. That is the whole idea behind the name. Here you are met as a whole person, in the body you are actually in, among people who get it.
+              ADHD runs on an interest-based nervous system, and it settles through safety and connection, not pressure. That is the whole idea behind the name. The overlap other services tend to split apart — ADHD, the body, food, feeling — held in one room. Here you are met as a whole person, in the body you are actually in, among people who get it.
             </p>
           </div>
         </Section>
@@ -461,7 +464,7 @@ function AdhdHub() {
 
       {/* SERVICES */}
       <section id="services" className="bg-[var(--cream)]">
-        <Section eyebrow="Ways we can work together">
+        <Section eyebrow="Both sides of the chair">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Support built for how your brain actually works.
           </h2>
@@ -545,7 +548,7 @@ function AdhdHub() {
 
       {/* GETTING STARTED */}
       <section className="bg-[var(--plum)] text-[var(--oat)]">
-        <Section eyebrow="Getting started & rebates">
+        <Section eyebrow="A soft place to land">
           <h2 className="font-display text-3xl leading-tight text-[var(--oat)] md:text-5xl">
             How to begin — and what Medicare covers.
           </h2>
@@ -588,7 +591,7 @@ function AdhdHub() {
 
         <div className="rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] p-8 md:p-12">
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
-            Free download
+            Pull up a chair
           </p>
           <h2 className="mt-3 font-display text-3xl leading-tight md:text-4xl">
             "ADHD isn't an attention problem" — a short, gentle reframe.

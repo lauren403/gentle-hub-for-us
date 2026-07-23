@@ -37,7 +37,7 @@ function LettersIndex() {
         </div>
         <div className="mx-auto max-w-3xl px-5 py-24 md:py-32">
           <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-            The library
+            Words from the chair
           </p>
           <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
             Letters
