@@ -236,24 +236,28 @@ function ApproachPage() {
               label: "SAFETY",
               t: "First, safety.",
               body: "You can't steady a nervous system that doesn't feel safe. We begin with feeling safe, seen and unshamed — culturally safe and identity-affirming — before any strategy.",
+              evidence: "safety before strategy is the backbone of trauma-informed care.",
             },
             {
               n: "2",
               label: "NOTICE",
               t: "Then, gentle noticing.",
               body: "We help you read your body's signals with curiosity and kindness, never control. Gentle, optional, and always weight-neutral — this is where our eating-disorder training matters most.",
+              evidence: "gentle, weight-neutral interoceptive work drawn from eating-disorder practice — and we stay honest that the ADHD–interoception link is still emerging.",
             },
             {
               n: "3",
               label: "REGULATE",
               t: "Then, real skills.",
               body: "The things a prescription can't teach: working with your emotions and attention, and a gentle eating rhythm that suits an ADHD brain. Adding, never restricting.",
+              evidence: "regular eating from CBT-E, and the self-regulation model of ADHD (Russell Barkley).",
             },
             {
               n: "4",
               label: "BELONG",
               t: "Held by belonging.",
               body: "Change lasts when it's held by belonging: self-compassion instead of shame, connection, and care that honours who you are. It's the part most support forgets.",
+              evidence: "connection and self-compassion are among the best-evidenced protectors of mental health.",
             },
           ].map((m) => (
             <article
@@ -272,6 +276,10 @@ function ApproachPage() {
               <p className="mt-3 text-lg leading-relaxed text-[var(--plum)]/85">
                 {m.body}
               </p>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--plum)]/60">
+                <span className="font-medium text-[var(--terracotta)]">The evidence: </span>
+                {m.evidence}
+              </p>
             </article>
           ))}
         </div>
@@ -288,10 +296,7 @@ function ApproachPage() {
             Evidence-honest by design.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-[var(--oat)]/85">
-            We lead with what the research supports, and we're upfront about
-            where it's still early. We won't oversell, we won't promise a
-            cure, and we'll always tell you what we know and what we don't.
-            That honesty is the point.
+            The Body Belonging Model is our own synthesis — but every movement in it stands on established ground: eating-disorder practice, decades of self-regulation research, and the science of connection and self-compassion. We lead with what the research supports, we say plainly where it's still emerging, and we won't sell you a cure. That honesty isn't a disclaimer — it's how you know the rest is real.
           </p>
         </Section>
       </section>
@@ -301,6 +306,9 @@ function ApproachPage() {
         <h2 className="font-display text-3xl leading-tight md:text-5xl">
           Support built for how your brain actually works.
         </h2>
+        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--plum)]/85">
+          This isn't care that ends when the hour does. The Model gives the work its shape, and the Anchor app and the Letters keep it with you between sessions.
+        </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a
             href={BOOK_URL}
