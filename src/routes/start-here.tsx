@@ -90,7 +90,7 @@ function StartHerePage() {
         </div>
         <div className="mx-auto max-w-3xl px-5 py-24 md:py-32">
           <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-            New here?
+            Pull up a chair
           </p>
           <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
             Start here
@@ -149,7 +149,7 @@ function StartHerePage() {
                 A standard 50-minute session is $200. With a Mental Health Treatment Plan and referral from your GP, Medicare rebates $89.50 of that back to you, so your out-of-pocket is $110.50 per session. You will always know your exact cost before you ever book.
               </li>
               <li className="max-w-[62ch]">
-                With a Mental Health Treatment Plan and referral from your GP, you can claim a Medicare rebate of $89.50 back on each individual session with an Accredited Mental Health Social Worker, for up to ten sessions in a calendar year. Your out-of-pocket is simply the gap between the fee and that rebate.
+                That rebate is available on each session with an Accredited Mental Health Social Worker, for up to ten sessions in a calendar year.
               </li>
               <li className="max-w-[62ch]">
                 If you are living with an eating disorder, you may be eligible for an Eating Disorder Treatment and Management Plan, which can open access to many more sessions, up to forty psychological treatment sessions in a twelve-month period. Your GP assesses whether this is right for you.
