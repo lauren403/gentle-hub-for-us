@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HALAXY_URL, SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
+import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
+
 
 const TITLE = "Our Story | Body Belonging Clinic";
 const DESCRIPTION =
