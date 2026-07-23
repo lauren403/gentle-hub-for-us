@@ -378,6 +378,13 @@ function AdhdHub() {
                 >
                   Read the full guide to ADHD and eating →
                 </Link>
+                <br />
+                <Link
+                  to="/food-and-the-adhd-brain"
+                  className="mt-3 inline-flex items-center text-base font-medium underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
+                >
+                  The honest science on food &amp; the ADHD brain →
+                </Link>
               </p>
             </div>
 
