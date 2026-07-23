@@ -15,6 +15,7 @@ import {
 } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
+import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
