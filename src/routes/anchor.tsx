@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const TITLE = "Anchor — a free ADHD companion app | Body Belonging Clinic";
 const DESCRIPTION =
-  "Anchor is a free, eating-disorder-safe ADHD companion app from Body Belonging Clinic — gentle reminders to eat at regular times, weight-neutral, no streaks. Join the early-access list.";
+  "Anchor is a free ADHD companion app from Body Belonging Clinic — gentle reminders to eat at regular times, weight-neutral, no streaks. Join the early-access list.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/anchor`;
 
 export const Route = createFileRoute("/anchor")({
