@@ -28,7 +28,7 @@ export const Route = createFileRoute("/anchor")({
   component: AnchorPage,
 });
 
-const BOOK_URL = HALAXY_URL;
+
 
 
 
