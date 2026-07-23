@@ -60,7 +60,7 @@ function Section({
 function ApproachPage() {
   return (
     <div className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]" id="top">
-      <Header />
+      <SiteHeader location="approach" />
       <main id="main-content" tabIndex={-1}>
 
       {/* HERO */}
@@ -249,7 +249,7 @@ function ApproachPage() {
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <a
-            href={BOOK_URL}
+            href={HALAXY_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackEvent("booking_click", { location: "approach_cta" })}
