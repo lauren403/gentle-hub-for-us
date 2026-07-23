@@ -3,9 +3,9 @@ import { SITE_URL, HALAXY_URL } from "@/config/site";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 import { trackEvent } from "@/lib/analytics";
 
-const TITLE = "ADHD and eating: an eating-disorder-safe guide | Body Belonging Clinic";
+const TITLE = "ADHD and eating: a weight-neutral guide | Body Belonging Clinic";
 const DESCRIPTION =
-  "A clear, compassionate, eating-disorder-safe guide to why ADHD and eating are so connected, why diets backfire, and what actually helps. Written by an AMHSW and ANZAED eating disorder clinician.";
+  "A clear, compassionate, weight-neutral guide to why ADHD and eating are so connected, why diets backfire, and what actually helps. Written by an AMHSW and ANZAED eating disorder clinician.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/adhd-and-eating`;
 const HEADLINE = "ADHD and eating, held safely";
 
@@ -193,7 +193,7 @@ function AdhdAndEatingPage() {
 
           <H2>How we help</H2>
           <P>
-            This is the exact ground Body Belonging Clinic was built to stand on, ADHD and eating held together, safely, by an Accredited Mental Health Social Worker who is also an ANZAED credentialed eating disorder clinician, and who can bring in an eating-disorder-informed dietitian alongside where it helps. It is eating-disorder-safe from the very first step, weight-neutral throughout, and neurodivergent-affirming to its core. If any of this is your story, you do not have to untangle it alone.
+            This is the exact ground Body Belonging Clinic was built to stand on, ADHD and eating held together, safely, by an Accredited Mental Health Social Worker who is also an ANZAED credentialed eating disorder clinician, and who can bring in an eating-disorder-informed dietitian alongside where it helps. It is built to be safe for anyone with a history of an eating disorder, weight-neutral throughout, and neurodivergent-affirming to its core. If any of this is your story, you do not have to untangle it alone.
           </P>
         </article>
 

@@ -274,7 +274,7 @@ function AdhdHub() {
                 <span className="italic text-[var(--terracotta)]">It's a whole-body story.</span>
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--plum)]/80 md:text-xl">
-                Where ADHD and AuDHD meet food, the body, emotion and the nervous system, the parts the diagnosis and the prescription never reached. The place other services split apart. Aboriginal-led, queer-affirming and eating-disorder-safe, because food stuff is brain stuff.
+                Where ADHD and AuDHD meet food, the body, emotion and the nervous system, the parts the diagnosis and the prescription never reached. The place other services split apart. Aboriginal-led, queer-affirming and weight-neutral, because food stuff is brain stuff.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <BookButton>Book a free 15-minute intro call</BookButton>
@@ -483,7 +483,7 @@ function AdhdHub() {
                 d: "Skills for rejection sensitivity, overwhelm, task paralysis and the emotional side that runs the show.",
               },
               {
-                t: "ADHD & food, the ED-safe way",
+                t: "ADHD & food, without the diet talk",
                 d: "A weight-neutral, sensory-aware conversation about eating rhythms — no meal plans, no rules, no shame.",
               },
               {
@@ -514,7 +514,7 @@ function AdhdHub() {
               Meet <span className="italic text-[var(--terracotta)]">Anchor</span>.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-[var(--plum)]/85">
-              A gentle, eating-disorder-safe eating-rhythm app for ADHD brains.
+              A gentle, weight-neutral eating-rhythm app for ADHD brains.
               No calories. No weight. No streaks. No food rules. Just quiet
               nudges toward eating like a person who's cared for.
             </p>
@@ -789,7 +789,7 @@ function AdhdHub() {
                 Meet <span className="italic text-[var(--terracotta)]">Anchor</span>.
               </h2>
               <p className="mt-4 max-w-xl text-[var(--plum)]/80">
-                A gentle, eating-disorder-safe companion for the days your body
+                A gentle, weight-neutral companion for the days your body
                 forgets to tell you it's hungry. Weight-neutral, no streaks,
                 no rules — just a quiet nudge back towards a regular rhythm.
               </p>
