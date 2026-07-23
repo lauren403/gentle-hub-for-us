@@ -2,8 +2,6 @@
 // Called by a Postgres trigger via pg_net on INSERT into public.lead_signups.
 // Fail-safe: always returns HTTP 200, even when the MailerLite key is missing
 // or the provider errors. Never throws, never triggers pg_net retries.
-// TEMPORARY: includes diagnostic payload so MailerLite responses are visible
-// in pg_net logs.
 
 const ML_BASE = "https://connect.mailerlite.com/api";
 const GROUP_NAME = "Anchor + Hub";
@@ -22,24 +20,7 @@ interface Payload {
   type?: string;
 }
 
-interface Diag {
-  apiKeyPresent: boolean;
-  apiKeyLen: number;
-  groupLookupStatus: number | null;
-  groupLookupBody: string | null;
-  resolvedGroupId: string | null;
-  subscriberStatus: number | null;
-  subscriberBody: string | null;
-  retryStatus: number | null;
-  retryBody: string | null;
-}
-
-function truncate(str: string | null, n: number): string | null {
-  if (str === null) return null;
-  return str.length > n ? str.slice(0, n) : str;
-}
-
-async function findOrCreateGroup(apiKey: string, diag: Diag): Promise<string | null> {
+async function findOrCreateGroup(apiKey: string): Promise<string | null> {
   // Look up by name first — an automation is keyed to this exact group.
   const listRes = await fetch(
     `${ML_BASE}/groups?filter[name]=${encodeURIComponent(GROUP_NAME)}&limit=100`,
@@ -50,15 +31,12 @@ async function findOrCreateGroup(apiKey: string, diag: Diag): Promise<string | n
       },
     },
   );
-  diag.groupLookupStatus = listRes.status;
-  diag.groupLookupBody = truncate(await listRes.text(), 300);
-
   if (listRes.ok) {
-    const body = (JSON.parse(diag.groupLookupBody ?? "[]") as {
-      data?: Array<{ id: string; name: string }>;
-    });
+    const body = (await listRes.json()) as { data?: Array<{ id: string; name: string }> };
     const match = body.data?.find((g) => g.name === GROUP_NAME);
     if (match) return match.id;
+  } else {
+    console.warn("mailerlite groups list failed", listRes.status, await listRes.text());
   }
 
   // Not found — create it.
@@ -71,15 +49,11 @@ async function findOrCreateGroup(apiKey: string, diag: Diag): Promise<string | n
     },
     body: JSON.stringify({ name: GROUP_NAME }),
   });
-  diag.groupLookupStatus = createRes.status;
-  diag.groupLookupBody = truncate(await createRes.text(), 300);
-
   if (!createRes.ok) {
+    console.warn("mailerlite group create failed", createRes.status, await createRes.text());
     return null;
   }
-  const created = (JSON.parse(diag.groupLookupBody ?? "{}") as {
-    data?: { id: string };
-  });
+  const created = (await createRes.json()) as { data?: { id: string } };
   return created.data?.id ?? null;
 }
 
@@ -88,7 +62,6 @@ async function upsertSubscriber(
   email: string,
   source: string,
   groupId: string | null,
-  diag: Diag,
 ): Promise<void> {
   // POST /api/subscribers is an upsert by email in MailerLite's current API.
   const body: Record<string, unknown> = {
@@ -107,10 +80,10 @@ async function upsertSubscriber(
     },
     body: JSON.stringify(body),
   });
-  diag.subscriberStatus = res.status;
-  diag.subscriberBody = truncate(await res.text(), 400);
-
   if (!res.ok) {
+    const errText = await res.text();
+    console.warn("mailerlite subscriber upsert first attempt failed", res.status, errText);
+
     // Retry once without the custom field so a missing `source` field can never
     // block the subscriber from being created and added to the group.
     const retryBody: Record<string, unknown> = { email };
@@ -125,8 +98,11 @@ async function upsertSubscriber(
       },
       body: JSON.stringify(retryBody),
     });
-    diag.retryStatus = retryRes.status;
-    diag.retryBody = truncate(await retryRes.text(), 400);
+    if (!retryRes.ok) {
+      console.warn("mailerlite subscriber upsert retry failed", retryRes.status, await retryRes.text());
+    } else {
+      console.log("mailerlite subscriber upsert retry succeeded", retryRes.status);
+    }
   }
 }
 
@@ -173,24 +149,14 @@ Deno.serve(async (req) => {
       });
     }
 
-    const apiKey = Deno.env.get("MAILERLITE_API_KEY");
-    const diag: Diag = {
-      apiKeyPresent: !!apiKey && apiKey.length > 0,
-      apiKeyLen: apiKey?.length ?? 0,
-      groupLookupStatus: null,
-      groupLookupBody: null,
-      resolvedGroupId: null,
-      subscriberStatus: null,
-      subscriberBody: null,
-      retryStatus: null,
-      retryBody: null,
-    };
-
+    const apiKey = (Deno.env.get("MAILERLITE_API_KEY") ?? "").trim();
     if (!apiKey) {
-      return new Response(
-        JSON.stringify({ ok: true, skipped: "no_api_key", diag }),
-        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-      );
+      // Expected state until Lauren adds the key. Quiet no-op.
+      console.log("mailerlite-sync: MAILERLITE_API_KEY not set — no-op");
+      return new Response(JSON.stringify({ ok: true, skipped: "no_api_key" }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     let payload: Payload = {};
@@ -204,26 +170,26 @@ Deno.serve(async (req) => {
     const source = (payload.source ?? payload.record?.source ?? "unknown").trim();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return new Response(
-        JSON.stringify({ ok: true, skipped: "no_email", diag }),
-        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-      );
+      console.warn("mailerlite-sync: no valid email in payload", payload);
+      return new Response(JSON.stringify({ ok: true, skipped: "no_email" }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
-    const groupId = await findOrCreateGroup(apiKey, diag);
-    diag.resolvedGroupId = groupId;
-    await upsertSubscriber(apiKey, email, source, groupId, diag);
+    const groupId = await findOrCreateGroup(apiKey);
+    await upsertSubscriber(apiKey, email, source, groupId);
 
-    return new Response(
-      JSON.stringify({ ok: true, diag }),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-    );
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   } catch (err) {
     // Fail-safe: log and return 200 so pg_net does not retry-storm.
     console.error("mailerlite-sync unexpected error", err);
-    return new Response(
-      JSON.stringify({ ok: true, error: "handled", diag: null }),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-    );
+    return new Response(JSON.stringify({ ok: true, error: "handled" }), {
+      status: 200,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 });
