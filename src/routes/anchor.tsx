@@ -271,7 +271,7 @@ function AnchorPage() {
                   disabled={submitting}
                   className="rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 disabled:opacity-70 min-h-11"
                 >
-                  {submitting ? "Sending…" : "Join the early-access list"}
+                  {submitting ? "Sending…" : "Join the updates list"}
                 </button>
               </form>
             )}
