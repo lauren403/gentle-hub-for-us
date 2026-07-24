@@ -9,6 +9,7 @@
   # If the FIRST deploy serves pages as 404 (static-only, no SSR),
   # remove this "publish" line and let Netlify auto-detect the Nitro output.
   publish = "dist"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude).github/**' ':(exclude)e2e/**' ':(exclude)**/*.test.ts' ':(exclude)playwright.config.ts' ':(exclude)vitest.config.ts'"
 
 [build.environment]
   NODE_VERSION = "22"
