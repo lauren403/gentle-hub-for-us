@@ -10,6 +10,7 @@ import { HALAXY_URL, ANCHOR_URL, HERO_IMAGE, FOOD_IMAGE, BELONGING_IMAGE } from 
 import { trackEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
 import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
+import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
