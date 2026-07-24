@@ -284,6 +284,12 @@ function AdhdHub() {
           </div>
         </section>
 
+        {/* TRUST STRIP */}
+        <TrustStrip />
+
+        {/* PATHWAY CARDS */}
+        <PathwayCards />
+
         {/* warm divider */}
         <div aria-hidden className="mx-auto flex max-w-4xl items-center gap-4 px-5">
           <span className="h-px flex-1 bg-[var(--plum)]/15" />
