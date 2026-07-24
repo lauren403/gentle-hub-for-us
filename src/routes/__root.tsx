@@ -124,34 +124,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: `${SITE_URL.replace(/\/$/, "")}${OG_IMAGE}` },
-      { title: "Body Belonging Clinic · ADHD Hub" },
-      { property: "og:title", content: "Body Belonging Clinic · ADHD Hub" },
-      { name: "twitter:title", content: "Body Belonging Clinic · ADHD Hub" },
-      {
-        name: "description",
-        content:
-          "ADHD Hub offers neuro-affirming therapy and support for individuals with ADHD in Australia.",
-      },
-      {
-        property: "og:description",
-        content:
-          "ADHD Hub offers neuro-affirming therapy and support for individuals with ADHD in Australia.",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "ADHD Hub offers neuro-affirming therapy and support for individuals with ADHD in Australia.",
-      },
-      {
-        property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6eb7ad05-6bcd-497c-98d2-2b242fb8b316/id-preview-3655b475--8600eee8-bf61-4c1a-820f-3af820f697c0.lovable.app-1784730102617.png",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6eb7ad05-6bcd-497c-98d2-2b242fb8b316/id-preview-3655b475--8600eee8-bf61-4c1a-820f-3af820f697c0.lovable.app-1784730102617.png",
-      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
