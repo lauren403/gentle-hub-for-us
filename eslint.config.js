@@ -13,8 +13,8 @@ export default tseslint.config(
       ".vinxi",
       "src/routeTree.gen.ts",
       "src/routes/mcp.ts",
-      "src/routes/[.mcp]/**",
-      "src/routes/[.well-known]/**",
+      "src/routes/**/\\[.mcp\\]/**",
+      "src/routes/**/\\[.well-known\\]/**",
     ],
   },
   {
