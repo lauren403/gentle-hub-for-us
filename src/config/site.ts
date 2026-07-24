@@ -41,9 +41,9 @@ export const THEME_COLOR = "#2E1A22";
 //   /public/studio-belonging.jpg  — supporting image for "Belonging"
 // Recommended: ~1600px wide, warm colour palette, calm composition.
 // ----------------------------------------------------------------
-export const HERO_IMAGE = "/studio-hero.jpg";
-export const FOOD_IMAGE = "/studio-food.jpg";
-export const BELONGING_IMAGE = "/studio-belonging.jpg";
+export const HERO_IMAGE = "/hero-portrait.jpg";
+export const FOOD_IMAGE = "/food-feature.jpg";
+export const BELONGING_IMAGE = "/approach-feature.jpg";
 
 // White paper PDF path.
 export const WHITEPAPER_PDF = "/body-belonging-model.pdf";
