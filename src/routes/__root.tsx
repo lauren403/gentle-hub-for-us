@@ -11,17 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import {
-  SITE_URL,
-  GA_MEASUREMENT_ID,
-  THEME_COLOR,
-  OG_IMAGE,
-  CONTACT,
-} from "../config/site";
+import { SITE_URL, GA_MEASUREMENT_ID, THEME_COLOR, OG_IMAGE, CONTACT } from "../config/site";
 import { analyticsEnabled } from "../lib/analytics";
 
-const TITLE =
-  "ADHD Therapy & Support, Whole Body | Body Belonging Clinic";
+const TITLE = "ADHD Therapy & Support, Whole Body | Body Belonging Clinic";
 const DESCRIPTION =
   "ADHD isn't an attention problem. Neuro-affirming ADHD/AuDHD therapy Australia-wide, with eating-disorder-safe, queer-affirming care. Book a free 15-min intro.";
 
@@ -43,10 +36,7 @@ const JSON_LD = {
   },
   areaServed: "Australia",
   founder: { "@type": "Person", name: "Lauren Lynch" },
-  availableService: [
-    "ADHD therapy and support",
-    "Eating disorder therapy",
-  ],
+  availableService: ["ADHD therapy and support", "Eating disorder therapy"],
 };
 
 const FAVICON_SVG =
@@ -54,7 +44,6 @@ const FAVICON_SVG =
   encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080"><rect width="1080" height="1080" rx="180" fill="#2E1A22"/><path d="M326 262 L472 300 L472 486 L762 516 L762 856 L620 856 L620 690 L472 690 L472 856 L326 856 Z" fill="#F2E9DB"/></svg>',
   );
-
 
 function NotFoundComponent() {
   return (
@@ -138,11 +127,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Body Belonging Clinic · ADHD Hub" },
       { property: "og:title", content: "Body Belonging Clinic · ADHD Hub" },
       { name: "twitter:title", content: "Body Belonging Clinic · ADHD Hub" },
-      { name: "description", content: "ADHD Hub offers neuro-affirming therapy and support for individuals with ADHD in Australia." },
-      { property: "og:description", content: "ADHD Hub offers neuro-affirming therapy and support for individuals with ADHD in Australia." },
-      { name: "twitter:description", content: "ADHD Hub offers neuro-affirming therapy and support for individuals with ADHD in Australia." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6eb7ad05-6bcd-497c-98d2-2b242fb8b316/id-preview-3655b475--8600eee8-bf61-4c1a-820f-3af820f697c0.lovable.app-1784730102617.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6eb7ad05-6bcd-497c-98d2-2b242fb8b316/id-preview-3655b475--8600eee8-bf61-4c1a-820f-3af820f697c0.lovable.app-1784730102617.png" },
+      {
+        name: "description",
+        content:
+          "ADHD Hub offers neuro-affirming therapy and support for individuals with ADHD in Australia.",
+      },
+      {
+        property: "og:description",
+        content:
+          "ADHD Hub offers neuro-affirming therapy and support for individuals with ADHD in Australia.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "ADHD Hub offers neuro-affirming therapy and support for individuals with ADHD in Australia.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6eb7ad05-6bcd-497c-98d2-2b242fb8b316/id-preview-3655b475--8600eee8-bf61-4c1a-820f-3af820f697c0.lovable.app-1784730102617.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6eb7ad05-6bcd-497c-98d2-2b242fb8b316/id-preview-3655b475--8600eee8-bf61-4c1a-820f-3af820f697c0.lovable.app-1784730102617.png",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -184,7 +193,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en-AU">
-
       <head>
         <HeadContent />
       </head>

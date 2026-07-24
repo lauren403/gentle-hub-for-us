@@ -15,8 +15,7 @@ export const GA_MEASUREMENT_ID: string = "G-EKE17QFG2S";
 // URL when Anchor launches.
 export const ANCHOR_URL = "#";
 
-export const HALAXY_URL =
-  "https://www.halaxy.com/profile/ms-lauren-lynch/social-worker/1772313";
+export const HALAXY_URL = "https://www.halaxy.com/profile/ms-lauren-lynch/social-worker/1772313";
 
 export const CONTACT = {
   email: "admin@bodybelongingclinic.com.au",

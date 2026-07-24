@@ -30,13 +30,11 @@ export default defineTool({
       ],
       scope:
         "The clinic provides therapy and support. It does not diagnose ADHD or prescribe medication — it can refer for those.",
-      disclaimer:
-        "Education & wellbeing service, not a crisis service. In an emergency call 000.",
+      disclaimer: "Education & wellbeing service, not a crisis service. In an emergency call 000.",
     };
     return {
       content: [{ type: "text", text: JSON.stringify(info, null, 2) }],
       structuredContent: info,
     };
   },
-  
 });

@@ -7,8 +7,7 @@ export const Route = createFileRoute("/privacy")({
       { title: "Privacy Policy | Body Belonging Clinic" },
       {
         name: "description",
-        content:
-          "Privacy policy for Body Belonging Clinic — how we handle your information.",
+        content: "Privacy policy for Body Belonging Clinic — how we handle your information.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -23,12 +22,8 @@ function PrivacyPage() {
         <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
           Body Belonging Clinic
         </p>
-        <h1 className="font-display text-4xl leading-tight md:text-5xl">
-          Privacy Policy
-        </h1>
-        <p className="mt-8 text-lg leading-relaxed text-[var(--plum)]/80">
-          Coming soon.
-        </p>
+        <h1 className="font-display text-4xl leading-tight md:text-5xl">Privacy Policy</h1>
+        <p className="mt-8 text-lg leading-relaxed text-[var(--plum)]/80">Coming soon.</p>
         <p className="mt-10 text-sm">
           <Link
             to="/"

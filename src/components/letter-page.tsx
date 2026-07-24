@@ -12,13 +12,14 @@ export function LetterPage({ letter }: { letter: Letter }) {
       <main id="main-content" tabIndex={-1}>
         {/* HERO */}
         <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-          <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]"
+          >
             <Logo className="size-[520px] text-[var(--oat)]" />
           </div>
           <div className="mx-auto max-w-3xl px-5 py-20 md:py-28">
-            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-              A letter
-            </p>
+            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">A letter</p>
             <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
               {letter.title}
             </h1>
@@ -68,17 +69,11 @@ export function LetterPage({ letter }: { letter: Letter }) {
   );
 }
 
-function renderWithLinks(
-  text: string,
-  links?: Array<{ match: string; to: string }>,
-) {
+function renderWithLinks(text: string, links?: Array<{ match: string; to: string }>) {
   if (!links || links.length === 0) return text;
   // Build regex from all matches, longest first to avoid overlap.
   const sorted = [...links].sort((a, b) => b.match.length - a.match.length);
-  const pattern = new RegExp(
-    "(" + sorted.map((l) => escapeRegex(l.match)).join("|") + ")",
-    "g",
-  );
+  const pattern = new RegExp("(" + sorted.map((l) => escapeRegex(l.match)).join("|") + ")", "g");
   const parts = text.split(pattern);
   return parts.map((part, i) => {
     const hit = sorted.find((l) => l.match === part);

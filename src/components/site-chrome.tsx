@@ -13,23 +13,22 @@ export const Logo = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-export function SiteHeader({
-  location,
-  activePath,
-}: {
-  location: string;
-  activePath?: string;
-}) {
+export function SiteHeader({ location, activePath }: { location: string; activePath?: string }) {
   const linkCls = "opacity-80 transition-opacity hover:opacity-100";
-  const activeCls =
-    "opacity-100 underline decoration-[var(--terracotta)] underline-offset-8";
+  const activeCls = "opacity-100 underline decoration-[var(--terracotta)] underline-offset-8";
   // activePath kept for backward compatibility; active state now comes from activeProps.
   void activePath;
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--plum)]/10 bg-[var(--plum)] text-[var(--oat)]">
-      <a href="#main-content" className="skip-link">Skip to content</a>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3">
-        <Link to="/" className="flex items-center gap-2.5" aria-label="Body Belonging Clinic — home">
+        <Link
+          to="/"
+          className="flex items-center gap-2.5"
+          aria-label="Body Belonging Clinic — home"
+        >
           <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
             <Logo className="size-6" />
           </span>
@@ -37,11 +36,22 @@ export function SiteHeader({
             Body Belonging<span className="opacity-60"> · ADHD Hub</span>
           </span>
         </Link>
-        <nav className="ml-auto hidden items-center gap-6 text-sm md:flex" aria-label="Site navigation">
-          <Link to="/" className={linkCls}>Home</Link>
-          <Link to="/start-here" className={linkCls} activeProps={{ className: activeCls }}>Start here</Link>
-          <Link to="/our-story" className={linkCls} activeProps={{ className: activeCls }}>Our Story</Link>
-          <Link to="/anchor" className={linkCls} activeProps={{ className: activeCls }}>Anchor</Link>
+        <nav
+          className="ml-auto hidden items-center gap-6 text-sm md:flex"
+          aria-label="Site navigation"
+        >
+          <Link to="/" className={linkCls}>
+            Home
+          </Link>
+          <Link to="/start-here" className={linkCls} activeProps={{ className: activeCls }}>
+            Start here
+          </Link>
+          <Link to="/our-story" className={linkCls} activeProps={{ className: activeCls }}>
+            Our Story
+          </Link>
+          <Link to="/anchor" className={linkCls} activeProps={{ className: activeCls }}>
+            Anchor
+          </Link>
           <Link
             to="/letters"
             className={linkCls}
@@ -50,7 +60,9 @@ export function SiteHeader({
           >
             Letters
           </Link>
-          <Link to="/approach" className={linkCls} activeProps={{ className: activeCls }}>Our Approach</Link>
+          <Link to="/approach" className={linkCls} activeProps={{ className: activeCls }}>
+            Our Approach
+          </Link>
         </nav>
         <a
           href={BOOK_URL}
@@ -124,10 +136,18 @@ export function SiteFooter() {
                 If you need help right now
               </p>
               <ul className="mt-4 space-y-2 text-sm">
-                <li>Emergency — <strong className="text-[var(--oat)]">000</strong></li>
-                <li>Lifeline — <strong className="text-[var(--oat)]">13 11 14</strong></li>
-                <li>13YARN — <strong className="text-[var(--oat)]">13 92 76</strong></li>
-                <li>Butterfly — <strong className="text-[var(--oat)]">1800 33 4673</strong></li>
+                <li>
+                  Emergency — <strong className="text-[var(--oat)]">000</strong>
+                </li>
+                <li>
+                  Lifeline — <strong className="text-[var(--oat)]">13 11 14</strong>
+                </li>
+                <li>
+                  13YARN — <strong className="text-[var(--oat)]">13 92 76</strong>
+                </li>
+                <li>
+                  Butterfly — <strong className="text-[var(--oat)]">1800 33 4673</strong>
+                </li>
               </ul>
               <p className="mt-4 text-xs text-[var(--oat)]/60">
                 Education & wellbeing. Not a crisis service.
@@ -139,31 +159,49 @@ export function SiteFooter() {
                 With respect
               </p>
               <p className="mt-4 text-sm leading-relaxed">
-                We acknowledge the Traditional Owners of the lands on which we
-                live and work, and pay our respects to Elders past and present.
+                We acknowledge the Traditional Owners of the lands on which we live and work, and
+                pay our respects to Elders past and present.
               </p>
               <p className="mt-4 text-xs">
-                <Link to="/start-here" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                <Link
+                  to="/start-here"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
                   Start here
                 </Link>
                 <span className="mx-2 opacity-40">·</span>
-                <Link to="/our-story" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                <Link
+                  to="/our-story"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
                   Our Story
                 </Link>
                 <span className="mx-2 opacity-40">·</span>
-                <Link to="/anchor" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                <Link
+                  to="/anchor"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
                   Anchor
                 </Link>
                 <span className="mx-2 opacity-40">·</span>
-                <Link to="/letters" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                <Link
+                  to="/letters"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
                   Letters
                 </Link>
                 <span className="mx-2 opacity-40">·</span>
-                <Link to="/approach" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                <Link
+                  to="/approach"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
                   Our Approach
                 </Link>
                 <span className="mx-2 opacity-40">·</span>
-                <a href="/privacy" className="underline decoration-[var(--terracotta)] underline-offset-4">
+                <a
+                  href="/privacy"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
                   Privacy
                 </a>
                 <span className="mx-2 opacity-40">·</span>

@@ -99,7 +99,11 @@ async function upsertSubscriber(
       body: JSON.stringify(retryBody),
     });
     if (!retryRes.ok) {
-      console.warn("mailerlite subscriber upsert retry failed", retryRes.status, await retryRes.text());
+      console.warn(
+        "mailerlite subscriber upsert retry failed",
+        retryRes.status,
+        await retryRes.text(),
+      );
     } else {
       console.log("mailerlite subscriber upsert retry succeeded", retryRes.status);
     }
@@ -121,18 +125,15 @@ Deno.serve(async (req) => {
     let expected: string | null = null;
     if (supabaseUrl && serviceKey) {
       try {
-        const vres = await fetch(
-          `${supabaseUrl}/rest/v1/rpc/get_mailerlite_webhook_secret`,
-          {
-            method: "POST",
-            headers: {
-              apikey: serviceKey,
-              Authorization: `Bearer ${serviceKey}`,
-              "Content-Type": "application/json",
-            },
-            body: "{}",
+        const vres = await fetch(`${supabaseUrl}/rest/v1/rpc/get_mailerlite_webhook_secret`, {
+          method: "POST",
+          headers: {
+            apikey: serviceKey,
+            Authorization: `Bearer ${serviceKey}`,
+            "Content-Type": "application/json",
           },
-        );
+          body: "{}",
+        });
         if (vres.ok) {
           expected = (await vres.json()) as string;
         } else {
