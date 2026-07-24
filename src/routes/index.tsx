@@ -10,6 +10,7 @@ import { HALAXY_URL, ANCHOR_URL, HERO_IMAGE, FOOD_IMAGE, BELONGING_IMAGE } from 
 import { trackEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
 import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
+import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
@@ -24,14 +25,6 @@ const BOOK_URL = HALAXY_URL;
 // "a client", "via telehealth"). This whole section stays hidden while the array is empty.
 const TESTIMONIALS: { quote: string; attribution?: string }[] = [];
 
-const Logo = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 1080 1080" className={className} aria-hidden="true">
-    <path
-      d="M326 262 L472 300 L472 486 L762 516 L762 856 L620 856 L620 690 L472 690 L472 856 L326 856 Z"
-      fill="currentColor"
-    />
-  </svg>
-);
 
 const BookButton = ({
   children = "Book a free intro call",
@@ -56,86 +49,84 @@ const BookButton = ({
   </a>
 );
 
-const NAV = [
-  { id: "reframe", label: "Reframe" },
-  { id: "medication", label: "Medication" },
-  { id: "food", label: "Food" },
-  { id: "services", label: "Services" },
-  { id: "faq", label: "FAQ" },
-];
-
-function Header() {
+function TrustStrip() {
+  const items = [
+    "Accredited Mental Health Social Worker (AASW)",
+    "ANZAED Credentialed Eating Disorder Clinician",
+    "Medicare rebates available",
+    "Aboriginal-led",
+    "LGBTQIA+ affirming",
+    "Telehealth Australia-wide",
+  ];
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--plum)]/10 bg-[var(--plum)] text-[var(--oat)]">
-      <a href="#main-content" className="skip-link">
-        Skip to content
-      </a>
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3">
-        <a
-          href="#top"
-          className="flex items-center gap-2.5"
-          aria-label="Body Belonging Clinic — home"
-        >
-          <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
-            <Logo className="size-6" />
-          </span>
-          <span className="hidden font-display text-base font-medium leading-tight sm:block">
-            Body Belonging<span className="opacity-60"> · ADHD Hub</span>
-          </span>
-        </a>
-        <nav
-          className="ml-auto hidden items-center gap-6 text-sm md:flex"
-          aria-label="Section navigation"
-        >
-          <Link to="/start-here" className="opacity-80 transition-opacity hover:opacity-100">
-            Start here
-          </Link>
-          {NAV.map((n) => (
-            <a
-              key={n.id}
-              href={`#${n.id}`}
-              className="opacity-80 transition-opacity hover:opacity-100"
-            >
-              {n.label}
-            </a>
+    <div className="border-y border-[var(--plum)]/10 bg-[var(--cream)]">
+      <div className="mx-auto max-w-6xl px-5 py-4">
+        <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--plum)]/70 md:text-xs">
+          {items.map((t, i) => (
+            <li key={t} className="flex items-center gap-5">
+              <span>{t}</span>
+              {i < items.length - 1 && (
+                <span aria-hidden className="text-[var(--terracotta)]/60">
+                  ·
+                </span>
+              )}
+            </li>
           ))}
-          <Link to="/our-story" className="opacity-80 transition-opacity hover:opacity-100">
-            Our Story
-          </Link>
-          <Link to="/anchor" className="opacity-80 transition-opacity hover:opacity-100">
-            Anchor
-          </Link>
-          <Link to="/letters" className="opacity-80 transition-opacity hover:opacity-100">
-            Letters
-          </Link>
-          <Link to="/approach" className="opacity-80 transition-opacity hover:opacity-100">
-            Our Approach
-          </Link>
-        </nav>
-        <BookButton className="ml-auto md:ml-4">
-          <span className="hidden sm:inline">Book a free intro call</span>
-          <span className="sm:hidden">Book</span>
-        </BookButton>
+        </ul>
       </div>
-    </header>
+    </div>
   );
 }
 
-function FloatingCta() {
+function PathwayCards() {
+  const cards = [
+    {
+      eyebrow: "The reframe",
+      title: "ADHD isn't an attention problem",
+      blurb: "The hardest part usually isn't focus — it's feeling. Start with the reframe.",
+      to: "/" as const,
+      hash: "reframe",
+      cta: "Read the reframe",
+    },
+    {
+      eyebrow: "Food & the brain",
+      title: "Food stuff is brain stuff",
+      blurb: "Weight-neutral, sensory-aware, ED-informed. No calories, no rules, no shame.",
+      to: "/food-and-the-adhd-brain" as const,
+      cta: "Explore",
+    },
+    {
+      eyebrow: "A free companion app",
+      title: "Meet Anchor",
+      blurb: "A gentle eating-rhythm app for ADHD brains. No numbers, no streaks, no rules.",
+      to: "/anchor" as const,
+      cta: "Learn about Anchor",
+    },
+  ];
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-4 z-30 flex justify-center px-4 md:bottom-6">
-      <a
-        href={BOOK_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Book a free 15-minute intro call (opens in a new tab)"
-        onClick={() => trackEvent("booking_click", { location: "floating_cta" })}
-        className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[var(--plum)] px-5 py-3 text-sm font-medium text-[var(--cream)] shadow-lg shadow-[var(--plum)]/20 transition-transform hover:-translate-y-0.5 min-h-11"
-      >
-        <span className="size-2 rounded-full bg-[var(--terracotta)]" aria-hidden />
-        Book a free 15-min intro call
-      </a>
-    </div>
+    <section className="mx-auto max-w-6xl px-5 py-12 md:py-16">
+      <div className="grid gap-5 md:grid-cols-3">
+        {cards.map((c) => (
+          <Link
+            key={c.title}
+            to={c.to}
+            hash={c.hash}
+            className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-6 no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-sm md:p-7"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
+              {c.eyebrow}
+            </p>
+            <h3 className="mt-3 font-display text-2xl leading-tight text-[var(--plum)]">
+              {c.title}
+            </h3>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--plum)]/75">{c.blurb}</p>
+            <span className="mt-5 inline-flex text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">
+              {c.cta} →
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -151,7 +142,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className={"mx-auto max-w-4xl px-5 py-20 md:py-28 " + className}>
+    <section id={id} className={"mx-auto max-w-4xl px-5 py-14 md:py-20 " + className}>
       {eyebrow && (
         <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
           {eyebrow}
@@ -248,11 +239,11 @@ function AdhdHub() {
 
   return (
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
-      <Header />
+      <SiteHeader location="home" />
       <main id="main-content" tabIndex={-1}>
         {/* HERO */}
         <section className="relative overflow-hidden">
-          <div className="mx-auto max-w-6xl px-5 pt-20 pb-24 md:pt-28 md:pb-32">
+          <div className="mx-auto max-w-6xl px-5 pt-16 pb-16 md:pt-24 md:pb-20">
             <div className="grid items-center gap-12 md:grid-cols-[1.15fr_1fr] md:gap-16">
               <div>
                 <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-[var(--terracotta)]">
@@ -292,6 +283,12 @@ function AdhdHub() {
             </div>
           </div>
         </section>
+
+        {/* TRUST STRIP */}
+        <TrustStrip />
+
+        {/* PATHWAY CARDS */}
+        <PathwayCards />
 
         {/* warm divider */}
         <div aria-hidden className="mx-auto flex max-w-4xl items-center gap-4 px-5">
@@ -923,118 +920,8 @@ function AdhdHub() {
         </section>
       </main>
 
-      {/* FOOTER */}
-      <footer className="bg-[var(--plum)] text-[var(--oat)]/80">
-        <div className="mx-auto max-w-6xl px-5 pb-32 pt-4 md:pb-24">
-          <div className="border-t border-[var(--oat)]/15 pt-12">
-            <div className="grid gap-10 md:grid-cols-3">
-              <div>
-                <div className="flex items-center gap-2.5">
-                  <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
-                    <Logo className="size-6" />
-                  </span>
-                  <span className="font-display text-base text-[var(--oat)]">
-                    Body Belonging Clinic
-                  </span>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed">
-                  3A Megalong Street, Nedlands WA 6009
-                  <br />
-                  <a
-                    className="underline decoration-[var(--terracotta)] underline-offset-4"
-                    href="mailto:admin@bodybelongingclinic.com.au"
-                  >
-                    admin@bodybelongingclinic.com.au
-                  </a>
-                  <br />
-                  Telehealth across Australia.
-                </p>
-              </div>
-
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-[var(--terracotta)]">
-                  If you need help right now
-                </p>
-                <ul className="mt-4 space-y-2 text-sm">
-                  <li>
-                    Emergency — <strong className="text-[var(--oat)]">000</strong>
-                  </li>
-                  <li>
-                    Lifeline — <strong className="text-[var(--oat)]">13 11 14</strong>
-                  </li>
-                  <li>
-                    13YARN — <strong className="text-[var(--oat)]">13 92 76</strong>
-                  </li>
-                  <li>
-                    Butterfly — <strong className="text-[var(--oat)]">1800 33 4673</strong>
-                  </li>
-                </ul>
-                <p className="mt-4 text-xs text-[var(--oat)]/60">
-                  Education & wellbeing. Not a crisis service.
-                </p>
-              </div>
-
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-[var(--terracotta)]">
-                  With respect
-                </p>
-                <p className="mt-4 text-sm leading-relaxed">
-                  We acknowledge the Traditional Owners of the lands on which we live and work, and
-                  pay our respects to Elders past and present.
-                </p>
-                <p className="mt-4 text-xs">
-                  <Link
-                    to="/start-here"
-                    className="underline decoration-[var(--terracotta)] underline-offset-4"
-                  >
-                    Start here
-                  </Link>
-                  <span className="mx-2 opacity-40">·</span>
-                  <Link
-                    to="/our-story"
-                    className="underline decoration-[var(--terracotta)] underline-offset-4"
-                  >
-                    Our Story
-                  </Link>
-                  <span className="mx-2 opacity-40">·</span>
-                  <Link
-                    to="/anchor"
-                    className="underline decoration-[var(--terracotta)] underline-offset-4"
-                  >
-                    Anchor
-                  </Link>
-                  <span className="mx-2 opacity-40">·</span>
-                  <Link
-                    to="/letters"
-                    className="underline decoration-[var(--terracotta)] underline-offset-4"
-                  >
-                    Letters
-                  </Link>
-                  <span className="mx-2 opacity-40">·</span>
-                  <Link
-                    to="/approach"
-                    className="underline decoration-[var(--terracotta)] underline-offset-4"
-                  >
-                    Our Approach
-                  </Link>
-                  <span className="mx-2 opacity-40">·</span>
-                  <a
-                    href="/privacy"
-                    className="underline decoration-[var(--terracotta)] underline-offset-4"
-                  >
-                    Privacy
-                  </a>
-
-                  <span className="mx-2 opacity-40">·</span>
-                  <span>© {new Date().getFullYear()} Body Belonging Clinic</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <FloatingCta />
+      <SiteFooter />
+      <FloatingBook location="home" />
     </div>
   );
 }

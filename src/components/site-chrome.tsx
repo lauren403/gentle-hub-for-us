@@ -3,6 +3,7 @@ import { HALAXY_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 
 const BOOK_URL = HALAXY_URL;
+const CLINIC_URL = "https://www.bodybelongingclinic.com.au";
 
 export const Logo = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 1080 1080" className={className} aria-hidden="true">
@@ -13,10 +14,20 @@ export const Logo = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
+type PrimaryNavItem = { label: string; to: string; hash?: string };
+
+const PRIMARY_NAV: PrimaryNavItem[] = [
+  { label: "Start here", to: "/start-here" },
+  { label: "Reframe", to: "/", hash: "reframe" },
+  { label: "Food & the brain", to: "/food-and-the-adhd-brain" },
+  { label: "Approach", to: "/approach" },
+  { label: "Letters", to: "/letters" },
+  { label: "Anchor", to: "/anchor" },
+];
+
 export function SiteHeader({ location, activePath }: { location: string; activePath?: string }) {
   const linkCls = "opacity-80 transition-opacity hover:opacity-100";
   const activeCls = "opacity-100 underline decoration-[var(--terracotta)] underline-offset-8";
-  // activePath kept for backward compatibility; active state now comes from activeProps.
   void activePath;
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--plum)]/10 bg-[var(--plum)] text-[var(--oat)]">
@@ -37,49 +48,73 @@ export function SiteHeader({ location, activePath }: { location: string; activeP
           </span>
         </Link>
         <nav
-          className="ml-auto hidden items-center gap-6 text-sm md:flex"
+          className="ml-auto hidden items-center gap-5 text-sm lg:flex xl:gap-6"
           aria-label="Site navigation"
         >
-          <Link to="/" className={linkCls}>
-            Home
-          </Link>
-          <Link to="/start-here" className={linkCls} activeProps={{ className: activeCls }}>
-            Start here
-          </Link>
-          <Link to="/our-story" className={linkCls} activeProps={{ className: activeCls }}>
-            Our Story
-          </Link>
-          <Link to="/anchor" className={linkCls} activeProps={{ className: activeCls }}>
-            Anchor
-          </Link>
-          <Link
-            to="/letters"
-            className={linkCls}
-            activeProps={{ className: activeCls }}
-            activeOptions={{ exact: false }}
-          >
-            Letters
-          </Link>
-          <Link to="/approach" className={linkCls} activeProps={{ className: activeCls }}>
-            Our Approach
-          </Link>
+          {PRIMARY_NAV.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
+              hash={item.hash}
+              className={linkCls}
+              activeProps={item.hash ? undefined : { className: activeCls }}
+              activeOptions={item.hash ? undefined : { exact: item.to === "/" }}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
         <a
           href={BOOK_URL}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackEvent("booking_click", { location: `${location}_header` })}
-          className="ml-auto md:ml-4 inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98] min-h-11"
+          className="ml-auto lg:ml-4 inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-5 py-2.5 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98] min-h-11 whitespace-nowrap"
         >
           <span className="hidden sm:inline">Book a free intro call</span>
           <span className="sm:hidden">Book</span>
         </a>
+        {/* Mobile menu */}
+        <details className="relative lg:hidden">
+          <summary
+            className="grid size-10 cursor-pointer list-none place-items-center rounded-full border border-[var(--oat)]/25 text-[var(--oat)] [&::-webkit-details-marker]:hidden"
+            aria-label="Open menu"
+          >
+            <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+              <path
+                d="M4 7h16M4 12h16M4 17h16"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </summary>
+          <nav
+            className="absolute right-0 top-12 z-50 min-w-56 rounded-2xl border border-[var(--plum)]/20 bg-[var(--cream)] p-3 text-sm text-[var(--plum)] shadow-lg"
+            aria-label="Mobile navigation"
+          >
+            <ul className="flex flex-col">
+              {PRIMARY_NAV.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    to={item.to}
+                    hash={item.hash}
+                    className="block rounded-lg px-3 py-2.5 hover:bg-[var(--oat)]"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </details>
       </div>
     </header>
   );
 }
 
 export function FloatingBook({ location }: { location: string }) {
+  // Mobile-only compact CTA docked bottom-right so it never covers body text.
   return (
     <a
       href={BOOK_URL}
@@ -87,9 +122,9 @@ export function FloatingBook({ location }: { location: string }) {
       rel="noopener noreferrer"
       onClick={() => trackEvent("booking_click", { location: `${location}_floating` })}
       aria-label="Book a free 15-minute intro call"
-      className="fixed bottom-5 right-5 z-40 inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-5 py-3 text-sm font-medium text-[var(--cream)] shadow-lg transition-all hover:brightness-110 active:scale-[0.98] min-h-11"
+      className="lg:hidden fixed bottom-4 right-4 z-40 inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-4 py-2.5 text-sm font-medium text-[var(--cream)] shadow-lg transition-all hover:brightness-110 active:scale-[0.98] min-h-11"
     >
-      Book a free intro call
+      Book
     </a>
   );
 }
@@ -99,8 +134,8 @@ export function SiteFooter() {
     <footer className="bg-[var(--plum)] text-[var(--oat)]/80">
       <div className="mx-auto max-w-6xl px-5 pb-20 pt-4">
         <div className="border-t border-[var(--oat)]/15 pt-12">
-          <div className="grid gap-10 md:grid-cols-3">
-            <div>
+          <div className="grid gap-10 md:grid-cols-4">
+            <div className="md:col-span-1">
               <div className="flex items-center gap-2.5">
                 <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
                   <Logo className="size-6" />
@@ -122,13 +157,73 @@ export function SiteFooter() {
                 Telehealth across Australia.
               </p>
               <p className="mt-4 text-sm">
-                <Link
-                  to="/"
+                <a
+                  href={CLINIC_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="underline decoration-[var(--terracotta)] underline-offset-4"
                 >
-                  ← Back to ADHD Hub
-                </Link>
+                  Body Belonging Clinic ↗
+                </a>
               </p>
+            </div>
+
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-[var(--terracotta)]">
+                Explore the hub
+              </p>
+              <ul className="mt-4 space-y-2 text-sm">
+                <li>
+                  <Link to="/start-here" className="hover:text-[var(--oat)]">
+                    Start here
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" hash="reframe" className="hover:text-[var(--oat)]">
+                    Reframe
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" hash="medication" className="hover:text-[var(--oat)]">
+                    Medication
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/food-and-the-adhd-brain" className="hover:text-[var(--oat)]">
+                    Food &amp; the brain
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" hash="services" className="hover:text-[var(--oat)]">
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/approach" className="hover:text-[var(--oat)]">
+                    Our approach
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/letters" className="hover:text-[var(--oat)]">
+                    Letters
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/anchor" className="hover:text-[var(--oat)]">
+                    Anchor
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/our-story" className="hover:text-[var(--oat)]">
+                    Our story
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" hash="faq" className="hover:text-[var(--oat)]">
+                    FAQ
+                  </Link>
+                </li>
+              </ul>
             </div>
 
             <div>
@@ -162,42 +257,7 @@ export function SiteFooter() {
                 We acknowledge the Traditional Owners of the lands on which we live and work, and
                 pay our respects to Elders past and present.
               </p>
-              <p className="mt-4 text-xs">
-                <Link
-                  to="/start-here"
-                  className="underline decoration-[var(--terracotta)] underline-offset-4"
-                >
-                  Start here
-                </Link>
-                <span className="mx-2 opacity-40">·</span>
-                <Link
-                  to="/our-story"
-                  className="underline decoration-[var(--terracotta)] underline-offset-4"
-                >
-                  Our Story
-                </Link>
-                <span className="mx-2 opacity-40">·</span>
-                <Link
-                  to="/anchor"
-                  className="underline decoration-[var(--terracotta)] underline-offset-4"
-                >
-                  Anchor
-                </Link>
-                <span className="mx-2 opacity-40">·</span>
-                <Link
-                  to="/letters"
-                  className="underline decoration-[var(--terracotta)] underline-offset-4"
-                >
-                  Letters
-                </Link>
-                <span className="mx-2 opacity-40">·</span>
-                <Link
-                  to="/approach"
-                  className="underline decoration-[var(--terracotta)] underline-offset-4"
-                >
-                  Our Approach
-                </Link>
-                <span className="mx-2 opacity-40">·</span>
+              <p className="mt-6 text-xs">
                 <a
                   href="/privacy"
                   className="underline decoration-[var(--terracotta)] underline-offset-4"
