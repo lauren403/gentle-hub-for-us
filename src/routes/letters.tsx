@@ -38,15 +38,30 @@ function LettersIndex() {
         >
           <Logo className="size-[520px] text-[var(--oat)]" />
         </div>
-        <div className="mx-auto max-w-3xl px-5 py-24 md:py-32">
-          <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-            Words from the chair
-          </p>
-          <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">Letters</h1>
-          <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
-            Unhurried, evidence-honest letters on ADHD, the body, food and belonging. Written to be
-            read slowly.
-          </p>
+        <div className="mx-auto max-w-5xl px-5 py-24 md:py-32">
+          <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
+            <div>
+              <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+                Words from the chair
+              </p>
+              <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">Letters</h1>
+              <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
+                Unhurried, evidence-honest letters on ADHD, the body, food and belonging. Written to be
+                read slowly.
+              </p>
+            </div>
+            <figure className="md:justify-self-end">
+              <div className="overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
+                <img
+                  src="/letters-journal.jpg"
+                  alt="Writing by hand in a journal at a sunlit table"
+                  loading="eager"
+                  decoding="async"
+                  className="aspect-[4/5] h-full w-full object-cover"
+                />
+              </div>
+            </figure>
+          </div>
         </div>
       </section>
 

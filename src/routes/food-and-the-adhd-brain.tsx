@@ -79,15 +79,30 @@ function FoodAndTheAdhdBrainPage() {
           >
             <Logo className="size-[520px] text-[var(--oat)]" />
           </div>
-          <div className="mx-auto max-w-3xl px-5 py-20 md:py-28">
-            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-              The nutrition question
-            </p>
-            <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">{HEADLINE}</h1>
-            <p className="mt-8 max-w-[62ch] font-display text-xl italic leading-snug text-[var(--oat)]/90 md:text-2xl">
-              The real science on what you eat and how your brain feels — held honestly, and without
-              a single diet rule.
-            </p>
+          <div className="mx-auto max-w-5xl px-5 py-20 md:py-28">
+            <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
+              <div>
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+                  The nutrition question
+                </p>
+                <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">{HEADLINE}</h1>
+                <p className="mt-8 max-w-[62ch] font-display text-xl italic leading-snug text-[var(--oat)]/90 md:text-2xl">
+                  The real science on what you eat and how your brain feels — held honestly, and without
+                  a single diet rule.
+                </p>
+              </div>
+              <figure className="md:justify-self-end">
+                <div className="overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
+                  <img
+                    src="/food-brain-mug.jpg"
+                    alt="Hands cradling a warm mug in a softly lit room"
+                    loading="eager"
+                    decoding="async"
+                    className="aspect-[4/5] h-full w-full object-cover"
+                  />
+                </div>
+              </figure>
+            </div>
           </div>
         </section>
 
