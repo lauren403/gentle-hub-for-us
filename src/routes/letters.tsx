@@ -32,18 +32,20 @@ function LettersIndex() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]"
+        >
           <Logo className="size-[520px] text-[var(--oat)]" />
         </div>
         <div className="mx-auto max-w-3xl px-5 py-24 md:py-32">
           <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
             Words from the chair
           </p>
-          <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
-            Letters
-          </h1>
+          <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">Letters</h1>
           <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
-            Unhurried, evidence-honest letters on ADHD, the body, food and belonging. Written to be read slowly.
+            Unhurried, evidence-honest letters on ADHD, the body, food and belonging. Written to be
+            read slowly.
           </p>
         </div>
       </section>

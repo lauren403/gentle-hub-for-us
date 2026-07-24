@@ -9,8 +9,7 @@ export default defineTool({
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => {
     const booking = {
-      booking_url:
-        "https://www.halaxy.com/profile/ms-lauren-lynch/social-worker/1772313",
+      booking_url: "https://www.halaxy.com/profile/ms-lauren-lynch/social-worker/1772313",
       intro_call: "Free 15-minute intro call available via the booking page.",
       formats: ["In-person (Nedlands, WA)", "Telehealth Australia-wide"],
       rebates:
