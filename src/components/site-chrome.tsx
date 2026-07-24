@@ -122,7 +122,7 @@ export function FloatingBook({ location }: { location: string }) {
       rel="noopener noreferrer"
       onClick={() => trackEvent("booking_click", { location: `${location}_floating` })}
       aria-label="Book a free 15-minute intro call"
-      className="lg:hidden fixed bottom-4 right-4 z-40 inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-4 py-2.5 text-sm font-medium text-[var(--cream)] shadow-lg transition-all hover:brightness-110 active:scale-[0.98] min-h-11"
+      className="md:hidden fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-4 py-2.5 text-sm font-medium text-[var(--cream)] shadow-lg transition-all hover:brightness-110 active:scale-[0.98] min-h-11"
     >
       Book
     </a>
