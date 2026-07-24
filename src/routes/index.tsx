@@ -239,11 +239,11 @@ function AdhdHub() {
 
   return (
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
-      <Header />
+      <SiteHeader location="home" />
       <main id="main-content" tabIndex={-1}>
         {/* HERO */}
         <section className="relative overflow-hidden">
-          <div className="mx-auto max-w-6xl px-5 pt-20 pb-24 md:pt-28 md:pb-32">
+          <div className="mx-auto max-w-6xl px-5 pt-16 pb-16 md:pt-24 md:pb-20">
             <div className="grid items-center gap-12 md:grid-cols-[1.15fr_1fr] md:gap-16">
               <div>
                 <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-[var(--terracotta)]">
