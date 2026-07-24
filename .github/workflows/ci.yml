@@ -11,30 +11,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: "22"
+          bun-version: latest
       - name: Install dependencies
-        run: npm install
+        run: bun install --frozen-lockfile
       - name: Lint (informational)
-        run: npm run lint
+        run: bun run lint
         continue-on-error: true
       - name: Typecheck
-        run: npm run typecheck
+        run: bun run typecheck
       - name: Test
-        run: npm run test
+        run: bun run test
 
   e2e:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: "22"
+          bun-version: latest
       - name: Install dependencies
-        run: npm install
+        run: bun install --frozen-lockfile
       - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
+        run: bunx playwright install --with-deps chromium
       - name: Smoke tests
-        run: npm run test:e2e
+        run: bun run test:e2e
