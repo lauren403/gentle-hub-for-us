@@ -4,7 +4,7 @@
 # NITRO_PRESET below) and auto-detected by Netlify from .netlify/functions-internal.
 
 [build]
-  command = "npm run build"
+  command = "bun install --frozen-lockfile && bun run build"
   # Static client assets are emitted to dist/ (Nitro publicDir).
   # If the FIRST deploy serves pages as 404 (static-only, no SSR),
   # remove this "publish" line and let Netlify auto-detect the Nitro output.
