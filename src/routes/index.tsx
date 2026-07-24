@@ -907,6 +907,8 @@ function AdhdHub() {
           </section>
         )}
 
+        <ConversationSection />
+
         {/* CLOSING CTA */}
         <section className="bg-[var(--plum)] text-[var(--oat)]">
           <Section className="text-center">
