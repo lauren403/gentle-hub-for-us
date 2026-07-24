@@ -95,26 +95,44 @@ function ApproachPage() {
         <MonogramDivider />
 
         {/* ONE SYSTEM */}
-        <Section eyebrow="The foundation">
-          <h2 className="font-display text-3xl leading-tight md:text-5xl">
-            One system, not three problems.
-          </h2>
-          <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
-            <p>
-              ADHD is a difference in self-regulation — of attention, yes, but also emotion,
-              motivation and the body's own signals. There's a sense, called <em>interoception</em>,
-              for reading your internal state: hunger, tension, the first flicker of overwhelm. In
-              ADHD that sense often runs quiet — which is why feelings can arrive all at once,
-              hunger arrives late, and overwhelm arrives without warning. Working gently at the
-              level of the body — never forcefully — is how we help all three settle.
-            </p>
+        <section className="mx-auto max-w-5xl px-5 py-16 md:py-24">
+          <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-14">
+            <div>
+              <p className="mb-5 text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+                The foundation
+              </p>
+              <h2 className="font-display text-3xl leading-tight md:text-5xl">
+                One system, not three problems.
+              </h2>
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
+                <p>
+                  ADHD is a difference in self-regulation — of attention, yes, but also emotion,
+                  motivation and the body's own signals. There's a sense, called <em>interoception</em>,
+                  for reading your internal state: hunger, tension, the first flicker of overwhelm. In
+                  ADHD that sense often runs quiet — which is why feelings can arrive all at once,
+                  hunger arrives late, and overwhelm arrives without warning. Working gently at the
+                  level of the body — never forcefully — is how we help all three settle.
+                </p>
+              </div>
+              <p className="mt-8 rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-5 text-sm leading-relaxed text-[var(--plum)]/60">
+                This is how we read the research, and we're honest about it: the science is strongest
+                for the link between the body, emotion and eating, and still emerging for ADHD. We hold
+                it as a helpful lens — not a cure.
+              </p>
+            </div>
+            <figure>
+              <div className="overflow-hidden rounded-3xl border border-[var(--plum)]/10 shadow-xl">
+                <img
+                  src="/approach-session.jpg"
+                  alt="Lauren Lynch in session with a client at Body Belonging Clinic"
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[4/5] h-full w-full object-cover"
+                />
+              </div>
+            </figure>
           </div>
-          <p className="mt-8 rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-5 text-sm leading-relaxed text-[var(--plum)]/60">
-            This is how we read the research, and we're honest about it: the science is strongest
-            for the link between the body, emotion and eating, and still emerging for ADHD. We hold
-            it as a helpful lens — not a cure.
-          </p>
-        </Section>
+        </section>
 
         {/* FOUR DIALS */}
         <section className="bg-[var(--cream)]">
