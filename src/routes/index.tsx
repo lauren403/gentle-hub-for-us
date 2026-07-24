@@ -25,7 +25,6 @@ const BOOK_URL = HALAXY_URL;
 // "a client", "via telehealth"). This whole section stays hidden while the array is empty.
 const TESTIMONIALS: { quote: string; attribution?: string }[] = [];
 
-
 const BookButton = ({
   children = "Book a free intro call",
   className = "",
@@ -241,11 +240,16 @@ function NervousSystemSection() {
         Regulated first. Then everything else.
       </h2>
       <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
-        ADHD isn't only a story about attention — it's a story about a nervous system that swings between wired and shut-down, sometimes many times a day.
+        ADHD isn't only a story about attention — it's a story about a nervous system that swings
+        between wired and shut-down, sometimes many times a day.
       </p>
       <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
         <p>
-          We draw on polyvagal theory (Stephen Porges) and Deb Dana's clinical work: a "ladder" of states — settled and connected, revved-up, or switched-off — that we treat as the ground everything else stands on. Regulate the body first, and focus, food and feeling all get easier to meet. We hold this as an honest lens — a map of lived experience, not a set of hard claims.
+          We draw on polyvagal theory (Stephen Porges) and Deb Dana's clinical work: a "ladder" of
+          states — settled and connected, revved-up, or switched-off — that we treat as the ground
+          everything else stands on. Regulate the body first, and focus, food and feeling all get
+          easier to meet. We hold this as an honest lens — a map of lived experience, not a set of
+          hard claims.
         </p>
       </div>
       <div className="mt-10 grid gap-5 md:grid-cols-3">
@@ -270,11 +274,23 @@ function NervousSystemSection() {
 
 function ThinkingSection() {
   const lenses = [
-    { name: "Russell Barkley & Thomas Brown", desc: "ADHD as self-regulation and executive function, not 'attention'." },
-    { name: "William Dodson", desc: "rejection-sensitive dysphoria: why criticism can land so hard." },
+    {
+      name: "Russell Barkley & Thomas Brown",
+      desc: "ADHD as self-regulation and executive function, not 'attention'.",
+    },
+    {
+      name: "William Dodson",
+      desc: "rejection-sensitive dysphoria: why criticism can land so hard.",
+    },
     { name: "Jessica McCabe (How to ADHD)", desc: "working with your brain, not against it." },
-    { name: "Rachel Gow", desc: "nutritional neuroscience: how food shapes focus, mood and energy." },
-    { name: "Deb Dana & Stephen Porges", desc: "the polyvagal, nervous-system lens on regulation and safety." },
+    {
+      name: "Rachel Gow",
+      desc: "nutritional neuroscience: how food shapes focus, mood and energy.",
+    },
+    {
+      name: "Deb Dana & Stephen Porges",
+      desc: "the polyvagal, nervous-system lens on regulation and safety.",
+    },
   ];
 
   return (
@@ -284,7 +300,9 @@ function ThinkingSection() {
           The field's leading edge — brought here.
         </h2>
         <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
-          The ideas that lead the ADHD conversation internationally are still barely present in Australian care. We bring them in — rigorous international thinking, without the jargon or the diet talk.
+          The ideas that lead the ADHD conversation internationally are still barely present in
+          Australian care. We bring them in — rigorous international thinking, without the jargon or
+          the diet talk.
         </p>
         <ul className="mt-10 grid gap-x-10 gap-y-5 md:grid-cols-2">
           {lenses.map((l) => (
@@ -295,7 +313,8 @@ function ThinkingSection() {
           ))}
         </ul>
         <p className="mt-10 max-w-[68ch] text-sm leading-relaxed text-[var(--plum)]/60">
-          These are the frameworks that inform our practice — the lineage we work from, brought into a weight-neutral, neurodivergent-affirming, Aboriginal-led room.
+          These are the frameworks that inform our practice — the lineage we work from, brought into
+          a weight-neutral, neurodivergent-affirming, Aboriginal-led room.
         </p>
       </Section>
     </section>
@@ -316,7 +335,9 @@ function ConversationSection() {
         </div>
         <div className="mt-8 max-w-[68ch] space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
           <p>
-            Beyond the therapy room, the Letters are our ongoing writing on ADHD, food and the nervous system — the leading ideas, in plain language. Read them, and subscribe to get them as they land.
+            Beyond the therapy room, the Letters are our ongoing writing on ADHD, food and the
+            nervous system — the leading ideas, in plain language. Read them, and subscribe to get
+            them as they land.
           </p>
         </div>
         <div className="mt-10 flex flex-wrap items-center gap-4">
