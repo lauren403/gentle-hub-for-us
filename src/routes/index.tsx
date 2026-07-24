@@ -25,7 +25,6 @@ const BOOK_URL = HALAXY_URL;
 // "a client", "via telehealth"). This whole section stays hidden while the array is empty.
 const TESTIMONIALS: { quote: string; attribution?: string }[] = [];
 
-
 const BookButton = ({
   children = "Book a free intro call",
   className = "",
@@ -216,6 +215,150 @@ function StudioImage({
   );
 }
 
+function NervousSystemSection() {
+  const cards = [
+    {
+      eyebrow: "The ladder",
+      title: "Settled, revved-up, or shut-down",
+      body: "noticing where you are is the first step back.",
+    },
+    {
+      eyebrow: "Co-regulation",
+      title: "Nervous systems settle in good company.",
+      body: "We start there, together.",
+    },
+    {
+      eyebrow: "Sparks",
+      title: "Small moments of steadiness, gathered",
+      body: "the way back gets more worn-in.",
+    },
+  ];
+
+  return (
+    <Section id="nervous-system" eyebrow="The nervous system">
+      <h2 className="font-display text-3xl leading-tight md:text-5xl">
+        Regulated first. Then everything else.
+      </h2>
+      <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
+        ADHD isn't only a story about attention — it's a story about a nervous system that swings
+        between wired and shut-down, sometimes many times a day.
+      </p>
+      <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
+        <p>
+          We draw on polyvagal theory (Stephen Porges) and Deb Dana's clinical work: a "ladder" of
+          states — settled and connected, revved-up, or switched-off — that we treat as the ground
+          everything else stands on. Regulate the body first, and focus, food and feeling all get
+          easier to meet. We hold this as an honest lens — a map of lived experience, not a set of
+          hard claims.
+        </p>
+      </div>
+      <div className="mt-10 grid gap-5 md:grid-cols-3">
+        {cards.map((c) => (
+          <article
+            key={c.eyebrow}
+            className="rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-6 transition-shadow hover:shadow-sm"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
+              {c.eyebrow}
+            </p>
+            <h3 className="mt-3 font-display text-xl leading-tight text-[var(--plum)]">
+              {c.title}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--plum)]/75">{c.body}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function ThinkingSection() {
+  const lenses = [
+    {
+      name: "Russell Barkley & Thomas Brown",
+      desc: "ADHD as self-regulation and executive function, not 'attention'.",
+    },
+    {
+      name: "William Dodson",
+      desc: "rejection-sensitive dysphoria: why criticism can land so hard.",
+    },
+    { name: "Jessica McCabe (How to ADHD)", desc: "working with your brain, not against it." },
+    {
+      name: "Rachel Gow",
+      desc: "nutritional neuroscience: how food shapes focus, mood and energy.",
+    },
+    {
+      name: "Deb Dana & Stephen Porges",
+      desc: "the polyvagal, nervous-system lens on regulation and safety.",
+    },
+  ];
+
+  return (
+    <section className="bg-[var(--cream)]">
+      <Section eyebrow="The thinking we bring into the room">
+        <h2 className="font-display text-3xl leading-tight md:text-5xl">
+          The field's leading edge — brought here.
+        </h2>
+        <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
+          The ideas that lead the ADHD conversation internationally are still barely present in
+          Australian care. We bring them in — rigorous international thinking, without the jargon or
+          the diet talk.
+        </p>
+        <ul className="mt-10 grid gap-x-10 gap-y-5 md:grid-cols-2">
+          {lenses.map((l) => (
+            <li key={l.name} className="leading-relaxed">
+              <span className="font-medium text-[var(--plum)]">{l.name}</span>
+              <span className="text-[var(--plum)]/70"> — {l.desc}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-10 max-w-[68ch] text-sm leading-relaxed text-[var(--plum)]/60">
+          These are the frameworks that inform our practice — the lineage we work from, brought into
+          a weight-neutral, neurodivergent-affirming, Aboriginal-led room.
+        </p>
+      </Section>
+    </section>
+  );
+}
+
+function ConversationSection() {
+  return (
+    <section className="bg-[var(--cream)]">
+      <Section id="conversation" eyebrow="The conversation">
+        <div className="flex flex-wrap items-start gap-3">
+          <h2 className="font-display text-3xl leading-tight md:text-5xl">
+            A voice in the conversation — not a waiting room.
+          </h2>
+          <span className="inline-flex items-center rounded-full border border-[var(--plum)]/15 bg-[var(--oat)] px-3 py-1 text-xs font-medium text-[var(--plum)]/70">
+            Podcast — coming soon
+          </span>
+        </div>
+        <div className="mt-8 max-w-[68ch] space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
+          <p>
+            Beyond the therapy room, the Letters are our ongoing writing on ADHD, food and the
+            nervous system — the leading ideas, in plain language. Read them, and subscribe to get
+            them as they land.
+          </p>
+        </div>
+        <div className="mt-10 flex flex-wrap items-center gap-4">
+          <Link
+            to="/letters"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--oat)] transition-all hover:bg-[var(--terracotta)] min-h-11"
+          >
+            Read the Letters
+          </Link>
+          <a
+            href="#signup"
+            className="inline-flex items-center justify-center rounded-full border border-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--plum)] transition-colors hover:bg-[var(--plum)] hover:text-[var(--oat)] min-h-11"
+          >
+            Subscribe
+          </a>
+        </div>
+      </Section>
+    </section>
+  );
+}
+
 function AdhdHub() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -393,6 +536,10 @@ function AdhdHub() {
             people."
           </PullQuote>
         </Section>
+
+        <NervousSystemSection />
+
+        <ThinkingSection />
 
         {/* NERVOUS SYSTEM & BELONGING */}
         <section className="bg-[var(--cream)]">
@@ -906,6 +1053,8 @@ function AdhdHub() {
             </Section>
           </section>
         )}
+
+        <ConversationSection />
 
         {/* CLOSING CTA */}
         <section className="bg-[var(--plum)] text-[var(--oat)]">
