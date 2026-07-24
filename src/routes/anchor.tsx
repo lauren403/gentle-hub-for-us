@@ -56,6 +56,23 @@ function AnchorPage() {
             <p className="mt-6 font-display text-2xl italic text-[var(--oat)]/85 md:text-3xl">
               A gentle companion for the days your body forgets to tell you it's hungry.
             </p>
+            <div className="mt-8 flex flex-wrap items-center gap-5">
+              <a
+                href="https://anchor.bodybelongingclinic.com.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("anchor_open_app", { location: "anchor_hero" })}
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-7 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98]"
+              >
+                Open Anchor →
+              </a>
+              <a
+                href="#waitlist"
+                className="text-sm font-medium text-[var(--oat)]/85 underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--oat)]"
+              >
+                or get updates
+              </a>
+            </div>
           </div>
         </section>
 
