@@ -49,86 +49,84 @@ const BookButton = ({
   </a>
 );
 
-const NAV = [
-  { id: "reframe", label: "Reframe" },
-  { id: "medication", label: "Medication" },
-  { id: "food", label: "Food" },
-  { id: "services", label: "Services" },
-  { id: "faq", label: "FAQ" },
-];
-
-function Header() {
+function TrustStrip() {
+  const items = [
+    "Accredited Mental Health Social Worker (AASW)",
+    "ANZAED Credentialed Eating Disorder Clinician",
+    "Medicare rebates available",
+    "Aboriginal-led",
+    "LGBTQIA+ affirming",
+    "Telehealth Australia-wide",
+  ];
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--plum)]/10 bg-[var(--plum)] text-[var(--oat)]">
-      <a href="#main-content" className="skip-link">
-        Skip to content
-      </a>
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-5 py-3">
-        <a
-          href="#top"
-          className="flex items-center gap-2.5"
-          aria-label="Body Belonging Clinic — home"
-        >
-          <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
-            <Logo className="size-6" />
-          </span>
-          <span className="hidden font-display text-base font-medium leading-tight sm:block">
-            Body Belonging<span className="opacity-60"> · ADHD Hub</span>
-          </span>
-        </a>
-        <nav
-          className="ml-auto hidden items-center gap-6 text-sm md:flex"
-          aria-label="Section navigation"
-        >
-          <Link to="/start-here" className="opacity-80 transition-opacity hover:opacity-100">
-            Start here
-          </Link>
-          {NAV.map((n) => (
-            <a
-              key={n.id}
-              href={`#${n.id}`}
-              className="opacity-80 transition-opacity hover:opacity-100"
-            >
-              {n.label}
-            </a>
+    <div className="border-y border-[var(--plum)]/10 bg-[var(--cream)]">
+      <div className="mx-auto max-w-6xl px-5 py-4">
+        <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--plum)]/70 md:text-xs">
+          {items.map((t, i) => (
+            <li key={t} className="flex items-center gap-5">
+              <span>{t}</span>
+              {i < items.length - 1 && (
+                <span aria-hidden className="text-[var(--terracotta)]/60">
+                  ·
+                </span>
+              )}
+            </li>
           ))}
-          <Link to="/our-story" className="opacity-80 transition-opacity hover:opacity-100">
-            Our Story
-          </Link>
-          <Link to="/anchor" className="opacity-80 transition-opacity hover:opacity-100">
-            Anchor
-          </Link>
-          <Link to="/letters" className="opacity-80 transition-opacity hover:opacity-100">
-            Letters
-          </Link>
-          <Link to="/approach" className="opacity-80 transition-opacity hover:opacity-100">
-            Our Approach
-          </Link>
-        </nav>
-        <BookButton className="ml-auto md:ml-4">
-          <span className="hidden sm:inline">Book a free intro call</span>
-          <span className="sm:hidden">Book</span>
-        </BookButton>
+        </ul>
       </div>
-    </header>
+    </div>
   );
 }
 
-function FloatingCta() {
+function PathwayCards() {
+  const cards = [
+    {
+      eyebrow: "The reframe",
+      title: "ADHD isn't an attention problem",
+      blurb: "The hardest part usually isn't focus — it's feeling. Start with the reframe.",
+      to: "/" as const,
+      hash: "reframe",
+      cta: "Read the reframe",
+    },
+    {
+      eyebrow: "Food & the brain",
+      title: "Food stuff is brain stuff",
+      blurb: "Weight-neutral, sensory-aware, ED-informed. No calories, no rules, no shame.",
+      to: "/food-and-the-adhd-brain" as const,
+      cta: "Explore",
+    },
+    {
+      eyebrow: "A free companion app",
+      title: "Meet Anchor",
+      blurb: "A gentle eating-rhythm app for ADHD brains. No numbers, no streaks, no rules.",
+      to: "/anchor" as const,
+      cta: "Learn about Anchor",
+    },
+  ];
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-4 z-30 flex justify-center px-4 md:bottom-6">
-      <a
-        href={BOOK_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Book a free 15-minute intro call (opens in a new tab)"
-        onClick={() => trackEvent("booking_click", { location: "floating_cta" })}
-        className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-[var(--plum)] px-5 py-3 text-sm font-medium text-[var(--cream)] shadow-lg shadow-[var(--plum)]/20 transition-transform hover:-translate-y-0.5 min-h-11"
-      >
-        <span className="size-2 rounded-full bg-[var(--terracotta)]" aria-hidden />
-        Book a free 15-min intro call
-      </a>
-    </div>
+    <section className="mx-auto max-w-6xl px-5 py-12 md:py-16">
+      <div className="grid gap-5 md:grid-cols-3">
+        {cards.map((c) => (
+          <Link
+            key={c.title}
+            to={c.to}
+            hash={c.hash}
+            className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-6 no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-sm md:p-7"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
+              {c.eyebrow}
+            </p>
+            <h3 className="mt-3 font-display text-2xl leading-tight text-[var(--plum)]">
+              {c.title}
+            </h3>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--plum)]/75">{c.blurb}</p>
+            <span className="mt-5 inline-flex text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">
+              {c.cta} →
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -144,7 +142,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className={"mx-auto max-w-4xl px-5 py-20 md:py-28 " + className}>
+    <section id={id} className={"mx-auto max-w-4xl px-5 py-14 md:py-20 " + className}>
       {eyebrow && (
         <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
           {eyebrow}
