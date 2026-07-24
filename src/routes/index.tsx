@@ -25,14 +25,6 @@ const BOOK_URL = HALAXY_URL;
 // "a client", "via telehealth"). This whole section stays hidden while the array is empty.
 const TESTIMONIALS: { quote: string; attribution?: string }[] = [];
 
-const Logo = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 1080 1080" className={className} aria-hidden="true">
-    <path
-      d="M326 262 L472 300 L472 486 L762 516 L762 856 L620 856 L620 690 L472 690 L472 856 L326 856 Z"
-      fill="currentColor"
-    />
-  </svg>
-);
 
 const BookButton = ({
   children = "Book a free intro call",
