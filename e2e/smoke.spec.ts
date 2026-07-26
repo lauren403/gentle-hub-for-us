@@ -22,7 +22,7 @@ test("a Letter renders its article rather than the Letters index", async ({ page
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "When the emotional side of ADHD feels hardest",
   );
-  await expect(page.getByText("How this content was prepared")).toBeVisible();
+  await expect(page.getByRole("complementary", { name: "Content governance" })).toBeVisible();
 });
 
 test("the Australian care map and governance pages are public", async ({ page }) => {
