@@ -1,6 +1,8 @@
 -- Final, idempotent signup schema for the connected BBC ADHD Hub project.
 -- This migration can safely repair an existing Lovable-era database or
 -- bootstrap the newly connected Supabase project from an empty state.
+-- Its version matches the migration already applied to the connected project;
+-- retired Lovable-project migrations remain recoverable in Git history.
 
 CREATE TABLE IF NOT EXISTS public.lead_signups (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
