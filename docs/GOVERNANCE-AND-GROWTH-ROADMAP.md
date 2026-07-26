@@ -54,7 +54,7 @@ Must be verified before merge or deployment:
 - Supabase migration applies in a non-production preview first.
 - Anonymous users cannot select, update or delete `lead_signups`.
 - Valid consent insert succeeds; insert without consent fails.
-- MailerLite receives only consented records and the unsubscribe link works.
+- Outbound email sync remains off until MailerLite receives only consented records and unsubscribe works end to end.
 - Netlify form submissions capture `consent`, `source` and timestamp.
 - Production CSP permits consented analytics and required Supabase requests only.
 - Every new route returns 200 and has one canonical URL.
@@ -81,13 +81,12 @@ Do not display external reviewers until written approval, scope of review and co
 Target: days 46-90.
 
 - Add journey filters across Learn, Navigate, Nourish, Practise, Find care, Connect, Anchor and For professionals.
-- Publish assessment preparation, post-diagnosis, medication-support and workplace/university pathways.
-- Design a verified professional directory. Verification must cover identity, registration or credential status, discipline, geography, service scope, conflicts and review date.
-- Publish a directory correction and removal process before accepting listings.
+- Publish post-diagnosis, medication-support and workplace/university pathways. The assessment-preparation pathway is now implemented as the broad, free entry point.
+- Research a verified professional directory but do not build or accept listings during the clinic-led first six months.
 - Pilot one education group with eligibility, exclusions, facilitator scope, feedback and adverse-event monitoring.
 - Define and test outcomes before making effectiveness claims about the practice framework or Anchor.
 - Complete Anchor privacy impact assessment, threat model, accessibility audit, incident process and TGA intended-purpose classification review.
-- Decide whether the ADHD subdomain or main clinic website is authoritative for fees, scope and booking. Store each fact in one source of truth.
+- Keep the main Body Belonging Clinic website authoritative for fees, credentials and scope; keep Halaxy authoritative for availability and booking. The ADHD Hub must not maintain a separate fee table.
 
 ## Content model
 
@@ -114,13 +113,13 @@ Podcast or expert-media content uses this fixed structure:
 
 ## Data map
 
-| Data                 | Entry point                 | System                                          | Purpose                                 | Minimum governance                                                    |
-| -------------------- | --------------------------- | ----------------------------------------------- | --------------------------------------- | --------------------------------------------------------------------- |
-| Email and consent    | Hub and Anchor update forms | Supabase, Netlify, MailerLite                   | Requested resource and updates          | Consent version, timestamp, source, unsubscribe and suppression       |
-| Website events       | Consent banner              | Google Analytics                                | Aggregate site improvement              | No loading before opt-in; no health, email or form payloads           |
-| Booking and enquiry  | Halaxy and clinic contact   | Halaxy and clinic communication systems         | Booking and service delivery            | Halaxy collection notice; role-based access; retention                |
-| Clinical information | Referral and sessions       | Practice-management/clinical record system      | Safe clinical support and legal records | Health privacy, access/correction, retention and breach process       |
-| Anchor settings      | Anchor device               | Device-local storage in current intended design | User-set wellbeing reminders            | No account; no clinic monitoring; re-review before cloud or analytics |
+| Data                 | Entry point                 | System                                                | Purpose                                 | Minimum governance                                                            |
+| -------------------- | --------------------------- | ----------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------- |
+| Email and consent    | Hub and Anchor update forms | Supabase with Netlify fallback; outbound email paused | Requested updates                       | Consent version, timestamp and source; vendor sync requires separate approval |
+| Website events       | Consent banner              | Google Analytics                                      | Aggregate site improvement              | No loading before opt-in; no health, email or form payloads                   |
+| Booking and enquiry  | Halaxy and clinic contact   | Halaxy and clinic communication systems               | Booking and service delivery            | Halaxy collection notice; role-based access; retention                        |
+| Clinical information | Referral and sessions       | Practice-management/clinical record system            | Safe clinical support and legal records | Health privacy, access/correction, retention and breach process               |
+| Anchor settings      | Anchor device               | Device-local storage in current intended design       | User-set wellbeing reminders            | No account; no clinic monitoring; re-review before cloud or analytics         |
 
 Any new account, sync, notification, AI, clinical decision, directory or community feature triggers a privacy impact assessment before build.
 
@@ -144,9 +143,10 @@ Any new account, sync, notification, AI, clinical decision, directory or communi
 
 ### Commercial
 
-- Organic visits to Australian care-navigation pages.
+- Useful next-action completions (`next_action_complete`) are the north-star measure.
+- Assessment-guide opens and print/save actions.
 - Care-map to Start Here progression.
-- Intro-call booking conversion by source, reported only in aggregate.
+- Intro-call booking opens by source, reported only in aggregate.
 - Referral source mix and suitable-fit rate.
 - Waitlist-to-resource engagement without using health-status profiling.
 
@@ -168,13 +168,22 @@ Do not use vulnerable-user engagement, streaks, repeated symptom checking or lon
 | "Culturally safe" becomes a self-awarded claim              | Person-defined language, feedback and First Nations governance              | Establish governance beyond founder                     |
 | Anchor becomes software as a medical device through claims  | Fixed general-wellbeing intended purpose and TGA review before scope change | Product boundary or regulated pathway                   |
 | Public email database is abused                             | RLS, consent-gated inserts, rate limiting, monitoring and retention         | Verify deployed policies                                |
-| Duplicate clinic/hub facts diverge                          | One authoritative data source for fees, scope, address and booking          | Select canonical source                                 |
+| Duplicate clinic/hub facts diverge                          | BBC website controls fees/credentials/scope; Halaxy controls booking        | Audit links and remove duplicate facts                  |
 | Comparative positioning becomes misleading                  | Ban unsupported first/only/leading claims                                   | Commission market review only if commercially necessary |
 
-## Decisions required from the owner
+## Owner decisions recorded 26 July 2026
 
-1. Budget and contract structure for medical, APD, OT, First Nations and lived-experience governance.
-2. Whether the hub remains a clinic-led public resource or becomes a separate national entity.
-3. Which website is the single source of truth for service facts.
-4. Whether Anchor remains a narrow wellbeing prompt or proceeds toward evaluated clinical functionality.
-5. Whether the verified directory is free, paid or institutionally funded. Paid inclusion must never be confused with clinical endorsement.
+1. The Hub remains clinic-led for its first six months; no separate entity is created.
+2. The main Body Belonging Clinic website is authoritative for public fees, credentials and service scope.
+3. Halaxy is authoritative for appointment availability and booking.
+4. ADHD assessment preparation is the broad acquisition pathway and must remain in Lauren's voice, grounded in her clinical research and clearly non-diagnostic.
+5. Anchor remains a narrow general-wellbeing tool.
+6. The professional directory is research only and is not to be built yet.
+7. Useful next-action completions, not raw traffic or time on site, are the north-star measure.
+8. Netlify 2FA is confirmed enabled.
+
+## Decisions still required
+
+1. Budget and contract structure for medical, APD, First Nations and lived-experience governance.
+2. Account recovery/continuity owner beyond the founder.
+3. Conditional launch date after the technical and accountable human review gates are evidenced.

@@ -73,3 +73,11 @@ export function trackEvent(name: string, params: Record<string, unknown> = {}) {
     /* no-op */
   }
 }
+
+/**
+ * North-star measure: a visitor completed a useful next action. Keep action
+ * names generic and never include email addresses, health details or free text.
+ */
+export function trackNextAction(action: string, location: string) {
+  trackEvent("next_action_complete", { action, location });
+}

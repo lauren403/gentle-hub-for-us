@@ -22,6 +22,9 @@ export type Database = {
           email: string
           id: string
           source: string
+          sync_error: string | null
+          sync_last_attempt_at: string | null
+          sync_status: string
         }
         Insert: {
           consent_version: string
@@ -30,6 +33,9 @@ export type Database = {
           email: string
           id?: string
           source?: string
+          sync_error?: string | null
+          sync_last_attempt_at?: string | null
+          sync_status?: string
         }
         Update: {
           consent_version?: string
@@ -38,6 +44,9 @@ export type Database = {
           email?: string
           id?: string
           source?: string
+          sync_error?: string | null
+          sync_last_attempt_at?: string | null
+          sync_status?: string
         }
         Relationships: []
       }

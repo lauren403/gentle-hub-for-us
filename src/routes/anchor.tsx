@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
-import { ANCHOR_URL, SITE_URL } from "@/config/site";
-import { trackEvent } from "@/lib/analytics";
-import { supabase } from "@/integrations/supabase/client";
+import { ANCHOR_URL, CONTACT, SITE_URL } from "@/config/site";
+import { trackEvent, trackNextAction } from "@/lib/analytics";
+import { submitLeadSignup } from "@/lib/lead-signup";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
 
@@ -32,6 +32,7 @@ function AnchorPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState(false);
   const [emailConsent, setEmailConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const mountedAtRef = useRef<number>(Date.now());
@@ -207,42 +208,33 @@ function AnchorPage() {
                   if (!trimmed || !emailConsent) return;
                   if (!looksLikeEmail(trimmed)) return;
                   setSubmitting(true);
+                  setSubmissionError(false);
                   // Spam guards: silently succeed without writing if the
                   // honeypot has any value, or if the form was submitted
                   // implausibly fast (under ~2.5s from mount).
                   const isBot = isLikelySpam(honeypot, Date.now() - mountedAtRef.current);
-                  if (!isBot) {
-                    try {
-                      const { error } = await supabase.from("lead_signups").insert({
-                        email: trimmed,
-                        source: "anchor_waitlist",
-                        consent_version: "anchor-updates-v1",
-                        consented_at: new Date().toISOString(),
-                      });
-                      if (error) console.warn("lead_signups insert failed", error);
-                    } catch (err) {
-                      console.warn("lead_signups insert threw", err);
-                    }
-                    // Netlify Forms notification (best-effort, never blocks UX).
-                    try {
-                      const body = new URLSearchParams({
-                        "form-name": "signups",
-                        email: trimmed,
-                        source: "anchor",
-                        consent: "anchor-updates-v1",
-                        company: honeypot,
-                      });
-                      await fetch("/__forms.html", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: body.toString(),
-                      });
-                    } catch (err) {
-                      console.warn("netlify form notify failed", err);
-                    }
+                  if (isBot) {
+                    setSubmitting(false);
+                    setSubmitted(true);
+                    return;
                   }
-                  trackEvent("sign_up", { location: "anchor_waitlist" });
+
+                  const result = await submitLeadSignup({
+                    email: trimmed,
+                    source: "anchor_waitlist",
+                    consentVersion: "anchor-updates-v1",
+                    consentedAt: new Date().toISOString(),
+                    honeypot,
+                  });
+
                   setSubmitting(false);
+                  if (!result.ok) {
+                    setSubmissionError(true);
+                    return;
+                  }
+
+                  trackEvent("sign_up", { location: "anchor_waitlist" });
+                  trackNextAction("email_signup", "anchor_updates");
                   setSubmitted(true);
                 }}
                 className="mt-8 space-y-4"
@@ -307,6 +299,18 @@ function AnchorPage() {
                     unsubscribe at any time. See the <Link to="/privacy">privacy policy</Link>.
                   </span>
                 </label>
+                {submissionError && (
+                  <p role="alert" className="text-sm text-[var(--oat)]">
+                    We couldn&apos;t safely save your request. Please try again, or email{" "}
+                    <a
+                      href={`mailto:${CONTACT.email}`}
+                      className="underline decoration-[var(--terracotta)] underline-offset-4"
+                    >
+                      {CONTACT.email}
+                    </a>
+                    .
+                  </p>
+                )}
               </form>
             )}
             {!submitted && (

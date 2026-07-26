@@ -12,10 +12,11 @@ import {
   HERO_IMAGE,
   FOOD_IMAGE,
   BELONGING_IMAGE,
+  CONTACT,
   SITE_URL,
 } from "@/config/site";
-import { trackEvent } from "@/lib/analytics";
-import { supabase } from "@/integrations/supabase/client";
+import { trackEvent, trackNextAction } from "@/lib/analytics";
+import { submitLeadSignup } from "@/lib/lead-signup";
 import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 import { ContentGovernance } from "@/components/content-governance";
@@ -91,19 +92,19 @@ function TrustStrip() {
 function PathwayCards() {
   const cards = [
     {
+      eyebrow: "Prepare without proving",
+      title: "Get ready for an ADHD assessment",
+      blurb:
+        "A free, non-diagnostic guide to gathering your story, questions and existing records.",
+      to: "/assessment-preparation" as const,
+      cta: "Open the preparation guide",
+    },
+    {
       eyebrow: "Navigate Australian care",
       title: "Find the right next step",
       blurb: "Assessment, medication, therapy, dietetics and functional support—who does what.",
       to: "/australian-adhd-care" as const,
       cta: "Open the care map",
-    },
-    {
-      eyebrow: "The reframe",
-      title: "ADHD isn't only an attention problem",
-      blurb: "Emotion, motivation and everyday functioning can matter as much as focus.",
-      to: "/" as const,
-      hash: "reframe",
-      cta: "Read the reframe",
     },
     {
       eyebrow: "Food & the brain",
@@ -127,7 +128,6 @@ function PathwayCards() {
           <Link
             key={c.title}
             to={c.to}
-            hash={c.hash}
             className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-6 no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-sm md:p-7"
           >
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
@@ -387,6 +387,7 @@ function AdhdHub() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState(false);
   const [emailConsent, setEmailConsent] = useState(false);
   const [showAppSoon, setShowAppSoon] = useState(false);
   const [honeypot, setHoneypot] = useState("");
@@ -857,14 +858,28 @@ function AdhdHub() {
         <Section id="signup">
           <div className="rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] p-8 md:p-12">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
-              Pull up a chair
+              A free place to begin
             </p>
             <h2 className="mt-3 font-display text-3xl leading-tight md:text-4xl">
-              “ADHD isn't only an attention problem” — a short, gentle reframe.
+              Prepare for an ADHD assessment without having to prove you are “ADHD enough”.
             </h2>
             <p className="mt-4 max-w-xl text-[var(--plum)]/75">
-              A quiet PDF you can read in ten minutes. No inbox spam — just this, and the occasional
-              gentle note if you'd like one.
+              The preparation guide is free to read, print or save. It brings together the questions
+              I use in clinical work and the patterns I have found most helpful when people are
+              trying to organise a complicated story.
+            </p>
+            <div className="mt-6">
+              <Link
+                to="/assessment-preparation"
+                onClick={() => trackNextAction("assessment_guide_open", "homepage_resource")}
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110"
+              >
+                Open the free preparation guide
+              </Link>
+            </div>
+            <p className="mt-8 max-w-xl text-sm leading-relaxed text-[var(--plum)]/65">
+              If you would also like occasional new resources from Body Belonging Clinic, you can
+              join the updates list below. The guide is not locked behind your email.
             </p>
             {submitted ? (
               <div
@@ -872,7 +887,8 @@ function AdhdHub() {
                 aria-live="polite"
                 className="mt-8 rounded-xl bg-[var(--plum)] p-5 text-[var(--oat)]"
               >
-                Thank you — check your inbox soon. And take a breath. You did the thing.
+                Thanks — your request has been received. We&apos;ll only use it for the updates you
+                agreed to.
               </div>
             ) : (
               <form
@@ -880,48 +896,35 @@ function AdhdHub() {
                   e.preventDefault();
                   const trimmed = email.trim();
                   if (!trimmed || !emailConsent) return;
-                  // Simple email shape check; server-side accepts the row and
-                  // the DB is the source of truth. We never surface a scary
-                  // error to the visitor — the friendly thank-you always shows.
                   if (!looksLikeEmail(trimmed)) return;
                   setSubmitting(true);
+                  setSubmissionError(false);
                   // Spam guards: silently succeed without writing if the
                   // honeypot has any value, or if the form was submitted
                   // implausibly fast (under ~2.5s from mount).
                   const isBot = isLikelySpam(honeypot, Date.now() - mountedAtRef.current);
-                  if (!isBot) {
-                    try {
-                      const { error } = await supabase.from("lead_signups").insert({
-                        email: trimmed,
-                        source: "adhd_hub",
-                        consent_version: "hub-updates-v1",
-                        consented_at: new Date().toISOString(),
-                      });
-                      if (error) console.warn("lead_signups insert failed", error);
-                    } catch (err) {
-                      console.warn("lead_signups insert threw", err);
-                    }
-                    // Netlify Forms notification (best-effort, never blocks UX).
-                    try {
-                      const body = new URLSearchParams({
-                        "form-name": "signups",
-                        email: trimmed,
-                        source: "homepage",
-                        consent: "hub-updates-v1",
-                        company: honeypot,
-                      });
-                      await fetch("/__forms.html", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: body.toString(),
-                      });
-                    } catch (err) {
-                      console.warn("netlify form notify failed", err);
-                    }
+                  if (isBot) {
+                    setSubmitting(false);
+                    setSubmitted(true);
+                    return;
                   }
-                  trackEvent("sign_up", { method: "lead_magnet" });
-                  trackEvent("email_click");
+
+                  const result = await submitLeadSignup({
+                    email: trimmed,
+                    source: "adhd_hub",
+                    consentVersion: "hub-updates-v1",
+                    consentedAt: new Date().toISOString(),
+                    honeypot,
+                  });
+
                   setSubmitting(false);
+                  if (!result.ok) {
+                    setSubmissionError(true);
+                    return;
+                  }
+
+                  trackEvent("sign_up", { method: "lead_magnet" });
+                  trackNextAction("email_signup", "homepage_updates");
                   setSubmitted(true);
                 }}
                 className="mt-8 space-y-4"
@@ -971,7 +974,7 @@ function AdhdHub() {
                     disabled={submitting}
                     className="min-h-11 rounded-full bg-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--oat)] transition-all hover:bg-[var(--terracotta)] disabled:opacity-70"
                   >
-                    {submitting ? "Sending…" : "Send it to me"}
+                    {submitting ? "Sending…" : "Join the updates list"}
                   </button>
                 </div>
                 <label className="flex max-w-[68ch] items-start gap-3 text-sm leading-relaxed text-[var(--plum)]/75">
@@ -983,8 +986,8 @@ function AdhdHub() {
                     className="mt-1 size-4 accent-[var(--terracotta)]"
                   />
                   <span>
-                    I agree to receive the PDF and occasional ADHD Hub and Anchor emails from Body
-                    Belonging Clinic. I can unsubscribe at any time. See the{" "}
+                    I agree to receive occasional ADHD Hub and Anchor emails from Body Belonging
+                    Clinic. I can unsubscribe at any time. See the{" "}
                     <Link
                       to="/privacy"
                       className="underline decoration-[var(--terracotta)] underline-offset-4"
@@ -994,12 +997,24 @@ function AdhdHub() {
                     .
                   </span>
                 </label>
+                {submissionError && (
+                  <p role="alert" className="text-sm text-[var(--plum)]">
+                    We couldn&apos;t safely save your request. Please try again, or email{" "}
+                    <a
+                      href={`mailto:${CONTACT.email}`}
+                      className="underline decoration-[var(--terracotta)] underline-offset-4"
+                    >
+                      {CONTACT.email}
+                    </a>
+                    .
+                  </p>
+                )}
               </form>
             )}
             {!submitted && (
               <p id="lead-email-help" className="mt-3 text-xs text-[var(--plum)]/60">
-                We collect your email and consent to deliver the resource and requested updates.
-                Please do not enter clinical information here.
+                We collect your email and consent only for requested updates. Please do not enter
+                clinical information here.
               </p>
             )}
           </div>

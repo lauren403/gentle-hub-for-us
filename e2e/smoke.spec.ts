@@ -10,6 +10,25 @@ test("homepage shows the signup email field", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByPlaceholder("you@example.com")).toBeVisible();
   await expect(page.getByRole("checkbox", { name: /I agree/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /free preparation guide/i })).toBeVisible();
+});
+
+test("assessment preparation is the free acquisition pathway", async ({ page }) => {
+  await page.goto("/assessment-preparation");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/ADHD enough/i);
+  await expect(page.getByRole("button", { name: /print or save/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /book through Halaxy/i })).toBeVisible();
+});
+
+test("the Hub defers changing fees and credentials to the main clinic website", async ({
+  page,
+}) => {
+  await page.goto("/start-here");
+  await expect(page.getByRole("heading", { name: /one current source for fees/i })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /current fees, credentials and scope/i }),
+  ).toHaveAttribute("href", "https://www.bodybelongingclinic.com.au");
+  await expect(page.getByText("$200", { exact: false })).toHaveCount(0);
 });
 
 test("the Food and the ADHD brain pillar renders", async ({ page }) => {

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SITE_URL, HALAXY_URL, CONTACT } from "@/config/site";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackNextAction } from "@/lib/analytics";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 
 const TITLE = "Start here | Body Belonging Clinic";
@@ -8,6 +8,7 @@ const DESCRIPTION =
   "A gentle first step into care at Body Belonging Clinic. What a free intro call looks like, GP referrals, Medicare rebates, and what to expect.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/start-here`;
 const BOOK_URL = HALAXY_URL;
+const CLINIC_URL = "https://www.bodybelongingclinic.com.au";
 
 export const Route = createFileRoute("/start-here")({
   head: () => ({
@@ -40,6 +41,7 @@ const STEPS = [
           onClick={() => {
             trackEvent("start_here_cta", { target: "booking_step1" });
             trackEvent("booking_click", { location: "start_here_step1" });
+            trackNextAction("booking_open", "start_here_step1");
           }}
         >
           free fifteen-minute intro call
@@ -102,7 +104,7 @@ function StartHerePage() {
             <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">Start here</h1>
             <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
               No wrong way to begin, and no rush. This page exists to make the first step easy — and
-              to tell you exactly what happens, what it costs, and what to expect. No mystery.
+              to tell you what happens, where to check current fees, and what to expect. No mystery.
             </p>
           </div>
         </section>
@@ -142,47 +144,25 @@ function StartHerePage() {
               Money, plainly
             </p>
             <h2 className="mt-5 font-display text-3xl leading-tight md:text-5xl">
-              What it costs, honestly
+              One current source for fees
             </h2>
             <div className="mt-10 space-y-6 text-lg leading-relaxed text-[var(--plum)]/85 [&_p]:max-w-[68ch]">
               <p>
-                I would rather be upfront about money than leave you guessing, so here is how it
-                works.
+                I would rather be upfront about money than leave you guessing. Current public fees,
+                credentials, Medicare information and clinic scope are maintained on the main Body
+                Belonging Clinic website so you do not have to compare two versions.
               </p>
-              <ul className="space-y-5 border-l-2 border-[var(--terracotta)] pl-6">
-                <li className="max-w-[62ch]">
-                  A standard 50-minute session is $200. Medicare rebates may apply with an eligible
-                  referral and plan. Rebate amounts can change, so we confirm the current estimate
-                  before booking and recommend checking eligibility with your GP or Medicare.
-                </li>
-                <li className="max-w-[62ch]">
-                  Better Access sessions are generally provided in courses, with GP review or
-                  referral requirements applying before additional sessions. Your GP confirms the
-                  pathway and annual eligibility.
-                </li>
-                <li className="max-w-[62ch]">
-                  If you are living with an eating disorder, you may be eligible for an Eating
-                  Disorder Treatment and Management Plan, which can open access to many more
-                  sessions, up to forty psychological treatment sessions in a twelve-month period.
-                  Your GP assesses whether this is right for you.
-                </li>
-                <li className="max-w-[62ch]">
-                  Telehealth is available across Australia. A rebate may apply where the relevant
-                  MBS and referral requirements are met.
-                </li>
-                <li className="max-w-[62ch]">
-                  Reduced-fee and bulk-billing options are available for those who qualify,
-                  including eligible Aboriginal and Torres Strait Islander clients. If that might be
-                  you, just mention it and we will sort it out together.
-                </li>
-                <li className="max-w-[62ch]">
-                  If cost is a worry, please raise it on the intro call. Reduced-fee capacity is
-                  limited, and we will be transparent about what is available.
-                </li>
-              </ul>
+              <a
+                href={CLINIC_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackNextAction("clinic_facts_open", "start_here_fees")}
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)]"
+              >
+                Check current fees, credentials and scope
+              </a>
               <p className="max-w-[62ch] text-sm italic text-[var(--plum)]/60">
-                Medicare eligibility and rebate amounts depend on the relevant item and current MBS
-                rules. Your GP and Medicare can confirm your circumstances.
+                Halaxy remains the source of truth for appointment availability and booking.
               </p>
             </div>
           </div>
@@ -235,6 +215,7 @@ function StartHerePage() {
                 onClick={() => {
                   trackEvent("start_here_cta", { target: "booking_closing" });
                   trackEvent("booking_click", { location: "start_here_closing" });
+                  trackNextAction("booking_open", "start_here_closing");
                 }}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-8 py-4 text-base font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98]"
               >

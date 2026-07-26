@@ -18,6 +18,7 @@ import { Route as FoodAndTheAdhdBrainRouteImport } from './routes/food-and-the-a
 import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
 import { Route as ComplaintsRouteImport } from './routes/complaints'
 import { Route as AustralianAdhdCareRouteImport } from './routes/australian-adhd-care'
+import { Route as AssessmentPreparationRouteImport } from './routes/assessment-preparation'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AnchorTermsRouteImport } from './routes/anchor-terms'
 import { Route as AnchorPrivacyRouteImport } from './routes/anchor-privacy'
@@ -84,6 +85,11 @@ const ComplaintsRoute = ComplaintsRouteImport.update({
 const AustralianAdhdCareRoute = AustralianAdhdCareRouteImport.update({
   id: '/australian-adhd-care',
   path: '/australian-adhd-care',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssessmentPreparationRoute = AssessmentPreparationRouteImport.update({
+  id: '/assessment-preparation',
+  path: '/assessment-preparation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApproachRoute = ApproachRouteImport.update({
@@ -219,6 +225,7 @@ export interface FileRoutesByFullPath {
   '/anchor-privacy': typeof AnchorPrivacyRoute
   '/anchor-terms': typeof AnchorTermsRoute
   '/approach': typeof ApproachRoute
+  '/assessment-preparation': typeof AssessmentPreparationRoute
   '/australian-adhd-care': typeof AustralianAdhdCareRoute
   '/complaints': typeof ComplaintsRoute
   '/editorial-policy': typeof EditorialPolicyRoute
@@ -252,6 +259,7 @@ export interface FileRoutesByTo {
   '/anchor-privacy': typeof AnchorPrivacyRoute
   '/anchor-terms': typeof AnchorTermsRoute
   '/approach': typeof ApproachRoute
+  '/assessment-preparation': typeof AssessmentPreparationRoute
   '/australian-adhd-care': typeof AustralianAdhdCareRoute
   '/complaints': typeof ComplaintsRoute
   '/editorial-policy': typeof EditorialPolicyRoute
@@ -285,6 +293,7 @@ export interface FileRoutesById {
   '/anchor-privacy': typeof AnchorPrivacyRoute
   '/anchor-terms': typeof AnchorTermsRoute
   '/approach': typeof ApproachRoute
+  '/assessment-preparation': typeof AssessmentPreparationRoute
   '/australian-adhd-care': typeof AustralianAdhdCareRoute
   '/complaints': typeof ComplaintsRoute
   '/editorial-policy': typeof EditorialPolicyRoute
@@ -320,6 +329,7 @@ export interface FileRouteTypes {
     | '/anchor-privacy'
     | '/anchor-terms'
     | '/approach'
+    | '/assessment-preparation'
     | '/australian-adhd-care'
     | '/complaints'
     | '/editorial-policy'
@@ -353,6 +363,7 @@ export interface FileRouteTypes {
     | '/anchor-privacy'
     | '/anchor-terms'
     | '/approach'
+    | '/assessment-preparation'
     | '/australian-adhd-care'
     | '/complaints'
     | '/editorial-policy'
@@ -385,6 +396,7 @@ export interface FileRouteTypes {
     | '/anchor-privacy'
     | '/anchor-terms'
     | '/approach'
+    | '/assessment-preparation'
     | '/australian-adhd-care'
     | '/complaints'
     | '/editorial-policy'
@@ -419,6 +431,7 @@ export interface RootRouteChildren {
   AnchorPrivacyRoute: typeof AnchorPrivacyRoute
   AnchorTermsRoute: typeof AnchorTermsRoute
   ApproachRoute: typeof ApproachRoute
+  AssessmentPreparationRoute: typeof AssessmentPreparationRoute
   AustralianAdhdCareRoute: typeof AustralianAdhdCareRoute
   ComplaintsRoute: typeof ComplaintsRoute
   EditorialPolicyRoute: typeof EditorialPolicyRoute
@@ -496,6 +509,13 @@ declare module '@tanstack/react-router' {
       path: '/australian-adhd-care'
       fullPath: '/australian-adhd-care'
       preLoaderRoute: typeof AustralianAdhdCareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assessment-preparation': {
+      id: '/assessment-preparation'
+      path: '/assessment-preparation'
+      fullPath: '/assessment-preparation'
+      preLoaderRoute: typeof AssessmentPreparationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/approach': {
@@ -703,6 +723,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnchorPrivacyRoute: AnchorPrivacyRoute,
   AnchorTermsRoute: AnchorTermsRoute,
   ApproachRoute: ApproachRoute,
+  AssessmentPreparationRoute: AssessmentPreparationRoute,
   AustralianAdhdCareRoute: AustralianAdhdCareRoute,
   ComplaintsRoute: ComplaintsRoute,
   EditorialPolicyRoute: EditorialPolicyRoute,

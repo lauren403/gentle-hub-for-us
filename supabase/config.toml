@@ -1,4 +1,4 @@
-project_id = "nqtauxdajttaechidyjg"
+project_id = "avljqvwqmfhbhbrvfpmk"
 
 [functions.mailerlite-sync]
-verify_jwt = false
+verify_jwt = true
