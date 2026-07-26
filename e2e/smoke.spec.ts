@@ -18,7 +18,7 @@ test("the Food and the ADHD brain pillar renders", async ({ page }) => {
 });
 
 test("a Letter renders its article rather than the Letters index", async ({ page }) => {
-  await page.goto("/letters/the-emotional-side-of-adhd");
+  await page.goto("/letters/the-hardest-part-isnt-focus-its-feeling");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "When the emotional side of ADHD feels hardest",
   );
@@ -27,7 +27,7 @@ test("a Letter renders its article rather than the Letters index", async ({ page
 
 test("the Australian care map and governance pages are public", async ({ page }) => {
   await page.goto("/australian-adhd-care");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Australian ADHD care");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/Australian.*ADHD care map/i);
 
   await page.goto("/privacy");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Privacy");
