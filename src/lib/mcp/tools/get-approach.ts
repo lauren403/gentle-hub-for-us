@@ -2,25 +2,26 @@ import { defineTool } from "@lovable.dev/mcp-js";
 
 export default defineTool({
   name: "get_approach",
-  title: "Get the Body Belonging Model",
+  title: "Get the Body Belonging practice framework",
   description:
-    "Return a summary of the Body Belonging Model — the clinic's neuro-affirming, eating-disorder-safe framework — plus a link to the full white paper.",
+    "Return a scope-aware summary of the Body Belonging practice framework and a link to its working paper.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => {
     const approach = {
-      name: "The Body Belonging Model",
+      name: "The Body Belonging practice framework",
       summary:
-        "ADHD is treated as a whole-of-you, self-regulation and emotional-regulation difference — not just an attention problem. We work with one system (mind, body, nervous system) rather than three separate problems.",
+        "A therapeutic framework for exploring how attention, emotion, eating, identity and context may interact. It is not a validated stand-alone treatment model or a biological explanation of ADHD.",
       principles: [
-        "One system, not three problems — ADHD, food, and belonging are treated together.",
+        "Connected experiences, not a single cause.",
         "Neuro-affirming: difference, not deficit.",
-        "Eating-disorder-safe: weight-neutral, additive (add, don't cut), no calorie or weight talk.",
-        "Culturally safe and LGBTQIA+ affirming.",
-        "Medication isn't the whole story — pro-treatment, not anti-medication.",
+        "Designed to reduce common eating-disorder-related risks: weight-neutral, additive and non-restrictive.",
+        "Aboriginal-led and LGBTQIA+ affirming; cultural safety is determined by the person receiving the service.",
+        "Therapy can complement medical treatment and does not replace assessment, prescribing or review.",
       ],
-      white_paper_url: "https://www.bodybelongingclinic.com.au/adhd/body-belonging-model.pdf",
-      approach_page: "https://www.bodybelongingclinic.com.au/adhd/approach",
+      evaluation_status: "Independent multidisciplinary review and outcome evaluation pending.",
+      white_paper_url: "https://adhd.bodybelongingclinic.com.au/body-belonging-model.pdf",
+      approach_page: "https://adhd.bodybelongingclinic.com.au/approach",
     };
     return {
       content: [{ type: "text", text: JSON.stringify(approach, null, 2) }],

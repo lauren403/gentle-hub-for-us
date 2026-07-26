@@ -18,7 +18,7 @@ type PrimaryNavItem = { label: string; to: string; hash?: string };
 
 const PRIMARY_NAV: PrimaryNavItem[] = [
   { label: "Start here", to: "/start-here" },
-  { label: "Reframe", to: "/", hash: "reframe" },
+  { label: "Care map", to: "/australian-adhd-care" },
   { label: "Food & the brain", to: "/food-and-the-adhd-brain" },
   { label: "Approach", to: "/approach" },
   { label: "Letters", to: "/letters" },
@@ -114,19 +114,10 @@ export function SiteHeader({ location, activePath }: { location: string; activeP
 }
 
 export function FloatingBook({ location }: { location: string }) {
-  // Mobile-only compact CTA docked bottom-right so it never covers body text.
-  return (
-    <a
-      href={BOOK_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={() => trackEvent("booking_click", { location: `${location}_floating` })}
-      aria-label="Book a free 15-minute intro call"
-      className="md:hidden fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-4 py-2.5 text-sm font-medium text-[var(--cream)] shadow-lg transition-all hover:brightness-110 active:scale-[0.98] min-h-11"
-    >
-      Book
-    </a>
-  );
+  // The sticky header already provides a mobile booking action. Keeping a
+  // second floating action obscured content and duplicated the same choice.
+  void location;
+  return null;
 }
 
 export function SiteFooter() {
@@ -176,6 +167,11 @@ export function SiteFooter() {
                 <li>
                   <Link to="/start-here" className="hover:text-[var(--oat)]">
                     Start here
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/australian-adhd-care" className="hover:text-[var(--oat)]">
+                    Australian ADHD care map
                   </Link>
                 </li>
                 <li>
@@ -258,15 +254,43 @@ export function SiteFooter() {
                 pay our respects to Elders past and present.
               </p>
               <p className="mt-6 text-xs">
-                <a
-                  href="/privacy"
+                <Link
+                  to="/privacy"
                   className="underline decoration-[var(--terracotta)] underline-offset-4"
                 >
                   Privacy
-                </a>
+                </Link>
                 <span className="mx-2 opacity-40">·</span>
-                <span>© {new Date().getFullYear()} Body Belonging Clinic</span>
+                <Link
+                  to="/complaints"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
+                  Complaints
+                </Link>
               </p>
+              <p className="mt-3 text-xs">
+                <Link
+                  to="/editorial-policy"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
+                  Editorial policy
+                </Link>
+                <span className="mx-2 opacity-40">·</span>
+                <Link
+                  to="/anchor-privacy"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
+                  Anchor privacy
+                </Link>
+                <span className="mx-2 opacity-40">·</span>
+                <Link
+                  to="/anchor-terms"
+                  className="underline decoration-[var(--terracotta)] underline-offset-4"
+                >
+                  Anchor terms
+                </Link>
+              </p>
+              <p className="mt-3 text-xs">© {new Date().getFullYear()} Body Belonging Clinic</p>
             </div>
           </div>
         </div>

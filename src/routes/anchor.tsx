@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useRef, useState } from "react";
-import { SITE_URL } from "@/config/site";
+import { ANCHOR_URL, SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
@@ -32,6 +32,7 @@ function AnchorPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [emailConsent, setEmailConsent] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const mountedAtRef = useRef<number>(Date.now());
   const emailRef = useRef<HTMLInputElement>(null);
@@ -58,7 +59,7 @@ function AnchorPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-5">
               <a
-                href="https://anchor.bodybelongingclinic.com.au"
+                href={ANCHOR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("anchor_open_app", { location: "anchor_hero" })}
@@ -79,10 +80,10 @@ function AnchorPage() {
         {/* INTRO */}
         <section className="mx-auto max-w-3xl px-5 py-16 md:py-24">
           <p className="max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
-            Anchor is a small, free app I built for the part of ADHD that no prescription reaches. A
-            brain like ours can lose track of hunger and fullness until eating swings from forgotten
-            all day to all at once by night, and Anchor is simply a quiet nudge back towards a
-            regular rhythm. That's all it is, and the restraint is the whole point.
+            Anchor is a small, free general wellbeing tool offering optional eating-rhythm prompts.
+            ADHD, stimulant medication, executive function, sensory needs, time awareness and other
+            factors can all affect eating. Anchor offers a quiet nudge; it does not diagnose, treat,
+            monitor or replace individual support.
           </p>
         </section>
 
@@ -97,7 +98,7 @@ function AnchorPage() {
             </h2>
             <ul className="mt-10 space-y-4 text-lg leading-relaxed text-[var(--plum)]/85">
               {[
-                "It offers gentle reminders to eat at regular times, so you are not relying on hunger signals that don't always arrive.",
+                "It offers optional reminders to support a regular eating rhythm.",
                 "It is calm and low-stimulation by design, with nothing to earn and nothing to lose.",
                 "It works on your phone, even offline, and it keeps everything on your device.",
               ].map((item) => (
@@ -129,7 +130,7 @@ function AnchorPage() {
               {[
                 "No calorie counting, no weighing, and no food rules.",
                 "No streaks, no guilt, and no gamified pressure.",
-                "Weight-neutral, always. It is built to be safe for anyone with a history of disordered eating.",
+                "Designed to reduce common eating-disorder-related risks. It may not suit everyone.",
               ].map((item) => (
                 <li key={item} className="flex gap-4">
                   <span
@@ -153,13 +154,26 @@ function AnchorPage() {
               The opposite of the apps that quietly work against us.
             </h2>
             <p className="mt-10 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
-              Most apps in this space — the trackers, the streak-counters, the calorie tools —
-              quietly work against a brain like ours, turning eating into numbers, targets and
-              pressure. I am an eating disorder clinician who also codes, so I made the opposite:
-              something that treats a regular rhythm as a kindness rather than a rule, and holds you
-              gently while you find it. It is the same care I offer in the room, shaped into
-              something you can carry in your pocket, for free.
+              Some tracking and streak-based tools can increase pressure or be unsuitable for people
+              with eating-disorder histories. Lauren&apos;s eating-disorder credential informed a
+              deliberately minimal alternative: no calorie, weight or streak mechanics. That design
+              reduces particular risks but is not evidence that Anchor is safe or effective for
+              every person.
             </p>
+            <div className="mt-8 rounded-2xl border border-[var(--plum)]/10 bg-[var(--oat)] p-6 text-sm leading-relaxed text-[var(--plum)]/75">
+              <p className="font-medium text-[var(--plum)]">
+                Use Anchor as a wellbeing prompt only.
+              </p>
+              <p className="mt-2">
+                It is not clinical or emergency monitoring. The clinic cannot see whether you act on
+                a reminder. Pause it if prompts increase distress, compulsive checking, shame or
+                eating-disorder symptoms, and speak with your treating professional.
+              </p>
+              <p className="mt-3">
+                Read the <Link to="/anchor-terms">terms of use</Link> and{" "}
+                <Link to="/anchor-privacy">privacy notice</Link>.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -170,7 +184,7 @@ function AnchorPage() {
               Early access
             </p>
             <h2 className="mt-4 font-display text-3xl leading-tight md:text-4xl">
-              Be one of the first to use it.
+              Get updates as Anchor develops.
             </h2>
             <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-[var(--oat)]/85">
               Anchor is free to use now. Join the updates list and I'll share new supports and
@@ -183,14 +197,14 @@ function AnchorPage() {
                 aria-live="polite"
                 className="mt-8 rounded-2xl bg-[var(--oat)] p-5 text-[var(--plum)]"
               >
-                You're on the list, I'll be in touch the moment Anchor is ready.
+                You&apos;re on the list. We&apos;ll send occasional Anchor and hub updates.
               </div>
             ) : (
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
                   const trimmed = email.trim();
-                  if (!trimmed) return;
+                  if (!trimmed || !emailConsent) return;
                   if (!looksLikeEmail(trimmed)) return;
                   setSubmitting(true);
                   // Spam guards: silently succeed without writing if the
@@ -199,9 +213,12 @@ function AnchorPage() {
                   const isBot = isLikelySpam(honeypot, Date.now() - mountedAtRef.current);
                   if (!isBot) {
                     try {
-                      const { error } = await supabase
-                        .from("lead_signups")
-                        .insert({ email: trimmed, source: "anchor_waitlist" });
+                      const { error } = await supabase.from("lead_signups").insert({
+                        email: trimmed,
+                        source: "anchor_waitlist",
+                        consent_version: "anchor-updates-v1",
+                        consented_at: new Date().toISOString(),
+                      });
                       if (error) console.warn("lead_signups insert failed", error);
                     } catch (err) {
                       console.warn("lead_signups insert threw", err);
@@ -212,6 +229,7 @@ function AnchorPage() {
                         "form-name": "signups",
                         email: trimmed,
                         source: "anchor",
+                        consent: "anchor-updates-v1",
                         company: honeypot,
                       });
                       await fetch("/__forms.html", {
@@ -227,7 +245,7 @@ function AnchorPage() {
                   setSubmitting(false);
                   setSubmitted(true);
                 }}
-                className="mt-8 flex flex-col gap-3 sm:flex-row"
+                className="mt-8 space-y-4"
               >
                 <label htmlFor="anchor-email" className="sr-only">
                   Email address
@@ -255,29 +273,46 @@ function AnchorPage() {
                     onChange={(e) => setHoneypot(e.target.value)}
                   />
                 </div>
-                <input
-                  id="anchor-email"
-                  ref={emailRef}
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  aria-describedby="anchor-email-help"
-                  className="flex-1 rounded-full border border-[var(--oat)]/30 bg-[var(--oat)] px-5 py-3 text-base text-[var(--plum)] placeholder:text-[var(--plum)]/40 focus:border-[var(--terracotta)] focus:outline-none min-h-11"
-                />
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 disabled:opacity-70 min-h-11"
-                >
-                  {submitting ? "Sending…" : "Join the updates list"}
-                </button>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <input
+                    id="anchor-email"
+                    ref={emailRef}
+                    type="email"
+                    name="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    aria-describedby="anchor-email-help"
+                    className="min-h-11 flex-1 rounded-full border border-[var(--oat)]/30 bg-[var(--oat)] px-5 py-3 text-base text-[var(--plum)] placeholder:text-[var(--plum)]/40 focus:border-[var(--terracotta)] focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="min-h-11 rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 disabled:opacity-70"
+                  >
+                    {submitting ? "Sending…" : "Join the updates list"}
+                  </button>
+                </div>
+                <label className="flex max-w-[68ch] items-start gap-3 text-sm leading-relaxed text-[var(--oat)]/80">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={emailConsent}
+                    onChange={(event) => setEmailConsent(event.target.checked)}
+                    className="mt-1 size-4 accent-[var(--terracotta)]"
+                  />
+                  <span>
+                    I agree to receive Anchor and ADHD Hub emails from Body Belonging Clinic. I can
+                    unsubscribe at any time. See the <Link to="/privacy">privacy policy</Link>.
+                  </span>
+                </label>
               </form>
             )}
             {!submitted && (
               <p id="anchor-email-help" className="mt-3 text-xs text-[var(--oat)]/70">
-                I'll only email you about Anchor and the hub, and you can unsubscribe any time.
+                We collect your email and consent for requested updates. Do not enter clinical
+                information here.
               </p>
             )}
           </div>

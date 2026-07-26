@@ -74,9 +74,9 @@ const STEPS = [
     title: "We find the rhythm that fits you.",
     body: (
       <>
-        From there we work together, in the room or by telehealth across Australia. You set the pace
-        — and the work doesn't stop at the edge of the session: the Body Belonging Model gives it
-        structure, and Anchor and the Letters keep it going between visits.
+        From there we work together, in the room or by telehealth across Australia. The Body
+        Belonging practice framework can give therapy a shared structure; Anchor and the Letters are
+        optional general resources between visits.
       </>
     ),
   },
@@ -151,14 +151,14 @@ function StartHerePage() {
               </p>
               <ul className="space-y-5 border-l-2 border-[var(--terracotta)] pl-6">
                 <li className="max-w-[62ch]">
-                  A standard 50-minute session is $200. With a Mental Health Treatment Plan and
-                  referral from your GP, Medicare rebates $89.50 of that back to you, so your
-                  out-of-pocket is $110.50 per session. You will always know your exact cost before
-                  you ever book.
+                  A standard 50-minute session is $200. Medicare rebates may apply with an eligible
+                  referral and plan. Rebate amounts can change, so we confirm the current estimate
+                  before booking and recommend checking eligibility with your GP or Medicare.
                 </li>
                 <li className="max-w-[62ch]">
-                  That rebate is available on each session with an Accredited Mental Health Social
-                  Worker, for up to ten sessions in a calendar year.
+                  Better Access sessions are generally provided in courses, with GP review or
+                  referral requirements applying before additional sessions. Your GP confirms the
+                  pathway and annual eligibility.
                 </li>
                 <li className="max-w-[62ch]">
                   If you are living with an eating disorder, you may be eligible for an Eating
@@ -167,8 +167,8 @@ function StartHerePage() {
                   Your GP assesses whether this is right for you.
                 </li>
                 <li className="max-w-[62ch]">
-                  Telehealth sessions are available anywhere in Australia and attract the same
-                  Medicare rebates.
+                  Telehealth is available across Australia. A rebate may apply where the relevant
+                  MBS and referral requirements are met.
                 </li>
                 <li className="max-w-[62ch]">
                   Reduced-fee and bulk-billing options are available for those who qualify,
@@ -176,13 +176,13 @@ function StartHerePage() {
                   you, just mention it and we will sort it out together.
                 </li>
                 <li className="max-w-[62ch]">
-                  And if cost is a worry, please just say so on the intro call, and we will find
-                  something that works.
+                  If cost is a worry, please raise it on the intro call. Reduced-fee capacity is
+                  limited, and we will be transparent about what is available.
                 </li>
               </ul>
               <p className="max-w-[62ch] text-sm italic text-[var(--plum)]/60">
-                Rebate amounts are current as of 1 July 2026. Please confirm your own eligibility
-                and the current amounts with your GP or Services Australia.
+                Medicare eligibility and rebate amounts depend on the relevant item and current MBS
+                rules. Your GP and Medicare can confirm your circumstances.
               </p>
             </div>
           </div>
@@ -198,7 +198,7 @@ function StartHerePage() {
             {[
               "A calm, low-stimulation space, whether we meet in the room or online.",
               "No need to have your story neat or your words ready. Rambling is welcome here, and so is silence.",
-              "In the room you have my full attention — no clock-watching, and never the feeling of being a problem moved along.",
+              "Sessions have a clear scheduled length. Your time is protected, and we agree on the focus and next step together.",
             ].map((line, i) => (
               <li
                 key={i}

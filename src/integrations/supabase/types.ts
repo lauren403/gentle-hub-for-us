@@ -16,18 +16,24 @@ export type Database = {
     Tables: {
       lead_signups: {
         Row: {
+          consent_version: string
+          consented_at: string | null
           created_at: string
           email: string
           id: string
           source: string
         }
         Insert: {
+          consent_version: string
+          consented_at?: string | null
           created_at?: string
           email: string
           id?: string
           source?: string
         }
         Update: {
+          consent_version?: string
+          consented_at?: string | null
           created_at?: string
           email?: string
           id?: string

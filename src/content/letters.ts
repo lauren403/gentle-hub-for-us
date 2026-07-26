@@ -26,7 +26,7 @@ export const LETTERS: Letter[] = [
         text: `Here is a scene you might know. It is eight at night, you have barely eaten since morning, and suddenly you are standing in the light of the open fridge, ravenous, a little ashamed, and quietly wondering what is wrong with you. I want to gently take the shame out of that picture, because what is happening is not a character flaw, it is the body doing exactly what a brain like ours sets it up to do.`,
       },
       {
-        text: `The word for the sense we are talking about is interoception, which is just the fancy name for how clearly you read the signals coming from inside your body, hunger and fullness among them, along with thirst, tiredness, a full bladder, and the first flickers of an emotion. For a lot of us those signals come in faint, or late, or all at once, so the quiet mid-morning "I could eat" never quite registers, and then by evening the volume is turned all the way up and the day's missed meals arrive together. It is not that you have no willpower. It is that the messenger was whispering all day and only started shouting after dark.`,
+        text: `Interoception is the perception of signals from inside the body, including hunger, fullness, thirst and arousal. Emerging research suggests it may work differently for some people with ADHD, but it is not a settled or universal explanation. Medication effects, task absorption, time awareness, sensory needs, access and planning can also contribute when eating is missed during the day. None of those possibilities is a moral failure.`,
       },
       {
         text: `This is worth saying plainly, and also honestly. The link between ADHD and less reliable interoception is still an emerging area of research rather than a closed case, so I would never dress it up as proven fact. What we can say is that it fits a growing body of work and, more importantly, it fits what so many people describe to me in the room, week after week. And there are two things layered on top that are on much firmer ground. Emotional dysregulation sits close to the centre of ADHD, so food can become a way to reach for calm or a hit of interest when a day feels flat or overwhelming. And if you take stimulant medication, appetite suppression during the day is well established, which quietly pushes hunger to the edges of the evening. Put those together and the fridge at eight at night starts to look less like a mystery and much more like a pattern with reasons.`,
@@ -108,25 +108,25 @@ export const LETTERS: Letter[] = [
   {
     slug: "the-hardest-part-isnt-focus-its-feeling",
     path: "/letters/the-hardest-part-isnt-focus-its-feeling",
-    title: "The hardest part usually isn't focus. It's feeling.",
+    title: "When the emotional side of ADHD feels hardest",
     standfirst:
-      "If your feelings arrive fast and loud and take an age to come back down, and if a small rejection can flatten a whole day, you are not too much and you are not broken. You have a brain that feels at full volume, and there is a reason for it.",
+      "If feelings arrive fast and take time to settle, you are not too much. Emotion-regulation difficulties are common in ADHD, and they also deserve a careful look at the whole context.",
     readingTime: "about 5 minutes",
-    seoTitle: "The hardest part of ADHD usually isn't focus, it's feeling | Body Belonging Clinic",
+    seoTitle: "When the emotional side of ADHD feels hardest | Body Belonging Clinic",
     seoDescription:
-      "For a lot of us the loudest part of ADHD is emotion, not attention. A warm, honest look at emotional intensity, rejection sensitivity, and why it is wiring rather than weakness.",
+      "Emotion-regulation difficulties are common in ADHD. A careful look at emotional intensity and rejection sensitivity without turning popular concepts into diagnoses.",
     body: [
       {
-        text: `We are handed a story about ADHD that is almost entirely about attention, the lost keys, the missed deadlines, the half-finished projects. It is a real part of the picture, and it is nowhere near the hardest part for most of the people I sit with. The hardest part, the one that quietly runs the show, is emotion. Feelings that come in fast and land hard, a mood that can swing on something small, and a comedown that takes far longer than it seems to for everyone else. If that is you, I want to name it clearly, because almost no one does.`,
+        text: `We are handed a story about ADHD that is almost entirely about attention: lost keys, missed deadlines and half-finished projects. That is a real part of the picture. For some people, the emotional impact is equally or more disabling: feelings that arrive quickly, land hard and take time to settle. If that is you, it deserves to be understood without assuming ADHD is the only possible cause.`,
       },
       {
-        text: `The reason is in the wiring. One of the most respected models of ADHD, from the psychologist Russell Barkley, puts self-regulation right at the centre, and emotion is one of the things a brain like ours regulates differently. This is not a fringe idea or a personal failing dressed up in kinder language, it is close to the core of what ADHD actually is. So when a feeling arrives and it is enormous and immediate and hard to turn down, that is not you being dramatic or sensitive or weak. That is the same difference that affects attention, showing up in the place it is felt most.`,
+        text: `Self-regulation models, including Russell Barkley's work, offer one useful account of why emotion can be difficult in ADHD. Emotion dysregulation is widely reported and clinically important, but it is not unique to ADHD and it is not itself enough to establish a diagnosis. Sleep, trauma, mood, anxiety, autism, relationships, hormones, health and environment may also matter. The point is not to reduce the experience to wiring; it is to remove moral judgement while staying curious about the full picture.`,
       },
       {
         text: `There is a particular version of this that so many people recognise the instant it is named, the way rejection, or even the hint of it, can land like a physical blow. In ADHD communities this often gets called rejection sensitivity, and I want to be honest with you about it in the way I would want honesty myself. It is a very real and very common lived experience, and it is not yet a settled, precisely measured piece of science with one agreed definition. I hold it as language rather than as law. What matters is not the label, it is that the experience is real, it is shared by a great many of us, and it makes complete sense in a brain that feels at full volume.`,
       },
       {
-        text: `Here is what I want you to take from that. If emotion is where your ADHD is loudest, then emotion, not another productivity system, is where the real work lives. Not learning to feel less, which was never possible and was never the goal, but learning to be with big feeling without being swept away by it, to recognise the wave as it rises, to let it move through, and to be far gentler with yourself in the middle of it than the world has taught you to be. That is a skill, it can be built, and it tends to change more than any planner ever did.`,
+        text: `If emotion is where you are struggling, it makes sense for support to include more than productivity systems. The work might include recognising patterns, reducing avoidable stressors, practising regulation and communication skills, and responding to yourself with less shame. The right approach depends on the person, and progress is reviewed rather than promised.`,
       },
       {
         text: `And there is one more thing, quietly underneath all of it. Most of us have spent years being told we are too sensitive, too intense, too much, and we have folded that judgement inwards until self-criticism became the loudest voice in the room. You cannot regulate a feeling while you are also busy despising yourself for having it. So the first move is almost always the same, to turn the volume down on the shame, so there is finally room to work with the feeling itself. That is where we start, and it is a kinder place to begin than you might expect.`,
@@ -138,14 +138,13 @@ export const LETTERS: Letter[] = [
   {
     slug: "medication-isnt-the-whole-answer",
     path: "/letters/medication-isnt-the-whole-answer",
-    title: "Medication is often the right first step. It's rarely the whole answer.",
+    title: "Medication can help, and support may still matter",
     standfirst:
-      "This is an honest letter about ADHD medication from someone firmly in favour of it. It can help a great deal, and it was never designed to do the whole job, and holding both of those truths at once is where good care lives.",
+      "ADHD medication can be an important evidence-based treatment. Therapy and practical support may still help with needs that remain, alongside review with the prescriber.",
     readingTime: "about 5 minutes",
-    seoTitle:
-      "Medication is often the right first step, and rarely the whole answer | Body Belonging Clinic",
+    seoTitle: "ADHD medication and psychosocial support | Body Belonging Clinic",
     seoDescription:
-      "A pro-treatment, honest look at ADHD medication, what it does well, what it cannot do, and the part of the work a prescription was never meant to cover.",
+      "A pro-treatment look at where ADHD medication and psychosocial support may each fit, with prescribing decisions kept in medical scope.",
     body: [
       {
         text: `Let me say the first part plainly, because there is a lot of noise out there and you deserve a clear voice. For many people, ADHD medication helps, genuinely and sometimes dramatically. It is one of the better-evidenced treatments in mental health, and it can turn the volume down on the noise enough that everything else becomes possible. I am not here to talk you out of it or to offer you a natural alternative to it. If medication is helping you, that is wonderful, and if you are wondering whether to explore it, that is a conversation for you and a good prescriber, held without shame.`,
@@ -154,10 +153,10 @@ export const LETTERS: Letter[] = [
         text: `And here is the second part, which matters just as much. Medication changes the conditions, and it does not, on its own, teach the skills. It can steady your attention, and it cannot teach you how you personally plan, or start, or recover from a hard day. It can lift some of the fog, and it cannot rebuild a relationship with food that a lifetime of missed meals and quiet shame has worn thin. It can make feelings a little more manageable, and it cannot undo the years of being told you were too much, or hand you back the self-belief that got chipped away. Those are not things a tablet was ever meant to do. They are the human work, and they are the part so many people are quietly left alone with once the prescription is written.`,
       },
       {
-        text: `This is the gap I built a whole practice inside. So often the story goes like this, you finally get diagnosed, you start medication, there is real relief, and then there is a silence, a sense of "is this it?", because the diagnosis and the script arrived together and then the conversation simply stopped. No one made the time to help you understand your own particular brain, or to build the coping that fits the way you actually work, or to gently sort out the eating and the sleep and the self-talk. The medication did its job and then everyone assumed the rest would follow on its own. It rarely does, and that is not your failing, it is a gap in the way care is usually shaped.`,
+        text: `Some people finally get diagnosed, start medication and feel real relief, yet still have a sense of "is this it?" Support with routines, eating, sleep, relationships, self-understanding or the emotional meaning of a late diagnosis may not happen automatically. When those needs remain, it is not a personal failing; it is a reason to ask what additional care would be useful and which professional is best placed to provide it.`,
       },
       {
-        text: `So think of medication, if you use it, as one instrument rather than the whole orchestra. It is often the right first step, it clears space, and then the real, slower, more human work can begin in that space, understanding how your mind runs, building the scaffolds that suit it, steadying your body and your eating, and turning down the shame you never deserved. Medication and this work are not rivals, and they are not a choice between the natural and the medical. They are two parts of the same care, and you deserve both, not just the one that fits inside a prescription pad.`,
+        text: `Medication and psychosocial support are not rivals. Australian guidance supports multimodal care tailored to the person's needs, preferences and response. If medication is used, its benefits and adverse effects belong in ongoing review with the prescriber. Therapy may focus on skills, routines, relationships, identity, distress or functioning, without claiming to do the job of medication or medical care.`,
       },
     ],
     closing:
@@ -168,26 +167,26 @@ export const LETTERS: Letter[] = [
     path: "/letters/your-nervous-system-and-a-place-to-belong",
     title: "Your nervous system, and a place to belong.",
     standfirst:
-      "If discipline and pressure have never quite worked on you the way they seem to for other people, it is not a willpower problem. A brain like ours is wired to move towards interest and safety, and it settles through connection, not force. That is not a weakness to manage, it is the key to working with yourself.",
+      "If pressure has not helped, it may be useful to explore interest, stress, environment and connection. These are practical lenses, not a complete biological explanation of ADHD.",
     readingTime: "about 5 minutes",
-    seoTitle: "Your nervous system settles through safety, not pressure | Body Belonging Clinic",
+    seoTitle: "ADHD, stress, interest and connection | Body Belonging Clinic",
     seoDescription:
-      "ADHD runs on an interest-based nervous system that calms through safety, connection and self-compassion rather than force. A gentle letter on why belonging is not soft, it is the mechanism.",
+      "A clinical-practice lens on ADHD, interest, stress and connection, with clear limits around interest-based and nervous-system language.",
     body: [
       {
         text: `You have probably been told, in a hundred quiet ways, that the answer is more discipline. Try harder, push through, want it more. And you have probably noticed that it does not really work on you, or it works for a brittle week and then collapses, and you are left with the familiar conclusion that you are the problem. I would like to offer you a different explanation, because the truth is far kinder and far more useful.`,
       },
       {
-        text: `A brain like ours runs, in large part, on interest. Attention and motivation follow curiosity, novelty, meaning and a genuine sense of urgency, rather than obligation and willpower, which is why the same person can lose a whole afternoon to something fascinating and cannot make themselves start something dull to save their life. This is often described as an interest-based nervous system, and while the exact phrase is community language rather than a precise clinical term, it points at something real and well recognised in how ADHD works. Once you understand it, you stop trying to force a brain that was never going to respond to force, and you start designing a life around interest, meaning and momentum instead. That is not a workaround. That is working with the actual machine.`,
+        text: `Many people with ADHD describe attention and motivation as easier to access when something is interesting, novel, meaningful or urgent. “Interest-based nervous system” is community and clinical shorthand, not a formal diagnosis or precise biological model. It can still prompt useful experiments: changing task design, environment, cues, support and meaning rather than relying on self-criticism.`,
       },
       {
-        text: `Underneath attention sits something even more basic, your nervous system's sense of safety. Nobody thinks clearly, plans well, or reaches for another person while their body believes it is under threat, and for a brain that has spent years being corrected and falling short and bracing for the next rejection, a low hum of threat can become the background setting. This is why pressure so often backfires. It adds threat to a system that already has too much, and a threatened nervous system narrows and protects rather than opens and grows. Safety is not the soft option here, it is the precondition for every good thing you are trying to do. Calm first, capability second, always in that order.`,
+        text: `Stress and perceived threat can affect attention, planning and connection. Pressure may help in some circumstances and backfire in others; there is no universal sequence in which a person must be calm before they can act. We use regulation and safety language as optional ways to notice context, while avoiding the claim that one nervous-system state explains every difficulty.`,
       },
       {
-        text: `And the thing that builds safety, more reliably than anything else, is connection. This is the part the world treats as a nice extra and I treat as the mechanism. We are wired to settle in the presence of people who understand us, and connection and belonging are among the most robust protectors of mental health we know of, right up there with anything in a textbook. Add to that a gentler relationship with yourself, the ordinary, well-evidenced practice of meeting your own struggles with a little kindness instead of contempt, and you have the two ingredients that actually let a nervous system unclench enough to change. Not pressure. Safety and belonging.`,
+        text: `Connection and self-compassion are associated with wellbeing across several contexts, but neither is a guaranteed mechanism or stand-alone ADHD treatment. They may create conditions in which some people can engage more openly with skills, support and change.`,
       },
       {
-        text: `This is the whole idea behind the name of this clinic. Belonging is not decoration here, and it is not a warm word we reach for because it sounds nice. It is the active ingredient. When you are met as a whole person, in the body you are actually in, among people who understand how your brain works, your nervous system finally gets the message it has been waiting for, that it is safe now, that it can stop bracing, and that it can begin. Everything else we do, the eating, the emotion, the focus, grows out of that one thing. You do not belong once you are fixed. You are met as you are, and that is what lets the change begin.`,
+        text: `This is the idea behind the name of the clinic. Belonging is a value and a therapeutic condition we work towards, not an active ingredient or guaranteed mechanism. Being met with respect may help some people engage more openly with support. You do not have to become a more acceptable person before you deserve that respect.`,
       },
     ],
     closing:
@@ -232,22 +231,22 @@ export const LETTERS: Letter[] = [
     readingTime: "about 5 minutes",
     seoTitle: "The late brain at midnight: ADHD, sleep and the racing mind | Body Belonging Clinic",
     seoDescription:
-      "If your mind switches on the moment your head hits the pillow, it is not a discipline problem. A gentle look at ADHD, the late body clock, and what actually helps.",
+      "If your mind switches on at bedtime, it may not be a discipline problem. A gentle look at ADHD, delayed sleep timing and when to seek individual advice.",
     body: [
       {
         text: `Here is a night you might know. All day you were foggy and flat, and then somewhere around eleven the world goes still and your mind switches on, bright and busy and full of plans, and you are suddenly more awake than you have been in hours. You know you will pay for it tomorrow, and still the hours slip by, and it feels like a failure of willpower. I want to gently offer a different reading, because a good deal of this is not about willpower at all, it is about timing.`,
       },
       {
-        text: `Research on adults with ADHD keeps finding the same thing, that our body clocks tend to run late. The natural evening rise in melatonin, the hormone that tells the body it is time to wind down, often comes later for us, which is why sleep arrives late and mornings feel like being dragged out of the wrong time zone. Clinicians who study this, like Sandra Kooij and her colleagues, describe a strong overlap between ADHD and a delayed sleep phase, a body clock simply set later than the world expects. So when you cannot fall asleep at a "sensible" hour, it is often because your body genuinely does not believe it is time yet.`,
+        text: `Sleep difficulties and later circadian timing are more common in ADHD, but not every late night has the same cause. Medication timing, light exposure, work patterns, anxiety, mood, substance use, sleep disorders and other health factors can matter. A delayed sleep-wake phase is one possibility for a qualified clinician to assess, not something this letter can diagnose.`,
       },
       {
         text: `Layered on top of the late clock is the racing mind, and that part is lived experience as much as biology, the way a quiet, undemanding bedroom is finally free of the day's interruptions, so every idea and worry you were too busy to feel all day arrives at once. It is not a coincidence that the mind gets loud exactly when the room gets quiet. For a brain that runs on interest and stimulation, the still moment before sleep can be the first time all day there is nothing to hold the attention, so it turns inward and spins.`,
       },
       {
-        text: `None of this means you are doomed to bad sleep, and it also does not mean the answer is to try harder to switch off, which rarely works. Gentler things tend to help more. A steady wake-up time, held even on weekends, does more to anchor a drifting body clock than a strict bedtime ever will. Real daylight soon after you wake helps nudge the clock earlier over time. A wind-down that gives the busy mind somewhere to put itself, writing tomorrow's worries and plans down so your brain can stop rehearsing them, can take the edge off the spinning. And if sleep is a serious, ongoing struggle, it is worth a proper conversation with a doctor, because there are real approaches, including carefully timed light and sometimes melatonin used under guidance, that work with a late clock rather than against it.`,
+        text: `A consistent routine, morning light and a wind-down may help some people, but timing-based interventions are not one-size-fits-all. If sleep is persistent, severe or affecting safety and functioning, speak with a GP or sleep professional. Melatonin, bright-light treatment and medication timing should be discussed with an appropriate clinician rather than self-prescribed from a general article.`,
       },
       {
-        text: `Mostly, though, I want to take the moral weight off it. You are not lazy for being wired at midnight, and you are not weak for finding mornings brutal. Your clock runs late, your mind gets loud in the quiet, and both of those make complete sense in a brain like ours. Working with that, kindly and a little at a time, tends to go so much further than fighting it.`,
+        text: `Mostly, I want to take the moral weight off it. Sleep timing and insomnia are health and context questions, not proof of laziness. Understanding the pattern carefully is more useful than blaming yourself.`,
       },
     ],
     closing:
@@ -263,16 +262,16 @@ export const LETTERS: Letter[] = [
     seoTitle:
       "Working with your brain, not against it: ADHD strategies that actually fit | Body Belonging Clinic",
     seoDescription:
-      "Most ADHD advice is really advice for a different brain. A gentle set of strategies that work with an interest-based nervous system, not against it, and without the shame.",
+      "Some common productivity advice does not fit every ADHD brain. A gentle set of experiments using interest, cues, environment and support without turning shorthand into biology.",
     body: [
       {
-        text: `Most advice about getting organised is, quietly, advice for a different kind of brain, one that responds to willpower, routine and the promise of a tidy future. A brain like ours runs on something else, on interest, novelty, urgency and meaning, and when you force it onto a system built for discipline, it works for a brilliant week and then falls apart, and you are left, once again, feeling like the failure. You are not. The system was wrong for your wiring. So here are a handful that tend to fit better, offered gently, to try rather than to obey.`,
+        text: `Common organisation advice does not fit everyone. Many people with ADHD describe attention as easier to access with interest, novelty, urgency or meaning, but no single motivational profile explains every person. The ideas below are experiments to test rather than rules to obey.`,
       },
       {
         text: `The first is to get things out of your head. One of the most useful ideas in the whole field, from the psychologist Russell Barkley, is that a brain like ours struggles to hold and juggle information internally, so the trick is to move it outside, into the world, where you can see it. A visible list, a whiteboard by the door, an alarm that is really a message from your past self, a single note stuck where you cannot miss it. Not because you are incapable, but because your working memory is genuinely stretched, and a brain that cannot easily hold the next step in mind does far better when the next step is sitting there in plain sight.`,
       },
       {
-        text: `The second is to make the dull thing interesting, or urgent, or shared, on purpose. Since attention follows interest more than importance, you can borrow interest from somewhere else. Music, a timer that turns a boring task into a race against the clock, or doing the thing alongside another person, what many people call body doubling, where simply having someone there, in the room or on a video call, makes the impossible task suddenly possible. This is not a crutch or a trick, it is using how your nervous system actually works, letting connection and novelty carry you where willpower would not.`,
+        text: `The second is to test whether interest, urgency or company changes the task. Music, a timer or doing the task alongside another person—often called body doubling—may help some people and distract others. Treat the result as personal data, not proof of how every ADHD nervous system works.`,
       },
       {
         text: `The third is to shrink the decisions. A great deal of what looks like avoidance is really a brain overwhelmed by too many open choices, so anything that reduces the deciding helps. Lay tomorrow's clothes out tonight. Keep the same easy breakfast so the morning holds one less decision. Break a task down not into "reasonable" steps but into embarrassingly small ones, the first of which is almost too easy to refuse. And where you can, tie a new habit onto something you already do, so it rides an existing groove rather than needing willpower of its own.`,
@@ -333,7 +332,7 @@ export const LETTERS: Letter[] = [
         text: `The reason AuDHD can be so confusing, both to live and to be understood, is that the two often pull in genuinely opposite directions. The ADHD in you tends to run towards novelty, stimulation and spontaneity, the new and the interesting, while the autistic part of you tends to long for routine, predictability and the deep comfort of the familiar. So you can be the person who impulsively books the trip and the person undone when the plan changes, the one who craves intensity and the one who needs the world quiet and known. That is not you being inconsistent or difficult. It is two real neurotypes sharing one nervous system, each asking for something the other resists.`,
       },
       {
-        text: `It often shows up in the body too, and this part is close to my heart. Autistic and ADHD brains both tend to read the body's internal signals differently, so hunger, fullness, thirst and the first edges of an emotion can arrive faint, or late, or all at once, which is part of why eating and self-regulation can be such tender ground for AuDHD people. Add sensory sensitivity, to textures, smells, the feel of particular foods, and something as ordinary as a meal can carry a complexity nobody else can see. None of that is fussiness or weak willpower. It is a differently wired system doing its honest best, and it deserves support that is gentle and safe around food, never corrective.`,
+        text: `Body cues and sensory experiences may also matter. Some autistic and ADHD people report hunger, fullness, thirst or arousal cues as faint, late or intense; evidence and individual patterns vary. Texture, smell, predictability, access, medication and executive demands can all add complexity to eating. That complexity deserves curious, non-restrictive support rather than judgement.`,
       },
       {
         text: `There is also the particular exhaustion of masking two things at once, of managing the ADHD parts the world finds too much and the autistic parts it finds too odd, often without realising that is what you are doing, until you are simply depleted and cannot understand why everything costs you so much more than it seems to cost anyone else. Naming the AuDHD picture does not add another problem to the pile. It usually does the opposite. It explains the cost, and it lets you stop demanding that you be only one kind of person running on only one set of rules.`,

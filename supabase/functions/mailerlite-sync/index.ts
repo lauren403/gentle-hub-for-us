@@ -15,8 +15,15 @@ const corsHeaders = {
 interface Payload {
   email?: string;
   source?: string;
+  consent_version?: string;
+  consented_at?: string;
   // Supabase database webhook shape (if user wires it via the dashboard UI):
-  record?: { email?: string; source?: string };
+  record?: {
+    email?: string;
+    source?: string;
+    consent_version?: string;
+    consented_at?: string;
+  };
   type?: string;
 }
 
@@ -169,10 +176,24 @@ Deno.serve(async (req) => {
 
     const email = (payload.email ?? payload.record?.email ?? "").trim().toLowerCase();
     const source = (payload.source ?? payload.record?.source ?? "unknown").trim();
+    const consentVersion = (
+      payload.consent_version ??
+      payload.record?.consent_version ??
+      ""
+    ).trim();
+    const consentedAt = (payload.consented_at ?? payload.record?.consented_at ?? "").trim();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       console.warn("mailerlite-sync: no valid email in payload", payload);
       return new Response(JSON.stringify({ ok: true, skipped: "no_email" }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (!["hub-updates-v1", "anchor-updates-v1"].includes(consentVersion) || !consentedAt) {
+      console.warn("mailerlite-sync: consent evidence missing or invalid");
+      return new Response(JSON.stringify({ ok: true, skipped: "no_consent" }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });

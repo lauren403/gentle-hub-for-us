@@ -2,10 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { HALAXY_URL, SITE_URL, WHITEPAPER_PDF } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { SiteHeader, SiteFooter, Logo } from "@/components/site-chrome";
+import { ContentGovernance } from "@/components/content-governance";
 
-const TITLE = "Our Approach — The Body Belonging Model | Body Belonging Clinic";
+const TITLE = "Our approach — Body Belonging practice framework | Body Belonging Clinic";
 const DESCRIPTION =
-  "The Body Belonging Model: ADHD regulation from the inside out. Safety, notice, regulate, belong — a warm, evidence-honest, neuro-affirming framework from Body Belonging Clinic.";
+  "The Body Belonging practice framework: Safety, Notice, Regulate, Belong. A transparent therapeutic lens, not a validated stand-alone ADHD treatment.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/approach`;
 
 export const Route = createFileRoute("/approach")({
@@ -74,20 +75,19 @@ function ApproachPage() {
               Our Approach
             </p>
             <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
-              The Body Belonging Model
+              The Body Belonging practice framework
             </h1>
             <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
               ADHD regulation from the inside out.
             </p>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--oat)]/85">
-              Most ADHD support stops at the diagnosis and the script. We start where they leave off
-              — with a simple idea: attention, emotion and eating aren't three separate problems.
-              They're three parts of one system — your body, and how safely it can sense and steady
-              itself. So we work from the inside out.
+              Attention, emotion and eating can influence one another. We work across that overlap
+              while also considering sleep, sensory needs, medication effects, executive function,
+              mental health, environment and other possible contributors.
             </p>
             <p className="mt-8 font-display text-xl italic leading-snug text-[var(--terracotta)] md:text-2xl">
-              Rigorous international science on the body, the brain and food — brought into the room
-              without the diet talk.
+              Guideline-aligned care, research translation and eating-disorder-informed practice
+              without supplement hype or restrictive rules.
             </p>
           </div>
         </section>
@@ -102,22 +102,21 @@ function ApproachPage() {
                 The foundation
               </p>
               <h2 className="font-display text-3xl leading-tight md:text-5xl">
-                One system, not three problems.
+                Connected experiences, not a single cause.
               </h2>
               <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
                 <p>
-                  ADHD is a difference in self-regulation — of attention, yes, but also emotion,
-                  motivation and the body's own signals. There's a sense, called <em>interoception</em>,
-                  for reading your internal state: hunger, tension, the first flicker of overwhelm. In
-                  ADHD that sense often runs quiet — which is why feelings can arrive all at once,
-                  hunger arrives late, and overwhelm arrives without warning. Working gently at the
-                  level of the body — never forcefully — is how we help all three settle.
+                  <em>Interoception</em> describes perception of internal body signals such as
+                  hunger, tension and arousal. It may be one contributor for some people, alongside
+                  executive function, time awareness, sensory preferences, reward, sleep, medication
+                  and mental health. Gentle body-awareness work is optional and consent-based; it is
+                  not assumed to explain every difficulty.
                 </p>
               </div>
               <p className="mt-8 rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-5 text-sm leading-relaxed text-[var(--plum)]/60">
-                This is how we read the research, and we're honest about it: the science is strongest
-                for the link between the body, emotion and eating, and still emerging for ADHD. We hold
-                it as a helpful lens — not a cure.
+                Evidence linking interoception and ADHD is still developing and findings vary by the
+                measure used. We hold it as one possible clinical lens—not a cause, cure or complete
+                account of ADHD.
               </p>
             </div>
             <figure>
@@ -144,7 +143,7 @@ function ApproachPage() {
               {[
                 {
                   t: "Attention",
-                  d: "An interest-based brain that runs on curiosity, not \u201Cshould\u201D.",
+                  d: "Attention that may be influenced by interest, urgency, novelty and context.",
                 },
                 {
                   t: "Emotion",
@@ -169,8 +168,8 @@ function ApproachPage() {
               ))}
             </div>
             <p className="mt-8 text-sm italic text-[var(--plum)]/60">
-              One system, four dials — which is why your ADHD, your emotions and your relationship
-              with food are not three coincidences.
+              These domains can interact. The “four dials” are a clinical organising tool, not a
+              validated biological model.
             </p>
           </Section>
         </section>
@@ -184,8 +183,9 @@ function ApproachPage() {
                 n: "1",
                 label: "SAFETY",
                 t: "First, safety.",
-                body: "You can't steady a nervous system that doesn't feel safe. We begin with feeling safe, seen and unshamed — culturally safe and identity-affirming — before any strategy.",
-                evidence: "safety before strategy is the backbone of trauma-informed care.",
+                body: "We begin by asking what supports safety, consent and identity for this person before selecting strategies.",
+                evidence:
+                  "trauma-informed principles and collaborative practice; cultural safety is determined by the person receiving the service.",
               },
               {
                 n: "2",
@@ -199,7 +199,7 @@ function ApproachPage() {
                 n: "3",
                 label: "REGULATE",
                 t: "Then, real skills.",
-                body: "The things a prescription can't teach: working with your emotions and attention, and a gentle eating rhythm that suits an ADHD brain. Adding, never restricting.",
+                body: "Skills for emotion, attention and routines can complement medical treatment. Eating support remains additive and non-restrictive, with dietetic or medical referral when needed.",
                 evidence:
                   "regular eating from CBT-E, and the self-regulation model of ADHD (Russell Barkley).",
               },
@@ -207,9 +207,9 @@ function ApproachPage() {
                 n: "4",
                 label: "BELONG",
                 t: "Held by belonging.",
-                body: "Change lasts when it's held by belonging: self-compassion instead of shame, connection, and care that honours who you are. It's the part most support forgets.",
+                body: "Self-compassion, connection and identity can support wellbeing. Their role and relevance differ for each person.",
                 evidence:
-                  "connection and self-compassion are among the best-evidenced protectors of mental health.",
+                  "self-compassion and social connection are supported across several mental-health contexts; ADHD-specific application is less established.",
               },
             ].map((m) => (
               <article
@@ -243,12 +243,21 @@ function ApproachPage() {
               Evidence-honest by design.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-[var(--oat)]/85">
-              The Body Belonging Model is our own synthesis — but every movement in it stands on
-              established ground: eating-disorder practice, decades of self-regulation research, and
-              the science of connection and self-compassion. We lead with what the research
-              supports, we say plainly where it's still emerging, and we won't sell you a cure. That
-              honesty isn't a disclaimer — it's how you know the rest is real.
+              The framework is Lauren&apos;s synthesis of established practices, emerging research
+              and clinical lenses. It has not been independently validated as a treatment model. We
+              identify uncertainty, keep scope visible and refer when medical, dietetic or other
+              expertise is required.
             </p>
+            <div className="mt-10">
+              <ContentGovernance
+                labels={[
+                  "Australian guideline",
+                  "Systematic review",
+                  "Emerging research",
+                  "Clinical practice lens",
+                ]}
+              />
+            </div>
           </Section>
         </section>
 
@@ -258,8 +267,8 @@ function ApproachPage() {
             Support built for how your brain actually works.
           </h2>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--plum)]/85">
-            This isn't care that ends when the hour does. The Model gives the work its shape, and
-            the Anchor app and the Letters keep it with you between sessions.
+            The framework can give therapy a shared structure. Anchor and the Letters are optional
+            general resources between sessions; they are not clinical monitoring or crisis support.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
@@ -275,11 +284,11 @@ function ApproachPage() {
               href={WHITEPAPER_PDF}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open the Body Belonging Model white paper PDF in a new tab"
+              aria-label="Open the Body Belonging practice framework working paper PDF in a new tab"
               onClick={() => trackEvent("whitepaper_click", { location: "approach_cta" })}
               className="text-sm underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
             >
-              Read the full framework →
+              Read the working paper (PDF) →
             </a>
           </div>
           <p className="mt-6 text-sm text-[var(--plum)]/60">

@@ -9,11 +9,8 @@ export const SITE_URL = "https://adhd.bodybelongingclinic.com.au";
 // Replace this with your real Measurement ID to enable GA4.
 export const GA_MEASUREMENT_ID: string = "G-EKE17QFG2S";
 
-// Anchor app URL. While it equals "#", the "Get the free app"
-// button shows a "Coming soon" message and focuses the email
-// signup instead of navigating. Set to the real store/download
-// URL when Anchor launches.
-export const ANCHOR_URL = "#";
+// Single public destination for the current Anchor web tool.
+export const ANCHOR_URL: string = "https://anchor.bodybelongingclinic.com.au";
 
 export const HALAXY_URL = "https://www.halaxy.com/profile/ms-lauren-lynch/social-worker/1772313";
 
