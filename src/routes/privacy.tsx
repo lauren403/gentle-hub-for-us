@@ -140,8 +140,9 @@ function PrivacyPage() {
             ))}
           </ul>
           <p>
-            Some providers are headquartered or use support, backup or processing locations outside
-            Australia. Likely overseas handling may include the United States and other locations
+            Our website email-list database (Supabase) currently stores information in Singapore.
+            More broadly, some providers are headquartered or use support, backup or processing
+            locations outside Australia. Likely overseas handling may include the United States and other locations
             listed in the providers&apos; current privacy and infrastructure documentation. Hosting
             regions and subprocessors can change, so we review this provider register and will
             update this policy when a material data flow changes.
@@ -194,8 +195,10 @@ function PrivacyPage() {
             Clinical and financial records are retained for the periods required by law,
             professional obligations, Medicare or funding arrangements. Email-list information is
             retained while you remain subscribed or while reasonably required to evidence consent
-            and honour suppression requests. Information no longer required is securely destroyed or
-            de-identified where lawful.
+            and honour suppression requests. When you unsubscribe, we delete your email-list contact
+            details within 12 months, other than a minimal suppression record we keep to honour your
+            unsubscribe. Information no longer required is securely destroyed or de-identified where
+            lawful.
           </p>
 
           <h2>Access and correction</h2>

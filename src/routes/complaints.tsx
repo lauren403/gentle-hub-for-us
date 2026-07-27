@@ -56,6 +56,10 @@ function ComplaintsPage() {
               of Conduct for certain health care workers. The Code includes requirements about safe
               and ethical services, consent, privacy, records, insurance and complaint information.
             </p>
+            <p className="mt-4 leading-relaxed text-[var(--plum)]/80">
+              In line with those requirements, Body Belonging Clinic holds professional indemnity
+              insurance.
+            </p>
             <a
               href="https://www.hadsco.wa.gov.au/~/media/HaDSCO/Publications/Code-of-Conduct/A4-Code-of-Conduct-Poster---Easy-English-2023.pdf"
               target="_blank"
