@@ -10,6 +10,20 @@ export type Letter = {
   closing: string;
 };
 
+// Shared image set for the Letters index cards and article heroes.
+// Keyed by letter order so a letter's card image matches its article hero.
+export const LETTER_IMAGES = [
+  "/small-steps.jpg",
+  "/reading-nook.jpg",
+  "/jug-books.jpg",
+  "/flowers-window.jpg",
+  "/artist-desk.jpg",
+  "/lamp-shadow.jpg",
+  "/warm-hallway.jpg",
+  "/terracotta-wall.jpg",
+  "/sofa-read.jpg",
+];
+
 export const LETTERS: Letter[] = [
   {
     slug: "why-a-brain-like-ours-forgets-to-eat",

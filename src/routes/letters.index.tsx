@@ -1,20 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SITE_URL } from "@/config/site";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
-import { LETTERS } from "@/content/letters";
+import { LETTERS, LETTER_IMAGES } from "@/content/letters";
 
 const TITLE = "Letters | Body Belonging Clinic";
 const DESCRIPTION =
   "Unhurried, evidence-honest letters on ADHD, the body, food and belonging. Written to be read slowly.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/letters`;
-const CARD_IMGS = [
-  "/small-steps.jpg",
-  "/reading-nook.jpg",
-  "/jug-books.jpg",
-  "/flowers-window.jpg",
-  "/artist-desk.jpg",
-  "/lamp-shadow.jpg",
-];
 
 export const Route = createFileRoute("/letters/")({
   head: () => ({
@@ -85,7 +77,7 @@ function LettersIndex() {
               >
                 <div className="aspect-[16/10] overflow-hidden">
                   <img
-                    src={CARD_IMGS[i % CARD_IMGS.length]}
+                    src={LETTER_IMAGES[i % LETTER_IMAGES.length]}
                     alt=""
                     loading="lazy"
                     decoding="async"
