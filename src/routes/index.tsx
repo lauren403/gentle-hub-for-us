@@ -830,6 +830,14 @@ function AdhdHub() {
                 Medicare rebates <strong>may apply</strong> to sessions with an Accredited Mental
                 Health Social Worker. Your GP is the right person to confirm eligibility.
               </p>
+              <p>
+                Our standard 50-minute session is <strong>$200</strong>. With a valid plan, the
+                current Medicare rebate is <strong>$89.50</strong> per session, so your out-of-pocket
+                is about <strong>$110.50</strong>. Telehealth sessions attract the same rebate.
+                Rebates are indexed by Medicare each July, and the exact amount is confirmed at
+                booking. A Mental Health Treatment Plan covers up to 10 rebated sessions per calendar
+                year; an Eating Disorder Plan up to 40 over 12 months.
+              </p>
               <div className="rounded-2xl border border-[var(--oat)]/15 bg-[var(--oat)]/5 p-6">
                 <p className="text-sm uppercase tracking-widest text-[var(--terracotta)]">
                   Your clinician
