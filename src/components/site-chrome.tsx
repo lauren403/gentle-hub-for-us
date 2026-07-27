@@ -19,7 +19,6 @@ type PrimaryNavItem = { label: string; to: string; hash?: string };
 const PRIMARY_NAV: PrimaryNavItem[] = [
   { label: "Start here", to: "/start-here" },
   { label: "Care map", to: "/australian-adhd-care" },
-  { label: "Food & the brain", to: "/food-and-the-adhd-brain" },
   { label: "Approach", to: "/approach" },
   { label: "Letters", to: "/letters" },
   { label: "Anchor", to: "/anchor" },
