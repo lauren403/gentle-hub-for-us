@@ -1,22 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { HALAXY_URL, HERO_IMAGE, SITE_URL } from "@/config/site";
+import { HALAXY_URL, SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { SiteHeader, SiteFooter, Logo } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
-  head: () => ({
-    links: [{ rel: "canonical", href: SITE_URL }],
-  }),
+  head: () => ({ links: [{ rel: "canonical", href: SITE_URL }] }),
 });
 
 const BOOK_URL = HALAXY_URL;
-const SESSION_IMAGE = "/approach-session.jpg"; // Lauren, warm in-session portrait
-const SPACE_IMAGE = "/approach-feature.jpg"; // studio detail — crops safely to landscape
-
-const SCRIM =
-  "linear-gradient(to top, rgba(46,26,34,0.9) 0%, rgba(46,26,34,0.5) 45%, rgba(46,26,34,0.15) 100%)";
+const HERO_IMG = "/lauren-phone.jpg"; // Lauren, retro phone, studio — warm & fun
+const SESSION_IMG = "/approach-session.jpg"; // Lauren, in-session
+const COMMUNITY_IMG = "/community.jpg"; // diverse, joyful — belonging
+const LETSTALK_IMG = "/lets-talk.jpg"; // "Ring ring, let's talk" brand tile
 
 const BookButton = ({
   children = "Book a free intro call",
@@ -41,7 +38,6 @@ const BookButton = ({
   </a>
 );
 
-/** Portrait-safe image with an on-brand fallback. */
 function StudioImage({ src, alt, aspect = "aspect-[4/5]", className = "" }: { src: string; alt: string; aspect?: string; className?: string }) {
   const [failed, setFailed] = useState(false);
   return (
@@ -54,20 +50,6 @@ function StudioImage({ src, alt, aspect = "aspect-[4/5]", className = "" }: { sr
         <img src={src} alt={alt} onError={() => setFailed(true)} className="h-full w-full object-cover" loading="lazy" decoding="async" />
       )}
     </div>
-  );
-}
-
-/** Full-bleed landscape band (used with face-free detail shots that crop safely). */
-function ImageBand({ src, children, minH = "min-h-[70vh]" }: { src: string; children: React.ReactNode; minH?: string }) {
-  const [failed, setFailed] = useState(false);
-  return (
-    <section className={"relative w-full overflow-hidden bg-[var(--plum)] " + minH}>
-      {!failed && (
-        <img src={src} alt="" onError={() => setFailed(true)} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
-      )}
-      <div className="absolute inset-0" style={{ background: SCRIM }} />
-      <div className={"relative mx-auto flex max-w-6xl flex-col justify-end px-5 pb-16 pt-28 md:pb-24 " + minH}>{children}</div>
-    </section>
   );
 }
 
@@ -100,13 +82,11 @@ function AdhdHub() {
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <SiteHeader location="home" />
       <main id="main-content" tabIndex={-1}>
-        {/* 1 · HERO — two-column: big type + Lauren's portrait (shown whole) */}
+        {/* 1 · HERO */}
         <section className="bg-[var(--plum)] text-[var(--oat)]">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24 lg:gap-16">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">
-                ADHD · Eating · Belonging
-              </p>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">ADHD · Eating · Belonging</p>
               <h1 className="mt-6 max-w-[13ch] font-display text-[3rem] leading-[1.02] text-[var(--oat)] md:text-[5rem]">
                 Care for the whole of you.
               </h1>
@@ -120,15 +100,13 @@ function AdhdHub() {
                 </Link>
               </div>
             </div>
-            <StudioImage src={HERO_IMAGE} alt="Lauren Lynch in the Body Belonging Clinic studio" aspect="aspect-[4/5]" className="mx-auto w-full max-w-md md:max-w-none" />
+            <StudioImage src={HERO_IMG} alt="Lauren Lynch at Body Belonging Clinic" aspect="aspect-square" className="mx-auto w-full max-w-md md:max-w-none" />
           </div>
         </section>
 
-        {/* 2 · ONE STATEMENT — big, centred, almost no words */}
+        {/* 2 · ONE STATEMENT */}
         <section className="mx-auto max-w-3xl px-5 py-28 text-center md:py-36">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">
-            You might recognise this
-          </p>
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">You might recognise this</p>
           <h2 className="font-display text-[2.25rem] leading-[1.1] text-[var(--plum)] md:text-6xl">
             You were told it&apos;s just focus.
             <br />
@@ -139,10 +117,10 @@ function AdhdHub() {
           </p>
         </section>
 
-        {/* 3 · HOW WE WORK — Lauren's in-session portrait + one line */}
+        {/* 3 · HOW WE WORK */}
         <section className="bg-[var(--cream)]">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-24 md:grid-cols-2 md:py-32 lg:gap-20">
-            <StudioImage src={SESSION_IMAGE} alt="A warm therapy session at Body Belonging Clinic" aspect="aspect-[4/5]" />
+            <StudioImage src={SESSION_IMG} alt="A warm therapy session at Body Belonging Clinic" />
             <div>
               <p className="text-xs font-medium uppercase tracking-[0.24em] text-[var(--terracotta)]">How we work</p>
               <h2 className="mt-5 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
@@ -158,30 +136,54 @@ function AdhdHub() {
           </div>
         </section>
 
-        {/* 4 · WHERE TO BEGIN — four cards */}
-        <section className="mx-auto max-w-6xl px-5 pt-24 pb-10 text-center md:pt-32">
+        {/* 4 · BELONGING */}
+        <section className="mx-auto max-w-6xl px-5 py-24 md:py-32">
+          <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-20">
+            <div className="order-2 md:order-1">
+              <p className="text-xs font-medium uppercase tracking-[0.24em] text-[var(--terracotta)]">Belonging</p>
+              <h2 className="mt-5 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
+                A practice where you already belong.
+              </h2>
+              <p className="mt-6 max-w-[36ch] text-lg text-[var(--plum)]/75">
+                Aboriginal-led. LGBTQIA+ affirming. Neurodivergent by design.
+              </p>
+              <Link to="/our-story" className="mt-8 inline-flex text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">
+                Our story →
+              </Link>
+            </div>
+            <StudioImage src={COMMUNITY_IMG} alt="A joyful, diverse community" className="order-1 md:order-2" />
+          </div>
+        </section>
+
+        {/* 5 · WHERE TO BEGIN */}
+        <section className="mx-auto max-w-6xl px-5 pb-10 text-center">
           <p className="mb-5 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">Where to begin</p>
           <h2 className="font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">Find your next step.</h2>
         </section>
         <PathwayCards />
 
-        {/* 5 · CLOSING — immersive full-bleed studio detail + one CTA */}
-        <ImageBand src={SPACE_IMAGE} minH="min-h-[70vh]">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--oat)]/80">Getting started</p>
-          <h2 className="mt-5 max-w-[16ch] font-display text-[2.5rem] leading-[1.05] text-[var(--oat)] md:text-6xl">
-            Start with a free 15-minute call.
-          </h2>
-          <p className="mt-6 max-w-[34ch] text-lg text-[var(--oat)]/85">
-            No pressure — just a chance to see if we&apos;re the right fit.
-          </p>
-          <div className="mt-9">
-            <BookButton location="closing" />
+        {/* 6 · LET'S TALK — closing */}
+        <section className="bg-[var(--plum)] text-[var(--oat)]">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2 md:py-24 lg:gap-16">
+            <StudioImage src={LETSTALK_IMG} alt="Ring ring — let's talk" className="mx-auto w-full max-w-sm md:max-w-none" />
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">Getting started</p>
+              <h2 className="mt-5 max-w-[14ch] font-display text-[2.5rem] leading-[1.05] text-[var(--oat)] md:text-6xl">
+                Start with a free 15-minute call.
+              </h2>
+              <p className="mt-6 max-w-[34ch] text-lg text-[var(--oat)]/85">
+                No pressure — just a chance to see if we&apos;re the right fit.
+              </p>
+              <div className="mt-9">
+                <BookButton location="closing" />
+              </div>
+              <p className="mt-6 max-w-[48ch] text-sm text-[var(--oat)]/60">
+                $200 per 50-minute session · about $110.50 out-of-pocket after the Medicare rebate with an
+                eligible GP plan. Rebates indexed each July; confirmed at booking.
+              </p>
+            </div>
           </div>
-          <p className="mt-6 max-w-[52ch] text-sm text-[var(--oat)]/60">
-            $200 per 50-minute session · about $110.50 out-of-pocket after the Medicare rebate with an
-            eligible GP plan. Rebates indexed each July; confirmed at booking.
-          </p>
-        </ImageBand>
+        </section>
       </main>
       <SiteFooter />
     </div>
