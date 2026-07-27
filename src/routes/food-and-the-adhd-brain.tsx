@@ -84,8 +84,8 @@ function FoodAndTheAdhdBrainPage() {
               <figure className="md:justify-self-end">
                 <div className="overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
                   <img
-                    src="/food-brain-mug.jpg"
-                    alt="Hands cradling a warm mug in a softly lit room"
+                    src="/coffee-terrazzo.jpg"
+                    alt="A warm cup on a sunlit table"
                     loading="eager"
                     decoding="async"
                     className="aspect-[4/5] h-full w-full object-cover"
@@ -181,6 +181,15 @@ function FoodAndTheAdhdBrainPage() {
             </Link>{" "}
             is being built to help you find it.
           </P>
+
+          <figure className="my-16">
+            <div className="overflow-hidden rounded-3xl border border-[var(--plum)]/10 shadow-sm">
+              <img src="/cafe-outdoor.jpg" alt="" loading="lazy" decoding="async" className="aspect-[16/10] h-full w-full object-cover" />
+            </div>
+            <figcaption className="mt-5 text-center font-display text-xl italic leading-snug text-[var(--plum)]/70 md:text-2xl">
+              Steady beats special.
+            </figcaption>
+          </figure>
 
           <H2>The myths worth putting down</H2>
           <P>

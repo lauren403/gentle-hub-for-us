@@ -72,25 +72,30 @@ function AssessmentPreparationPage() {
       <SiteHeader location="assessment_preparation" />
       <main id="main-content" tabIndex={-1}>
         <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto max-w-4xl px-5 py-20 md:py-28">
-            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-              Free assessment preparation guide
-            </p>
-            <h1 className="mt-5 font-display text-4xl leading-tight md:text-6xl">
-              You do not have to prove you are “ADHD enough”.
-            </h1>
-            <p className="mt-6 max-w-[64ch] text-lg leading-relaxed text-[var(--oat)]/85">
-              An assessment is meant to understand the pattern of your life—not reward the person
-              who arrives with the neatest folder. This guide helps you collect what matters without
-              turning your story into a performance.
-            </p>
-            <button
-              type="button"
-              onClick={printGuide}
-              className="mt-8 inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 print:hidden"
-            >
-              Print or save this guide
-            </button>
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24 lg:gap-16">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">
+                Free assessment preparation guide
+              </p>
+              <h1 className="mt-6 font-display text-4xl leading-tight md:text-6xl">
+                You don&apos;t have to prove you&apos;re &ldquo;ADHD enough&rdquo;.
+              </h1>
+              <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-[var(--oat)]/85">
+                An assessment is meant to understand the pattern of your life — not reward whoever
+                arrives with the neatest folder. This helps you gather what matters, without turning
+                your story into a performance.
+              </p>
+              <button
+                type="button"
+                onClick={printGuide}
+                className="mt-8 inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 print:hidden"
+              >
+                Print or save this guide
+              </button>
+            </div>
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
+              <img src="/workspace.jpg" alt="A calm space to gather your notes" className="h-full w-full object-cover" loading="eager" decoding="async" />
+            </div>
           </div>
         </section>
 
@@ -143,6 +148,17 @@ function AssessmentPreparationPage() {
               having a reliable childhood witness should be discussed—not treated as personal
               failure. Ask the assessor how they work with incomplete records before you pay.
             </p>
+          </div>
+        </section>
+
+        {/* BREATH — full-bleed */}
+        <section className="relative min-h-[56vh] w-full overflow-hidden bg-[var(--plum)]">
+          <img src="/calm-apartment.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.7) 0%, rgba(46,26,34,0.3) 55%, rgba(46,26,34,0.5) 100%)" }} />
+          <div className="relative mx-auto flex min-h-[56vh] max-w-4xl items-center justify-center px-5 text-center">
+            <h2 className="max-w-[20ch] font-display text-[2rem] leading-tight text-[var(--oat)] md:text-5xl">
+              Your real life is the evidence.
+            </h2>
           </div>
         </section>
 

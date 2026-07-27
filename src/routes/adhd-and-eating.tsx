@@ -60,24 +60,25 @@ function AdhdAndEatingPage() {
 
       <main id="main-content" tabIndex={-1}>
         {/* HERO */}
-        <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]"
-          >
-            <Logo className="size-[520px] text-[var(--oat)]" />
-          </div>
-          <div className="mx-auto max-w-3xl px-5 py-20 md:py-28">
-            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-              The guide
-            </p>
-            <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">{HEADLINE}</h1>
-            <p className="mt-8 max-w-[62ch] font-display text-xl italic leading-snug text-[var(--oat)]/90 md:text-2xl">
-              If your relationship with food has always felt harder and stranger than it seems to be
-              for other people, and no one has ever connected it to your ADHD, this guide is for
-              you. This guide is designed to reduce common eating-disorder-related risks, but it
-              cannot be safe or suitable for every person.
-            </p>
+        <section className="bg-[var(--plum)] text-[var(--oat)]">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24 lg:gap-16">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">
+                The guide
+              </p>
+              <h1 className="mt-6 font-display text-4xl leading-[1.05] md:text-6xl">{HEADLINE}</h1>
+              <p className="mt-7 max-w-[46ch] font-display text-lg italic leading-snug text-[var(--oat)]/90 md:text-xl">
+                If your relationship with food has always felt harder and stranger than it seems for
+                other people — and no one ever linked it to your ADHD — this guide is for you.
+              </p>
+              <p className="mt-4 max-w-[46ch] text-sm leading-relaxed text-[var(--oat)]/60">
+                Written to reduce common eating-disorder-related risks; it cannot be safe or suitable
+                for every person.
+              </p>
+            </div>
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
+              <img src="/food-feature.jpg" alt="Gentle, weight-neutral nourishment" className="h-full w-full object-cover" loading="eager" decoding="async" />
+            </div>
           </div>
         </section>
 
@@ -180,6 +181,15 @@ function AdhdAndEatingPage() {
             restrictive. The goal is always to include, to steady and to nourish, never to shrink,
             earn or control.
           </P>
+
+          <figure className="my-16">
+            <div className="overflow-hidden rounded-3xl border border-[var(--plum)]/10 shadow-sm">
+              <img src="/poppies-hand.jpg" alt="" loading="lazy" decoding="async" className="aspect-[16/10] h-full w-full object-cover" />
+            </div>
+            <figcaption className="mt-5 text-center font-display text-xl italic leading-snug text-[var(--plum)]/70 md:text-2xl">
+              Include, steady, nourish — never shrink, earn or control.
+            </figcaption>
+          </figure>
 
           <H2>What actually helps, gently</H2>
           <P>
