@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { HALAXY_URL, HERO_IMAGE, BELONGING_IMAGE, SITE_URL } from "@/config/site";
+import { HALAXY_URL, HERO_IMAGE, SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { SiteHeader, SiteFooter, Logo } from "@/components/site-chrome";
 
@@ -12,10 +12,11 @@ export const Route = createFileRoute("/")({
 });
 
 const BOOK_URL = HALAXY_URL;
-const CLOSING_IMAGE = "/portrait-soft.jpg";
+const SESSION_IMAGE = "/approach-session.jpg"; // Lauren, warm in-session portrait
+const SPACE_IMAGE = "/approach-feature.jpg"; // studio detail — crops safely to landscape
 
 const SCRIM =
-  "linear-gradient(to top, rgba(46,26,34,0.88) 0%, rgba(46,26,34,0.45) 42%, rgba(46,26,34,0.12) 100%)";
+  "linear-gradient(to top, rgba(46,26,34,0.9) 0%, rgba(46,26,34,0.5) 45%, rgba(46,26,34,0.15) 100%)";
 
 const BookButton = ({
   children = "Book a free intro call",
@@ -40,54 +41,33 @@ const BookButton = ({
   </a>
 );
 
-/** Full-bleed image band with a plum scrim so overlaid text always reads. */
-function ImageBand({
-  src,
-  children,
-  minH = "min-h-[88vh]",
-}: {
-  src: string;
-  children: React.ReactNode;
-  minH?: string;
-}) {
+/** Portrait-safe image with an on-brand fallback. */
+function StudioImage({ src, alt, aspect = "aspect-[4/5]", className = "" }: { src: string; alt: string; aspect?: string; className?: string }) {
   const [failed, setFailed] = useState(false);
   return (
-    <section className={"relative w-full overflow-hidden bg-[var(--plum)] " + minH}>
-      {!failed && (
-        <img
-          src={src}
-          alt=""
-          onError={() => setFailed(true)}
-          className="absolute inset-0 h-full w-full object-cover"
-          loading="eager"
-          decoding="async"
-        />
-      )}
-      <div className="absolute inset-0" style={{ background: SCRIM }} />
-      <div className={"relative mx-auto flex max-w-6xl flex-col justify-end px-5 pb-16 pt-32 md:pb-24 " + minH}>
-        {children}
-      </div>
-    </section>
-  );
-}
-
-function StudioImage({ src, alt, aspect = "aspect-[4/5]" }: { src: string; alt: string; aspect?: string }) {
-  const [failed, setFailed] = useState(false);
-  return (
-    <div className={"relative overflow-hidden rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] shadow-sm " + aspect}>
+    <div className={"relative overflow-hidden rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] shadow-md " + aspect + " " + className}>
       {failed || !src ? (
-        <div
-          className="grid h-full w-full place-items-center"
-          style={{ background: "linear-gradient(140deg, var(--plum) 0%, color-mix(in oklab, var(--plum) 78%, var(--terracotta)) 100%)" }}
-          role="img"
-          aria-label={alt}
-        >
+        <div className="grid h-full w-full place-items-center" style={{ background: "linear-gradient(140deg, var(--plum) 0%, color-mix(in oklab, var(--plum) 78%, var(--terracotta)) 100%)" }} role="img" aria-label={alt}>
           <Logo className="w-2/5 text-[var(--oat)] opacity-25" />
         </div>
       ) : (
         <img src={src} alt={alt} onError={() => setFailed(true)} className="h-full w-full object-cover" loading="lazy" decoding="async" />
       )}
     </div>
+  );
+}
+
+/** Full-bleed landscape band (used with face-free detail shots that crop safely). */
+function ImageBand({ src, children, minH = "min-h-[70vh]" }: { src: string; children: React.ReactNode; minH?: string }) {
+  const [failed, setFailed] = useState(false);
+  return (
+    <section className={"relative w-full overflow-hidden bg-[var(--plum)] " + minH}>
+      {!failed && (
+        <img src={src} alt="" onError={() => setFailed(true)} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+      )}
+      <div className="absolute inset-0" style={{ background: SCRIM }} />
+      <div className={"relative mx-auto flex max-w-6xl flex-col justify-end px-5 pb-16 pt-28 md:pb-24 " + minH}>{children}</div>
+    </section>
   );
 }
 
@@ -103,17 +83,11 @@ function PathwayCards() {
     <section className="mx-auto max-w-6xl px-5 pb-24 md:pb-32">
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {PATHWAYS.map((c) => (
-          <Link
-            key={c.title}
-            to={c.to}
-            className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-7 no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-md"
-          >
+          <Link key={c.title} to={c.to} className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-7 no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-md">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">{c.eyebrow}</p>
             <h3 className="mt-3 font-display text-xl leading-tight text-[var(--plum)]">{c.title}</h3>
             <p className="mt-2 flex-1 text-sm text-[var(--plum)]/70">{c.blurb}</p>
-            <span className="mt-6 text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">
-              Explore →
-            </span>
+            <span className="mt-6 text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">Explore →</span>
           </Link>
         ))}
       </div>
@@ -126,27 +100,29 @@ function AdhdHub() {
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <SiteHeader location="home" />
       <main id="main-content" tabIndex={-1}>
-        {/* 1 · HERO — full-bleed image, few words */}
-        <ImageBand src={HERO_IMAGE}>
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--oat)]/80">
-            ADHD · Eating · Belonging
-          </p>
-          <h1 className="mt-5 max-w-[15ch] font-display text-[3.25rem] leading-[1.0] text-[var(--oat)] md:text-[5.75rem]">
-            Care for the whole of you.
-          </h1>
-          <p className="mt-6 max-w-[32ch] text-lg text-[var(--oat)]/85 md:text-xl">
-            Neuro-affirming, Aboriginal-led therapy — across Australia.
-          </p>
-          <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-            <BookButton location="hero" />
-            <Link
-              to="/start-here"
-              className="text-sm font-medium text-[var(--oat)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
-            >
-              New here? Start here →
-            </Link>
+        {/* 1 · HERO — two-column: big type + Lauren's portrait (shown whole) */}
+        <section className="bg-[var(--plum)] text-[var(--oat)]">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24 lg:gap-16">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">
+                ADHD · Eating · Belonging
+              </p>
+              <h1 className="mt-6 max-w-[13ch] font-display text-[3rem] leading-[1.02] text-[var(--oat)] md:text-[5rem]">
+                Care for the whole of you.
+              </h1>
+              <p className="mt-6 max-w-[32ch] text-lg text-[var(--oat)]/85 md:text-xl">
+                Neuro-affirming, Aboriginal-led therapy — across Australia.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+                <BookButton location="hero" />
+                <Link to="/start-here" className="text-sm font-medium text-[var(--oat)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">
+                  New here? Start here →
+                </Link>
+              </div>
+            </div>
+            <StudioImage src={HERO_IMAGE} alt="Lauren Lynch in the Body Belonging Clinic studio" aspect="aspect-[4/5]" className="mx-auto w-full max-w-md md:max-w-none" />
           </div>
-        </ImageBand>
+        </section>
 
         {/* 2 · ONE STATEMENT — big, centred, almost no words */}
         <section className="mx-auto max-w-3xl px-5 py-28 text-center md:py-36">
@@ -163,24 +139,19 @@ function AdhdHub() {
           </p>
         </section>
 
-        {/* 3 · HOW WE WORK — image-led, one line of copy */}
+        {/* 3 · HOW WE WORK — Lauren's in-session portrait + one line */}
         <section className="bg-[var(--cream)]">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-24 md:grid-cols-2 md:py-32 lg:gap-20">
-            <StudioImage src={BELONGING_IMAGE} alt="A calm, unhurried therapeutic space" aspect="aspect-[4/5]" />
+            <StudioImage src={SESSION_IMAGE} alt="A warm therapy session at Body Belonging Clinic" aspect="aspect-[4/5]" />
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-[var(--terracotta)]">
-                How we work
-              </p>
+              <p className="text-xs font-medium uppercase tracking-[0.24em] text-[var(--terracotta)]">How we work</p>
               <h2 className="mt-5 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
                 We start with your nervous system — not a checklist.
               </h2>
               <p className="mt-6 max-w-[38ch] text-lg text-[var(--plum)]/75">
                 Unhurried, weight-neutral, and affirming of who you are.
               </p>
-              <Link
-                to="/approach"
-                className="mt-8 inline-flex text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
-              >
+              <Link to="/approach" className="mt-8 inline-flex text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">
                 Read our approach →
               </Link>
             </div>
@@ -189,20 +160,14 @@ function AdhdHub() {
 
         {/* 4 · WHERE TO BEGIN — four cards */}
         <section className="mx-auto max-w-6xl px-5 pt-24 pb-10 text-center md:pt-32">
-          <p className="mb-5 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">
-            Where to begin
-          </p>
-          <h2 className="font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
-            Find your next step.
-          </h2>
+          <p className="mb-5 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">Where to begin</p>
+          <h2 className="font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">Find your next step.</h2>
         </section>
         <PathwayCards />
 
-        {/* 5 · CLOSING — second immersive image, one CTA */}
-        <ImageBand src={CLOSING_IMAGE} minH="min-h-[70vh]">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--oat)]/80">
-            Getting started
-          </p>
+        {/* 5 · CLOSING — immersive full-bleed studio detail + one CTA */}
+        <ImageBand src={SPACE_IMAGE} minH="min-h-[70vh]">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--oat)]/80">Getting started</p>
           <h2 className="mt-5 max-w-[16ch] font-display text-[2.5rem] leading-[1.05] text-[var(--oat)] md:text-6xl">
             Start with a free 15-minute call.
           </h2>
