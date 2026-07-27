@@ -155,6 +155,17 @@ function AdhdHub() {
           </div>
         </section>
 
+        {/* IMMERSIVE BREATH — bold full-bleed */}
+        <section className="relative min-h-[62vh] w-full overflow-hidden bg-[var(--plum)]">
+          <img src="/bench-glow.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.7) 0%, rgba(46,26,34,0.3) 50%, rgba(46,26,34,0.55) 100%)" }} />
+          <div className="relative mx-auto flex min-h-[62vh] max-w-4xl items-center justify-center px-5 text-center">
+            <h2 className="max-w-[20ch] font-display text-[2rem] leading-tight text-[var(--oat)] md:text-5xl">
+              You don&apos;t need to have it figured out to begin.
+            </h2>
+          </div>
+        </section>
+
         {/* 5 · WHERE TO BEGIN */}
         <section className="mx-auto max-w-6xl px-5 pb-10 text-center">
           <p className="mb-5 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">Where to begin</p>
