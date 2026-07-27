@@ -136,7 +136,7 @@ export function SiteFooter() {
                 </span>
               </div>
               <p className="mt-4 text-sm leading-relaxed">
-                3A Megalong Street, Nedlands WA 6009
+                Telehealth across Australia
                 <br />
                 <a
                   className="underline decoration-[var(--terracotta)] underline-offset-4"

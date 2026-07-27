@@ -215,9 +215,6 @@ function PrivacyPage() {
             Email: <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
             <br />
             Phone: <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}>{CONTACT.phone}</a>
-            <br />
-            Post: {CONTACT.address.street}, {CONTACT.address.suburb} {CONTACT.address.state}{" "}
-            {CONTACT.address.postcode}
           </p>
           <p>
             Please describe the issue and the outcome you are seeking. We will acknowledge and

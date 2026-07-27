@@ -17,13 +17,9 @@ export const HALAXY_URL = "https://www.halaxy.com/profile/ms-lauren-lynch/social
 export const CONTACT = {
   email: "admin@bodybelongingclinic.com.au",
   phone: "+61 493 117 185",
-  address: {
-    street: "3A Megalong Street",
-    suburb: "Nedlands",
-    state: "WA",
-    postcode: "6009",
-    country: "AU",
-  },
+  // Physical street address intentionally not published (telehealth-first practice).
+  location: "Perth, WA",
+  country: "AU",
 };
 
 export const OG_IMAGE = "/og-image.jpg"; // 1200x630 placed in /public

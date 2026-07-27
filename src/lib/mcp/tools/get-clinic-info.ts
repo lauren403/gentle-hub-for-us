@@ -12,13 +12,7 @@ export default defineTool({
       name: "Body Belonging Clinic",
       tagline:
         "Neuro-affirming ADHD therapy and support — Aboriginal-led, LGBTQIA+ affirming, eating-disorder-informed.",
-      address: {
-        street: "3A Megalong Street",
-        suburb: "Nedlands",
-        state: "WA",
-        postcode: "6009",
-        country: "Australia",
-      },
+      location: "Perth, WA",
       email: "admin@bodybelongingclinic.com.au",
       telehealth: "Available Australia-wide",
       website: "https://adhd.bodybelongingclinic.com.au",

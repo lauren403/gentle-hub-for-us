@@ -200,7 +200,7 @@ story = [
     ),
     Spacer(1, 7 * mm),
     p(
-        "Body Belonging Clinic, Nedlands WA - telehealth Australia-wide<br/>"
+        "Body Belonging Clinic, Perth WA - telehealth Australia-wide<br/>"
         "adhd.bodybelongingclinic.com.au/approach",
         "SmallCustom",
     ),
