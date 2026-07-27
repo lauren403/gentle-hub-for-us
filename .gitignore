@@ -30,3 +30,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local env file — app reads public Supabase config from src/integrations/supabase/public-config.ts
+.env
+.env.*
