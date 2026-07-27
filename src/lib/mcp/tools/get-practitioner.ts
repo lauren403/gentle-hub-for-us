@@ -17,7 +17,7 @@ export default defineTool({
         "ANZAED Credentialed Eating Disorder Clinician",
       ],
       approach:
-        "Neuro-affirming, weight-neutral, trauma-informed, culturally safe. Works with ADHD, emotional regulation, and eating-disorder-safe care.",
+        "Neuroaffirming, weight-neutral and trauma-informed. Aboriginal-led and LGBTQIA+ affirming, with cultural safety defined by the person receiving the service. Eating-disorder-informed support is designed to reduce common risks but is not suitable for everyone.",
     };
     return {
       content: [{ type: "text", text: JSON.stringify(practitioner, null, 2) }],

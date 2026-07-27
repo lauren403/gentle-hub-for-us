@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { SITE_URL } from "@/config/site";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
+import { ContentGovernance } from "@/components/content-governance";
 import type { Letter } from "@/content/letters";
 
 export function LetterPage({ letter }: { letter: Letter }) {
-  const canonical = `${SITE_URL.replace(/\/$/, "")}${letter.path}`;
   return (
     <div className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <SiteHeader location={`letter_${letter.slug}`} activePath="/letters" />
@@ -35,6 +35,12 @@ export function LetterPage({ letter }: { letter: Letter }) {
             {letter.standfirst}
           </p>
 
+          <div className="mt-10">
+            <ContentGovernance
+              labels={["Clinical practice lens", "Lived experience", "Emerging research"]}
+            />
+          </div>
+
           <div className="mt-12 space-y-6 text-lg leading-relaxed text-[var(--plum)]/85 [&_p]:max-w-[68ch] [&_a]:underline [&_a]:decoration-[var(--terracotta)] [&_a]:underline-offset-4 hover:[&_a]:text-[var(--terracotta)]">
             {letter.body.map((para, i) => (
               <p key={i}>{renderWithLinks(para.text, para.links)}</p>
@@ -60,11 +66,6 @@ export function LetterPage({ letter }: { letter: Letter }) {
 
       <SiteFooter />
       <FloatingBook location={`letter_${letter.slug}`} />
-
-      {/* omitted from head, added as inline script below via route head() */}
-      {/* JSON-LD is emitted via head() scripts in the route file. */}
-      {/* This span ensures canonical is referenced somewhere. */}
-      <span data-canonical={canonical} className="sr-only" />
     </div>
   );
 }

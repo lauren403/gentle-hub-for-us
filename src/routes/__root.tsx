@@ -11,16 +11,16 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SITE_URL, GA_MEASUREMENT_ID, THEME_COLOR, OG_IMAGE, CONTACT } from "../config/site";
-import { analyticsEnabled } from "../lib/analytics";
+import { SITE_URL, THEME_COLOR, OG_IMAGE, CONTACT } from "../config/site";
+import { AnalyticsConsent } from "../components/analytics-consent";
 
-const TITLE = "ADHD Therapy & Support, Whole Body | Body Belonging Clinic";
+const TITLE = "ADHD therapy, eating & body support | Body Belonging Clinic";
 const DESCRIPTION =
-  "ADHD isn't an attention problem. Neuro-affirming ADHD/AuDHD therapy Australia-wide, with eating-disorder-safe, queer-affirming care. Book a free 15-min intro.";
+  "Neuroaffirming ADHD and AuDHD therapy for adults, including emotion, eating, body image and everyday functioning. Perth and telehealth Australia-wide.";
 
 const JSON_LD = {
   "@context": "https://schema.org",
-  "@type": ["MedicalBusiness", "LocalBusiness"],
+  "@type": ["ProfessionalService", "LocalBusiness"],
   name: "Body Belonging Clinic",
   description: DESCRIPTION,
   url: SITE_URL,
@@ -127,7 +127,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: SITE_URL },
       { rel: "apple-touch-icon", href: FAVICON_SVG },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -141,19 +140,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify(JSON_LD),
       },
-      // GA4 is only injected when a real Measurement ID has been set
-      // in src/config/site.ts (replace the "G-XXXXXXXXXX" placeholder).
-      ...(analyticsEnabled
-        ? [
-            {
-              src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,
-              async: true,
-            },
-            {
-              children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}',{anonymize_ip:true});`,
-            },
-          ]
-        : []),
     ],
   }),
   shellComponent: RootShell,
@@ -182,6 +168,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <AnalyticsConsent />
     </QueryClientProvider>
   );
 }

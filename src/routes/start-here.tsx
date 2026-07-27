@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SITE_URL, HALAXY_URL, CONTACT } from "@/config/site";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackNextAction } from "@/lib/analytics";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 
 const TITLE = "Start here | Body Belonging Clinic";
@@ -8,6 +8,7 @@ const DESCRIPTION =
   "A gentle first step into care at Body Belonging Clinic. What a free intro call looks like, GP referrals, Medicare rebates, and what to expect.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/start-here`;
 const BOOK_URL = HALAXY_URL;
+const CLINIC_URL = "https://www.bodybelongingclinic.com.au";
 
 export const Route = createFileRoute("/start-here")({
   head: () => ({
@@ -40,6 +41,7 @@ const STEPS = [
           onClick={() => {
             trackEvent("start_here_cta", { target: "booking_step1" });
             trackEvent("booking_click", { location: "start_here_step1" });
+            trackNextAction("booking_open", "start_here_step1");
           }}
         >
           free fifteen-minute intro call
@@ -74,9 +76,9 @@ const STEPS = [
     title: "We find the rhythm that fits you.",
     body: (
       <>
-        From there we work together, in the room or by telehealth across Australia. You set the pace
-        — and the work doesn't stop at the edge of the session: the Body Belonging Model gives it
-        structure, and Anchor and the Letters keep it going between visits.
+        From there we work together, in the room or by telehealth across Australia. The Body
+        Belonging practice framework can give therapy a shared structure; Anchor and the Letters are
+        optional general resources between visits.
       </>
     ),
   },
@@ -102,7 +104,7 @@ function StartHerePage() {
             <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">Start here</h1>
             <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
               No wrong way to begin, and no rush. This page exists to make the first step easy — and
-              to tell you exactly what happens, what it costs, and what to expect. No mystery.
+              to tell you what happens, where to check current fees, and what to expect. No mystery.
             </p>
           </div>
         </section>
@@ -142,47 +144,25 @@ function StartHerePage() {
               Money, plainly
             </p>
             <h2 className="mt-5 font-display text-3xl leading-tight md:text-5xl">
-              What it costs, honestly
+              One current source for fees
             </h2>
             <div className="mt-10 space-y-6 text-lg leading-relaxed text-[var(--plum)]/85 [&_p]:max-w-[68ch]">
               <p>
-                I would rather be upfront about money than leave you guessing, so here is how it
-                works.
+                I would rather be upfront about money than leave you guessing. Current public fees,
+                credentials, Medicare information and clinic scope are maintained on the main Body
+                Belonging Clinic website so you do not have to compare two versions.
               </p>
-              <ul className="space-y-5 border-l-2 border-[var(--terracotta)] pl-6">
-                <li className="max-w-[62ch]">
-                  A standard 50-minute session is $200. With a Mental Health Treatment Plan and
-                  referral from your GP, Medicare rebates $89.50 of that back to you, so your
-                  out-of-pocket is $110.50 per session. You will always know your exact cost before
-                  you ever book.
-                </li>
-                <li className="max-w-[62ch]">
-                  That rebate is available on each session with an Accredited Mental Health Social
-                  Worker, for up to ten sessions in a calendar year.
-                </li>
-                <li className="max-w-[62ch]">
-                  If you are living with an eating disorder, you may be eligible for an Eating
-                  Disorder Treatment and Management Plan, which can open access to many more
-                  sessions, up to forty psychological treatment sessions in a twelve-month period.
-                  Your GP assesses whether this is right for you.
-                </li>
-                <li className="max-w-[62ch]">
-                  Telehealth sessions are available anywhere in Australia and attract the same
-                  Medicare rebates.
-                </li>
-                <li className="max-w-[62ch]">
-                  Reduced-fee and bulk-billing options are available for those who qualify,
-                  including eligible Aboriginal and Torres Strait Islander clients. If that might be
-                  you, just mention it and we will sort it out together.
-                </li>
-                <li className="max-w-[62ch]">
-                  And if cost is a worry, please just say so on the intro call, and we will find
-                  something that works.
-                </li>
-              </ul>
+              <a
+                href={CLINIC_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackNextAction("clinic_facts_open", "start_here_fees")}
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)]"
+              >
+                Check current fees, credentials and scope
+              </a>
               <p className="max-w-[62ch] text-sm italic text-[var(--plum)]/60">
-                Rebate amounts are current as of 1 July 2026. Please confirm your own eligibility
-                and the current amounts with your GP or Services Australia.
+                Halaxy remains the source of truth for appointment availability and booking.
               </p>
             </div>
           </div>
@@ -198,7 +178,7 @@ function StartHerePage() {
             {[
               "A calm, low-stimulation space, whether we meet in the room or online.",
               "No need to have your story neat or your words ready. Rambling is welcome here, and so is silence.",
-              "In the room you have my full attention — no clock-watching, and never the feeling of being a problem moved along.",
+              "Sessions have a clear scheduled length. Your time is protected, and we agree on the focus and next step together.",
             ].map((line, i) => (
               <li
                 key={i}
@@ -235,6 +215,7 @@ function StartHerePage() {
                 onClick={() => {
                   trackEvent("start_here_cta", { target: "booking_closing" });
                   trackEvent("booking_click", { location: "start_here_closing" });
+                  trackNextAction("booking_open", "start_here_closing");
                 }}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-8 py-4 text-base font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98]"
               >

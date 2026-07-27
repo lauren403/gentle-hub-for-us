@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SITE_URL, HALAXY_URL } from "@/config/site";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 import { trackEvent } from "@/lib/analytics";
+import { ContentGovernance } from "@/components/content-governance";
 
 const TITLE = "ADHD and eating: a weight-neutral guide | Body Belonging Clinic";
 const DESCRIPTION =
@@ -20,16 +21,6 @@ const articleLd = {
   url: CANONICAL,
 };
 
-const medicalLd = {
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  name: HEADLINE,
-  description: DESCRIPTION,
-  author: { "@type": "Person", name: "Lauren Lynch" },
-  publisher: { "@type": "Organization", name: "Body Belonging Clinic" },
-  url: CANONICAL,
-};
-
 export const Route = createFileRoute("/adhd-and-eating")({
   head: () => ({
     meta: [
@@ -43,10 +34,7 @@ export const Route = createFileRoute("/adhd-and-eating")({
       { name: "twitter:description", content: DESCRIPTION },
     ],
     links: [{ rel: "canonical", href: CANONICAL }],
-    scripts: [
-      { type: "application/ld+json", children: JSON.stringify(articleLd) },
-      { type: "application/ld+json", children: JSON.stringify(medicalLd) },
-    ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(articleLd) }],
   }),
   component: AdhdAndEatingPage,
 });
@@ -87,14 +75,22 @@ function AdhdAndEatingPage() {
             <p className="mt-8 max-w-[62ch] font-display text-xl italic leading-snug text-[var(--oat)]/90 md:text-2xl">
               If your relationship with food has always felt harder and stranger than it seems to be
               for other people, and no one has ever connected it to your ADHD, this guide is for
-              you. It is the honest, whole picture, and it is written to be safe for anyone who has
-              ever struggled with eating.
+              you. This guide is designed to reduce common eating-disorder-related risks, but it
+              cannot be safe or suitable for every person.
             </p>
           </div>
         </section>
 
         {/* BODY */}
         <article className="mx-auto max-w-3xl px-5 py-16 md:py-24">
+          <ContentGovernance
+            labels={[
+              "Australian guideline",
+              "Systematic review",
+              "Emerging research",
+              "Clinical practice lens",
+            ]}
+          />
           <H2>Why ADHD and eating are so connected</H2>
           <P>
             For a long time, ADHD and eating were treated as separate subjects, one about attention
@@ -104,16 +100,12 @@ function AdhdAndEatingPage() {
             that finally makes sense.
           </P>
           <P>
-            The thread that ties them together is interoception, the sense that reads the signals
-            coming from inside your body, hunger and fullness among them. For a great many people
-            with ADHD, those signals arrive faint, or late, or all at once, so the quiet mid-morning
-            &ldquo;I could eat&rdquo; never quite registers, and by evening the volume is turned all
-            the way up. On top of that, ADHD is, at its core, a difference in regulation, of
-            attention, emotion and impulse, and eating sits squarely inside that. Food can become a
-            way to reach for calm, or focus, or a hit of interest when a day feels flat. And if you
-            take stimulant medication, its appetite-suppressing effect during the day is well
-            established, which quietly pushes eating to the edges of the evening. None of these are
-            flaws. They are the predictable results of how the brain is wired.
+            Interoception—the perception of internal body signals such as hunger and fullness—may be
+            one contributor for some people. Executive function, time awareness, sensory
+            preferences, reward, sleep, distress and food access can also shape eating. Stimulant
+            medication can reduce appetite for some people and should be discussed with the
+            prescriber. These are possible contributors to explore, not a single explanation for
+            every person.
           </P>
 
           <H2>The patterns you might recognise</H2>
@@ -122,9 +114,9 @@ function AdhdAndEatingPage() {
             heard it named without judgement. A few of the most common:
           </P>
           <P>
-            Forgetting to eat all day, then eating everything by night. This is the interoception
-            story in action, a hunger signal that stays quiet until it is urgent, so the day's
-            missed meals arrive together after dark.{" "}
+            Forgetting to eat during the day, then feeling urgently hungry at night. Less noticeable
+            body cues may contribute, but so can medication timing, task absorption, planning,
+            sensory barriers and missed opportunities to eat.{" "}
             <Link
               to="/letters/why-a-brain-like-ours-forgets-to-eat"
               className="underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
@@ -134,14 +126,13 @@ function AdhdAndEatingPage() {
             .
           </P>
           <P>
-            Eating for stimulation, not just hunger. When a brain runs on interest and dopamine,
-            food can become one of the easiest and most available sources of both, especially when
-            you are bored, understimulated, or trying to switch tasks.
+            Eating for stimulation, soothing or interest as well as hunger. This is human and may
+            have several causes; it does not need a moral or “dopamine hack” explanation.
           </P>
           <P>
-            Eating to soothe big feelings. Because emotion regulation sits at the centre of ADHD,
-            food can become a way to manage a nervous system that runs loud. This is human and
-            common, and it responds far better to understanding than to restriction.
+            Eating to soothe strong feelings. Emotion-regulation difficulties are common in ADHD but
+            are not unique to it. Food can become one available way to cope, and the context
+            deserves understanding rather than restriction.
           </P>
           <P>
             Sensory complexity around food. For many people, and especially those who are also
@@ -235,15 +226,15 @@ function AdhdAndEatingPage() {
             take root. This is not a soft extra, it is the ground the whole thing grows from.
           </P>
 
-          <H2>The whole-person picture: the Body Belonging Model</H2>
+          <H2>The whole-person picture: the Body Belonging practice framework</H2>
           <P>
             Eating is never really separate from the rest of you, which is why we hold it inside a
-            wider frame. Our clinical approach, the Body Belonging Model, moves through safety
-            first, then gently noticing what your body and feelings are telling you, then steadying
-            yourself in ways a prescription cannot teach, and finally belonging, because connection
-            is where change actually lasts. Food sits inside that whole, alongside your emotion,
-            your focus, your sleep and your nervous system, rather than being treated as a problem
-            to be solved on its own. See{" "}
+            wider frame. Our clinical approach, the Body Belonging practice framework, moves through
+            safety first, then gently noticing what your body and feelings are telling you, then
+            steadying yourself in ways a prescription cannot teach, and finally belonging, because
+            connection is where change actually lasts. Food sits inside that whole, alongside your
+            emotion, your focus, your sleep and your nervous system, rather than being treated as a
+            problem to be solved on its own. See{" "}
             <Link
               to="/approach"
               className="underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
@@ -288,10 +279,9 @@ function AdhdAndEatingPage() {
             This is the exact ground Body Belonging Clinic was built to stand on, ADHD and eating
             held together, safely, by an Accredited Mental Health Social Worker who is also an
             ANZAED credentialed eating disorder clinician, and who can bring in an
-            eating-disorder-informed dietitian alongside where it helps. It is built to be safe for
-            anyone with a history of an eating disorder, weight-neutral throughout, and
-            neurodivergent-affirming to its core. If any of this is your story, you do not have to
-            untangle it alone.
+            eating-disorder-informed Accredited Practising Dietitian alongside where it helps. The
+            approach is weight-neutral and designed to reduce restrictive risks; suitability and
+            referral needs are discussed individually.
           </P>
         </article>
 

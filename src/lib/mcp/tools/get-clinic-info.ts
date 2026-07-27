@@ -21,12 +21,12 @@ export default defineTool({
       },
       email: "admin@bodybelongingclinic.com.au",
       telehealth: "Available Australia-wide",
-      website: "https://www.bodybelongingclinic.com.au/adhd",
+      website: "https://adhd.bodybelongingclinic.com.au",
       identity: [
         "Aboriginal-led",
         "LGBTQIA+ affirming",
         "Neurodivergent-affirming",
-        "Culturally safe",
+        "Aims for culturally responsive practice; cultural safety is determined by the person receiving the service",
       ],
       scope:
         "The clinic provides therapy and support. It does not diagnose ADHD or prescribe medication — it can refer for those.",

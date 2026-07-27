@@ -1,22 +1,27 @@
 // Mirrors new lead_signups rows into MailerLite.
 // Called by a Postgres trigger via pg_net on INSERT into public.lead_signups.
-// Fail-safe: always returns HTTP 200, even when the MailerLite key is missing
-// or the provider errors. Never throws, never triggers pg_net retries.
+// Records delivery state back to lead_signups so storage is never mistaken for
+// provider delivery. Called only by the database trigger's shared-secret gate.
 
 const ML_BASE = "https://connect.mailerlite.com/api";
 const GROUP_NAME = "Anchor + Hub";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type, x-webhook-secret",
-};
+const jsonHeaders = { "Content-Type": "application/json" };
 
 interface Payload {
+  id?: string;
   email?: string;
   source?: string;
+  consent_version?: string;
+  consented_at?: string;
   // Supabase database webhook shape (if user wires it via the dashboard UI):
-  record?: { email?: string; source?: string };
+  record?: {
+    id?: string;
+    email?: string;
+    source?: string;
+    consent_version?: string;
+    consented_at?: string;
+  };
   type?: string;
 }
 
@@ -62,7 +67,7 @@ async function upsertSubscriber(
   email: string,
   source: string,
   groupId: string | null,
-): Promise<void> {
+): Promise<boolean> {
   // POST /api/subscribers is an upsert by email in MailerLite's current API.
   const body: Record<string, unknown> = {
     email,
@@ -104,23 +109,56 @@ async function upsertSubscriber(
         retryRes.status,
         await retryRes.text(),
       );
-    } else {
-      console.log("mailerlite subscriber upsert retry succeeded", retryRes.status);
+      return false;
     }
+    console.log("mailerlite subscriber upsert retry succeeded", retryRes.status);
   }
+  return true;
 }
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
+    return new Response(null, { status: 405, headers: jsonHeaders });
   }
+
+  let rowId = "";
+  let supabaseUrl = "";
+  let serviceKey = "";
+
+  const updateSyncStatus = async (status: string, error: string | null) => {
+    if (!rowId || !supabaseUrl || !serviceKey) return;
+    try {
+      const response = await fetch(
+        `${supabaseUrl}/rest/v1/lead_signups?id=eq.${encodeURIComponent(rowId)}`,
+        {
+          method: "PATCH",
+          headers: {
+            apikey: serviceKey,
+            Authorization: `Bearer ${serviceKey}`,
+            "Content-Type": "application/json",
+            Prefer: "return=minimal",
+          },
+          body: JSON.stringify({
+            sync_status: status,
+            sync_last_attempt_at: new Date().toISOString(),
+            sync_error: error,
+          }),
+        },
+      );
+      if (!response.ok) {
+        console.error("mailerlite-sync status update failed", response.status);
+      }
+    } catch {
+      console.error("mailerlite-sync status update threw");
+    }
+  };
 
   try {
     // Shared-secret gate. The webhook is unauthenticated at the JWT layer
     // (verify_jwt = false) so we authenticate with our own header, whose
     // value lives in Supabase Vault and is fetched with the service role.
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+    serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
     const presented = req.headers.get("x-webhook-secret");
     let expected: string | null = null;
     if (supabaseUrl && serviceKey) {
@@ -146,17 +184,7 @@ Deno.serve(async (req) => {
     if (!expected || presented !== expected) {
       return new Response(JSON.stringify({ ok: false, reason: "unauthorized" }), {
         status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    const apiKey = (Deno.env.get("MAILERLITE_API_KEY") ?? "").trim();
-    if (!apiKey) {
-      // Expected state until Lauren adds the key. Quiet no-op.
-      console.log("mailerlite-sync: MAILERLITE_API_KEY not set — no-op");
-      return new Response(JSON.stringify({ ok: true, skipped: "no_api_key" }), {
-        status: 200,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: jsonHeaders,
       });
     }
 
@@ -167,30 +195,65 @@ Deno.serve(async (req) => {
       payload = {};
     }
 
+    rowId = (payload.id ?? payload.record?.id ?? "").trim();
     const email = (payload.email ?? payload.record?.email ?? "").trim().toLowerCase();
     const source = (payload.source ?? payload.record?.source ?? "unknown").trim();
+    const consentVersion = (
+      payload.consent_version ??
+      payload.record?.consent_version ??
+      ""
+    ).trim();
+    const consentedAt = (payload.consented_at ?? payload.record?.consented_at ?? "").trim();
 
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      console.warn("mailerlite-sync: no valid email in payload", payload);
-      return new Response(JSON.stringify({ ok: true, skipped: "no_email" }), {
-        status: 200,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+    if (!rowId || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      console.warn("mailerlite-sync: invalid record identity or email shape");
+      await updateSyncStatus("failed", "invalid_payload");
+      return new Response(JSON.stringify({ ok: false, reason: "invalid_payload" }), {
+        status: 400,
+        headers: jsonHeaders,
+      });
+    }
+
+    if (!["hub-updates-v1", "anchor-updates-v1"].includes(consentVersion) || !consentedAt) {
+      console.warn("mailerlite-sync: consent evidence missing or invalid");
+      await updateSyncStatus("failed", "invalid_consent");
+      return new Response(JSON.stringify({ ok: false, reason: "invalid_consent" }), {
+        status: 422,
+        headers: jsonHeaders,
+      });
+    }
+
+    const apiKey = (Deno.env.get("MAILERLITE_API_KEY") ?? "").trim();
+    if (!apiKey) {
+      console.log("mailerlite-sync: outbound email paused until provider key is configured");
+      await updateSyncStatus("paused_no_api_key", "provider_not_configured");
+      return new Response(JSON.stringify({ ok: true, queued: false, reason: "provider_paused" }), {
+        status: 202,
+        headers: jsonHeaders,
       });
     }
 
     const groupId = await findOrCreateGroup(apiKey);
-    await upsertSubscriber(apiKey, email, source, groupId);
+    const synced = await upsertSubscriber(apiKey, email, source, groupId);
+    if (!synced) {
+      await updateSyncStatus("failed", "provider_upsert_failed");
+      return new Response(JSON.stringify({ ok: false, reason: "provider_upsert_failed" }), {
+        status: 502,
+        headers: jsonHeaders,
+      });
+    }
+    await updateSyncStatus("synced", null);
 
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+      headers: jsonHeaders,
     });
   } catch (err) {
-    // Fail-safe: log and return 200 so pg_net does not retry-storm.
-    console.error("mailerlite-sync unexpected error", err);
-    return new Response(JSON.stringify({ ok: true, error: "handled" }), {
-      status: 200,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    console.error("mailerlite-sync unexpected error", err instanceof Error ? err.name : "unknown");
+    await updateSyncStatus("failed", "unexpected_error");
+    return new Response(JSON.stringify({ ok: false, reason: "unexpected_error" }), {
+      status: 500,
+      headers: jsonHeaders,
     });
   }
 });

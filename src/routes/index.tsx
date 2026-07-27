@@ -6,14 +6,26 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { HALAXY_URL, ANCHOR_URL, HERO_IMAGE, FOOD_IMAGE, BELONGING_IMAGE } from "@/config/site";
-import { trackEvent } from "@/lib/analytics";
-import { supabase } from "@/integrations/supabase/client";
+import {
+  HALAXY_URL,
+  ANCHOR_URL,
+  HERO_IMAGE,
+  FOOD_IMAGE,
+  BELONGING_IMAGE,
+  CONTACT,
+  SITE_URL,
+} from "@/config/site";
+import { trackEvent, trackNextAction } from "@/lib/analytics";
+import { submitLeadSignup } from "@/lib/lead-signup";
 import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
+import { ContentGovernance } from "@/components/content-governance";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
+  head: () => ({
+    links: [{ rel: "canonical", href: SITE_URL }],
+  }),
 });
 
 const BOOK_URL = HALAXY_URL;
@@ -52,7 +64,7 @@ function TrustStrip() {
   const items = [
     "Accredited Mental Health Social Worker (AASW)",
     "ANZAED Credentialed Eating Disorder Clinician",
-    "Medicare rebates available",
+    "Medicare rebates may apply",
     "Aboriginal-led",
     "LGBTQIA+ affirming",
     "Telehealth Australia-wide",
@@ -80,12 +92,19 @@ function TrustStrip() {
 function PathwayCards() {
   const cards = [
     {
-      eyebrow: "The reframe",
-      title: "ADHD isn't an attention problem",
-      blurb: "The hardest part usually isn't focus — it's feeling. Start with the reframe.",
-      to: "/" as const,
-      hash: "reframe",
-      cta: "Read the reframe",
+      eyebrow: "Prepare without proving",
+      title: "Get ready for an ADHD assessment",
+      blurb:
+        "A free, non-diagnostic guide to gathering your story, questions and existing records.",
+      to: "/assessment-preparation" as const,
+      cta: "Open the preparation guide",
+    },
+    {
+      eyebrow: "Navigate Australian care",
+      title: "Find the right next step",
+      blurb: "Assessment, medication, therapy, dietetics and functional support—who does what.",
+      to: "/australian-adhd-care" as const,
+      cta: "Open the care map",
     },
     {
       eyebrow: "Food & the brain",
@@ -104,20 +123,19 @@ function PathwayCards() {
   ];
   return (
     <section className="mx-auto max-w-6xl px-5 py-12 md:py-16">
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
           <Link
             key={c.title}
             to={c.to}
-            hash={c.hash}
             className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-6 no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-sm md:p-7"
           >
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
               {c.eyebrow}
             </p>
-            <h3 className="mt-3 font-display text-2xl leading-tight text-[var(--plum)]">
+            <h2 className="mt-3 font-display text-2xl leading-tight text-[var(--plum)]">
               {c.title}
-            </h3>
+            </h2>
             <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--plum)]/75">{c.blurb}</p>
             <span className="mt-5 inline-flex text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">
               {c.cta} →
@@ -172,11 +190,13 @@ function StudioImage({
   alt,
   className = "",
   aspect = "aspect-[4/5]",
+  priority = false,
 }: {
   src: string;
   alt: string;
   className?: string;
   aspect?: string;
+  priority?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
   const showPlaceholder = failed || !src || src === "#";
@@ -205,7 +225,8 @@ function StudioImage({
         <img
           src={src}
           alt={alt}
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
           decoding="async"
           onError={() => setFailed(true)}
           className="h-full w-full object-cover"
@@ -237,19 +258,18 @@ function NervousSystemSection() {
   return (
     <Section id="nervous-system" eyebrow="The nervous system">
       <h2 className="font-display text-3xl leading-tight md:text-5xl">
-        Regulated first. Then everything else.
+        Regulation is one useful place to begin.
       </h2>
       <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
-        ADHD isn't only a story about attention — it's a story about a nervous system that swings
-        between wired and shut-down, sometimes many times a day.
+        ADHD is defined by persistent patterns of inattention and/or hyperactivity–impulsivity. Some
+        people also experience large shifts in arousal, energy or emotional intensity.
       </p>
       <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
         <p>
-          We draw on polyvagal theory (Stephen Porges) and Deb Dana's clinical work: a "ladder" of
-          states — settled and connected, revved-up, or switched-off — that we treat as the ground
-          everything else stands on. Regulate the body first, and focus, food and feeling all get
-          easier to meet. We hold this as an honest lens — a map of lived experience, not a set of
-          hard claims.
+          Deb Dana's “ladder” can offer accessible language for states that feel settled, revved-up
+          or switched-off. We use it as optional clinical shorthand—not as a biological explanation
+          of ADHD. Better-supported work on stress, arousal and self-regulation remains the evidence
+          base underneath the conversation.
         </p>
       </div>
       <div className="mt-10 grid gap-5 md:grid-cols-3">
@@ -275,21 +295,25 @@ function NervousSystemSection() {
 function ThinkingSection() {
   const lenses = [
     {
-      name: "Russell Barkley & Thomas Brown",
-      desc: "ADHD as self-regulation and executive function, not 'attention'.",
+      name: "Australian ADHD guideline",
+      desc: "the primary reference point for assessment, multimodal treatment and functioning.",
     },
     {
-      name: "William Dodson",
-      desc: "rejection-sensitive dysphoria: why criticism can land so hard.",
+      name: "Russell Barkley & Thomas Brown",
+      desc: "executive function and self-regulation as useful clinical accounts of ADHD.",
     },
     { name: "Jessica McCabe (How to ADHD)", desc: "working with your brain, not against it." },
     {
-      name: "Rachel Gow",
-      desc: "nutritional neuroscience: how food shapes focus, mood and energy.",
+      name: "Rachel Gow and nutrition research",
+      desc: "questions about background diet, deficiencies and omega-3s—checked against reviews and Australian scope.",
     },
     {
-      name: "Deb Dana & Stephen Porges",
-      desc: "the polyvagal, nervous-system lens on regulation and safety.",
+      name: "Dr Shyamal Mashru and specialist pathways",
+      desc: "clear separation of assessment, prescribing, comorbidity and ongoing psychosocial support.",
+    },
+    {
+      name: "ADHD Chatter and expert media",
+      desc: "topic discovery and lived-experience language, never treated as clinical evidence by itself.",
     },
   ];
 
@@ -297,12 +321,12 @@ function ThinkingSection() {
     <section className="bg-[var(--cream)]">
       <Section eyebrow="The thinking we bring into the room">
         <h2 className="font-display text-3xl leading-tight md:text-5xl">
-          The field's leading edge — brought here.
+          Useful ideas, checked before they enter the room.
         </h2>
         <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
-          The ideas that lead the ADHD conversation internationally are still barely present in
-          Australian care. We bring them in — rigorous international thinking, without the jargon or
-          the diet talk.
+          International clinicians, researchers and lived-experience media can surface important
+          questions. We translate those questions through Australian guidance, source quality and
+          scope of practice before presenting them as health information.
         </p>
         <ul className="mt-10 grid gap-x-10 gap-y-5 md:grid-cols-2">
           {lenses.map((l) => (
@@ -313,8 +337,8 @@ function ThinkingSection() {
           ))}
         </ul>
         <p className="mt-10 max-w-[68ch] text-sm leading-relaxed text-[var(--plum)]/60">
-          These are the frameworks that inform our practice — the lineage we work from, brought into
-          a weight-neutral, neurodivergent-affirming, Aboriginal-led room.
+          These sources do not carry equal evidentiary weight. The editorial policy explains how we
+          distinguish guideline recommendations, research, clinical lenses and lived experience.
         </p>
       </Section>
     </section>
@@ -336,8 +360,8 @@ function ConversationSection() {
         <div className="mt-8 max-w-[68ch] space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
           <p>
             Beyond the therapy room, the Letters are our ongoing writing on ADHD, food and the
-            nervous system — the leading ideas, in plain language. Read them, and subscribe to get
-            them as they land.
+            nervous system — research, practice lenses and lived experience in plain language. Read
+            them, and subscribe to get them as they land.
           </p>
         </div>
         <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -363,6 +387,8 @@ function AdhdHub() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState(false);
+  const [emailConsent, setEmailConsent] = useState(false);
   const [showAppSoon, setShowAppSoon] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const mountedAtRef = useRef<number>(Date.now());
@@ -393,15 +419,17 @@ function AdhdHub() {
                   The ADHD hub · Body Belonging Clinic
                 </p>
                 <h1 className="font-display text-4xl leading-[1.03] md:text-6xl lg:text-[4.75rem]">
-                  ADHD isn't an attention problem.
+                  ADHD isn't only an attention problem.
                   <br />
-                  <span className="italic text-[var(--terracotta)]">It's a whole-body story.</span>
+                  <span className="italic text-[var(--terracotta)]">
+                    The rest of life matters too.
+                  </span>
                 </h1>
                 <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--plum)]/80 md:text-xl">
-                  ADHD care that doesn't stop at the diagnosis and the script. We work where they
-                  tap out — food, the body, emotion, the nervous system — the parts most services
-                  split across three separate waitlists. Aboriginal-led, queer-affirming,
-                  weight-neutral. Because food stuff is brain stuff.
+                  Neuroaffirming therapy for the parts that can remain difficult before, during or
+                  after assessment—emotion, eating, body image, identity and everyday functioning.
+                  We work alongside GPs, psychiatrists, dietitians and other professionals when
+                  their scope is needed. Aboriginal-led, queer-affirming and weight-neutral.
                 </p>
                 <div className="mt-10 flex flex-wrap items-center gap-4">
                   <BookButton>Book a free 15-minute intro call</BookButton>
@@ -422,6 +450,7 @@ function AdhdHub() {
                 alt="Body Belonging Clinic studio — a warm, calm space."
                 aspect="aspect-[4/5]"
                 className="mx-auto w-full max-w-md md:max-w-none"
+                priority
               />
             </div>
           </div>
@@ -443,26 +472,26 @@ function AdhdHub() {
         {/* REFRAME */}
         <Section id="reframe" eyebrow="The reframe">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
-            The hardest part usually isn't focus. It's feeling.
+            For some people, emotion is as disabling as difficulty with focus.
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
             <p>
-              ADHD is a difference in how the brain regulates attention, emotion, motivation and
-              action, not a shortage of attention. For so many of us the loudest part is emotion,
-              feelings that arrive fast and are hard to turn down. That is not a character flaw, it
-              is how the brain is wired.
+              ADHD involves persistent patterns of inattention and/or hyperactivity–impulsivity.
+              Difficulties with executive function, motivation and emotion regulation are also
+              common and can substantially affect daily life. Their presence and causes vary, so
+              they deserve curiosity rather than a one-size-fits-all explanation.
             </p>
           </div>
           <PullQuote>
-            "The hardest part of ADHD for many adults isn't focus. It's emotion — and emotion is
-            something you can learn to work <em>with</em>, not against."
+            “For some adults, the emotional impact is the part that most needs support—and it can be
+            approached with skills, self-understanding and context.”
           </PullQuote>
           <p className="mt-8 text-sm">
             <Link
               to="/approach"
               className="underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
             >
-              Our approach → The Body Belonging Model
+              Our approach → The Body Belonging practice framework
             </Link>
           </p>
         </Section>
@@ -471,13 +500,14 @@ function AdhdHub() {
         <section id="medication" className="bg-[var(--cream)]">
           <Section eyebrow="Medication">
             <h2 className="font-display text-3xl leading-tight md:text-5xl">
-              Medication is often the right first step. It's rarely the whole answer.
+              Medication can be an important part of treatment. Support may still be useful.
             </h2>
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
               <p>
-                A prescription can change the conditions for functioning, and it cannot teach you to
-                plan, to cope, to eat, or to understand yourself. That part is the work we do here,
-                honestly, and never anti-medication.
+                Medication decisions belong with an authorised prescriber. Therapy can sit alongside
+                medical treatment to support skills, routines, emotional wellbeing, identity and
+                everyday functioning. It is complementary—not a replacement for assessment,
+                prescribing or medical review.
               </p>
             </div>
             <div className="mt-10 rounded-xl border border-[var(--plum)]/10 bg-[var(--oat)] p-5 text-sm leading-relaxed text-[var(--plum)]/80">
@@ -500,11 +530,11 @@ function AdhdHub() {
               </p>
               <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
                 <p>
-                  A brain like ours can lose track of hunger until eating swings from forgotten all
-                  day to all at once by night. Because we are an ANZAED-accredited eating disorder
-                  clinic, we can talk about food and ADHD without the restriction, the
-                  calorie-counting and the supplement-hype that can quietly harm neurodivergent
-                  people. Weight-neutral, always.
+                  ADHD, medication effects, executive function, sensory preferences, time awareness
+                  and other factors can all affect eating. Lauren&apos;s ANZAED eating-disorder
+                  credential informs a weight-neutral, non-restrictive conversation. Nutrition
+                  assessment and individual meal planning sit with an eating-disorder-informed
+                  Accredited Practising Dietitian.
                 </p>
                 <p>
                   <Link
@@ -531,9 +561,8 @@ function AdhdHub() {
             />
           </div>
           <PullQuote>
-            "We take nutrition and ADHD seriously — and because we're an eating-disorder-informed
-            clinic, we do it without the restrictive, hype-y framing that can hurt neurodivergent
-            people."
+            “We take nutrition questions seriously, keep claims proportionate to the evidence and
+            refer to a GP or Accredited Practising Dietitian when individual advice is needed.”
           </PullQuote>
         </Section>
 
@@ -549,11 +578,10 @@ function AdhdHub() {
             </h2>
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--plum)]/85">
               <p>
-                ADHD runs on an interest-based nervous system, and it settles through safety and
-                connection, not pressure. That is the whole idea behind the name. The overlap other
-                services tend to split apart — ADHD, the body, food, feeling — held in one room.
-                Here you are met as a whole person, in the body you are actually in, among people
-                who get it.
+                Many people describe attention as easier to access when a task is interesting,
+                urgent, novel or personally meaningful. Safety and connection may also support
+                engagement. We use those ideas as practical lenses while considering sleep,
+                environment, medication, mental health, sensory needs and other contributors.
               </p>
             </div>
           </Section>
@@ -569,14 +597,15 @@ function AdhdHub() {
                 </h2>
                 <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--oat)]/85">
                   <p>
-                    A lot of ADHD support skips straight to strategies while the body is still
-                    braced. We start where it actually lives — in the nervous system — with somatic,
-                    felt-sense work alongside the practical skills.
+                    Some people find strategies hard to use while highly stressed, overwhelmed or
+                    disconnected from body cues. Where it is suitable and consented to, we can use
+                    gentle body-awareness work alongside practical skills.
                   </p>
                   <p>
-                    This is an Aboriginal-led practice. It is LGBTQIA+ affirming and culturally safe
-                    by design, not as an afterthought. Feeling safe, and feeling like you belong in
-                    the room, is where the work actually becomes possible.
+                    This is an Aboriginal-led and LGBTQIA+ affirming practice. We aim for culturally
+                    responsive support and invite feedback about what safety means to each person;
+                    cultural safety is determined by the person receiving the service, not claimed
+                    by the service alone.
                   </p>
                 </div>
               </div>
@@ -620,19 +649,18 @@ function AdhdHub() {
         <section className="bg-[var(--plum)] text-[var(--oat)]">
           <Section eyebrow="The honest version">
             <h2 className="font-display text-3xl leading-tight text-[var(--oat)] md:text-5xl">
-              We can't give you endless hours. No one honestly can.
+              Clear sessions, transparent limits and support between visits.
             </h2>
             <div className="mt-8 space-y-5 text-lg leading-relaxed text-[var(--oat)]/85">
               <p>
-                So here's what we actually promise. Undivided attention in the room — no
-                clock-watching, no being quietly moved along. And a way of working that keeps
-                holding you after you leave it: the Body Belonging Model gives the work a spine, the
-                Anchor app sits in your pocket, and the Letters are here at 2am when the session is
-                days away.
+                Sessions have a clear scheduled length and your time is protected. We agree on a
+                focus, review whether the work is useful and make the next step explicit. The Body
+                Belonging practice framework can organise therapy; Anchor and the Letters are
+                optional general resources between visits, not monitoring or crisis support.
               </p>
               <p>
-                Real care doesn't pretend the calendar is infinite. It makes the hour count, and it
-                doesn't disappear when the hour ends.
+                We are transparent about availability, fees, scope and referral needs rather than
+                promising unlimited access.
               </p>
             </div>
           </Section>
@@ -642,11 +670,12 @@ function AdhdHub() {
         <section className="bg-[var(--cream)]">
           <Section eyebrow="Not invented on a whim">
             <h2 className="font-display text-3xl leading-tight md:text-5xl">
-              A new model, built from established parts.
+              A practice framework built from established and emerging parts.
             </h2>
             <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
-              The Body Belonging Model is our own synthesis. Every piece of it stands on ground
-              someone else already tested.
+              The Body Belonging practice framework is Lauren&apos;s way of organising therapeutic
+              work. Its components have different evidence strengths; the framework itself has not
+              yet been independently evaluated as a treatment model.
             </p>
             <ul className="mt-8 space-y-4 border-l-2 border-[var(--terracotta)] pl-6 text-lg leading-relaxed text-[var(--plum)]/85">
               <li className="max-w-[64ch]">
@@ -654,27 +683,37 @@ function AdhdHub() {
                 from established eating-disorder treatment (CBT-E), not wellness trends.
               </li>
               <li className="max-w-[64ch]">
-                Treating ADHD as a difference in self-regulation, not willpower, follows decades of
-                research from clinicians like Russell Barkley.
+                Self-regulation and executive-function models, including Russell Barkley&apos;s
+                work, provide one useful clinical lens without replacing diagnostic criteria.
               </li>
               <li className="max-w-[64ch]">
-                Starting with the nervous system and safety draws on the science of interoception
-                and regulation — and where that science is still emerging for ADHD, we say so out
-                loud.
+                Optional body-awareness and regulation work draws on clinical practice and emerging
+                ADHD–interoception research. Interoception is one possible contributor, not a single
+                mechanism or cause.
               </li>
               <li className="max-w-[64ch]">
-                Self-compassion as the foundation is one of the better-evidenced tools in mental
-                health, not a soft add-on.
+                Self-compassion is supported across several mental-health contexts; ADHD-specific
+                application is less established and is described accordingly.
               </li>
               <li className="max-w-[64ch]">
-                All of it held to ANZAED eating-disorder standards and Accredited Mental Health
-                Social Worker accreditation.
+                Scope is anchored in Lauren&apos;s AMHSW role and ANZAED credential, with referral
+                to medical, dietetic or other disciplines when required.
               </li>
             </ul>
             <p className="mt-8 max-w-[68ch] text-lg leading-relaxed text-[var(--plum)]/85">
-              We'll always tell you which parts are proven and which are still emerging. That
-              honesty is the point — it's how you know the rest is real.
+              Each health page now identifies its evidence types and review status. Independent
+              multidisciplinary review is the next governance milestone.
             </p>
+            <div className="mt-10">
+              <ContentGovernance
+                labels={[
+                  "Australian guideline",
+                  "Systematic review",
+                  "Emerging research",
+                  "Clinical practice lens",
+                ]}
+              />
+            </div>
           </Section>
         </section>
 
@@ -691,11 +730,10 @@ function AdhdHub() {
               mystery, no filler, no homework for its own sake.
             </p>
             <p>
-              You won't need a testimonial to tell you it's working. You'll notice it yourself:
-              eating steadies before it's ever perfect, the 2am spiral loses some of its grip, you
-              stop translating yourself in the room, and the shame gets quieter while the everyday
-              stuff gets a little easier. We won't promise a cure. We'll show you honest change —
-              and we'll name it plainly when it isn't happening yet.
+              We agree on what you want to be different and review it together—for example distress,
+              participation, routines, self-understanding or day-to-day functioning. We do not
+              promise a particular outcome, and we will discuss a change in approach or referral if
+              therapy is not helping.
             </p>
           </div>
         </Section>
@@ -752,9 +790,9 @@ function AdhdHub() {
                 Meet <span className="italic text-[var(--terracotta)]">Anchor</span>.
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-[var(--plum)]/85">
-                A gentle, weight-neutral eating-rhythm app for ADHD brains. No calories. No weight.
-                No streaks. No food rules. Just quiet nudges toward eating like a person who's cared
-                for.
+                A general wellbeing tool offering optional, user-set eating-rhythm prompts. No
+                calories, weight or streaks. It is not treatment, clinical monitoring or a crisis
+                service, and it may not suit everyone.
               </p>
               <a
                 href={anchorConfigured ? ANCHOR_URL : "#signup"}
@@ -820,14 +858,28 @@ function AdhdHub() {
         <Section id="signup">
           <div className="rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] p-8 md:p-12">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
-              Pull up a chair
+              A free place to begin
             </p>
             <h2 className="mt-3 font-display text-3xl leading-tight md:text-4xl">
-              "ADHD isn't an attention problem" — a short, gentle reframe.
+              Prepare for an ADHD assessment without having to prove you are “ADHD enough”.
             </h2>
             <p className="mt-4 max-w-xl text-[var(--plum)]/75">
-              A quiet PDF you can read in ten minutes. No inbox spam — just this, and the occasional
-              gentle note if you'd like one.
+              The preparation guide is free to read, print or save. It brings together the questions
+              I use in clinical work and the patterns I have found most helpful when people are
+              trying to organise a complicated story.
+            </p>
+            <div className="mt-6">
+              <Link
+                to="/assessment-preparation"
+                onClick={() => trackNextAction("assessment_guide_open", "homepage_resource")}
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110"
+              >
+                Open the free preparation guide
+              </Link>
+            </div>
+            <p className="mt-8 max-w-xl text-sm leading-relaxed text-[var(--plum)]/65">
+              If you would also like occasional new resources from Body Belonging Clinic, you can
+              join the updates list below. The guide is not locked behind your email.
             </p>
             {submitted ? (
               <div
@@ -835,55 +887,47 @@ function AdhdHub() {
                 aria-live="polite"
                 className="mt-8 rounded-xl bg-[var(--plum)] p-5 text-[var(--oat)]"
               >
-                Thank you — check your inbox soon. And take a breath. You did the thing.
+                Thanks — your request has been received. We&apos;ll only use it for the updates you
+                agreed to.
               </div>
             ) : (
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
                   const trimmed = email.trim();
-                  if (!trimmed) return;
-                  // Simple email shape check; server-side accepts the row and
-                  // the DB is the source of truth. We never surface a scary
-                  // error to the visitor — the friendly thank-you always shows.
+                  if (!trimmed || !emailConsent) return;
                   if (!looksLikeEmail(trimmed)) return;
                   setSubmitting(true);
+                  setSubmissionError(false);
                   // Spam guards: silently succeed without writing if the
                   // honeypot has any value, or if the form was submitted
                   // implausibly fast (under ~2.5s from mount).
                   const isBot = isLikelySpam(honeypot, Date.now() - mountedAtRef.current);
-                  if (!isBot) {
-                    try {
-                      const { error } = await supabase
-                        .from("lead_signups")
-                        .insert({ email: trimmed, source: "adhd_hub" });
-                      if (error) console.warn("lead_signups insert failed", error);
-                    } catch (err) {
-                      console.warn("lead_signups insert threw", err);
-                    }
-                    // Netlify Forms notification (best-effort, never blocks UX).
-                    try {
-                      const body = new URLSearchParams({
-                        "form-name": "signups",
-                        email: trimmed,
-                        source: "homepage",
-                        company: honeypot,
-                      });
-                      await fetch("/__forms.html", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: body.toString(),
-                      });
-                    } catch (err) {
-                      console.warn("netlify form notify failed", err);
-                    }
+                  if (isBot) {
+                    setSubmitting(false);
+                    setSubmitted(true);
+                    return;
                   }
-                  trackEvent("sign_up", { method: "lead_magnet" });
-                  trackEvent("email_click");
+
+                  const result = await submitLeadSignup({
+                    email: trimmed,
+                    source: "adhd_hub",
+                    consentVersion: "hub-updates-v1",
+                    consentedAt: new Date().toISOString(),
+                    honeypot,
+                  });
+
                   setSubmitting(false);
+                  if (!result.ok) {
+                    setSubmissionError(true);
+                    return;
+                  }
+
+                  trackEvent("sign_up", { method: "lead_magnet" });
+                  trackNextAction("email_signup", "homepage_updates");
                   setSubmitted(true);
                 }}
-                className="mt-8 flex flex-col gap-3 sm:flex-row"
+                className="mt-8 space-y-4"
               >
                 <label htmlFor="lead-email" className="sr-only">
                   Email address
@@ -911,30 +955,66 @@ function AdhdHub() {
                     onChange={(e) => setHoneypot(e.target.value)}
                   />
                 </div>
-                <input
-                  id="lead-email"
-                  ref={emailInputRef}
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  aria-describedby="lead-email-help"
-                  className="flex-1 rounded-full border border-[var(--plum)]/20 bg-[var(--oat)] px-5 py-3 text-base text-[var(--plum)] placeholder:text-[var(--plum)]/40 focus:border-[var(--terracotta)] focus:outline-none min-h-11"
-                />
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <input
+                    id="lead-email"
+                    ref={emailInputRef}
+                    type="email"
+                    name="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    aria-describedby="lead-email-help"
+                    className="min-h-11 flex-1 rounded-full border border-[var(--plum)]/20 bg-[var(--oat)] px-5 py-3 text-base text-[var(--plum)] placeholder:text-[var(--plum)]/40 focus:border-[var(--terracotta)] focus:outline-none"
+                  />
 
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="rounded-full bg-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--oat)] transition-all hover:bg-[var(--terracotta)] disabled:opacity-70 min-h-11"
-                >
-                  {submitting ? "Sending…" : "Send it to me"}
-                </button>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="min-h-11 rounded-full bg-[var(--plum)] px-6 py-3 text-sm font-medium text-[var(--oat)] transition-all hover:bg-[var(--terracotta)] disabled:opacity-70"
+                  >
+                    {submitting ? "Sending…" : "Join the updates list"}
+                  </button>
+                </div>
+                <label className="flex max-w-[68ch] items-start gap-3 text-sm leading-relaxed text-[var(--plum)]/75">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={emailConsent}
+                    onChange={(event) => setEmailConsent(event.target.checked)}
+                    className="mt-1 size-4 accent-[var(--terracotta)]"
+                  />
+                  <span>
+                    I agree to receive occasional ADHD Hub and Anchor emails from Body Belonging
+                    Clinic. I can unsubscribe at any time. See the{" "}
+                    <Link
+                      to="/privacy"
+                      className="underline decoration-[var(--terracotta)] underline-offset-4"
+                    >
+                      privacy policy
+                    </Link>
+                    .
+                  </span>
+                </label>
+                {submissionError && (
+                  <p role="alert" className="text-sm text-[var(--plum)]">
+                    We couldn&apos;t safely save your request. Please try again, or email{" "}
+                    <a
+                      href={`mailto:${CONTACT.email}`}
+                      className="underline decoration-[var(--terracotta)] underline-offset-4"
+                    >
+                      {CONTACT.email}
+                    </a>
+                    .
+                  </p>
+                )}
               </form>
             )}
             {!submitted && (
               <p id="lead-email-help" className="mt-3 text-xs text-[var(--plum)]/60">
-                I'll only email you about Anchor and the hub, and you can unsubscribe any time.
+                We collect your email and consent only for requested updates. Please do not enter
+                clinical information here.
               </p>
             )}
           </div>
@@ -954,15 +1034,15 @@ function AdhdHub() {
                 },
                 {
                   q: "I'm already on medication — is this instead of that?",
-                  a: "No. We work alongside your medication and your prescriber. Therapy addresses the skills, emotions and nervous-system work medication isn't designed to do.",
+                  a: "No. We work alongside your medication and prescriber. Therapy may support skills, routines, emotional wellbeing and everyday functioning; medication questions remain with your prescriber.",
                 },
                 {
                   q: "The emotional side is my biggest struggle — is that really ADHD?",
-                  a: "For many people, yes — emotional regulation is often central to the ADHD experience, even though it isn't in the older headline definitions.",
+                  a: "Emotion-regulation difficulties are common in ADHD and can be highly impairing, but they are not unique to ADHD. We consider the whole context rather than assuming one cause.",
                 },
                 {
                   q: "I have a complicated relationship with food — will nutrition talk feel unsafe?",
-                  a: "This is exactly why our eating-disorder accreditation matters. Any food conversation is weight-neutral, gentle, at your pace, and always led by you.",
+                  a: "Lauren's eating-disorder credential informs a weight-neutral, non-restrictive approach. We discuss consent and limits, and involve a GP or eating-disorder-informed Accredited Practising Dietitian when their scope is needed.",
                 },
                 {
                   q: "Do I need a referral?",

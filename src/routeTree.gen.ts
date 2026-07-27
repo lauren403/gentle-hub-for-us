@@ -15,10 +15,17 @@ import { Route as OurStoryRouteImport } from './routes/our-story'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as LettersRouteImport } from './routes/letters'
 import { Route as FoodAndTheAdhdBrainRouteImport } from './routes/food-and-the-adhd-brain'
+import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
+import { Route as ComplaintsRouteImport } from './routes/complaints'
+import { Route as AustralianAdhdCareRouteImport } from './routes/australian-adhd-care'
+import { Route as AssessmentPreparationRouteImport } from './routes/assessment-preparation'
 import { Route as ApproachRouteImport } from './routes/approach'
+import { Route as AnchorTermsRouteImport } from './routes/anchor-terms'
+import { Route as AnchorPrivacyRouteImport } from './routes/anchor-privacy'
 import { Route as AnchorRouteImport } from './routes/anchor'
 import { Route as AdhdAndEatingRouteImport } from './routes/adhd-and-eating'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LettersIndexRouteImport } from './routes/letters.index'
 import { Route as LettersYourNervousSystemAndAPlaceToBelongRouteImport } from './routes/letters.your-nervous-system-and-a-place-to-belong'
 import { Route as LettersWorkingWithYourBrainRouteImport } from './routes/letters.working-with-your-brain'
 import { Route as LettersWhyABrainLikeOursForgetsToEatRouteImport } from './routes/letters.why-a-brain-like-ours-forgets-to-eat'
@@ -65,9 +72,39 @@ const FoodAndTheAdhdBrainRoute = FoodAndTheAdhdBrainRouteImport.update({
   path: '/food-and-the-adhd-brain',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
+  id: '/editorial-policy',
+  path: '/editorial-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComplaintsRoute = ComplaintsRouteImport.update({
+  id: '/complaints',
+  path: '/complaints',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AustralianAdhdCareRoute = AustralianAdhdCareRouteImport.update({
+  id: '/australian-adhd-care',
+  path: '/australian-adhd-care',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssessmentPreparationRoute = AssessmentPreparationRouteImport.update({
+  id: '/assessment-preparation',
+  path: '/assessment-preparation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApproachRoute = ApproachRouteImport.update({
   id: '/approach',
   path: '/approach',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnchorTermsRoute = AnchorTermsRouteImport.update({
+  id: '/anchor-terms',
+  path: '/anchor-terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnchorPrivacyRoute = AnchorPrivacyRouteImport.update({
+  id: '/anchor-privacy',
+  path: '/anchor-privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnchorRoute = AnchorRouteImport.update({
@@ -84,6 +121,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const LettersIndexRoute = LettersIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LettersRoute,
 } as any)
 const LettersYourNervousSystemAndAPlaceToBelongRoute =
   LettersYourNervousSystemAndAPlaceToBelongRouteImport.update({
@@ -180,7 +222,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/adhd-and-eating': typeof AdhdAndEatingRoute
   '/anchor': typeof AnchorRoute
+  '/anchor-privacy': typeof AnchorPrivacyRoute
+  '/anchor-terms': typeof AnchorTermsRoute
   '/approach': typeof ApproachRoute
+  '/assessment-preparation': typeof AssessmentPreparationRoute
+  '/australian-adhd-care': typeof AustralianAdhdCareRoute
+  '/complaints': typeof ComplaintsRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/food-and-the-adhd-brain': typeof FoodAndTheAdhdBrainRoute
   '/letters': typeof LettersRouteWithChildren
   '/mcp': typeof McpRoute
@@ -201,15 +249,21 @@ export interface FileRoutesByFullPath {
   '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
   '/letters/working-with-your-brain': typeof LettersWorkingWithYourBrainRoute
   '/letters/your-nervous-system-and-a-place-to-belong': typeof LettersYourNervousSystemAndAPlaceToBelongRoute
+  '/letters/': typeof LettersIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/adhd-and-eating': typeof AdhdAndEatingRoute
   '/anchor': typeof AnchorRoute
+  '/anchor-privacy': typeof AnchorPrivacyRoute
+  '/anchor-terms': typeof AnchorTermsRoute
   '/approach': typeof ApproachRoute
+  '/assessment-preparation': typeof AssessmentPreparationRoute
+  '/australian-adhd-care': typeof AustralianAdhdCareRoute
+  '/complaints': typeof ComplaintsRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/food-and-the-adhd-brain': typeof FoodAndTheAdhdBrainRoute
-  '/letters': typeof LettersRouteWithChildren
   '/mcp': typeof McpRoute
   '/our-story': typeof OurStoryRoute
   '/privacy': typeof PrivacyRoute
@@ -228,6 +282,7 @@ export interface FileRoutesByTo {
   '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
   '/letters/working-with-your-brain': typeof LettersWorkingWithYourBrainRoute
   '/letters/your-nervous-system-and-a-place-to-belong': typeof LettersYourNervousSystemAndAPlaceToBelongRoute
+  '/letters': typeof LettersIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
 }
 export interface FileRoutesById {
@@ -235,7 +290,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/adhd-and-eating': typeof AdhdAndEatingRoute
   '/anchor': typeof AnchorRoute
+  '/anchor-privacy': typeof AnchorPrivacyRoute
+  '/anchor-terms': typeof AnchorTermsRoute
   '/approach': typeof ApproachRoute
+  '/assessment-preparation': typeof AssessmentPreparationRoute
+  '/australian-adhd-care': typeof AustralianAdhdCareRoute
+  '/complaints': typeof ComplaintsRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/food-and-the-adhd-brain': typeof FoodAndTheAdhdBrainRoute
   '/letters': typeof LettersRouteWithChildren
   '/mcp': typeof McpRoute
@@ -256,6 +317,7 @@ export interface FileRoutesById {
   '/letters/why-a-brain-like-ours-forgets-to-eat': typeof LettersWhyABrainLikeOursForgetsToEatRoute
   '/letters/working-with-your-brain': typeof LettersWorkingWithYourBrainRoute
   '/letters/your-nervous-system-and-a-place-to-belong': typeof LettersYourNervousSystemAndAPlaceToBelongRoute
+  '/letters/': typeof LettersIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
 }
 export interface FileRouteTypes {
@@ -264,7 +326,13 @@ export interface FileRouteTypes {
     | '/'
     | '/adhd-and-eating'
     | '/anchor'
+    | '/anchor-privacy'
+    | '/anchor-terms'
     | '/approach'
+    | '/assessment-preparation'
+    | '/australian-adhd-care'
+    | '/complaints'
+    | '/editorial-policy'
     | '/food-and-the-adhd-brain'
     | '/letters'
     | '/mcp'
@@ -285,15 +353,21 @@ export interface FileRouteTypes {
     | '/letters/why-a-brain-like-ours-forgets-to-eat'
     | '/letters/working-with-your-brain'
     | '/letters/your-nervous-system-and-a-place-to-belong'
+    | '/letters/'
     | '/.mcp/invoke-tool/$tool'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/adhd-and-eating'
     | '/anchor'
+    | '/anchor-privacy'
+    | '/anchor-terms'
     | '/approach'
+    | '/assessment-preparation'
+    | '/australian-adhd-care'
+    | '/complaints'
+    | '/editorial-policy'
     | '/food-and-the-adhd-brain'
-    | '/letters'
     | '/mcp'
     | '/our-story'
     | '/privacy'
@@ -312,13 +386,20 @@ export interface FileRouteTypes {
     | '/letters/why-a-brain-like-ours-forgets-to-eat'
     | '/letters/working-with-your-brain'
     | '/letters/your-nervous-system-and-a-place-to-belong'
+    | '/letters'
     | '/.mcp/invoke-tool/$tool'
   id:
     | '__root__'
     | '/'
     | '/adhd-and-eating'
     | '/anchor'
+    | '/anchor-privacy'
+    | '/anchor-terms'
     | '/approach'
+    | '/assessment-preparation'
+    | '/australian-adhd-care'
+    | '/complaints'
+    | '/editorial-policy'
     | '/food-and-the-adhd-brain'
     | '/letters'
     | '/mcp'
@@ -339,6 +420,7 @@ export interface FileRouteTypes {
     | '/letters/why-a-brain-like-ours-forgets-to-eat'
     | '/letters/working-with-your-brain'
     | '/letters/your-nervous-system-and-a-place-to-belong'
+    | '/letters/'
     | '/.mcp/invoke-tool/$tool'
   fileRoutesById: FileRoutesById
 }
@@ -346,7 +428,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdhdAndEatingRoute: typeof AdhdAndEatingRoute
   AnchorRoute: typeof AnchorRoute
+  AnchorPrivacyRoute: typeof AnchorPrivacyRoute
+  AnchorTermsRoute: typeof AnchorTermsRoute
   ApproachRoute: typeof ApproachRoute
+  AssessmentPreparationRoute: typeof AssessmentPreparationRoute
+  AustralianAdhdCareRoute: typeof AustralianAdhdCareRoute
+  ComplaintsRoute: typeof ComplaintsRoute
+  EditorialPolicyRoute: typeof EditorialPolicyRoute
   FoodAndTheAdhdBrainRoute: typeof FoodAndTheAdhdBrainRoute
   LettersRoute: typeof LettersRouteWithChildren
   McpRoute: typeof McpRoute
@@ -402,11 +490,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FoodAndTheAdhdBrainRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/editorial-policy': {
+      id: '/editorial-policy'
+      path: '/editorial-policy'
+      fullPath: '/editorial-policy'
+      preLoaderRoute: typeof EditorialPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/complaints': {
+      id: '/complaints'
+      path: '/complaints'
+      fullPath: '/complaints'
+      preLoaderRoute: typeof ComplaintsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/australian-adhd-care': {
+      id: '/australian-adhd-care'
+      path: '/australian-adhd-care'
+      fullPath: '/australian-adhd-care'
+      preLoaderRoute: typeof AustralianAdhdCareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assessment-preparation': {
+      id: '/assessment-preparation'
+      path: '/assessment-preparation'
+      fullPath: '/assessment-preparation'
+      preLoaderRoute: typeof AssessmentPreparationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/approach': {
       id: '/approach'
       path: '/approach'
       fullPath: '/approach'
       preLoaderRoute: typeof ApproachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anchor-terms': {
+      id: '/anchor-terms'
+      path: '/anchor-terms'
+      fullPath: '/anchor-terms'
+      preLoaderRoute: typeof AnchorTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anchor-privacy': {
+      id: '/anchor-privacy'
+      path: '/anchor-privacy'
+      fullPath: '/anchor-privacy'
+      preLoaderRoute: typeof AnchorPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/anchor': {
@@ -429,6 +559,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/letters/': {
+      id: '/letters/'
+      path: '/'
+      fullPath: '/letters/'
+      preLoaderRoute: typeof LettersIndexRouteImport
+      parentRoute: typeof LettersRoute
     }
     '/letters/your-nervous-system-and-a-place-to-belong': {
       id: '/letters/your-nervous-system-and-a-place-to-belong'
@@ -551,6 +688,7 @@ interface LettersRouteChildren {
   LettersWhyABrainLikeOursForgetsToEatRoute: typeof LettersWhyABrainLikeOursForgetsToEatRoute
   LettersWorkingWithYourBrainRoute: typeof LettersWorkingWithYourBrainRoute
   LettersYourNervousSystemAndAPlaceToBelongRoute: typeof LettersYourNervousSystemAndAPlaceToBelongRoute
+  LettersIndexRoute: typeof LettersIndexRoute
 }
 
 const LettersRouteChildren: LettersRouteChildren = {
@@ -572,6 +710,7 @@ const LettersRouteChildren: LettersRouteChildren = {
   LettersWorkingWithYourBrainRoute: LettersWorkingWithYourBrainRoute,
   LettersYourNervousSystemAndAPlaceToBelongRoute:
     LettersYourNervousSystemAndAPlaceToBelongRoute,
+  LettersIndexRoute: LettersIndexRoute,
 }
 
 const LettersRouteWithChildren =
@@ -581,7 +720,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdhdAndEatingRoute: AdhdAndEatingRoute,
   AnchorRoute: AnchorRoute,
+  AnchorPrivacyRoute: AnchorPrivacyRoute,
+  AnchorTermsRoute: AnchorTermsRoute,
   ApproachRoute: ApproachRoute,
+  AssessmentPreparationRoute: AssessmentPreparationRoute,
+  AustralianAdhdCareRoute: AustralianAdhdCareRoute,
+  ComplaintsRoute: ComplaintsRoute,
+  EditorialPolicyRoute: EditorialPolicyRoute,
   FoodAndTheAdhdBrainRoute: FoodAndTheAdhdBrainRoute,
   LettersRoute: LettersRouteWithChildren,
   McpRoute: McpRoute,

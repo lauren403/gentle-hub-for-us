@@ -16,22 +16,37 @@ export type Database = {
     Tables: {
       lead_signups: {
         Row: {
+          consent_version: string
+          consented_at: string | null
           created_at: string
           email: string
           id: string
           source: string
+          sync_error: string | null
+          sync_last_attempt_at: string | null
+          sync_status: string
         }
         Insert: {
+          consent_version: string
+          consented_at?: string | null
           created_at?: string
           email: string
           id?: string
           source?: string
+          sync_error?: string | null
+          sync_last_attempt_at?: string | null
+          sync_status?: string
         }
         Update: {
+          consent_version?: string
+          consented_at?: string | null
           created_at?: string
           email?: string
           id?: string
           source?: string
+          sync_error?: string | null
+          sync_last_attempt_at?: string | null
+          sync_status?: string
         }
         Relationships: []
       }

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SITE_URL, HALAXY_URL } from "@/config/site";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 import { trackEvent } from "@/lib/analytics";
+import { ContentGovernance } from "@/components/content-governance";
 
 const TITLE = "Food and the ADHD brain: the honest science | Body Belonging Clinic";
 const DESCRIPTION =
@@ -20,16 +21,6 @@ const articleLd = {
   url: CANONICAL,
 };
 
-const medicalLd = {
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  name: HEADLINE,
-  description: DESCRIPTION,
-  author: { "@type": "Person", name: "Lauren Lynch" },
-  publisher: { "@type": "Organization", name: "Body Belonging Clinic" },
-  url: CANONICAL,
-};
-
 export const Route = createFileRoute("/food-and-the-adhd-brain")({
   head: () => ({
     meta: [
@@ -43,10 +34,7 @@ export const Route = createFileRoute("/food-and-the-adhd-brain")({
       { name: "twitter:description", content: DESCRIPTION },
     ],
     links: [{ rel: "canonical", href: CANONICAL }],
-    scripts: [
-      { type: "application/ld+json", children: JSON.stringify(articleLd) },
-      { type: "application/ld+json", children: JSON.stringify(medicalLd) },
-    ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(articleLd) }],
   }),
   component: FoodAndTheAdhdBrainPage,
 });
@@ -85,10 +73,12 @@ function FoodAndTheAdhdBrainPage() {
                 <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
                   The nutrition question
                 </p>
-                <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">{HEADLINE}</h1>
+                <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
+                  {HEADLINE}
+                </h1>
                 <p className="mt-8 max-w-[62ch] font-display text-xl italic leading-snug text-[var(--oat)]/90 md:text-2xl">
-                  The real science on what you eat and how your brain feels — held honestly, and without
-                  a single diet rule.
+                  The real science on what you eat and how your brain feels — held honestly, and
+                  without a single diet rule.
                 </p>
               </div>
               <figure className="md:justify-self-end">
@@ -108,16 +98,19 @@ function FoodAndTheAdhdBrainPage() {
 
         {/* BODY */}
         <article className="mx-auto max-w-3xl px-5 py-16 md:py-24">
+          <ContentGovernance
+            labels={["Systematic review", "Emerging research", "Clinical practice lens"]}
+          />
           <P>
             There is a loud, confident conversation online about food and the ADHD brain, and it
             holds both real science and real danger. On one side, headlines promise that a
             supplement or a diet will transform your focus. On the other, people are told food has
-            nothing to do with it at all. Both are wrong, and you deserve the honest middle. Food
-            does matter for how a brain feels and functions — modestly, at the edges — and it is
-            also a place where well-meaning advice tips quietly into restriction and harm,
-            especially for anyone whose relationship with eating has ever been fragile. This page
-            walks that line carefully, the way a good clinician would, and the way voices like Dr
-            Rachel Gow have argued the science deserves.
+            nothing to do with it at all. Both positions can overstate the evidence, and you deserve
+            the honest middle. Food does matter for how a brain feels and functions — modestly, at
+            the edges — and it is also a place where well-meaning advice tips quietly into
+            restriction and harm, especially for anyone whose relationship with eating has ever been
+            fragile. This page walks that line carefully, the way a good clinician would, and the
+            way voices like Dr Rachel Gow have argued the science deserves.
           </P>
 
           <H2>Does food actually change an ADHD brain?</H2>
@@ -172,7 +165,7 @@ function FoodAndTheAdhdBrainPage() {
             supplement at all — it is a rhythm: something to eat at regular intervals, with a little
             protein, whether or not hunger has arrived yet. That idea comes straight from
             established eating-disorder practice, where it is called regular eating, and it is
-            additive, weight-neutral and safe by design. There is{" "}
+            additive and weight-neutral, with individual suitability considered. There is{" "}
             <Link
               to="/letters/eating-by-the-clock-not-by-hunger"
               className="underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
@@ -206,23 +199,22 @@ function FoodAndTheAdhdBrainPage() {
           </P>
           <P>
             And here is the line that matters most, and the reason this clinic exists: restriction
-            is precisely the wrong tool for a brain like ours. A brain that already reads hunger and
-            fullness less clearly, and that carries a higher risk of disordered eating, does not
-            need another rulebook naming forbidden foods. The wellness version of &ldquo;food as
-            brain fuel&rdquo; slides, quietly and with the best intentions, into fear and
-            restriction — and that is the exact point where it stops being safe. Everything here
-            runs the other way: additive, never subtractive; include and steady, never shrink and
-            control.
+            can be a risky tool when ADHD or disordered eating is part of the picture. People who
+            experience less noticeable hunger or fullness cues do not need another rulebook naming
+            forbidden foods. The wellness version of &ldquo;food as brain fuel&rdquo; slides,
+            quietly and with the best intentions, into fear and restriction — and that is the exact
+            point where it stops being safe. Everything here runs the other way: additive, never
+            subtractive; include and steady, never shrink and control.
           </P>
 
           <H2>The safe way to explore it</H2>
           <P>
             If you want to look at nutrition properly, do it additively and with the right people
             beside you. Begin with the plain, unglamorous things that help every brain — regular
-            meals, steady fuel, mostly whole foods where you can manage them, and enough sleep and
-            water. Ask your GP for a blood test before you buy a single supplement. And if you want
-            to go further than that, do it with an eating-disorder-informed Accredited Practising
-            Dietitian who can hold the nutrition and the safety at the same time — not an
+            meals, accessible foods that meet your needs, and enough sleep and water. Ask your GP
+            about whether testing is clinically indicated before you buy supplements. And if you
+            want to go further than that, do it with an eating-disorder-informed Accredited
+            Practising Dietitian who can hold the nutrition and the safety at the same time — not an
             influencer, not an elimination protocol, not a plan you found at 2am. That single choice
             is the whole difference between help and harm.
           </P>
@@ -236,7 +228,7 @@ function FoodAndTheAdhdBrainPage() {
               to="/approach"
               className="underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
             >
-              Body Belonging Model
+              Body Belonging practice framework
             </Link>{" "}
             — where food sits alongside your emotion, your focus, your sleep and your nervous
             system, rather than being treated as a problem to solve on its own. If eating and your
@@ -253,10 +245,10 @@ function FoodAndTheAdhdBrainPage() {
           <H2>The honest bottom line</H2>
           <P>
             Food matters, modestly, at the edges, and it is worth taking seriously. It is never a
-            cure, it is only ever safe when it stays additive, and anyone promising that a
-            supplement or a diet will transform your ADHD is selling you something. We would rather
-            tell you the truth: eat regularly, fix what is genuinely low, be kind to yourself, and
-            treat food as one gentle support among many — never as another test to pass or fail.
+            cure. Keeping support additive and professionally guided reduces common risks. Treat
+            food as one possible support among many, correct confirmed deficiencies with appropriate
+            advice, and be cautious of anyone promising that a supplement or restrictive plan will
+            transform ADHD.
           </P>
         </article>
 
@@ -264,7 +256,7 @@ function FoodAndTheAdhdBrainPage() {
         <section className="bg-[var(--plum)] text-[var(--oat)]">
           <div className="mx-auto max-w-3xl px-5 py-16 text-center md:py-20">
             <h2 className="font-display text-3xl leading-tight md:text-4xl">
-              Food and your ADHD brain, held safely.
+              Food and ADHD questions, handled carefully.
             </h2>
             <p className="mx-auto mt-6 max-w-[52ch] text-lg leading-relaxed text-[var(--oat)]/85">
               If this is your tangle, you do not have to sort it alone — and you certainly do not
