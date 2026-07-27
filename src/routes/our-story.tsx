@@ -100,6 +100,17 @@ function OurStoryPage() {
           </div>
         </section>
 
+        {/* BREATH — full-bleed */}
+        <section className="relative min-h-[58vh] w-full overflow-hidden bg-[var(--plum)]">
+          <img src="/brand-stools.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.7) 0%, rgba(46,26,34,0.3) 55%, rgba(46,26,34,0.5) 100%)" }} />
+          <div className="relative mx-auto flex min-h-[58vh] max-w-4xl items-center justify-center px-5 text-center">
+            <h2 className="max-w-[18ch] font-display text-[2rem] leading-tight text-[var(--oat)] md:text-5xl">
+              There&apos;s a seat here that&apos;s yours.
+            </h2>
+          </div>
+        </section>
+
         <section className="bg-[var(--cream)]">
           <div className="mx-auto max-w-4xl px-5 py-16 md:py-24">
             <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
@@ -177,8 +188,10 @@ function OurStoryPage() {
           </div>
         </section>
 
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto max-w-3xl px-5 py-20 text-center md:py-28">
+        <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
+          <img src="/poppies-up.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.82) 0%, rgba(46,26,34,0.55) 100%)" }} />
+          <div className="relative mx-auto max-w-3xl px-5 py-24 text-center md:py-32">
             <p className="font-display text-4xl leading-tight md:text-6xl">Every body belongs.</p>
             <p className="mx-auto mt-8 max-w-[56ch] text-lg leading-relaxed text-[var(--oat)]/80">
               We work towards a room where you can bring the whole story—while remaining honest

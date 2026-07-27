@@ -7,6 +7,14 @@ const TITLE = "Letters | Body Belonging Clinic";
 const DESCRIPTION =
   "Unhurried, evidence-honest letters on ADHD, the body, food and belonging. Written to be read slowly.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/letters`;
+const CARD_IMGS = [
+  "/small-steps.jpg",
+  "/reading-nook.jpg",
+  "/jug-books.jpg",
+  "/flowers-window.jpg",
+  "/artist-desk.jpg",
+  "/lamp-shadow.jpg",
+];
 
 export const Route = createFileRoute("/letters/")({
   head: () => ({
@@ -66,31 +74,41 @@ function LettersIndex() {
           </div>
         </section>
 
-        {/* LIST */}
-        <section className="mx-auto max-w-3xl px-5 py-16 md:py-24">
-          <ul className="space-y-8">
-            {LETTERS.map((letter) => (
-              <li key={letter.slug}>
-                <Link
-                  to={letter.path}
-                  className="group block rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-8 transition-all hover:border-[var(--terracotta)]/40 hover:shadow-sm md:p-10"
-                >
+        {/* LIST — editorial grid */}
+        <section className="mx-auto max-w-6xl px-5 py-16 md:py-24">
+          <div className="grid gap-6 md:grid-cols-2">
+            {LETTERS.map((letter, i) => (
+              <Link
+                key={letter.slug}
+                to={letter.path}
+                className="group flex flex-col overflow-hidden rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-md"
+              >
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={CARD_IMGS[i % CARD_IMGS.length]}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-7">
                   <p className="text-xs uppercase tracking-[0.18em] text-[var(--terracotta)]">
                     A letter · {letter.readingTime}
                   </p>
-                  <h2 className="mt-3 font-display text-2xl leading-tight text-[var(--plum)] md:text-3xl">
+                  <h2 className="mt-3 font-display text-xl leading-tight text-[var(--plum)] md:text-2xl">
                     {letter.title}
                   </h2>
-                  <p className="mt-4 max-w-[62ch] text-base leading-relaxed text-[var(--plum)]/75 md:text-lg">
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--plum)]/75">
                     {letter.standfirst}
                   </p>
-                  <span className="mt-6 inline-flex items-center text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">
+                  <span className="mt-5 inline-flex items-center text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">
                     Read the letter →
                   </span>
-                </Link>
-              </li>
+                </div>
+              </Link>
             ))}
-          </ul>
+          </div>
         </section>
       </main>
 
