@@ -1,11 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import {
-  HALAXY_URL,
-  HERO_IMAGE,
-  BELONGING_IMAGE,
-  SITE_URL,
-} from "@/config/site";
+import { HALAXY_URL, HERO_IMAGE, BELONGING_IMAGE, SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { SiteHeader, SiteFooter, Logo } from "@/components/site-chrome";
 
@@ -17,13 +12,10 @@ export const Route = createFileRoute("/")({
 });
 
 const BOOK_URL = HALAXY_URL;
+const CLOSING_IMAGE = "/portrait-soft.jpg";
 
-// Real, consented testimonials only. COMPLIANCE (National Law advertising rules):
-// keep each quote to the EXPERIENCE of care — feeling heard, safe, understood, the
-// space itself. NEVER include specific symptoms, diagnoses, treatments, or outcome/
-// "cure" claims. Attribution should be non-identifying and consented (e.g. initials,
-// "a client", "via telehealth"). This whole section stays hidden while the array is empty.
-const TESTIMONIALS: { quote: string; attribution?: string }[] = [];
+const SCRIM =
+  "linear-gradient(to top, rgba(46,26,34,0.88) 0%, rgba(46,26,34,0.45) 42%, rgba(46,26,34,0.12) 100%)";
 
 const BookButton = ({
   children = "Book a free intro call",
@@ -48,171 +40,79 @@ const BookButton = ({
   </a>
 );
 
-function TrustStrip() {
-  const items = [
-    "Accredited Mental Health Social Worker (AASW)",
-    "ANZAED Credentialed Eating Disorder Clinician",
-    "Aboriginal-led",
-    "LGBTQIA+ affirming",
-    "Telehealth Australia-wide",
-  ];
-  return (
-    <div className="border-y border-[var(--plum)]/10 bg-[var(--cream)]">
-      <div className="mx-auto max-w-6xl px-5 py-5">
-        <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--plum)]/70 md:text-xs">
-          {items.map((t, i) => (
-            <li key={t} className="flex items-center gap-6">
-              <span>{t}</span>
-              {i < items.length - 1 && (
-                <span aria-hidden className="text-[var(--terracotta)]/60">
-                  ·
-                </span>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-function Section({
-  id,
-  eyebrow,
-  className = "",
+/** Full-bleed image band with a plum scrim so overlaid text always reads. */
+function ImageBand({
+  src,
   children,
+  minH = "min-h-[88vh]",
 }: {
-  id?: string;
-  eyebrow?: string;
-  className?: string;
+  src: string;
   children: React.ReactNode;
+  minH?: string;
 }) {
+  const [failed, setFailed] = useState(false);
   return (
-    <section id={id} className={"mx-auto max-w-4xl px-5 py-20 md:py-28 " + className}>
-      {eyebrow && (
-        <p className="mb-5 text-xs font-medium uppercase tracking-[0.2em] text-[var(--terracotta)]">
-          {eyebrow}
-        </p>
+    <section className={"relative w-full overflow-hidden bg-[var(--plum)] " + minH}>
+      {!failed && (
+        <img
+          src={src}
+          alt=""
+          onError={() => setFailed(true)}
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
       )}
-      {children}
+      <div className="absolute inset-0" style={{ background: SCRIM }} />
+      <div className={"relative mx-auto flex max-w-6xl flex-col justify-end px-5 pb-16 pt-32 md:pb-24 " + minH}>
+        {children}
+      </div>
     </section>
   );
 }
 
-function PullQuote({ children }: { children: React.ReactNode }) {
-  return (
-    <blockquote className="my-12 border-l-2 border-[var(--terracotta)] pl-6 font-display text-2xl leading-snug text-[var(--plum)] md:text-[2rem]">
-      {children}
-    </blockquote>
-  );
-}
-
-/**
- * Editorial image slot with an on-brand graceful fallback.
- * If the src file is missing (or fails to load), we render a
- * plum-gradient block with the "h" monogram in cream.
- */
-function StudioImage({
-  src,
-  alt,
-  className = "",
-  aspect = "aspect-[4/5]",
-  priority = false,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-  aspect?: string;
-  priority?: boolean;
-}) {
+function StudioImage({ src, alt, aspect = "aspect-[4/5]" }: { src: string; alt: string; aspect?: string }) {
   const [failed, setFailed] = useState(false);
-  const showPlaceholder = failed || !src || src === "#";
   return (
-    <div
-      className={
-        "relative overflow-hidden rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] shadow-sm " +
-        aspect +
-        " " +
-        className
-      }
-    >
-      {showPlaceholder ? (
+    <div className={"relative overflow-hidden rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] shadow-sm " + aspect}>
+      {failed || !src ? (
         <div
           className="grid h-full w-full place-items-center"
-          style={{
-            background:
-              "linear-gradient(140deg, var(--plum) 0%, color-mix(in oklab, var(--plum) 78%, var(--terracotta)) 100%)",
-          }}
-          aria-label={alt}
+          style={{ background: "linear-gradient(140deg, var(--plum) 0%, color-mix(in oklab, var(--plum) 78%, var(--terracotta)) 100%)" }}
           role="img"
+          aria-label={alt}
         >
           <Logo className="w-2/5 text-[var(--oat)] opacity-25" />
         </div>
       ) : (
-        <img
-          src={src}
-          alt={alt}
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : "auto"}
-          decoding="async"
-          onError={() => setFailed(true)}
-          className="h-full w-full object-cover"
-        />
+        <img src={src} alt={alt} onError={() => setFailed(true)} className="h-full w-full object-cover" loading="lazy" decoding="async" />
       )}
     </div>
   );
 }
 
 const PATHWAYS = [
-  {
-    eyebrow: "Prepare without proving",
-    title: "Get ready for an ADHD assessment",
-    blurb:
-      "A free, non-diagnostic guide to gathering your story, your questions and any existing records.",
-    to: "/assessment-preparation" as const,
-    cta: "Open the guide",
-  },
-  {
-    eyebrow: "Navigate Australian care",
-    title: "Find the right next step",
-    blurb:
-      "Assessment, medication, therapy, dietetics and support — a plain map of who does what.",
-    to: "/australian-adhd-care" as const,
-    cta: "Open the care map",
-  },
-  {
-    eyebrow: "Food & the brain",
-    title: "Food stuff is brain stuff",
-    blurb: "Weight-neutral, sensory-aware, eating-disorder-informed. No calories, no rules, no shame.",
-    to: "/food-and-the-adhd-brain" as const,
-    cta: "Explore",
-  },
-  {
-    eyebrow: "A free companion",
-    title: "Meet Anchor",
-    blurb: "A gentle eating-rhythm tool for ADHD brains. No numbers, no streaks, no rules.",
-    to: "/anchor" as const,
-    cta: "Learn about Anchor",
-  },
+  { eyebrow: "Prepare", title: "Get ready for an assessment", blurb: "A free, no-pressure guide.", to: "/assessment-preparation" as const },
+  { eyebrow: "Navigate", title: "The Australian care map", blurb: "Who does what, in plain language.", to: "/australian-adhd-care" as const },
+  { eyebrow: "Food & brain", title: "Food stuff is brain stuff", blurb: "Weight-neutral. No rules, no shame.", to: "/food-and-the-adhd-brain" as const },
+  { eyebrow: "Free tool", title: "Meet Anchor", blurb: "A gentle eating rhythm. No streaks.", to: "/anchor" as const },
 ];
 
 function PathwayCards() {
   return (
-    <section className="mx-auto max-w-6xl px-5 pb-24 md:pb-28">
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+    <section className="mx-auto max-w-6xl px-5 pb-24 md:pb-32">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {PATHWAYS.map((c) => (
           <Link
             key={c.title}
             to={c.to}
-            className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-7 no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-sm"
+            className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-7 no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-md"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">
-              {c.eyebrow}
-            </p>
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">{c.eyebrow}</p>
             <h3 className="mt-3 font-display text-xl leading-tight text-[var(--plum)]">{c.title}</h3>
-            <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--plum)]/75">{c.blurb}</p>
-            <span className="mt-6 inline-flex text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">
-              {c.cta} →
+            <p className="mt-2 flex-1 text-sm text-[var(--plum)]/70">{c.blurb}</p>
+            <span className="mt-6 text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">
+              Explore →
             </span>
           </Link>
         ))}
@@ -226,82 +126,56 @@ function AdhdHub() {
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <SiteHeader location="home" />
       <main id="main-content" tabIndex={-1}>
-        {/* 1 · HERO */}
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-28 lg:gap-16">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.22em] text-[var(--terracotta)]">
-                ADHD · Eating · Belonging — telehealth across Australia
-              </p>
-              <h1 className="mt-6 font-display text-[2.75rem] leading-[1.05] md:text-6xl">
-                Care for the whole of you — not just your attention.
-              </h1>
-              <p className="mt-7 max-w-[46ch] text-lg leading-relaxed text-[var(--oat)]/85">
-                Body Belonging Clinic is a neurodivergent-affirming, Aboriginal-led private practice
-                for ADHD, eating and body image. Gentle, evidence-informed therapy that meets you
-                where you are.
-              </p>
-              <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-                <BookButton location="hero" />
-                <Link
-                  to="/start-here"
-                  className="text-sm font-medium text-[var(--oat)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
-                >
-                  New here? Start here →
-                </Link>
-              </div>
-            </div>
-            <StudioImage
-              src={HERO_IMAGE}
-              alt="A calm, welcoming space at Body Belonging Clinic"
-              aspect="aspect-[4/5]"
-              priority
-              className="mx-auto w-full max-w-sm md:max-w-none"
-            />
+        {/* 1 · HERO — full-bleed image, few words */}
+        <ImageBand src={HERO_IMAGE}>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--oat)]/80">
+            ADHD · Eating · Belonging
+          </p>
+          <h1 className="mt-5 max-w-[15ch] font-display text-[3.25rem] leading-[1.0] text-[var(--oat)] md:text-[5.75rem]">
+            Care for the whole of you.
+          </h1>
+          <p className="mt-6 max-w-[32ch] text-lg text-[var(--oat)]/85 md:text-xl">
+            Neuro-affirming, Aboriginal-led therapy — across Australia.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+            <BookButton location="hero" />
+            <Link
+              to="/start-here"
+              className="text-sm font-medium text-[var(--oat)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
+            >
+              New here? Start here →
+            </Link>
           </div>
+        </ImageBand>
+
+        {/* 2 · ONE STATEMENT — big, centred, almost no words */}
+        <section className="mx-auto max-w-3xl px-5 py-28 text-center md:py-36">
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">
+            You might recognise this
+          </p>
+          <h2 className="font-display text-[2.25rem] leading-[1.1] text-[var(--plum)] md:text-6xl">
+            You were told it&apos;s just focus.
+            <br />
+            It never felt that simple.
+          </h2>
+          <p className="mx-auto mt-8 max-w-[36ch] text-lg text-[var(--plum)]/70">
+            Food, feelings, belonging — for ADHD brains, it&apos;s all connected.
+          </p>
         </section>
 
-        {/* 2 · TRUST */}
-        <TrustStrip />
-
-        {/* 3 · RECOGNISE THIS */}
-        <Section eyebrow="You might recognise this">
-          <h2 className="max-w-[20ch] font-display text-3xl leading-tight md:text-5xl">
-            You&apos;ve been told it&apos;s just focus. It never felt that simple.
-          </h2>
-          <p className="mt-8 max-w-[62ch] text-lg leading-relaxed text-[var(--plum)]/80">
-            For a lot of people, ADHD shows up far beyond attention — in eating that slips through
-            the day, in feelings that arrive all at once, in the effort of belonging somewhere that
-            feels safe. If &ldquo;everything looks fine&rdquo; but nothing feels settled, you are not
-            failing at something simple. You are carrying something more layered than a checklist.
-          </p>
-          <PullQuote>
-            ADHD isn&apos;t only an attention problem. The rest of life — food, feelings, belonging —
-            matters too.
-          </PullQuote>
-        </Section>
-
-        {/* 4 · HOW WE WORK */}
+        {/* 3 · HOW WE WORK — image-led, one line of copy */}
         <section className="bg-[var(--cream)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-28 lg:gap-16">
-            <StudioImage
-              src={BELONGING_IMAGE}
-              alt="A steady, unhurried therapeutic space"
-              aspect="aspect-[4/5]"
-              className="order-2 mx-auto w-full max-w-sm md:order-1 md:max-w-none"
-            />
-            <div className="order-1 md:order-2">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--terracotta)]">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-24 md:grid-cols-2 md:py-32 lg:gap-20">
+            <StudioImage src={BELONGING_IMAGE} alt="A calm, unhurried therapeutic space" aspect="aspect-[4/5]" />
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.24em] text-[var(--terracotta)]">
                 How we work
               </p>
-              <h2 className="mt-5 font-display text-3xl leading-tight md:text-5xl">
-                We start with your nervous system, not a checklist.
+              <h2 className="mt-5 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
+                We start with your nervous system — not a checklist.
               </h2>
-              <p className="mt-7 max-w-[52ch] text-lg leading-relaxed text-[var(--plum)]/80">
-                Care here is whole-person and unhurried: weight-neutral, sensory-aware, and affirming
-                of your identity, culture and history. We work at the pace your body can actually
-                keep — and we help you find the right next step, whether that&apos;s with us or with a
-                GP, psychiatrist or dietitian.
+              <p className="mt-6 max-w-[38ch] text-lg text-[var(--plum)]/75">
+                Unhurried, weight-neutral, and affirming of who you are.
               </p>
               <Link
                 to="/approach"
@@ -313,64 +187,36 @@ function AdhdHub() {
           </div>
         </section>
 
-        {/* 5 · WHERE TO BEGIN */}
-        <Section eyebrow="Where to begin" className="pb-10 md:pb-12">
-          <h2 className="max-w-[18ch] font-display text-3xl leading-tight md:text-5xl">
-            Find your next step — at your pace.
-          </h2>
-          <p className="mt-7 max-w-[58ch] text-lg leading-relaxed text-[var(--plum)]/80">
-            A few gentle starting points. None of them ask you to prove you&apos;re
-            &ldquo;ADHD enough.&rdquo;
+        {/* 4 · WHERE TO BEGIN — four cards */}
+        <section className="mx-auto max-w-6xl px-5 pt-24 pb-10 text-center md:pt-32">
+          <p className="mb-5 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">
+            Where to begin
           </p>
-        </Section>
+          <h2 className="font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
+            Find your next step.
+          </h2>
+        </section>
         <PathwayCards />
 
-        {/* 6 · GETTING STARTED + MEDICARE */}
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <Section eyebrow="Getting started" className="max-w-3xl">
-            <h2 className="font-display text-3xl leading-tight text-[var(--oat)] md:text-5xl">
-              Beginning is one small step.
-            </h2>
-            <p className="mt-7 text-lg leading-relaxed text-[var(--oat)]/85">
-              We offer a free 15-minute intro call so you can get a feel for whether this is the
-              right fit — no pressure, no commitment. With an eligible Mental Health Treatment Plan
-              or Eating Disorder Plan from a GP, Medicare rebates apply; your GP is the right person
-              to confirm eligibility.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-[var(--oat)]/75">
-              Our standard 50-minute session is <strong className="text-[var(--oat)]">$200</strong>.
-              With a valid plan, the current Medicare rebate is{" "}
-              <strong className="text-[var(--oat)]">$89.50</strong> per session, so your out-of-pocket
-              is about <strong className="text-[var(--oat)]">$110.50</strong>. Telehealth attracts the
-              same rebate. Rebates are indexed each July, and the exact amount is confirmed at
-              booking. A Mental Health Treatment Plan covers up to 10 rebated sessions per calendar
-              year; an Eating Disorder Plan up to 40 over 12 months.
-            </p>
-            <div className="mt-9">
-              <BookButton location="getting_started" />
-            </div>
-          </Section>
-        </section>
-
-        {/* TESTIMONIALS — renders only when consented quotes are supplied */}
-        {TESTIMONIALS.length > 0 && (
-          <Section eyebrow="In their words">
-            <div className="grid gap-8 md:grid-cols-2">
-              {TESTIMONIALS.map((t, i) => (
-                <figure key={i} className="rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-7">
-                  <blockquote className="font-display text-xl leading-snug text-[var(--plum)]">
-                    “{t.quote}”
-                  </blockquote>
-                  {t.attribution && (
-                    <figcaption className="mt-4 text-sm text-[var(--plum)]/60">
-                      — {t.attribution}
-                    </figcaption>
-                  )}
-                </figure>
-              ))}
-            </div>
-          </Section>
-        )}
+        {/* 5 · CLOSING — second immersive image, one CTA */}
+        <ImageBand src={CLOSING_IMAGE} minH="min-h-[70vh]">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--oat)]/80">
+            Getting started
+          </p>
+          <h2 className="mt-5 max-w-[16ch] font-display text-[2.5rem] leading-[1.05] text-[var(--oat)] md:text-6xl">
+            Start with a free 15-minute call.
+          </h2>
+          <p className="mt-6 max-w-[34ch] text-lg text-[var(--oat)]/85">
+            No pressure — just a chance to see if we&apos;re the right fit.
+          </p>
+          <div className="mt-9">
+            <BookButton location="closing" />
+          </div>
+          <p className="mt-6 max-w-[52ch] text-sm text-[var(--oat)]/60">
+            $200 per 50-minute session · about $110.50 out-of-pocket after the Medicare rebate with an
+            eligible GP plan. Rebates indexed each July; confirmed at booking.
+          </p>
+        </ImageBand>
       </main>
       <SiteFooter />
     </div>
