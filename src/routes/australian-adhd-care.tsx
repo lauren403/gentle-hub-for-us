@@ -233,12 +233,6 @@ function AustralianAdhdCarePage() {
             <a href="https://adhdguideline.aadpa.com.au/" target="_blank" rel="noopener noreferrer" className="mt-3 inline-block underline decoration-[var(--terracotta)] underline-offset-4">
               Australian Evidence-Based Clinical Practice Guideline for ADHD (AADPA) ↗
             </a>
-            <p className="mt-5 text-sm font-medium uppercase tracking-widest text-[var(--plum)]/50">Further reading (UK &amp; US)</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              <li><a href="https://www.nice.org.uk/guidance/ng87" target="_blank" rel="noopener noreferrer" className="underline decoration-[var(--terracotta)] underline-offset-4">NICE guideline NG87 — ADHD diagnosis &amp; management (UK) ↗</a></li>
-              <li><a href="https://www.cdc.gov/adhd/" target="_blank" rel="noopener noreferrer" className="underline decoration-[var(--terracotta)] underline-offset-4">CDC — ADHD (US) ↗</a></li>
-              <li><a href="https://chadd.org/" target="_blank" rel="noopener noreferrer" className="underline decoration-[var(--terracotta)] underline-offset-4">CHADD — Children and Adults with ADHD (US) ↗</a></li>
-            </ul>
           </div>
 
           <div className="mt-10">
