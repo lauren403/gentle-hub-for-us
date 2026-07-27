@@ -7,7 +7,9 @@ import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/australian-adhd-care`;
 const BOOK_URL = HALAXY_URL;
 const HERO_IMG = "/together.jpg";
-const CTA_IMG = "/lets-talk.jpg";
+const CTA_IMG = "/approach-feature.jpg";
+const SCRIM =
+  "linear-gradient(to top, rgba(46,26,34,0.9) 0%, rgba(46,26,34,0.5) 45%, rgba(46,26,34,0.15) 100%)";
 
 const FAQS = [
   {
@@ -195,25 +197,22 @@ function AustralianAdhdCarePage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24 lg:gap-16">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl shadow-md md:max-w-none">
-              <img src={CTA_IMG} alt="Ring ring — let's talk" className="h-full w-full object-cover" loading="lazy" decoding="async" />
-            </div>
-            <div>
-              <h2 className="max-w-[16ch] font-display text-[2.25rem] leading-[1.05] text-[var(--oat)] md:text-5xl">
-                Not sure where you fit on the map?
-              </h2>
-              <p className="mt-6 max-w-[34ch] text-lg text-[var(--oat)]/85">
-                Start with a free 15-minute call — we&apos;ll help you find the right next step.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
-                <BookButton />
-                <Link to="/assessment-preparation" className="text-sm font-medium text-[var(--oat)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">
-                  Open the free prep guide →
-                </Link>
-              </div>
+        {/* CTA — bold full-bleed */}
+        <section className="relative min-h-[60vh] w-full overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
+          <img src={CTA_IMG} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div className="absolute inset-0" style={{ background: SCRIM }} />
+          <div className="relative mx-auto flex min-h-[60vh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 md:pb-20">
+            <h2 className="max-w-[18ch] font-display text-[2.25rem] leading-[1.05] text-[var(--oat)] md:text-6xl">
+              Not sure where you fit on the map?
+            </h2>
+            <p className="mt-6 max-w-[34ch] text-lg text-[var(--oat)]/85">
+              Start with a free 15-minute call — we&apos;ll help you find the right next step.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <BookButton />
+              <Link to="/assessment-preparation" className="text-sm font-medium text-[var(--oat)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">
+                Open the free prep guide →
+              </Link>
             </div>
           </div>
         </section>

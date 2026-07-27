@@ -11,7 +11,7 @@ const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/approach`;
 
 const HERO_IMG = "/hero-portrait.jpg";
 const BODY_IMG = "/food-brain-mug.jpg";
-const CTA_IMG = "/together.jpg";
+const CTA_IMG = "/pride.jpg";
 
 export const Route = createFileRoute("/approach")({
   head: () => ({
@@ -175,7 +175,7 @@ function ApproachPage() {
         <section className="mx-auto max-w-6xl px-5 py-16 md:py-24">
           <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-16">
             <div className="relative order-2 aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--plum)]/10 shadow-md md:order-1 md:max-w-none">
-              <img src={CTA_IMG} alt="Connection and belonging" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+              <img src={CTA_IMG} alt="Joy, pride and belonging" className="h-full w-full object-cover" loading="lazy" decoding="async" />
             </div>
             <div className="order-1 md:order-2">
               <h2 className="max-w-[18ch] font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
