@@ -63,7 +63,7 @@ function AdhdAndEatingPage() {
         <section className="bg-[var(--plum)] text-[var(--oat)]">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24 lg:gap-16">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">
+              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--terracotta)]">
                 The guide
               </p>
               <h1 className="mt-6 font-display text-4xl leading-[1.05] md:text-6xl">{HEADLINE}</h1>
@@ -77,7 +77,7 @@ function AdhdAndEatingPage() {
               </p>
             </div>
             <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
-              <img src="/food-feature.jpg" alt="Gentle, weight-neutral nourishment" className="h-full w-full object-cover" loading="eager" decoding="async" />
+              <img src="/hub-bodyatrest.jpg" alt="A body at rest, warm and unhurried" className="h-full w-full object-cover" loading="eager" decoding="async" />
             </div>
           </div>
         </section>

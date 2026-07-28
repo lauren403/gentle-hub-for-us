@@ -93,7 +93,7 @@ function StartHerePage() {
         <section className="bg-[var(--plum)] text-[var(--oat)]">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24 lg:gap-16">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">
+              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--terracotta)]">
                 Pull up a chair
               </p>
               <h1 className="mt-6 font-display text-[2.75rem] leading-[1.03] md:text-6xl">Start here.</h1>
@@ -103,14 +103,14 @@ function StartHerePage() {
               </p>
             </div>
             <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
-              <img src="/portrait-calm.jpg" alt="A warm welcome at Body Belonging Clinic" className="h-full w-full object-cover" loading="eager" decoding="async" />
+              <img src="/hub-welcome.jpg" alt="A warm welcome at Body Belonging Clinic" className="h-full w-full object-cover" loading="eager" decoding="async" />
             </div>
           </div>
         </section>
 
         {/* HOW IT WORKS */}
         <section className="mx-auto max-w-3xl px-5 py-16 md:py-24">
-          <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--terracotta)]">
             A gentle first step
           </p>
           <h2 className="mt-5 font-display text-3xl leading-tight md:text-5xl">How it works</h2>
@@ -137,9 +137,9 @@ function StartHerePage() {
         </section>
 
         {/* COSTS */}
-        <section className="bg-[var(--cream)]">
+        <section style={{ backgroundColor: "#B7BC7A" }}>
           <div className="mx-auto max-w-3xl px-5 py-16 md:py-24">
-            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#5c4a1e]">
               Money, plainly
             </p>
             <h2 className="mt-5 font-display text-3xl leading-tight md:text-5xl">
@@ -169,7 +169,7 @@ function StartHerePage() {
 
         {/* WHAT TO EXPECT */}
         <section className="mx-auto max-w-3xl px-5 py-16 md:py-24">
-          <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--terracotta)]">
             A softer landing
           </p>
           <h2 className="mt-5 font-display text-3xl leading-tight md:text-5xl">What to expect</h2>
@@ -200,7 +200,7 @@ function StartHerePage() {
 
         {/* CLOSING CTA — full-bleed */}
         <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-          <img src="/warm-vanity.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="/hub-smile.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.85) 0%, rgba(46,26,34,0.5) 100%)" }} />
           <div className="relative mx-auto max-w-3xl px-5 py-24 md:py-32 text-center">
             <h2 className="font-display text-4xl leading-tight md:text-6xl">Ready when you are.</h2>

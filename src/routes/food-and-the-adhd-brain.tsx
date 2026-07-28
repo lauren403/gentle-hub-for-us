@@ -110,7 +110,7 @@ function FoodAndTheAdhdBrainPage() {
           <div className="mx-auto max-w-5xl px-5 py-20 md:py-28">
             <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
               <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--terracotta)]">
                   The nutrition question
                 </p>
                 <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
@@ -124,8 +124,8 @@ function FoodAndTheAdhdBrainPage() {
               <figure className="md:justify-self-end">
                 <div className="overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
                   <img
-                    src="/mug-terrazzo.jpg"
-                    alt="A blue enamel mug of coffee on warm terrazzo"
+                    src="/hub-mug.jpg"
+                    alt="A warm mug, held in both hands"
                     loading="eager"
                     decoding="async"
                     className="aspect-[4/5] h-full w-full object-cover"
