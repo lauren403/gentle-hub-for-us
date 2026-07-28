@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { HALAXY_URL, SITE_URL } from "@/config/site";
 import { ContentGovernance } from "@/components/content-governance";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { FilmHero } from "@/components/cinema";
 import { trackEvent, trackNextAction } from "@/lib/analytics";
 
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/assessment-preparation`;
@@ -71,33 +72,24 @@ function AssessmentPreparationPage() {
     <div className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <SiteHeader location="assessment_preparation" />
       <main id="main-content" tabIndex={-1}>
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24 lg:gap-16">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--terracotta)]">
-                Free assessment preparation guide
-              </p>
-              <h1 className="mt-6 font-display text-4xl leading-tight md:text-6xl">
-                You don&apos;t have to prove you&apos;re &ldquo;ADHD enough&rdquo;.
-              </h1>
-              <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-[var(--oat)]/85">
-                An assessment is meant to understand the pattern of your life — not reward whoever
-                arrives with the neatest folder. This helps you gather what matters, without turning
-                your story into a performance.
-              </p>
-              <button
-                type="button"
-                onClick={printGuide}
-                className="mt-8 inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 print:hidden"
-              >
-                Print or save this guide
-              </button>
-            </div>
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
-              <img src="/hub-room.jpg" alt="A calm space to gather your notes" className="h-full w-full object-cover" loading="eager" decoding="async" />
-            </div>
-          </div>
-        </section>
+        <FilmHero
+          image="/hub-room.jpg"
+          alt="A calm space to gather your notes"
+          label="Free assessment preparation guide"
+          title="You don't have to prove you're ADHD enough"
+          underline="ADHD enough"
+        >
+          An assessment is meant to understand the pattern of your life — not reward whoever arrives
+          with the neatest folder. This helps you gather what matters, without turning your story into
+          a performance.
+          <button
+            type="button"
+            onClick={printGuide}
+            className="mt-7 inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-6 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 print:hidden"
+          >
+            Print or save this guide
+          </button>
+        </FilmHero>
 
         <section className="mx-auto max-w-4xl px-5 py-16 md:py-24">
           <ContentGovernance

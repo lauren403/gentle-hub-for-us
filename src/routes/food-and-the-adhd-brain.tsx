@@ -4,6 +4,7 @@ import { SITE_URL, HALAXY_URL } from "@/config/site";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 import { trackEvent } from "@/lib/analytics";
 import { ContentGovernance } from "@/components/content-governance";
+import { FilmHero } from "@/components/cinema";
 
 const TITLE = "Food and the ADHD brain: the honest science | Body Belonging Clinic";
 const DESCRIPTION =
@@ -99,42 +100,17 @@ function FoodAndTheAdhdBrainPage() {
       <SiteHeader location="food_and_the_adhd_brain" />
 
       <main id="main-content" tabIndex={-1}>
-        {/* HERO */}
-        <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]"
-          >
-            <Logo className="size-[520px] text-[var(--oat)]" />
-          </div>
-          <div className="mx-auto max-w-5xl px-5 py-20 md:py-28">
-            <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
-              <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--terracotta)]">
-                  The nutrition question
-                </p>
-                <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">
-                  {HEADLINE}
-                </h1>
-                <p className="mt-8 max-w-[62ch] font-display text-xl italic leading-snug text-[var(--oat)]/90 md:text-2xl">
-                  The real science on what you eat and how your brain feels — held honestly, and
-                  without a single diet rule.
-                </p>
-              </div>
-              <figure className="md:justify-self-end">
-                <div className="overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
-                  <img
-                    src="/hub-mug.jpg"
-                    alt="A warm mug, held in both hands"
-                    loading="eager"
-                    decoding="async"
-                    className="aspect-[4/5] h-full w-full object-cover"
-                  />
-                </div>
-              </figure>
-            </div>
-          </div>
-        </section>
+        {/* HERO — cinematic film still */}
+        <FilmHero
+          image="/hub-mug.jpg"
+          alt="A warm mug, held in both hands"
+          label="The nutrition question"
+          title={HEADLINE}
+          underline="ADHD brain"
+        >
+          The real science on what you eat and how your brain feels — held honestly, and without a
+          single diet rule.
+        </FilmHero>
 
         {/* BODY */}
         <article className="mx-auto max-w-3xl px-5 py-16 md:py-24">

@@ -4,6 +4,7 @@ import { SITE_URL, HALAXY_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { ContentGovernance } from "@/components/content-governance";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { FilmHero } from "@/components/cinema";
 
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/australian-adhd-care`;
 const BOOK_URL = HALAXY_URL;
@@ -120,24 +121,17 @@ function AustralianAdhdCarePage() {
       <main id="main-content" tabIndex={-1}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
 
-        {/* HERO — plum, full-bleed split */}
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="grid md:grid-cols-2 md:items-stretch">
-            <div className="flex flex-col justify-center px-5 py-16 md:py-24 md:pl-12 md:pr-14 lg:pl-20">
-              <p className={kicker}>Navigate</p>
-              <h1 className="mt-6 max-w-[14ch] font-display text-[2.85rem] leading-[1.02] text-[var(--oat)] md:text-[5rem]">
-                The Australian ADHD care map.
-              </h1>
-              <p className="mt-7 max-w-[38ch] text-lg leading-relaxed text-[var(--oat)]/85 md:text-xl">
-                Figuring out ADHD care here is genuinely confusing. Here&apos;s a plain-language map — who
-                does what, and where each role stops.
-              </p>
-            </div>
-            <div className="relative min-h-[50vh] md:min-h-[78vh]">
-              <img src="/hub-chair.jpg" alt="A warm chair, waiting" className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
-            </div>
-          </div>
-        </section>
+        {/* HERO — cinematic film still */}
+        <FilmHero
+          image="/hub-chair.jpg"
+          alt="A warm chair, waiting"
+          label="Find your way"
+          title="The Australian ADHD care map"
+          underline="care map"
+        >
+          ADHD care in Australia is genuinely confusing — GPs, psychiatrists, psychologists, scripts,
+          rebates. Here&apos;s a plain-language map of who does what, and where each role stops.
+        </FilmHero>
 
         {/* JOURNEYS — sage */}
         <section style={{ backgroundColor: SAGE }} className="text-[var(--plum)]">

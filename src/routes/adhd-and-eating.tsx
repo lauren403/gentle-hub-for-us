@@ -3,6 +3,7 @@ import { SITE_URL, HALAXY_URL } from "@/config/site";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 import { trackEvent } from "@/lib/analytics";
 import { ContentGovernance } from "@/components/content-governance";
+import { FilmHero } from "@/components/cinema";
 
 const TITLE = "ADHD and eating: a weight-neutral guide | Body Belonging Clinic";
 const DESCRIPTION =
@@ -59,28 +60,21 @@ function AdhdAndEatingPage() {
       <SiteHeader location="adhd_and_eating" />
 
       <main id="main-content" tabIndex={-1}>
-        {/* HERO */}
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24 lg:gap-16">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--terracotta)]">
-                The guide
-              </p>
-              <h1 className="mt-6 font-display text-4xl leading-[1.05] md:text-6xl">{HEADLINE}</h1>
-              <p className="mt-7 max-w-[46ch] font-display text-lg italic leading-snug text-[var(--oat)]/90 md:text-xl">
-                If your relationship with food has always felt harder and stranger than it seems for
-                other people — and no one ever linked it to your ADHD — this guide is for you.
-              </p>
-              <p className="mt-4 max-w-[46ch] text-sm leading-relaxed text-[var(--oat)]/60">
-                Written to reduce common eating-disorder-related risks; it cannot be safe or suitable
-                for every person.
-              </p>
-            </div>
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
-              <img src="/hub-bodyatrest.jpg" alt="A body at rest, warm and unhurried" className="h-full w-full object-cover" loading="eager" decoding="async" />
-            </div>
-          </div>
-        </section>
+        {/* HERO — cinematic film still */}
+        <FilmHero
+          image="/hub-bodyatrest.jpg"
+          alt="A body at rest, warm and unhurried"
+          label="The guide"
+          title={HEADLINE}
+          underline="held safely"
+        >
+          If your relationship with food has always felt harder and stranger than it seems for other
+          people — and no one ever linked it to your ADHD — this guide is for you.
+          <span className="mt-3 block text-sm text-[var(--oat)]/65">
+            Written to reduce common eating-disorder-related risks; it cannot be safe or suitable for
+            every person.
+          </span>
+        </FilmHero>
 
         {/* BODY */}
         <article className="mx-auto max-w-3xl px-5 py-16 md:py-24">

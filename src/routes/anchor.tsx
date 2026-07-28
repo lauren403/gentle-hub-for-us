@@ -4,6 +4,8 @@ import { ANCHOR_URL, CONTACT, SITE_URL } from "@/config/site";
 import { trackEvent, trackNextAction } from "@/lib/analytics";
 import { submitLeadSignup } from "@/lib/lead-signup";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
+import { HandLabel } from "@/components/cinema";
+import { Squiggle } from "@/components/hand-drawn";
 import { isLikelySpam, looksLikeEmail } from "@/lib/spam-guard";
 
 const TITLE = "Anchor — a free ADHD companion app | Body Belonging Clinic";
@@ -46,10 +48,13 @@ function AnchorPage() {
         <section className="bg-[var(--plum)] text-[var(--oat)]">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1fr_0.8fr] md:py-24 lg:gap-16">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--terracotta)]">
-                A free tool from Body Belonging Clinic
-              </p>
-              <h1 className="mt-5 font-display text-5xl leading-[1.03] md:text-7xl">Anchor</h1>
+              <HandLabel tone="terracotta">A free tool from Body Belonging Clinic</HandLabel>
+              <h1 className="mt-5 font-display text-5xl leading-[1.03] md:text-7xl">
+                <span className="relative inline-block">
+                  Anchor
+                  <Squiggle className="absolute -bottom-2 left-0 h-3 w-full text-[var(--terracotta)]" />
+                </span>
+              </h1>
               <p className="mt-6 font-display text-2xl italic text-[var(--oat)]/85 md:text-3xl">
                 A gentle companion for the days your body forgets to tell you it&apos;s hungry.
               </p>

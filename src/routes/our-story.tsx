@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { HALAXY_URL, SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { SiteFooter, SiteHeader, Logo } from "@/components/site-chrome";
+import { FilmHero } from "@/components/cinema";
 
 const TITLE = "Our Story | Body Belonging Clinic";
 const DESCRIPTION =
@@ -61,27 +62,17 @@ function OurStoryPage() {
     <div className="min-h-dvh bg-[var(--cream)] text-[var(--plum)]">
       <SiteHeader location="our_story" />
       <main id="main-content" tabIndex={-1}>
-        {/* HERO — plum */}
-        <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-          <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]">
-            <Logo className="size-[520px] text-[var(--oat)]" />
-          </div>
-          <div className="mx-auto max-w-5xl px-5 py-24 md:py-32">
-            <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
-              <div>
-                <p className={kicker}>Body Belonging Clinic</p>
-                <h1 className="mt-5 font-display text-4xl leading-[1.04] md:text-[5rem]">Why this clinic exists</h1>
-                <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">Support should feel like belonging.</p>
-              </div>
-              <figure className="md:justify-self-end">
-                <div className="overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
-                  <img src="/hub-portrait2.jpg" alt="Lauren Lynch, founder of Body Belonging Clinic" loading="eager" decoding="async" fetchPriority="high" className="aspect-[4/5] h-full w-full object-cover" />
-                </div>
-                <figcaption className="mt-3 font-mono text-xs uppercase tracking-[0.16em] text-[var(--oat)]/60">Lauren Lynch · Founder</figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
+        {/* HERO — cinematic film still */}
+        <FilmHero
+          image="/hub-portrait2.jpg"
+          alt="Lauren Lynch, founder of Body Belonging Clinic"
+          label="Body Belonging Clinic"
+          title="Why this clinic exists"
+          underline="clinic exists"
+        >
+          Support should feel like belonging. This is the why behind the Hub — written by Lauren Lynch:
+          founder, Accredited Mental Health Social Worker, and a proud Yorta Yorta woman.
+        </FilmHero>
 
         {/* A NOTE FROM LAUREN — sage */}
         <section style={{ backgroundColor: SAGE }} className="text-[var(--plum)]">
