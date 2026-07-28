@@ -277,13 +277,13 @@ function AdhdHub() {
                 .
               </h2>
               <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-[var(--cream)]/88">
-                Omega-3, iron, vitamin D — the nutrients the research keeps tying to focus, mood and
-                sleep in ADHD brains. We take that science seriously, and because we're an
-                eating-disorder-safe clinic, we work with it gently — no diet rules, no shame, no
-                restriction.
+                The ADHD brain runs on more than willpower. It runs on omega-3, iron and vitamin D —
+                the nutrients research keeps linking to focus, mood and sleep. We take that seriously.
+                And because we&apos;re eating-disorder-safe, we keep it gentle: no diet rules, no shame,
+                no restriction.
               </p>
               <p className="mt-5 max-w-[44ch] font-mono text-sm text-[var(--cream)]/70">
-                Weight-neutral · evidence-led, not diet-led · tested, not guessed.
+                Weight-neutral · evidence-led · tested, not guessed.
               </p>
             </div>
           </div>
