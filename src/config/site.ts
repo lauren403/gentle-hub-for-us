@@ -9,6 +9,12 @@ export const SITE_URL = "https://adhd.bodybelongingclinic.com.au";
 // Replace this with your real Measurement ID to enable GA4.
 export const GA_MEASUREMENT_ID: string = "G-EKE17QFG2S";
 
+// Google Search Console — "HTML tag" verification token.
+// In Search Console → add property (URL prefix) https://adhd.bodybelongingclinic.com.au
+// → choose "HTML tag" → copy ONLY the content="..." value → paste it here.
+// When non-empty, a <meta name="google-site-verification"> tag is rendered site-wide.
+export const GSC_VERIFICATION: string = "";
+
 // Single public destination for the current Anchor web tool.
 export const ANCHOR_URL: string = "https://anchor.bodybelongingclinic.com.au";
 

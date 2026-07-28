@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SITE_URL, THEME_COLOR, OG_IMAGE, CONTACT } from "../config/site";
+import { SITE_URL, THEME_COLOR, OG_IMAGE, CONTACT, GSC_VERIFICATION } from "../config/site";
 import { AnalyticsConsent } from "../components/analytics-consent";
 
 const TITLE = "ADHD therapy, eating & body support | Body Belonging Clinic";
@@ -122,6 +122,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
       { name: "twitter:image", content: `${SITE_URL.replace(/\/$/, "")}${OG_IMAGE}` },
+      ...(GSC_VERIFICATION
+        ? [{ name: "google-site-verification", content: GSC_VERIFICATION }]
+        : []),
     ],
     links: [
       { rel: "stylesheet", href: appCss },
