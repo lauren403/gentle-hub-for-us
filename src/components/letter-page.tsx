@@ -13,23 +13,41 @@ export function LetterPage({ letter }: { letter: Letter }) {
       <SiteHeader location={`letter_${letter.slug}`} activePath="/letters" />
 
       <main id="main-content" tabIndex={-1}>
-        {/* HERO */}
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-24 lg:gap-16">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">A letter</p>
-              <h1 className="mt-6 font-display text-4xl leading-[1.05] md:text-6xl">
+        {/* HERO — real photo when we have a distinct one, else a bold type-led block */}
+        {heroImg ? (
+          <section className="bg-[var(--plum)] text-[var(--oat)]">
+            <div className="grid md:grid-cols-2 md:items-stretch">
+              <div className="flex flex-col justify-center px-5 py-16 md:py-24 md:pl-12 md:pr-14 lg:pl-20">
+                <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--terracotta)]">
+                  A letter · {letter.readingTime}
+                </p>
+                <h1
+                  className="mt-6 max-w-[16ch] font-display text-[2.6rem] leading-[1.03] md:text-[4.4rem]"
+                  style={{ fontVariationSettings: '"SOFT" 100' }}
+                >
+                  {letter.title}
+                </h1>
+              </div>
+              <div className="relative min-h-[46vh] md:min-h-[70vh]">
+                <img src={heroImg} alt="" className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
+              </div>
+            </div>
+          </section>
+        ) : (
+          <section className="bg-[var(--terracotta)] text-[var(--cream)]">
+            <div className="mx-auto max-w-5xl px-5 py-24 md:py-36">
+              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--cream)]/80">
+                A letter · {letter.readingTime}
+              </p>
+              <h1
+                className="mt-7 max-w-[16ch] font-display text-[2.9rem] leading-[1.02] md:text-[5.2rem]"
+                style={{ fontVariationSettings: '"SOFT" 100' }}
+              >
                 {letter.title}
               </h1>
-              <p className="mt-6 text-xs uppercase tracking-[0.18em] text-[var(--oat)]/60">
-                Reading time · {letter.readingTime}
-              </p>
             </div>
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
-              <img src={heroImg} alt="" className="h-full w-full object-cover" loading="eager" decoding="async" />
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* BODY */}
         <article className="mx-auto max-w-3xl px-5 py-16 md:py-24">

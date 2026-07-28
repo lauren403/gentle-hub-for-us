@@ -12,16 +12,22 @@ export type Letter = {
 
 // Shared image set for the Letters index cards and article heroes.
 // Keyed by letter order so a letter's card image matches its article hero.
+// Per-letter hero images, aligned to the LETTERS order below. Real studio frames
+// where a distinct one exists; an empty string means a bold type-led hero (no photo),
+// so nothing repeats across the twelve letters.
 export const LETTER_IMAGES = [
-  "/small-steps.jpg",
-  "/reading-nook.jpg",
-  "/jug-books.jpg",
-  "/flowers-window.jpg",
-  "/artist-desk.jpg",
-  "/lamp-shadow.jpg",
-  "/warm-hallway.jpg",
-  "/terracotta-wall.jpg",
-  "/sofa-read.jpg",
+  "/hub-l-table.jpg", // why-a-brain-like-ours-forgets-to-eat
+  "/hub-l-held.jpg", // different-not-broken
+  "/hub-l-room2.jpg", // eating-by-the-clock-not-by-hunger
+  "/hub-l-curled.jpg", // the-hardest-part-isnt-focus-its-feeling
+  "/hub-l-ring.jpg", // medication-isnt-the-whole-answer
+  "/hub-l-community.jpg", // your-nervous-system-and-a-place-to-belong
+  "/hub-l-chair.jpg", // diagnosed-with-adhd-as-an-adult
+  "", // the-late-brain-at-midnight — type-led
+  "/hub-l-holding.jpg", // working-with-your-brain
+  "/hub-l-embrace.jpg", // food-as-brain-fuel-safely
+  "", // audhd-autistic-and-adhd — type-led
+  "", // neurodivergent-and-queer — type-led
 ];
 
 export const LETTERS: Letter[] = [
