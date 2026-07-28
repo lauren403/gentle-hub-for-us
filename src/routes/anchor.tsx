@@ -46,7 +46,7 @@ function AnchorPage() {
         <section className="bg-[var(--plum)] text-[var(--oat)]">
           <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1fr_0.8fr] md:py-24 lg:gap-16">
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">
+              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--terracotta)]">
                 A free tool from Body Belonging Clinic
               </p>
               <h1 className="mt-5 font-display text-5xl leading-[1.03] md:text-7xl">Anchor</h1>
@@ -87,10 +87,10 @@ function AnchorPage() {
           </p>
         </section>
 
-        {/* WHAT ANCHOR DOES */}
-        <section className="bg-[var(--cream)]">
+        {/* WHAT ANCHOR DOES — sage */}
+        <section style={{ backgroundColor: "#B7BC7A" }}>
           <div className="mx-auto max-w-3xl px-5 py-16 md:py-24">
-            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+            <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-[#5c4a1e]">
               What Anchor does
             </p>
             <h2 className="font-display text-3xl leading-tight md:text-5xl">
@@ -114,12 +114,23 @@ function AnchorPage() {
           </div>
         </section>
 
+        {/* BREATH — warm table */}
+        <section className="relative min-h-[48vh] w-full overflow-hidden bg-[var(--plum)]">
+          <img src="/hub-table.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.62), rgba(46,26,34,0.12) 55%, rgba(46,26,34,0.4))" }} />
+          <div className="relative mx-auto flex min-h-[48vh] max-w-4xl items-center justify-center px-5 text-center">
+            <h2 className="max-w-[20ch] font-display text-[2rem] leading-tight text-[var(--oat)] md:text-[3rem]">
+              Something to eat, at a regular time. That&apos;s the whole idea.
+            </h2>
+          </div>
+        </section>
+
         {/* SAFETY PROMISE */}
         <section className="mx-auto max-w-3xl px-5 py-16 md:py-24">
           <div className="rounded-3xl border-2 border-[var(--terracotta)]/40 bg-[var(--cream)] p-8 md:p-12 shadow-sm">
             <div className="flex items-center gap-3">
               <Logo className="size-7 text-[var(--terracotta)]" />
-              <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--terracotta)]">
                 Our safety promise
               </p>
             </div>
@@ -147,7 +158,7 @@ function AnchorPage() {
         {/* WHY I BUILT IT */}
         <section className="bg-[var(--cream)]">
           <div className="mx-auto max-w-3xl px-5 py-16 md:py-24">
-            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+            <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-[var(--terracotta)]">
               Why I built it
             </p>
             <h2 className="font-display text-3xl leading-tight md:text-5xl">
@@ -180,7 +191,7 @@ function AnchorPage() {
         {/* EARLY ACCESS */}
         <section id="waitlist" className="mx-auto max-w-3xl px-5 py-20 md:py-28">
           <div className="rounded-3xl border border-[var(--plum)]/10 bg-[var(--plum)] p-8 md:p-12 text-[var(--oat)]">
-            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--terracotta)]">
               Early access
             </p>
             <h2 className="mt-4 font-display text-3xl leading-tight md:text-4xl">
