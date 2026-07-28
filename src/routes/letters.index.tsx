@@ -75,21 +75,20 @@ function LettersIndex() {
                 to={letter.path}
                 className="group flex flex-col overflow-hidden rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-md"
               >
-                {LETTER_IMAGES[i % LETTER_IMAGES.length] ? (
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img
-                      src={LETTER_IMAGES[i % LETTER_IMAGES.length]}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex aspect-[16/10] items-end bg-[var(--terracotta)] p-6">
-                    <span className="font-display text-2xl leading-tight text-[var(--cream)]">{letter.title}</span>
-                  </div>
-                )}
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <img
+                    src={LETTER_IMAGES[i % LETTER_IMAGES.length]}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+                    style={{ background: "linear-gradient(to top, rgba(46,26,34,0.55), rgba(46,26,34,0))" }}
+                  />
+                </div>
                 <div className="flex flex-1 flex-col p-7">
                   <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--terracotta)]">
                     A letter · {letter.readingTime}
