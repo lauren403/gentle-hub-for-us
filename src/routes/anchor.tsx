@@ -43,37 +43,36 @@ function AnchorPage() {
       <SiteHeader location="anchor" />
       <main id="main-content" tabIndex={-1}>
         {/* HERO */}
-        <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]"
-          >
-            <Logo className="size-[520px] text-[var(--oat)]" />
-          </div>
-          <div className="mx-auto max-w-3xl px-5 py-24 md:py-32">
-            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-              A free tool from Body Belonging Clinic
-            </p>
-            <h1 className="mt-5 font-display text-5xl leading-[1.03] md:text-7xl">Anchor</h1>
-            <p className="mt-6 font-display text-2xl italic text-[var(--oat)]/85 md:text-3xl">
-              A gentle companion for the days your body forgets to tell you it's hungry.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-5">
-              <a
-                href={ANCHOR_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackEvent("anchor_open_app", { location: "anchor_hero" })}
-                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-7 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98]"
-              >
-                Open Anchor →
-              </a>
-              <a
-                href="#waitlist"
-                className="text-sm font-medium text-[var(--oat)]/85 underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--oat)]"
-              >
-                or get updates
-              </a>
+        <section className="bg-[var(--plum)] text-[var(--oat)]">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1fr_0.8fr] md:py-24 lg:gap-16">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">
+                A free tool from Body Belonging Clinic
+              </p>
+              <h1 className="mt-5 font-display text-5xl leading-[1.03] md:text-7xl">Anchor</h1>
+              <p className="mt-6 font-display text-2xl italic text-[var(--oat)]/85 md:text-3xl">
+                A gentle companion for the days your body forgets to tell you it&apos;s hungry.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-5">
+                <a
+                  href={ANCHOR_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent("anchor_open_app", { location: "anchor_hero" })}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--terracotta)] px-7 py-3 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98]"
+                >
+                  Open Anchor →
+                </a>
+                <a
+                  href="#waitlist"
+                  className="text-sm font-medium text-[var(--oat)]/85 underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--oat)]"
+                >
+                  or get updates
+                </a>
+              </div>
+            </div>
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[300px] overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
+              <img src="/anchor-reminders.jpg" alt="Anchor's gentle eating-rhythm reminders on a phone" className="h-full w-full object-cover" loading="eager" decoding="async" />
             </div>
           </div>
         </section>

@@ -90,22 +90,21 @@ function StartHerePage() {
       <SiteHeader location="start_here" activePath="/start-here" />
       <main id="main-content" tabIndex={-1}>
         {/* HERO */}
-        <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-16 -top-16 opacity-[0.06]"
-          >
-            <Logo className="size-[520px] text-[var(--oat)]" />
-          </div>
-          <div className="mx-auto max-w-3xl px-5 py-24 md:py-32">
-            <p className="text-xs uppercase tracking-[0.22em] text-[var(--terracotta)]">
-              Pull up a chair
-            </p>
-            <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">Start here</h1>
-            <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
-              No wrong way to begin, and no rush. This page exists to make the first step easy — and
-              to tell you what happens, where to check current fees, and what to expect. No mystery.
-            </p>
+        <section className="bg-[var(--plum)] text-[var(--oat)]">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24 lg:gap-16">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">
+                Pull up a chair
+              </p>
+              <h1 className="mt-6 font-display text-[2.75rem] leading-[1.03] md:text-6xl">Start here.</h1>
+              <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-[var(--oat)]/85 md:text-xl">
+                No wrong way to begin, and no rush. Here&apos;s what happens, where to check fees, and
+                what to expect — no mystery.
+              </p>
+            </div>
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
+              <img src="/woman-plants.jpg" alt="A warm welcome at Body Belonging Clinic" className="h-full w-full object-cover" loading="eager" decoding="async" />
+            </div>
           </div>
         </section>
 
@@ -199,9 +198,11 @@ function StartHerePage() {
           </p>
         </section>
 
-        {/* CLOSING CTA */}
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto max-w-3xl px-5 py-24 md:py-32 text-center">
+        {/* CLOSING CTA — full-bleed */}
+        <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
+          <img src="/golden-window.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.85) 0%, rgba(46,26,34,0.5) 100%)" }} />
+          <div className="relative mx-auto max-w-3xl px-5 py-24 md:py-32 text-center">
             <h2 className="font-display text-4xl leading-tight md:text-6xl">Ready when you are.</h2>
             <p className="mx-auto mt-6 max-w-[52ch] font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
               Whenever you feel like it, book a free intro call and we will take the first small
