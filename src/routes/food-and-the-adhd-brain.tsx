@@ -108,8 +108,8 @@ function FoodAndTheAdhdBrainPage() {
           title={HEADLINE}
           underline="ADHD brain"
         >
-          The real science on what you eat and how your brain feels — held honestly, and without a
-          single diet rule.
+          The ADHD brain runs on more than willpower — it runs on omega-3, iron and vitamin D too.
+          Here&apos;s the honest science on what food can and can&apos;t do, without a single diet rule.
         </FilmHero>
 
         {/* BODY */}
@@ -118,8 +118,9 @@ function FoodAndTheAdhdBrainPage() {
             labels={["Systematic review", "Emerging research", "Clinical practice lens"]}
           />
           <P>
-            There is a loud, confident conversation online about food and the ADHD brain, and it
-            holds both real science and real danger. On one side, headlines promise that a
+            Omega-3, iron, vitamin D, steady blood sugar — food genuinely touches how an ADHD brain
+            feels. But there is a loud, confident conversation online about it, and it holds both real
+            science and real danger. On one side, headlines promise that a
             supplement or a diet will transform your focus. On the other, people are told food has
             nothing to do with it at all. Both positions can overstate the evidence, and you deserve
             the honest middle. Food does matter for how a brain feels and functions — modestly, at
@@ -180,8 +181,9 @@ function FoodAndTheAdhdBrainPage() {
             eat until it is urgent, the single most helpful nutrition step is usually not a
             supplement at all — it is a rhythm: something to eat at regular intervals, with a little
             protein, whether or not hunger has arrived yet. That idea comes straight from
-            established eating-disorder practice, where it is called regular eating, and it is
-            additive and weight-neutral, with individual suitability considered. There is{" "}
+            established eating-disorder practice, where it is called regular eating — it adds structure
+            rather than taking foods away, and it stays weight-neutral, with individual suitability
+            considered. There is{" "}
             <Link
               to="/letters/eating-by-the-clock-not-by-hunger"
               className="underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
@@ -226,14 +228,15 @@ function FoodAndTheAdhdBrainPage() {
             experience less noticeable hunger or fullness cues do not need another rulebook naming
             forbidden foods. The wellness version of &ldquo;food as brain fuel&rdquo; slides,
             quietly and with the best intentions, into fear and restriction — and that is the exact
-            point where it stops being safe. Everything here runs the other way: additive, never
-            subtractive; include and steady, never shrink and control.
+            point where it stops being safe. Everything here runs the other way: we add, never take
+            away; include and steady, never shrink and control.
           </P>
 
           <H2>The safe way to explore it</H2>
           <P>
-            If you want to look at nutrition properly, do it additively and with the right people
-            beside you. Begin with the plain, unglamorous things that help every brain — regular
+            If you want to look at nutrition properly, do it by adding rather than cutting out, and
+            with the right people beside you. Begin with the plain, unglamorous things that help every
+            brain — regular
             meals, accessible foods that meet your needs, and enough sleep and water. Ask your GP
             about whether testing is clinically indicated before you buy supplements. And if you
             want to go further than that, do it with an eating-disorder-informed Accredited
@@ -268,10 +271,10 @@ function FoodAndTheAdhdBrainPage() {
           <H2>The honest bottom line</H2>
           <P>
             Food matters, modestly, at the edges, and it is worth taking seriously. It is never a
-            cure. Keeping support additive and professionally guided reduces common risks. Treat
-            food as one possible support among many, correct confirmed deficiencies with appropriate
-            advice, and be cautious of anyone promising that a supplement or restrictive plan will
-            transform ADHD.
+            cure. Keeping the focus on adding — never restricting — and professionally guided reduces
+            common risks. Treat food as one possible support among many, correct confirmed
+            deficiencies with appropriate advice, and be cautious of anyone promising that a
+            supplement or restrictive plan will transform ADHD.
           </P>
         </article>
 
