@@ -195,7 +195,7 @@ function MatchaBand() {
 const PILLARS = [
   { n: "01", h: "It's emotion, not attention", p: "For many adults the hardest part isn't focus — it's regulating feeling. That's learnable, and it's where we start." },
   { n: "02", h: "Medication isn't the whole answer", p: "Pro-treatment, and honest: a script treats symptoms, not skills, self-understanding or environment. That gap is the work." },
-  { n: "03", h: "Food, the ED-safe way", p: "Weight-neutral, additive, no supplements-as-cure — something only an ANZAED-credentialed clinic can truthfully offer." },
+  { n: "03", h: "Food is brain fuel", p: "The real nutrition science for the ADHD brain — omega-3, iron, vitamin D — held weight-neutral and eating-disorder-safe." },
   { n: "04", h: "Your nervous system & belonging", p: "Safety first. Culturally safe, LGBTQIA+ affirming — because the work only begins once you feel you belong." },
 ];
 
@@ -276,12 +276,14 @@ function AdhdHub() {
                 </span>
                 .
               </h2>
-              <p className="mt-6 max-w-[40ch] text-lg leading-relaxed text-[var(--cream)]/88">
-                We take nutrition and the ADHD brain seriously. And because we're an eating-disorder-informed clinic,
-                we do it without the restriction and supplement hype that hurts neurodivergent people.
+              <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-[var(--cream)]/88">
+                Omega-3, iron, vitamin D — the nutrients the research keeps tying to focus, mood and
+                sleep in ADHD brains. We take that science seriously, and because we're an
+                eating-disorder-safe clinic, we work with it gently — no diet rules, no shame, no
+                restriction.
               </p>
-              <p className="mt-5 max-w-[42ch] font-mono text-sm text-[var(--cream)]/70">
-                Weight-neutral · additive, not restrictive · guided by testing, not guessing.
+              <p className="mt-5 max-w-[44ch] font-mono text-sm text-[var(--cream)]/70">
+                Weight-neutral · evidence-led, not diet-led · tested, not guessed.
               </p>
             </div>
           </div>
