@@ -122,7 +122,7 @@ function CinemaHero() {
         }}
       />
       <div className="mx-auto w-full max-w-6xl px-5 pb-16 pt-28 md:pb-24">
-        <Label tone="oat">A hub for the ADHD nervous system</Label>
+        <Label tone="oat">You&apos;re in the right place</Label>
         <h1
           className="mt-5 max-w-[15ch] font-display text-[3.3rem] leading-[0.94] md:text-[6.6rem]"
           style={SOFT}
@@ -134,9 +134,10 @@ function CinemaHero() {
           </span>
           .
         </h1>
-        <p className="mt-7 max-w-[46ch] text-lg leading-relaxed text-[var(--oat)]/90 md:text-xl">
-          A reading room for the ADHD brain — where the leading science from Barkley, Brown and Dodson
-          meets the parts a diagnosis never reached. Aboriginal-led, eating-disorder-safe, unhurried.
+        <p className="mt-7 max-w-[48ch] text-lg leading-relaxed text-[var(--oat)]/90 md:text-xl">
+          If your brain runs on feeling, forgets to eat, and won&apos;t switch off at night — this is
+          for you. Real ADHD support for the whole of you, not just your focus: Aboriginal-led, safe
+          around food, and never rushed.
         </p>
         <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
           <BookButton location="hero" />
@@ -218,8 +219,9 @@ function AdhdHub() {
             <Label tone="terracotta">Why we exist</Label>
             <p className="mt-6 font-display text-[2rem] leading-[1.12] md:text-[3.4rem]" style={SOFT}>
               ADHD isn't an attention problem. It's a{" "}
-              <span className="italic text-[var(--terracotta)]">whole-body story</span> — emotion, food,
-              rhythm, belonging. We tell the parts the diagnosis and the prescription left out.
+              <span className="italic text-[var(--terracotta)]">whole-body story</span> — the way you
+              feel everything, forget to eat, run late, and lie awake. We help with the parts a diagnosis
+              and a prescription were never going to reach.
             </p>
           </div>
         </section>
@@ -238,8 +240,8 @@ function AdhdHub() {
                 .
               </h2>
               <p className="mt-7 max-w-[54ch] text-lg leading-relaxed text-[var(--plum)]/80">
-                We import the leading edge — Barkley, Brown, Dodson — and ground it here, honestly. No hype, no cure,
-                no diet noise. Just the work the script leaves undone.
+                We bring the world's leading ADHD science home to Australia and tell the truth with it —
+                no hype, no cure, no diet rules. Just the real work a prescription leaves undone.
               </p>
             </div>
             <div className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">

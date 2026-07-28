@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SITE_URL, HALAXY_URL, CONTACT } from "@/config/site";
 import { trackEvent, trackNextAction } from "@/lib/analytics";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
+import { FilmHero } from "@/components/cinema";
 
 const TITLE = "Start here | Body Belonging Clinic";
 const DESCRIPTION =
@@ -89,24 +90,17 @@ function StartHerePage() {
     <div className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <SiteHeader location="start_here" activePath="/start-here" />
       <main id="main-content" tabIndex={-1}>
-        {/* HERO */}
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24 lg:gap-16">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--terracotta)]">
-                Pull up a chair
-              </p>
-              <h1 className="mt-6 font-display text-[2.75rem] leading-[1.03] md:text-6xl">Start here.</h1>
-              <p className="mt-6 max-w-[42ch] text-lg leading-relaxed text-[var(--oat)]/85 md:text-xl">
-                No wrong way to begin, and no rush. Here&apos;s what happens, where to check fees, and
-                what to expect — no mystery.
-              </p>
-            </div>
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
-              <img src="/hub-welcome.jpg" alt="A warm welcome at Body Belonging Clinic" className="h-full w-full object-cover" loading="eager" decoding="async" />
-            </div>
-          </div>
-        </section>
+        {/* HERO — cinematic film still */}
+        <FilmHero
+          image="/hub-welcome.jpg"
+          alt="A warm welcome at Body Belonging Clinic"
+          label="No wrong way to begin"
+          title="Start here"
+          underline="here"
+        >
+          No rush, and nothing to prove. Here&apos;s exactly what happens, where to check fees, and what
+          to expect — no mystery, no cold clinic energy.
+        </FilmHero>
 
         {/* HOW IT WORKS */}
         <section className="mx-auto max-w-3xl px-5 py-16 md:py-24">

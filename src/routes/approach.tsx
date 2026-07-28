@@ -4,6 +4,7 @@ import { HALAXY_URL, SITE_URL, WHITEPAPER_PDF } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ContentGovernance } from "@/components/content-governance";
+import { FilmHero } from "@/components/cinema";
 
 const TITLE = "Our approach — the Body Belonging framework | Body Belonging Clinic";
 const DESCRIPTION =
@@ -90,24 +91,17 @@ function ApproachPage() {
     <div className="min-h-dvh bg-[var(--cream)] text-[var(--plum)]" id="top">
       <SiteHeader location="approach" />
       <main id="main-content" tabIndex={-1}>
-        {/* HERO — plum, full-bleed split */}
-        <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="grid md:grid-cols-2 md:items-stretch">
-            <div className="flex flex-col justify-center px-5 py-16 md:py-24 md:pl-12 md:pr-14 lg:pl-20">
-              <p className={kicker}>Our approach</p>
-              <h1 className="mt-6 max-w-[15ch] font-display text-[2.85rem] leading-[1.02] text-[var(--oat)] md:text-[5rem]">
-                ADHD regulation, from the inside out.
-              </h1>
-              <p className="mt-7 max-w-[40ch] text-lg leading-relaxed text-[var(--oat)]/85 md:text-xl">
-                A whole-person framework for how attention, emotion and eating actually connect —
-                gentle, weight-neutral, and honest about the evidence.
-              </p>
-            </div>
-            <div className="relative min-h-[52vh] md:min-h-[80vh]">
-              <img src="/hub-portrait.jpg" alt="A quiet, considered moment" className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
-            </div>
-          </div>
-        </section>
+        {/* HERO — cinematic film still */}
+        <FilmHero
+          image="/hub-portrait.jpg"
+          alt="A quiet, considered moment"
+          label="Our approach"
+          title="ADHD regulation, from the inside out"
+          underline="the inside out"
+        >
+          A whole-person way of seeing how attention, emotion and eating actually pull on each other —
+          gentle, weight-neutral, and honest about what we do and don&apos;t yet know.
+        </FilmHero>
 
         {/* PHILOSOPHY — sage, full-bleed split */}
         <section style={{ backgroundColor: SAGE }} className="text-[var(--plum)]">
