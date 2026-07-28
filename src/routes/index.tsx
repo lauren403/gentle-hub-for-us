@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { HALAXY_URL, SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
@@ -35,6 +36,45 @@ const BookButton = ({
 
 const textLink =
   "inline-flex text-sm font-medium underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]";
+
+// Motion-aware hero visual: shows the poster still by default (SSR-safe) and only
+// upgrades to the looping, muted video when the visitor has NOT requested reduced motion.
+function HeroMotion() {
+  const [motion, setMotion] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setMotion(!mq.matches);
+    apply();
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
+  return (
+    <div className="relative min-h-[54vh] md:min-h-[88vh] bg-[var(--plum)]">
+      {motion ? (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          poster="/hero-motion-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+        >
+          <source src="/hero-motion.mp4" type="video/mp4" />
+        </video>
+      ) : (
+        <img
+          src="/hero-motion-poster.jpg"
+          alt="An unhurried moment of calm at golden hour"
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      )}
+    </div>
+  );
+}
 
 const PATHWAYS = [
   { eyebrow: "Prepare", title: "Get ready for an assessment", blurb: "A free, no-pressure guide.", to: "/assessment-preparation" as const },
@@ -91,15 +131,7 @@ function AdhdHub() {
                 </Link>
               </div>
             </div>
-            <div className="relative min-h-[54vh] md:min-h-[88vh]">
-              <img
-                src="/portrait-calm.jpg"
-                alt="An unhurried, self-possessed moment of calm"
-                className="absolute inset-0 h-full w-full object-cover"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
+            <HeroMotion />
           </div>
         </section>
 
