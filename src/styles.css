@@ -32,6 +32,7 @@
   --color-oat: var(--oat);
   --color-cream: var(--cream);
   --color-terracotta: var(--terracotta);
+  --color-forest: var(--forest);
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Space Mono", ui-monospace, SFMono-Regular, monospace;
@@ -47,6 +48,8 @@
   --cream: oklch(0.97 0.02 85); /* #FBF7F0 */
   --terracotta: oklch(0.58 0.13 45); /* #BE5A2C — display / buttons */
   --terracotta-ink: oklch(0.42 0.13 45); /* deeper rust for small text (AA on oat/cream) */
+  --forest: oklch(0.38 0.06 155); /* deep bottle green — the chair, the typewriter, the matcha */
+  --forest-deep: oklch(0.28 0.05 155); /* darker still, for cinematic scrims */
 
   --background: var(--oat);
   --foreground: var(--plum);

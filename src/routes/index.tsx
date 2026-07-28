@@ -77,6 +77,82 @@ function Label({
 
 const PILLAR_ICONS = [MarkHeart, MarkSpark, MarkCup, MarkWave];
 
+// Cinematic full-bleed hero — the tree/typewriter film runs behind the words.
+// Poster still by default (SSR-safe + reduced-motion), video only when motion is allowed.
+function CinemaHero() {
+  const [motion, setMotion] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setMotion(!mq.matches);
+    apply();
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
+  return (
+    <section className="img-warm on-plum relative isolate flex min-h-[92vh] items-end overflow-hidden bg-[var(--forest-deep)] text-[var(--oat)]">
+      {motion ? (
+        <video
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          poster="/hub-tree-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+        >
+          <source src="/hub-tree.mp4" type="video/mp4" />
+        </video>
+      ) : (
+        <img
+          src="/hub-tree-poster.jpg"
+          alt=""
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          fetchPriority="high"
+          decoding="async"
+        />
+      )}
+      {/* cinematic scrim — dark at the base where the words sit, clear at the top */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(23,34,26,0.92) 0%, rgba(23,34,26,0.55) 32%, rgba(23,34,26,0.12) 60%, rgba(23,34,26,0.28) 100%)",
+        }}
+      />
+      <div className="mx-auto w-full max-w-6xl px-5 pb-16 pt-28 md:pb-24">
+        <Label tone="oat">A hub for the ADHD nervous system</Label>
+        <h1
+          className="mt-5 max-w-[15ch] font-display text-[3.3rem] leading-[0.94] md:text-[6.6rem]"
+          style={SOFT}
+        >
+          Pull up a chair.{" "}
+          <span className="relative inline-block italic text-[var(--oat)]">
+            Stay a while
+            <Squiggle className="absolute -bottom-3 left-0 h-3 w-full text-[var(--terracotta)]" />
+          </span>
+          .
+        </h1>
+        <p className="mt-7 max-w-[46ch] text-lg leading-relaxed text-[var(--oat)]/90 md:text-xl">
+          A reading room for the ADHD brain — where the leading science from Barkley, Brown and Dodson
+          meets the parts a diagnosis never reached. Aboriginal-led, eating-disorder-safe, unhurried.
+        </p>
+        <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+          <BookButton location="hero" />
+          <a
+            href="#approach"
+            className="group inline-flex items-center gap-2 font-medium text-[var(--oat)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]"
+          >
+            See the approach
+            <HandArrow className="h-4 w-6 transition-transform group-hover:translate-x-1" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Matcha motion band — poster still by default, muted looping video only when motion is allowed.
 function MatchaBand() {
   const [motion, setMotion] = useState(false);
@@ -133,40 +209,18 @@ function AdhdHub() {
     <div id="top" className="min-h-dvh bg-[var(--cream)] text-[var(--plum)]">
       <SiteHeader location="home" />
       <main id="main-content" tabIndex={-1}>
-        {/* 1 · HERO — plum */}
+        {/* 1 · HERO — cinematic film */}
+        <CinemaHero />
+
+        {/* 1b · MANIFESTO — the whole-body story, loud */}
         <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="grid md:grid-cols-2 md:items-stretch">
-            <div className="flex flex-col justify-center px-5 py-16 md:py-28 md:pl-12 md:pr-14 lg:pl-20">
-              <Label tone="terracotta">A hub for the ADHD nervous system</Label>
-              <h1 className="mt-6 max-w-[13ch] font-display text-[3rem] leading-[0.98] md:text-[5.4rem]" style={SOFT}>
-                ADHD isn't an attention problem. It's a{" "}
-                <span className="italic text-[var(--terracotta)]">whole-body </span>
-                <span className="relative inline-block italic text-[var(--terracotta)]">
-                  story
-                  <Squiggle className="absolute -bottom-3 left-0 h-3 w-full text-[var(--terracotta)]" />
-                </span>.
-              </h1>
-              <p className="mt-7 max-w-[40ch] text-lg leading-relaxed text-[var(--oat)]/85 md:text-xl">
-                The part the diagnosis and the prescription didn't reach — emotion, food, rhythm, belonging.
-                Aboriginal-led, eating-disorder-safe, neurodivergent by design.
-              </p>
-              <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-                <BookButton location="hero" />
-                <a href="#approach" className="font-medium text-[var(--oat)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">
-                  See the approach →
-                </a>
-              </div>
-            </div>
-            <div className="img-warm on-plum relative min-h-[54vh] md:min-h-[86vh]">
-              <img
-                src="/hub-lounge.jpg"
-                alt="A warm, unhurried room at the clinic"
-                className="absolute inset-0 h-full w-full object-cover"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </div>
+          <div className="mx-auto max-w-5xl px-5 py-20 md:py-28">
+            <Label tone="terracotta">Why we exist</Label>
+            <p className="mt-6 font-display text-[2rem] leading-[1.12] md:text-[3.4rem]" style={SOFT}>
+              ADHD isn't an attention problem. It's a{" "}
+              <span className="italic text-[var(--terracotta)]">whole-body story</span> — emotion, food,
+              rhythm, belonging. We tell the parts the diagnosis and the prescription left out.
+            </p>
           </div>
         </section>
 
