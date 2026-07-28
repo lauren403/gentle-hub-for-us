@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
 import { HALAXY_URL, SITE_URL } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
-import { SiteHeader, SiteFooter, Logo } from "@/components/site-chrome";
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/")({
   component: AdhdHub,
@@ -10,10 +9,6 @@ export const Route = createFileRoute("/")({
 });
 
 const BOOK_URL = HALAXY_URL;
-const HERO_IMG = "/lauren-phone.jpg"; // Lauren, retro phone, studio — warm & fun
-const SESSION_IMG = "/approach-session.jpg"; // Lauren, in-session
-const COMMUNITY_IMG = "/community.jpg"; // diverse, joyful — belonging
-const LETSTALK_IMG = "/lets-talk.jpg"; // "Ring ring, let's talk" brand tile
 
 const BookButton = ({
   children = "Book a free intro call",
@@ -30,7 +25,7 @@ const BookButton = ({
     rel="noopener noreferrer"
     onClick={() => trackEvent("booking_click", { location })}
     className={
-      "inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-7 py-3.5 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98] min-h-11 " +
+      "inline-flex items-center justify-center rounded-full bg-[var(--terracotta)] px-8 py-4 text-sm font-medium text-[var(--cream)] transition-all hover:brightness-110 active:scale-[0.98] min-h-11 " +
       className
     }
   >
@@ -38,20 +33,8 @@ const BookButton = ({
   </a>
 );
 
-function StudioImage({ src, alt, aspect = "aspect-[4/5]", className = "" }: { src: string; alt: string; aspect?: string; className?: string }) {
-  const [failed, setFailed] = useState(false);
-  return (
-    <div className={"relative overflow-hidden rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] shadow-md " + aspect + " " + className}>
-      {failed || !src ? (
-        <div className="grid h-full w-full place-items-center" style={{ background: "linear-gradient(140deg, var(--plum) 0%, color-mix(in oklab, var(--plum) 78%, var(--terracotta)) 100%)" }} role="img" aria-label={alt}>
-          <Logo className="w-2/5 text-[var(--oat)] opacity-25" />
-        </div>
-      ) : (
-        <img src={src} alt={alt} onError={() => setFailed(true)} className="h-full w-full object-cover" loading="lazy" decoding="async" />
-      )}
-    </div>
-  );
-}
+const textLink =
+  "inline-flex text-sm font-medium underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]";
 
 const PATHWAYS = [
   { eyebrow: "Prepare", title: "Get ready for an assessment", blurb: "A free, no-pressure guide.", to: "/assessment-preparation" as const },
@@ -62,14 +45,20 @@ const PATHWAYS = [
 
 function PathwayCards() {
   return (
-    <section className="mx-auto max-w-6xl px-5 pb-24 md:pb-32">
+    <section className="mx-auto max-w-6xl px-5 pb-28 md:pb-36">
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {PATHWAYS.map((c) => (
-          <Link key={c.title} to={c.to} className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-7 no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-md">
+          <Link
+            key={c.title}
+            to={c.to}
+            className="group flex flex-col rounded-2xl border border-[var(--plum)]/10 bg-[var(--cream)] p-7 no-underline transition-all hover:-translate-y-0.5 hover:border-[var(--terracotta)]/40 hover:shadow-md"
+          >
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--terracotta)]">{c.eyebrow}</p>
             <h3 className="mt-3 font-display text-xl leading-tight text-[var(--plum)]">{c.title}</h3>
             <p className="mt-2 flex-1 text-sm text-[var(--plum)]/70">{c.blurb}</p>
-            <span className="mt-6 text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">Explore →</span>
+            <span className="mt-6 text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 group-hover:text-[var(--terracotta)]">
+              Explore →
+            </span>
           </Link>
         ))}
       </div>
@@ -82,113 +71,173 @@ function AdhdHub() {
     <div id="top" className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]">
       <SiteHeader location="home" />
       <main id="main-content" tabIndex={-1}>
-        {/* 1 · HERO */}
+        {/* 1 · HERO — full-bleed editorial split */}
         <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24 lg:gap-16">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">ADHD · Eating · Belonging</p>
-              <h1 className="mt-6 max-w-[13ch] font-display text-[3rem] leading-[1.02] text-[var(--oat)] md:text-[5rem]">
+          <div className="grid md:grid-cols-2 md:items-stretch">
+            <div className="flex flex-col justify-center px-5 py-16 md:py-28 md:pl-12 md:pr-14 lg:pl-20">
+              <p className="text-xs font-medium uppercase tracking-[0.34em] text-[var(--terracotta)]">
+                ADHD · Eating · Belonging
+              </p>
+              <h1 className="mt-7 max-w-[12ch] font-display text-[3.25rem] leading-[0.98] text-[var(--oat)] md:text-[5.25rem]">
                 Care for the whole of you.
               </h1>
-              <p className="mt-6 max-w-[32ch] text-lg text-[var(--oat)]/85 md:text-xl">
-                Neuro-affirming, Aboriginal-led therapy — across Australia.
+              <p className="mt-7 max-w-[34ch] text-lg leading-relaxed text-[var(--oat)]/85 md:text-xl">
+                Neuro-affirming, Aboriginal-led therapy — in Perth and across Australia.
               </p>
-              <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
                 <BookButton location="hero" />
-                <Link to="/start-here" className="text-sm font-medium text-[var(--oat)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">
+                <Link to="/start-here" className={textLink + " text-[var(--oat)]"}>
                   New here? Start here →
                 </Link>
               </div>
             </div>
-            <StudioImage src={HERO_IMG} alt="Lauren Lynch at Body Belonging Clinic" aspect="aspect-square" className="mx-auto w-full max-w-md md:max-w-none" />
+            <div className="relative min-h-[54vh] md:min-h-[88vh]">
+              <img
+                src="/portrait-calm.jpg"
+                alt="An unhurried, self-possessed moment of calm"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
           </div>
         </section>
 
-        {/* 2 · ONE STATEMENT */}
-        <section className="mx-auto max-w-3xl px-5 py-28 text-center md:py-36">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">You might recognise this</p>
-          <h2 className="font-display text-[2.25rem] leading-[1.1] text-[var(--plum)] md:text-6xl">
+        {/* 2 · ONE STATEMENT — air + big type */}
+        <section className="mx-auto max-w-3xl px-5 py-32 text-center md:py-44">
+          <p className="mb-7 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">
+            You might recognise this
+          </p>
+          <h2 className="font-display text-[2.4rem] leading-[1.08] text-[var(--plum)] md:text-[4rem]">
             You were told it&apos;s just focus.
             <br />
             It never felt that simple.
           </h2>
-          <p className="mx-auto mt-8 max-w-[36ch] text-lg text-[var(--plum)]/70">
+          <p className="mx-auto mt-9 max-w-[36ch] text-lg text-[var(--plum)]/70 md:text-xl">
             Food, feelings, belonging — for ADHD brains, it&apos;s all connected.
           </p>
         </section>
 
-        {/* 3 · HOW WE WORK */}
+        {/* 3 · HOW WE WORK — full-bleed split, image left */}
         <section className="bg-[var(--cream)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-24 md:grid-cols-2 md:py-32 lg:gap-20">
-            <StudioImage src={SESSION_IMG} alt="A warm therapy session at Body Belonging Clinic" />
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-[var(--terracotta)]">How we work</p>
-              <h2 className="mt-5 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
+          <div className="grid items-stretch md:grid-cols-2">
+            <div className="relative min-h-[52vh] md:min-h-[74vh]">
+              <img
+                src="/standing-plant.jpg"
+                alt="A person standing at ease in a light, plant-filled space"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="flex flex-col justify-center px-5 py-16 md:px-14 md:py-28 lg:px-20">
+              <p className="text-xs font-medium uppercase tracking-[0.26em] text-[var(--terracotta)]">How we work</p>
+              <h2 className="mt-6 max-w-[16ch] font-display text-[2.1rem] leading-[1.05] text-[var(--plum)] md:text-[3.4rem]">
                 We start with your nervous system — not a checklist.
               </h2>
-              <p className="mt-6 max-w-[38ch] text-lg text-[var(--plum)]/75">
+              <p className="mt-7 max-w-[38ch] text-lg leading-relaxed text-[var(--plum)]/75">
                 Unhurried, weight-neutral, and affirming of who you are.
               </p>
-              <Link to="/approach" className="mt-8 inline-flex text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">
+              <Link to="/approach" className={"mt-9 " + textLink + " text-[var(--plum)]"}>
                 Read our approach →
               </Link>
             </div>
           </div>
         </section>
 
-        {/* 4 · BELONGING */}
-        <section className="mx-auto max-w-6xl px-5 py-24 md:py-32">
-          <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-20">
-            <div className="order-2 md:order-1">
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-[var(--terracotta)]">Belonging</p>
-              <h2 className="mt-5 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
+        {/* 4 · BELONGING — full-bleed split, image right */}
+        <section className="bg-[var(--oat)]">
+          <div className="grid items-stretch md:grid-cols-2">
+            <div className="order-2 flex flex-col justify-center px-5 py-16 md:order-1 md:px-14 md:py-28 lg:px-20">
+              <p className="text-xs font-medium uppercase tracking-[0.26em] text-[var(--terracotta)]">Belonging</p>
+              <h2 className="mt-6 max-w-[15ch] font-display text-[2.1rem] leading-[1.05] text-[var(--plum)] md:text-[3.4rem]">
                 A practice where you already belong.
               </h2>
-              <p className="mt-6 max-w-[36ch] text-lg text-[var(--plum)]/75">
+              <p className="mt-7 max-w-[36ch] text-lg leading-relaxed text-[var(--plum)]/75">
                 Aboriginal-led. LGBTQIA+ affirming. Neurodivergent by design.
               </p>
-              <Link to="/our-story" className="mt-8 inline-flex text-sm font-medium text-[var(--plum)] underline decoration-[var(--terracotta)] underline-offset-4 hover:text-[var(--terracotta)]">
+              <Link to="/our-story" className={"mt-9 " + textLink + " text-[var(--plum)]"}>
                 Our story →
               </Link>
             </div>
-            <StudioImage src={COMMUNITY_IMG} alt="A joyful, diverse community" className="order-1 md:order-2" />
+            <div className="relative order-1 min-h-[52vh] md:order-2 md:min-h-[74vh]">
+              <img
+                src="/joy-belonging.jpg"
+                alt="Shared, unguarded joy"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
         </section>
 
-        {/* IMMERSIVE BREATH — bold full-bleed */}
-        <section className="relative min-h-[62vh] w-full overflow-hidden bg-[var(--plum)]">
-          <img src="/bench-glow.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.7) 0%, rgba(46,26,34,0.3) 50%, rgba(46,26,34,0.55) 100%)" }} />
-          <div className="relative mx-auto flex min-h-[62vh] max-w-4xl items-center justify-center px-5 text-center">
-            <h2 className="max-w-[20ch] font-display text-[2rem] leading-tight text-[var(--oat)] md:text-5xl">
+        {/* BREATH 1 — bold full-bleed */}
+        <section className="relative min-h-[68vh] w-full overflow-hidden bg-[var(--plum)]">
+          <img
+            src="/shadow-ochre.jpg"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to top, rgba(46,26,34,0.72) 0%, rgba(46,26,34,0.28) 55%, rgba(46,26,34,0.5) 100%)" }}
+          />
+          <div className="relative mx-auto flex min-h-[68vh] max-w-4xl items-center justify-center px-5 text-center">
+            <h2 className="max-w-[20ch] font-display text-[2.2rem] leading-[1.08] text-[var(--oat)] md:text-[3.6rem]">
               You don&apos;t need to have it figured out to begin.
             </h2>
           </div>
         </section>
 
         {/* 5 · WHERE TO BEGIN */}
-        <section className="mx-auto max-w-6xl px-5 pb-10 text-center">
+        <section className="mx-auto max-w-6xl px-5 pb-12 pt-28 text-center md:pt-36">
           <p className="mb-5 text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">Where to begin</p>
-          <h2 className="font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">Find your next step.</h2>
+          <h2 className="font-display text-[2.1rem] leading-tight text-[var(--plum)] md:text-[3.4rem]">Find your next step.</h2>
         </section>
         <PathwayCards />
 
+        {/* BREATH 2 — warm full-bleed lead into the close */}
+        <section className="relative min-h-[56vh] w-full overflow-hidden">
+          <img
+            src="/golden-window.jpg"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to top, rgba(46,26,34,0.55) 0%, rgba(46,26,34,0.12) 60%)" }}
+          />
+        </section>
+
         {/* 6 · LET'S TALK — closing */}
         <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 md:grid-cols-2 md:py-24 lg:gap-16">
-            <StudioImage src={LETSTALK_IMG} alt="Ring ring — let's talk" className="mx-auto w-full max-w-sm md:max-w-none" />
-            <div>
+          <div className="grid items-stretch md:grid-cols-2">
+            <div className="relative min-h-[48vh] md:min-h-[64vh]">
+              <img
+                src="/hands-coffee.jpg"
+                alt="Coffee poured, an unhurried table"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="flex flex-col justify-center px-5 py-16 md:px-14 md:py-24 lg:px-20">
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">Getting started</p>
-              <h2 className="mt-5 max-w-[14ch] font-display text-[2.5rem] leading-[1.05] text-[var(--oat)] md:text-6xl">
+              <h2 className="mt-6 max-w-[14ch] font-display text-[2.5rem] leading-[1.03] text-[var(--oat)] md:text-[4rem]">
                 Start with a free 15-minute call.
               </h2>
-              <p className="mt-6 max-w-[34ch] text-lg text-[var(--oat)]/85">
+              <p className="mt-7 max-w-[34ch] text-lg text-[var(--oat)]/85">
                 No pressure — just a chance to see if we&apos;re the right fit.
               </p>
-              <div className="mt-9">
+              <div className="mt-10">
                 <BookButton location="closing" />
               </div>
-              <p className="mt-6 max-w-[48ch] text-sm text-[var(--oat)]/60">
+              <p className="mt-7 max-w-[48ch] text-sm text-[var(--oat)]/60">
                 $200 per 50-minute session · about $110.50 out-of-pocket after the Medicare rebate with an
                 eligible GP plan. Rebates indexed each July; confirmed at booking.
               </p>
