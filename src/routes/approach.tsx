@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { HALAXY_URL, SITE_URL, WHITEPAPER_PDF } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
@@ -8,10 +9,8 @@ const TITLE = "Our approach — the Body Belonging framework | Body Belonging Cl
 const DESCRIPTION =
   "The Body Belonging framework: Safety, Notice, Regulate, Belong. A whole-person, weight-neutral approach to ADHD, eating and regulation — honest about the evidence.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/approach`;
-
-const HERO_IMG = "/portrait-bw.jpg";
-const BODY_IMG = "/food-brain-mug.jpg";
-const CTA_IMG = "/pride.jpg";
+const SAGE = "#B7BC7A";
+const kicker = "font-mono text-xs uppercase tracking-[0.2em] text-[var(--terracotta)]";
 
 export const Route = createFileRoute("/approach")({
   head: () => ({
@@ -56,42 +55,72 @@ const BookButton = () => (
   </a>
 );
 
+// Calm motion breath — poster still by default, muted looping video only when motion is allowed.
+function CalmBand() {
+  const [motion, setMotion] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setMotion(!mq.matches);
+    apply();
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
+  return (
+    <section className="relative min-h-[60vh] w-full overflow-hidden bg-[var(--plum)]">
+      {motion ? (
+        <video className="absolute inset-0 h-full w-full object-cover" poster="/hub-calm-poster.jpg" autoPlay muted loop playsInline aria-hidden="true">
+          <source src="/hub-calm.mp4" type="video/mp4" />
+        </video>
+      ) : (
+        <img src="/hub-calm-poster.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+      )}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.6), rgba(46,26,34,0.12) 55%, rgba(46,26,34,0.4))" }} />
+      <div className="relative mx-auto flex min-h-[60vh] max-w-4xl items-center justify-center px-5 text-center">
+        <h2 className="max-w-[18ch] font-display text-[2rem] leading-[1.08] text-[var(--oat)] md:text-[3.4rem]">
+          Safety first. The nervous system leads.
+        </h2>
+      </div>
+    </section>
+  );
+}
+
 function ApproachPage() {
   return (
-    <div className="min-h-dvh bg-[var(--oat)] text-[var(--plum)]" id="top">
+    <div className="min-h-dvh bg-[var(--cream)] text-[var(--plum)]" id="top">
       <SiteHeader location="approach" />
       <main id="main-content" tabIndex={-1}>
-        {/* HERO */}
+        {/* HERO — plum, full-bleed split */}
         <section className="bg-[var(--plum)] text-[var(--oat)]">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:py-24 lg:gap-16">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[var(--terracotta)]">Our approach</p>
-              <h1 className="mt-6 max-w-[15ch] font-display text-[2.75rem] leading-[1.03] text-[var(--oat)] md:text-6xl">
+          <div className="grid md:grid-cols-2 md:items-stretch">
+            <div className="flex flex-col justify-center px-5 py-16 md:py-24 md:pl-12 md:pr-14 lg:pl-20">
+              <p className={kicker}>Our approach</p>
+              <h1 className="mt-6 max-w-[15ch] font-display text-[2.85rem] leading-[1.02] text-[var(--oat)] md:text-[5rem]">
                 ADHD regulation, from the inside out.
               </h1>
-              <p className="mt-6 max-w-[40ch] text-lg leading-relaxed text-[var(--oat)]/85 md:text-xl">
+              <p className="mt-7 max-w-[40ch] text-lg leading-relaxed text-[var(--oat)]/85 md:text-xl">
                 A whole-person framework for how attention, emotion and eating actually connect —
                 gentle, weight-neutral, and honest about the evidence.
               </p>
             </div>
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
-              <img src={HERO_IMG} alt="A quiet, considered moment" className="h-full w-full object-cover" loading="eager" decoding="async" />
+            <div className="relative min-h-[52vh] md:min-h-[80vh]">
+              <img src="/hub-portrait.jpg" alt="A quiet, considered moment" className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
             </div>
           </div>
         </section>
 
-        {/* PHILOSOPHY */}
-        <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-          <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-20">
-            <div className="relative order-2 aspect-[4/5] w-full overflow-hidden rounded-3xl border border-[var(--plum)]/10 shadow-md md:order-1">
-              <img src={BODY_IMG} alt="A warm, unhurried moment" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+        {/* PHILOSOPHY — sage, full-bleed split */}
+        <section style={{ backgroundColor: SAGE }} className="text-[var(--plum)]">
+          <div className="grid md:grid-cols-2 md:items-stretch">
+            <div className="relative order-2 min-h-[48vh] md:order-1 md:min-h-[68vh]">
+              <img src="/hub-shadows.jpg" alt="Two figures in warm light" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             </div>
-            <div className="order-1 md:order-2">
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-[var(--terracotta)]">The idea</p>
-              <h2 className="mt-5 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
+            <div className="order-1 flex flex-col justify-center px-5 py-16 md:order-2 md:px-14 md:py-24 lg:px-20">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#5c4a1e]">The idea</p>
+              <h2 className="mt-5 max-w-[18ch] font-display text-[2rem] leading-[1.05] text-[var(--plum)] md:text-[3.4rem]">
                 Most ADHD care looks only at attention. We look at the whole system.
               </h2>
-              <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-[var(--plum)]/80">
+              <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-[var(--plum)]/82">
                 Attention, feelings and eating pull on each other constantly. We work across that
                 overlap — while keeping an eye on sleep, sensory needs, medication and everything else
                 that shapes a day.
@@ -100,49 +129,54 @@ function ApproachPage() {
           </div>
         </section>
 
-        {/* WHAT WE WATCH — the domains */}
-        <section className="bg-[var(--cream)]">
+        {/* WHAT WE WATCH — terracotta */}
+        <section className="bg-[var(--terracotta)] text-[var(--cream)]">
           <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-            <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">What we watch</p>
-            <h2 className="mt-4 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">Four dials, always pulling on each other.</h2>
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-[var(--cream)]/80">What we watch</p>
+            <h2 className="mt-4 font-display text-[2rem] leading-tight md:text-[3.4rem]">Four dials, always pulling on each other.</h2>
             <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {DOMAINS.map((d) => (
-                <div key={d.t} className="rounded-2xl border border-[var(--plum)]/10 bg-[var(--oat)] p-6">
-                  <p className="font-display text-xl text-[var(--plum)]">{d.t}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--plum)]/70">{d.d}</p>
+                <div key={d.t} className="rounded-2xl bg-[var(--cream)] p-6 text-[var(--plum)]">
+                  <p className="font-display text-xl">{d.t}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--plum)]/72">{d.d}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* HOW WE WORK — the four movements (the framework) */}
-        <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
-          <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">How we work</p>
-          <h2 className="mt-4 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">The four movements.</h2>
-          <p className="mt-4 text-[var(--plum)]/60">From safety on the inside, outward to belonging.</p>
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {MOVEMENTS.map((m) => (
-              <article key={m.n} className="flex flex-col rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] p-7">
-                <div className="flex items-baseline gap-3">
-                  <span className="font-display text-4xl text-[var(--terracotta)]">{m.n}</span>
-                  <span className="text-xs font-medium uppercase tracking-[0.22em] text-[var(--terracotta)]">{m.label}</span>
-                </div>
-                <h3 className="mt-4 font-display text-xl leading-tight text-[var(--plum)]">{m.t}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--plum)]/80">{m.body}</p>
-                <p className="mt-5 border-t border-[var(--plum)]/10 pt-4 text-xs leading-relaxed text-[var(--plum)]/50">
-                  <span className="font-medium text-[var(--terracotta)]">Rooted in · </span>{m.root}
-                </p>
-              </article>
-            ))}
+        {/* MOTION BREATH — calm */}
+        <CalmBand />
+
+        {/* FOUR MOVEMENTS — cream */}
+        <section className="bg-[var(--cream)]">
+          <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
+            <p className={kicker}>How we work</p>
+            <h2 className="mt-4 font-display text-[2rem] leading-tight text-[var(--plum)] md:text-[3.4rem]">The four movements.</h2>
+            <p className="mt-4 text-[var(--plum)]/60">From safety on the inside, outward to belonging.</p>
+            <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {MOVEMENTS.map((m) => (
+                <article key={m.n} className="flex flex-col rounded-3xl border border-[var(--plum)]/10 bg-white p-7">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-display text-4xl text-[var(--terracotta)]">{m.n}</span>
+                    <span className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--terracotta)]">{m.label}</span>
+                  </div>
+                  <h3 className="mt-4 font-display text-xl leading-tight text-[var(--plum)]">{m.t}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--plum)]/80">{m.body}</p>
+                  <p className="mt-5 border-t border-[var(--plum)]/10 pt-4 text-xs leading-relaxed text-[var(--plum)]/50">
+                    <span className="font-medium text-[var(--terracotta)]">Rooted in · </span>{m.root}
+                  </p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* HONEST ABOUT THE EVIDENCE — consolidated, confident */}
+        {/* HONEST ABOUT THE EVIDENCE — plum */}
         <section className="bg-[var(--plum)] text-[var(--oat)]">
           <div className="mx-auto max-w-3xl px-5 py-20 md:py-28">
-            <p className="text-xs font-medium uppercase tracking-[0.28em] text-[var(--terracotta)]">Our promise</p>
-            <h2 className="mt-4 font-display text-[2rem] leading-tight text-[var(--oat)] md:text-5xl">
+            <p className={kicker}>Our promise</p>
+            <h2 className="mt-4 font-display text-[2rem] leading-tight text-[var(--oat)] md:text-[3.4rem]">
               Honest about the evidence.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-[var(--oat)]/85">
@@ -171,14 +205,14 @@ function ApproachPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-          <div className="grid items-center gap-10 md:grid-cols-2 lg:gap-16">
-            <div className="relative order-2 aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--plum)]/10 shadow-md md:order-1 md:max-w-none">
-              <img src={CTA_IMG} alt="Joy, pride and belonging" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+        {/* CTA — oat, full-bleed split */}
+        <section className="bg-[var(--oat)]">
+          <div className="grid md:grid-cols-2 md:items-stretch">
+            <div className="relative order-2 min-h-[48vh] md:order-1 md:min-h-[64vh]">
+              <img src="/hub-together.jpg" alt="Joy, pride and belonging" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             </div>
-            <div className="order-1 md:order-2">
-              <h2 className="max-w-[18ch] font-display text-[2rem] leading-tight text-[var(--plum)] md:text-5xl">
+            <div className="order-1 flex flex-col justify-center px-5 py-16 md:order-2 md:px-14 md:py-24 lg:px-20">
+              <h2 className="max-w-[18ch] font-display text-[2rem] leading-tight text-[var(--plum)] md:text-[3.4rem]">
                 Support built for how your brain actually works.
               </h2>
               <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
