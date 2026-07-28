@@ -54,8 +54,8 @@ function LettersIndex() {
               <figure className="md:justify-self-end">
                 <div className="overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
                   <img
-                    src="/letters-journal.jpg"
-                    alt="Writing by hand in a journal at a sunlit table"
+                    src="/reading-terracotta.jpg"
+                    alt="Reading, unhurried, on a warm afternoon"
                     loading="eager"
                     decoding="async"
                     className="aspect-[4/5] h-full w-full object-cover"

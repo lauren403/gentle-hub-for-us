@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { SITE_URL, HALAXY_URL } from "@/config/site";
 import { SiteHeader, SiteFooter, FloatingBook, Logo } from "@/components/site-chrome";
 import { trackEvent } from "@/lib/analytics";
@@ -9,6 +10,45 @@ const DESCRIPTION =
   "Does food really affect ADHD? An honest, weight-neutral look at the real science — omega-3, iron, zinc, magnesium, vitamin D and diet — what helps, what's hype, and how to explore it safely. Written by an AMHSW and ANZAED eating disorder clinician.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/food-and-the-adhd-brain`;
 const HEADLINE = "Food and the ADHD brain";
+
+// Reduced-motion-safe matcha motion band: still poster by default, gentle looping
+// video only when the visitor has not requested reduced motion.
+function MatchaMotion() {
+  const [motion, setMotion] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setMotion(!mq.matches);
+    apply();
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
+  return (
+    <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-[var(--plum)]/10 shadow-sm">
+      {motion ? (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          poster="/food-motion-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+        >
+          <source src="/food-motion.mp4" type="video/mp4" />
+        </video>
+      ) : (
+        <img
+          src="/food-motion-poster.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+    </div>
+  );
+}
 
 const articleLd = {
   "@context": "https://schema.org",
@@ -84,8 +124,8 @@ function FoodAndTheAdhdBrainPage() {
               <figure className="md:justify-self-end">
                 <div className="overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
                   <img
-                    src="/coffee-terrazzo.jpg"
-                    alt="A warm cup on a sunlit table"
+                    src="/mug-terrazzo.jpg"
+                    alt="A blue enamel mug of coffee on warm terrazzo"
                     loading="eager"
                     decoding="async"
                     className="aspect-[4/5] h-full w-full object-cover"
@@ -183,9 +223,7 @@ function FoodAndTheAdhdBrainPage() {
           </P>
 
           <figure className="my-16">
-            <div className="overflow-hidden rounded-3xl border border-[var(--plum)]/10 shadow-sm">
-              <img src="/cafe-outdoor.jpg" alt="" loading="lazy" decoding="async" className="aspect-[16/10] h-full w-full object-cover" />
-            </div>
+            <MatchaMotion />
             <figcaption className="mt-5 text-center font-display text-xl italic leading-snug text-[var(--plum)]/70 md:text-2xl">
               Steady beats special.
             </figcaption>

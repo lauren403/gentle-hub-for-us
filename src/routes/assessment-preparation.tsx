@@ -153,7 +153,7 @@ function AssessmentPreparationPage() {
 
         {/* BREATH — full-bleed */}
         <section className="relative min-h-[56vh] w-full overflow-hidden bg-[var(--plum)]">
-          <img src="/calm-apartment.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="/small-steps-note.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.7) 0%, rgba(46,26,34,0.3) 55%, rgba(46,26,34,0.5) 100%)" }} />
           <div className="relative mx-auto flex min-h-[56vh] max-w-4xl items-center justify-center px-5 text-center">
             <h2 className="max-w-[20ch] font-display text-[2rem] leading-tight text-[var(--oat)] md:text-5xl">

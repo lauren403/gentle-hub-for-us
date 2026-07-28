@@ -189,7 +189,7 @@ function OurStoryPage() {
         </section>
 
         <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-          <img src="/poppies-up.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="/parakeets.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.82) 0%, rgba(46,26,34,0.55) 100%)" }} />
           <div className="relative mx-auto max-w-3xl px-5 py-24 text-center md:py-32">
             <p className="font-display text-4xl leading-tight md:text-6xl">Every body belongs.</p>

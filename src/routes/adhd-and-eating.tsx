@@ -184,7 +184,7 @@ function AdhdAndEatingPage() {
 
           <figure className="my-16">
             <div className="overflow-hidden rounded-3xl border border-[var(--plum)]/10 shadow-sm">
-              <img src="/poppies-hand.jpg" alt="" loading="lazy" decoding="async" className="aspect-[16/10] h-full w-full object-cover" />
+              <img src="/ranunculus.jpg" alt="" loading="lazy" decoding="async" className="aspect-[16/10] h-full w-full object-cover" />
             </div>
             <figcaption className="mt-5 text-center font-display text-xl italic leading-snug text-[var(--plum)]/70 md:text-2xl">
               Include, steady, nourish — never shrink, earn or control.

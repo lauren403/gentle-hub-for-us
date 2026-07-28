@@ -9,7 +9,7 @@ const DESCRIPTION =
   "The Body Belonging framework: Safety, Notice, Regulate, Belong. A whole-person, weight-neutral approach to ADHD, eating and regulation — honest about the evidence.";
 const CANONICAL = `${SITE_URL.replace(/\/$/, "")}/approach`;
 
-const HERO_IMG = "/hero-portrait.jpg";
+const HERO_IMG = "/portrait-bw.jpg";
 const BODY_IMG = "/food-brain-mug.jpg";
 const CTA_IMG = "/pride.jpg";
 
@@ -75,7 +75,7 @@ function ApproachPage() {
               </p>
             </div>
             <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
-              <img src={HERO_IMG} alt="Lauren Lynch at Body Belonging Clinic" className="h-full w-full object-cover" loading="eager" decoding="async" />
+              <img src={HERO_IMG} alt="A quiet, considered moment" className="h-full w-full object-cover" loading="eager" decoding="async" />
             </div>
           </div>
         </section>

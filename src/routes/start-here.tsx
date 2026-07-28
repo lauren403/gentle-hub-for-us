@@ -103,7 +103,7 @@ function StartHerePage() {
               </p>
             </div>
             <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl border border-[var(--oat)]/10 shadow-md md:max-w-none">
-              <img src="/woman-plants.jpg" alt="A warm welcome at Body Belonging Clinic" className="h-full w-full object-cover" loading="eager" decoding="async" />
+              <img src="/portrait-calm.jpg" alt="A warm welcome at Body Belonging Clinic" className="h-full w-full object-cover" loading="eager" decoding="async" />
             </div>
           </div>
         </section>
@@ -200,7 +200,7 @@ function StartHerePage() {
 
         {/* CLOSING CTA — full-bleed */}
         <section className="relative overflow-hidden bg-[var(--plum)] text-[var(--oat)]">
-          <img src="/golden-window.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="/warm-vanity.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,34,0.85) 0%, rgba(46,26,34,0.5) 100%)" }} />
           <div className="relative mx-auto max-w-3xl px-5 py-24 md:py-32 text-center">
             <h2 className="font-display text-4xl leading-tight md:text-6xl">Ready when you are.</h2>
