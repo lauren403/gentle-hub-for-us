@@ -35,6 +35,7 @@
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Space Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-hand: "Shantell Sans", "Comic Sans MS", ui-rounded, sans-serif;
 }
 
 :root {
@@ -92,6 +93,28 @@
       "SOFT" 50,
       "WONK" 0;
     letter-spacing: -0.01em;
+  }
+  .font-hand {
+    font-family: var(--font-hand);
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  /* Hand-lettered section label — replaces the mono kicker. Warm, drawn,
+     slightly tilted like a marker note. */
+  .hand-label {
+    font-family: var(--font-hand);
+    font-weight: 600;
+    font-size: 1.05rem;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+  /* Images always sit on a warm tint so a slow/lazy load never flashes
+     blank white or empty plum — the box reads intentional while it fills. */
+  .img-warm {
+    background-color: color-mix(in oklch, var(--plum) 8%, var(--oat));
+  }
+  .img-warm.on-plum {
+    background-color: color-mix(in oklch, var(--oat) 12%, var(--plum));
   }
   ::selection {
     background: var(--terracotta);

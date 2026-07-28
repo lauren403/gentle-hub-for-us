@@ -42,9 +42,9 @@ function LettersIndex() {
           <div className="mx-auto max-w-5xl px-5 py-24 md:py-32">
             <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--terracotta)]">
-                  Words from the chair
-                </p>
+                <span className="hand-label inline-block text-[var(--terracotta)]" style={{ transform: "rotate(-1.4deg)" }}>
+                  ✳ Words from the chair
+                </span>
                 <h1 className="mt-5 font-display text-4xl leading-[1.05] md:text-6xl">Letters</h1>
                 <p className="mt-6 font-display text-xl italic text-[var(--oat)]/85 md:text-2xl">
                   Unhurried, evidence-honest letters on ADHD, the body, food and belonging. Written
@@ -52,7 +52,7 @@ function LettersIndex() {
                 </p>
               </div>
               <figure className="md:justify-self-end">
-                <div className="overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
+                <div className="img-warm on-plum overflow-hidden rounded-3xl border border-[var(--oat)]/15 shadow-xl">
                   <img
                     src="/hub-lamp.jpg"
                     alt="A warm lamp and a quiet corner to read in"
@@ -75,7 +75,7 @@ function LettersIndex() {
                 to={letter.path}
                 className="group flex flex-col overflow-hidden rounded-3xl border border-[var(--plum)]/10 bg-[var(--cream)] no-underline transition-all hover:border-[var(--terracotta)]/40 hover:shadow-md"
               >
-                <div className="relative aspect-[4/5] overflow-hidden">
+                <div className="img-warm relative aspect-[4/5] overflow-hidden">
                   <img
                     src={LETTER_IMAGES[i % LETTER_IMAGES.length]}
                     alt=""
@@ -90,7 +90,7 @@ function LettersIndex() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
-                  <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--terracotta)]">
+                  <p className="font-hand text-base text-[var(--terracotta)]">
                     A letter · {letter.readingTime}
                   </p>
                   <h2 className="mt-3 font-display text-xl leading-tight text-[var(--plum)] md:text-2xl">

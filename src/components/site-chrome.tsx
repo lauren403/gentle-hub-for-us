@@ -45,8 +45,9 @@ export function SiteHeader({ location, activePath }: { location: string; activeP
           <span className="grid size-9 place-items-center rounded-full bg-[var(--oat)] text-[var(--plum)]">
             <Logo className="size-6" />
           </span>
-          <span className="hidden font-display text-base font-medium leading-tight sm:block">
-            Body Belonging<span className="opacity-60"> · ADHD Hub</span>
+          <span className="hidden items-baseline gap-1.5 leading-tight sm:flex">
+            <span className="font-display text-base font-medium">Body Belonging</span>
+            <span className="font-hand text-lg text-[var(--terracotta)]">ADHD Hub</span>
           </span>
         </Link>
         <nav

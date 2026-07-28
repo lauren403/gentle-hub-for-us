@@ -18,9 +18,9 @@ export function LetterPage({ letter }: { letter: Letter }) {
           <section className="bg-[var(--plum)] text-[var(--oat)]">
             <div className="grid md:grid-cols-2 md:items-stretch">
               <div className="flex flex-col justify-center px-5 py-16 md:py-24 md:pl-12 md:pr-14 lg:pl-20">
-                <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--terracotta)]">
-                  A letter · {letter.readingTime}
-                </p>
+                <span className="hand-label inline-block text-[var(--terracotta)]" style={{ transform: "rotate(-1.4deg)" }}>
+                  ✳ A letter · {letter.readingTime}
+                </span>
                 <h1
                   className="mt-6 max-w-[16ch] font-display text-[2.6rem] leading-[1.03] md:text-[4.4rem]"
                   style={{ fontVariationSettings: '"SOFT" 100' }}
@@ -28,8 +28,8 @@ export function LetterPage({ letter }: { letter: Letter }) {
                   {letter.title}
                 </h1>
               </div>
-              <div className="relative min-h-[46vh] md:min-h-[70vh]">
-                <img src={heroImg} alt="" className="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
+              <div className="img-warm on-plum relative min-h-[46vh] md:min-h-[70vh]">
+                <img src={heroImg} alt="" className="absolute inset-0 h-full w-full object-cover" loading="eager" fetchPriority="high" decoding="async" />
               </div>
             </div>
           </section>
